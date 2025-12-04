@@ -1,4 +1,3 @@
-import 'package:a7gzle/core/helpers/font_weight_helper.dart';
 import 'package:a7gzle/core/theming/colors_manager.dart';
 import 'package:a7gzle/core/theming/text_styles.dart';
 import 'package:flutter/material.dart';
