@@ -12,7 +12,7 @@ class Onboarding extends StatelessWidget {
         child: TextButton(
           style: ButtonStyle(),
           onPressed: () {
-            context.pushNamed(RoutesConstant.login);
+            context.pushNamed(RoutesConstant.signup);
           },
           child: Text("get started"),
         ),

@@ -1,7 +1,7 @@
-import 'package:a7gzle/core/helpers/font_weight_helper.dart';
 import 'package:a7gzle/core/theming/colors_manager.dart';
 import 'package:a7gzle/core/theming/text_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppTextFormFeild extends StatelessWidget {
   InputBorder? focusedBorder;
@@ -11,6 +11,9 @@ class AppTextFormFeild extends StatelessWidget {
   bool? isobscuretext;
   TextStyle? hintStyle;
   Widget? suffixIcon;
+  String feildname;
+  TextEditingController? controller;
+  void Function()? onTap;
 
   AppTextFormFeild({
     super.key,
@@ -21,40 +24,56 @@ class AppTextFormFeild extends StatelessWidget {
     this.isobscuretext,
     this.hintStyle,
     this.suffixIcon,
+    required this.feildname,
+    this.onTap,
+    this.controller,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      style: TextStyles.font16darkgraymiduem,
+      controller: controller,
+
+      style: TextStyles.font16graymiduem,
       obscureText: isobscuretext ?? false,
       decoration: InputDecoration(
+        label: Padding(
+          padding: EdgeInsets.only(right: 15.0.h, left: 6.h),
+          child: Text(feildname),
+        ),
+        labelStyle: TextStyles.font16labelblackmideum,
+        floatingLabelStyle: TextStyles.font16labelblackmideum.copyWith(
+          fontSize: 20,
+          color: ColorsManager.mainBlue,
+        ),
+
         filled: true,
-        fillColor: ColorsManager.lightGray,
+        contentPadding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
+        fillColor: ColorsManager.offwhite,
         suffixIcon: Padding(
           padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 20),
           child: suffixIcon,
         ),
-
         isDense: true,
         focusedBorder:
             focusedBorder ??
             OutlineInputBorder(
-              borderSide: BorderSide(color: ColorsManager.orange, width: 1),
+              borderSide: BorderSide(color: ColorsManager.mainBlue, width: 1.5),
               borderRadius: borderRadius ?? BorderRadius.circular(30),
             ),
         enabledBorder:
             enabledBorder ??
             OutlineInputBorder(
-              borderSide: BorderSide(color: ColorsManager.gray, width: 1),
+              borderSide: BorderSide(color: ColorsManager.gray, width: 1.5),
               borderRadius: borderRadius ?? BorderRadius.circular(30),
             ),
         errorBorder:
             errorBorder ??
             OutlineInputBorder(
-              borderSide: BorderSide(color: ColorsManager.red, width: 1),
+              borderSide: BorderSide(color: Colors.red, width: 1),
             ),
       ),
+      onTap: onTap,
     );
   }
 }
