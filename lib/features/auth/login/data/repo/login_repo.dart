@@ -2,6 +2,7 @@ import 'package:a7gzle/core/networking/api_result.dart';
 import 'package:a7gzle/core/networking/web_services.dart';
 import 'package:a7gzle/features/auth/login/data/model/login_request_body.dart';
 import 'package:a7gzle/features/auth/login/data/model/login_response_body.dart';
+import 'package:dio/dio.dart';
 
 class LoginRepo {
   final WebServices _webServices;
@@ -14,7 +15,7 @@ class LoginRepo {
       var response = await _webServices.login(loginrequestbody);
       return ApiResult.success(response);
     } catch (error) {
-      return ApiResult.failure(error.toString());
+      return ApiResult.failure(error as DioException);
     }
   }
 }
