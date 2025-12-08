@@ -1,9 +1,13 @@
 import 'package:a7gzle/core/theming/text_styles.dart';
 import 'package:a7gzle/core/widgets/app_text_button.dart';
+import 'package:a7gzle/features/auth/login/data/logic/cubit/login_cubit.dart';
+import 'package:a7gzle/features/auth/login/data/model/login_request_body.dart';
 import 'package:a7gzle/features/auth/login/widgets/dont_have_account.dart';
 import 'package:a7gzle/features/auth/login/widgets/log_in_text_form_feild.dart';
+import 'package:a7gzle/features/auth/login/widgets/login_bloc_listner.dart';
 import 'package:a7gzle/features/auth/signup/widgets/terms_and_condtions.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Login extends StatelessWidget {
@@ -46,11 +50,25 @@ class Login extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 25.0.w),
                 child: AppTextButton(
-                  onpressed: () {},
+                  onpressed: () {
+                    context.read<LoginCubitCubit>().emitLoginState(
+                      LoginRequestBody(
+                        number: context
+                            .read<LoginCubitCubit>()
+                            .numberController
+                            .text,
+                        password: context
+                            .read<LoginCubitCubit>()
+                            .passController
+                            .text,
+                      ),
+                    );
+                  },
                   textButton: "log in",
                   textStyle: TextStyles.font16whitesemibold,
                 ),
               ),
+              LoginBlocListner(),
               SizedBox(height: 50),
             ],
           ),

@@ -3,9 +3,9 @@ import 'package:a7gzle/core/routing/routes_constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class Home extends StatelessWidget {
+class Manager extends StatelessWidget {
   final GenerateRoute generateRoute;
-  const Home({super.key, required this.generateRoute});
+  const Manager({super.key, required this.generateRoute});
 
   @override
   Widget build(BuildContext context) {

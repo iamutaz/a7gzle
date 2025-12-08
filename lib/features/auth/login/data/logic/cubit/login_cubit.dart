@@ -7,20 +7,20 @@ import 'package:bloc/bloc.dart';
 
 class LoginCubitCubit extends Cubit<LoginCubitState> {
   final LoginRepo _loginRepo;
-  TextEditingController emailController = TextEditingController();
+  TextEditingController numberController = TextEditingController();
   TextEditingController passController = TextEditingController();
   final formkey = GlobalKey<FormState>();
   LoginCubitCubit(this._loginRepo) : super(LoginCubitState.initial());
 
   void emitLoginState(LoginRequestBody loginrequesbody) async {
-    emit(LoginCubitState.loading());
+    emit(LoginCubitState.loginloading());
     final response = await _loginRepo.login(loginrequesbody);
     response.when(
       success: (loginResponseBody) {
-        emit(LoginCubitState.success(loginResponseBody));
+        emit(LoginCubitState.loginsuccess(loginResponseBody));
       },
       failure: (error) {
-        emit(LoginCubitState.failure(error: error));
+        emit(LoginCubitState.loginfailure(error: error));
       },
     );
   }

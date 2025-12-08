@@ -1,5 +1,7 @@
 import 'package:a7gzle/core/widgets/app_text_form_feild.dart';
+import 'package:a7gzle/features/auth/login/data/logic/cubit/login_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LogInTextFormFeild extends StatefulWidget {
@@ -15,14 +17,19 @@ class _LogInTextFormFeildState extends State<LogInTextFormFeild> {
   @override
   Widget build(BuildContext context) {
     return Form(
+      key: context.read<LoginCubitCubit>().formkey,
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 22.w),
         child: Column(
           children: [
-            AppTextFormFeild(feildname: "Number"),
+            AppTextFormFeild(
+              feildname: "Number",
+              controller: context.read<LoginCubitCubit>().numberController,
+            ),
             SizedBox(height: 30.h),
             AppTextFormFeild(
               feildname: "Password",
+              controller: context.read<LoginCubitCubit>().passController,
               isobscuretext: isobscuretext,
               suffixIcon: InkWell(
                 onTap: () {

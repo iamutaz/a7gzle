@@ -15,11 +15,11 @@ class TextStyles {
     fontWeight: FontWeightHelper.regular,
   );
 
-  static TextStyle font16darkgraymiduem = TextStyle(
-    color: ColorsManager.enabledBorderbordercolor,
-    fontSize: 16.sp,
-    fontWeight: FontWeightHelper.mideum,
-  );
+  // static TextStyle font16darkgraymiduem = TextStyle(
+  //   color: ColorsManager.enabledBorderbordercolor,
+  //   fontSize: 16.sp,
+  //   fontWeight: FontWeightHelper.mideum,
+  // );
   static TextStyle font16graymiduem = TextStyle(
     color: ColorsManager.gray,
     fontSize: 16.sp,
