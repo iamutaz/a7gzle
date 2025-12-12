@@ -4,6 +4,7 @@ import 'package:a7gzle/features/auth/info/info.dart';
 import 'package:a7gzle/features/auth/login/data/logic/cubit/login_cubit.dart';
 import 'package:a7gzle/features/auth/login/login.dart';
 import 'package:a7gzle/features/auth/signup/sign_up.dart';
+import 'package:a7gzle/features/details/details_screen.dart';
 import 'package:a7gzle/features/onboarding/onboarding.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -43,6 +44,12 @@ class GenerateRoute {
               create: (context) => getIt<LoginCubitCubit>(),
               child: Login(),
             );
+          },
+        );
+      case RoutesConstant.details:
+        return MaterialPageRoute(
+          builder: (BuildContext context) {
+            return Details();
           },
         );
       default:

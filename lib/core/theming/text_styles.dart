@@ -15,11 +15,6 @@ class TextStyles {
     fontWeight: FontWeightHelper.regular,
   );
 
-  // static TextStyle font16darkgraymiduem = TextStyle(
-  //   color: ColorsManager.enabledBorderbordercolor,
-  //   fontSize: 16.sp,
-  //   fontWeight: FontWeightHelper.mideum,
-  // );
   static TextStyle font16graymiduem = TextStyle(
     color: ColorsManager.gray,
     fontSize: 16.sp,
@@ -46,6 +41,13 @@ class TextStyles {
     fontWeight: FontWeightHelper.bold,
     color: ColorsManager.mainBlue,
   );
+
+  static TextStyle font12mainbluesemibold = TextStyle(
+    fontSize: 12.sp,
+    fontWeight: FontWeightHelper.semibold,
+    color: ColorsManager.mainBlue,
+  );
+
   static TextStyle font16whitesemibold = TextStyle(
     fontSize: 16.sp,
     fontWeight: FontWeightHelper.semibold,
@@ -65,5 +67,20 @@ class TextStyles {
     fontSize: 13.sp,
     fontWeight: FontWeightHelper.semibold,
     color: ColorsManager.mainBlue,
+  );
+  static TextStyle font14neartograymiduem = TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeightHelper.mideum,
+    color: ColorsManager.neartonormalgray,
+  );
+  static TextStyle font14blackmideum = TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeightHelper.mideum,
+    color: Colors.black,
+  );
+  static TextStyle font16neartograyregular = TextStyle(
+    fontSize: 16.sp,
+    fontWeight: FontWeightHelper.regular,
+    color: ColorsManager.neartonormalgray,
   );
 }
