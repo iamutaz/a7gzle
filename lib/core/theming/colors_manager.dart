@@ -11,5 +11,7 @@ class ColorsManager {
   static const Color enabledBorderbordercolor = Color(0xFFEDEDED);
   static const Color morelightgray = Color(0xFF9E9E9E);
   static const Color lightblack = Color(0xFF242424);
+  static const Color sui = Color.fromARGB(36, 36, 124, 255);
   static const Color labelcolor = Color(0xFF151A2D);
+  static const Color neartonormalgray = Color(0xFF666876);
 }
