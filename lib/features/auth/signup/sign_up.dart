@@ -2,10 +2,12 @@ import 'package:a7gzle/core/helpers/extension.dart';
 import 'package:a7gzle/core/routing/routes_constant.dart';
 import 'package:a7gzle/core/theming/text_styles.dart';
 import 'package:a7gzle/core/widgets/app_text_button.dart';
+import 'package:a7gzle/features/auth/signup/data/cubit/sign_up_cubit.dart';
 import 'package:a7gzle/features/auth/signup/widgets/already_have_an_account.dart';
 import 'package:a7gzle/features/auth/signup/widgets/terms_and_condtions.dart';
 import 'package:a7gzle/features/auth/signup/widgets/sign_up_text_form_feild.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SignUp extends StatelessWidget {
@@ -49,7 +51,16 @@ class SignUp extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 25.0.w),
                 child: AppTextButton(
                   onpressed: () {
-                    context.pushReplacementNamed(RoutesConstant.info);
+                    final cubit = context.read<SignUpCubit>();
+
+                    if (context
+                        .read<SignUpCubit>()
+                        .firstpagekeyform
+                        .currentState!
+                        .validate()) {
+                      context.read<SignUpCubit>().saveStepOne();
+                      context.pushNamed(RoutesConstant.info, aurgment: cubit);
+                    }
                   },
                   textButton: "Next",
                   textStyle: TextStyles.font16whitesemibold,

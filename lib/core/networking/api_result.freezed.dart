@@ -128,11 +128,11 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( T data)?  success,TResult Function( DioException dioexception)?  failure,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( T data)?  success,TResult Function( dynamic error)?  failure,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case Success() when success != null:
 return success(_that.data);case Failure() when failure != null:
-return failure(_that.dioexception);case _:
+return failure(_that.error);case _:
   return orElse();
 
 }
@@ -150,11 +150,11 @@ return failure(_that.dioexception);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( T data)  success,required TResult Function( DioException dioexception)  failure,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( T data)  success,required TResult Function( dynamic error)  failure,}) {final _that = this;
 switch (_that) {
 case Success():
 return success(_that.data);case Failure():
-return failure(_that.dioexception);case _:
+return failure(_that.error);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -171,11 +171,11 @@ return failure(_that.dioexception);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( T data)?  success,TResult? Function( DioException dioexception)?  failure,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( T data)?  success,TResult? Function( dynamic error)?  failure,}) {final _that = this;
 switch (_that) {
 case Success() when success != null:
 return success(_that.data);case Failure() when failure != null:
-return failure(_that.dioexception);case _:
+return failure(_that.error);case _:
   return null;
 
 }
@@ -259,10 +259,10 @@ as T,
 
 
 class Failure<T> with DiagnosticableTreeMixin implements ApiResult<T> {
-  const Failure(this.dioexception);
+  const Failure(this.error);
   
 
- final  DioException dioexception;
+ final  dynamic error;
 
 /// Create a copy of ApiResult
 /// with the given fields replaced by the non-null parameter values.
@@ -275,21 +275,21 @@ $FailureCopyWith<T, Failure<T>> get copyWith => _$FailureCopyWithImpl<T, Failure
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
   properties
     ..add(DiagnosticsProperty('type', 'ApiResult<$T>.failure'))
-    ..add(DiagnosticsProperty('dioexception', dioexception));
+    ..add(DiagnosticsProperty('error', error));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Failure<T>&&(identical(other.dioexception, dioexception) || other.dioexception == dioexception));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Failure<T>&&const DeepCollectionEquality().equals(other.error, error));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,dioexception);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(error));
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'ApiResult<$T>.failure(dioexception: $dioexception)';
+  return 'ApiResult<$T>.failure(error: $error)';
 }
 
 
@@ -300,7 +300,7 @@ abstract mixin class $FailureCopyWith<T,$Res> implements $ApiResultCopyWith<T, $
   factory $FailureCopyWith(Failure<T> value, $Res Function(Failure<T>) _then) = _$FailureCopyWithImpl;
 @useResult
 $Res call({
- DioException dioexception
+ dynamic error
 });
 
 
@@ -317,10 +317,10 @@ class _$FailureCopyWithImpl<T,$Res>
 
 /// Create a copy of ApiResult
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? dioexception = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? error = freezed,}) {
   return _then(Failure<T>(
-null == dioexception ? _self.dioexception : dioexception // ignore: cast_nullable_to_non_nullable
-as DioException,
+freezed == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+as dynamic,
   ));
 }
 

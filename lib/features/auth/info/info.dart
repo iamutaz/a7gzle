@@ -3,40 +3,30 @@ import 'dart:io';
 import 'package:a7gzle/core/theming/colors_manager.dart';
 import 'package:a7gzle/core/theming/text_styles.dart';
 import 'package:a7gzle/core/widgets/app_text_button.dart';
-import 'package:a7gzle/core/widgets/app_text_form_feild.dart';
+import 'package:a7gzle/features/auth/info/widgets/info_form_feild.dart';
+import 'package:a7gzle/features/auth/info/widgets/sign_up_lisitner.dart';
+import 'package:a7gzle/features/auth/signup/data/cubit/sign_up_cubit.dart';
+import 'package:a7gzle/features/auth/signup/data/model/signup_request_body.dart';
+import 'package:dio/dio.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 
 class Info extends StatefulWidget {
-  Info({super.key});
+  const Info({super.key});
 
   @override
   State<Info> createState() => _InfoState();
 }
 
 class _InfoState extends State<Info> {
-  final TextEditingController birthdatecontroller = TextEditingController();
   File? _profileImage;
   File? _frontIdImage;
   File? _backIdImage;
 
   final ImagePicker _picker = ImagePicker();
-
-  void setTimeOnForm(BuildContext context) async {
-    DateTime? dateTime = await showDatePicker(
-      context: context,
-      firstDate: DateTime(1960),
-      lastDate: DateTime.now(),
-      initialDate: DateTime(2002),
-    );
-
-    if (dateTime != null) {
-      birthdatecontroller.text =
-          "${dateTime.day}/${dateTime.month}/${dateTime.year}";
-    }
-  }
 
   Future<void> _pickImage(ImageSource source, String imageType) async {
     final XFile? pickedFile = await _picker.pickImage(source: source);
@@ -74,6 +64,21 @@ class _InfoState extends State<Info> {
         ),
       ),
     );
+  }
+
+  bool _validateImages(BuildContext context) {
+    if (_profileImage == null ||
+        _frontIdImage == null ||
+        _backIdImage == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("you should insert all the requierd photos"),
+          backgroundColor: Colors.red,
+        ),
+      );
+      return false;
+    }
+    return true;
   }
 
   @override
@@ -130,23 +135,8 @@ class _InfoState extends State<Info> {
                   ),
                 ),
                 SizedBox(height: 27.h),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(child: AppTextFormFeild(feildname: "First Name")),
-                    SizedBox(width: 15.w),
-                    Expanded(
-                      child: AppTextFormFeild(feildname: "Seconde Name"),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 30.h),
+                InfoFormFeild(),
 
-                AppTextFormFeild(
-                  controller: birthdatecontroller,
-                  feildname: "Birth Date",
-                  onTap: () => setTimeOnForm(context),
-                ),
                 SizedBox(height: 25.h),
                 Text("Insert Your ID", style: TextStyles.font24mainbluebold),
                 SizedBox(height: 20.h),
@@ -161,10 +151,66 @@ class _InfoState extends State<Info> {
                 ),
                 SizedBox(height: 30.h),
                 AppTextButton(
-                  onpressed: () {},
+                  onpressed: () async {
+                    if (!_validateImages(context)) return;
+                    if (!context
+                        .read<SignUpCubit>()
+                        .secondepagekeyform
+                        .currentState!
+                        .validate()) {
+                      return;
+                    }
+                    final profileimage = await MultipartFile.fromFile(
+                      _profileImage!.path,
+                      filename: _profileImage!.path.split('/').last,
+                    );
+
+                    final backid = await MultipartFile.fromFile(
+                      _backIdImage!.path,
+                      filename: _backIdImage!.path.split('/').last,
+                    );
+                    final frontid = await MultipartFile.fromFile(
+                      _frontIdImage!.path,
+                      filename: _frontIdImage!.path.split('/').last,
+                    );
+
+                    context.read<SignUpCubit>().emitsignUp(
+                      SignupRequestBody(
+                        number: context
+                            .read<SignUpCubit>()
+                            .numbercontroller
+                            .text,
+                        password: context
+                            .read<SignUpCubit>()
+                            .passwordcontroller
+                            .text,
+                        passwordconfirmation: context
+                            .read<SignUpCubit>()
+                            .passwordconfirmationcontroller
+                            .text,
+                        firstname: context
+                            .read<SignUpCubit>()
+                            .firstnamecontooler
+                            .text,
+                        lastname: context
+                            .read<SignUpCubit>()
+                            .lastnamecontroller
+                            .text,
+                        birthdate: context
+                            .read<SignUpCubit>()
+                            .birthdatecontroller
+                            .text,
+                        type: "owner",
+                        backid: backid,
+                        frontid: frontid,
+                        profileimage: profileimage,
+                      ),
+                    );
+                  },
                   textButton: "Submit",
                   textStyle: TextStyles.font16whitesemibold,
                 ),
+                SignUpLisitner(),
               ],
             ),
           ),

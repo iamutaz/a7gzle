@@ -2,6 +2,8 @@ import 'package:a7gzle/core/networking/dio_factory.dart';
 import 'package:a7gzle/core/networking/web_services.dart';
 import 'package:a7gzle/features/auth/login/data/logic/cubit/login_cubit.dart';
 import 'package:a7gzle/features/auth/login/data/repo/login_repo.dart';
+import 'package:a7gzle/features/auth/signup/data/cubit/sign_up_cubit.dart';
+import 'package:a7gzle/features/auth/signup/data/repo/sign_up_repo.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
@@ -14,4 +16,10 @@ void setupinjection() {
   //login
   getIt.registerLazySingleton<LoginRepo>(() => LoginRepo(getIt()));
   getIt.registerFactory<LoginCubitCubit>(() => LoginCubitCubit(getIt()));
+
+  //sign up
+  getIt.registerLazySingleton<SignUpRepo>(() => SignUpRepo(getIt()));
+  getIt.registerFactory<SignUpCubit>(() => SignUpCubit(getIt()));
+
+  //info
 }

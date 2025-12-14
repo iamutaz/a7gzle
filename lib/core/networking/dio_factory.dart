@@ -9,11 +9,12 @@ class DioFactory {
     Duration timeout = const Duration(seconds: 30);
 
     if (dio == null) {
-      dio = Dio();
+      dio = Dio(BaseOptions(headers: {'Accept': 'application/json'}));
       dio!
         ..options.connectTimeout = timeout
         ..options.receiveTimeout = timeout;
       addDioInterceptor();
+
       return dio!;
     } else {
       return dio!;

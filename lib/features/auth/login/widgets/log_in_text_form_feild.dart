@@ -23,11 +23,13 @@ class _LogInTextFormFeildState extends State<LogInTextFormFeild> {
         child: Column(
           children: [
             AppTextFormFeild(
+              validator: (value) {},
               feildname: "Number",
               controller: context.read<LoginCubitCubit>().numberController,
             ),
             SizedBox(height: 30.h),
             AppTextFormFeild(
+              validator: (value) {},
               feildname: "Password",
               controller: context.read<LoginCubitCubit>().passController,
               isobscuretext: isobscuretext,

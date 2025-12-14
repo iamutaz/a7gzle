@@ -8,12 +8,14 @@ class AppTextFormFeild extends StatelessWidget {
   BorderRadius? borderRadius;
   InputBorder? enabledBorder;
   InputBorder? errorBorder;
+  InputBorder? fouccsederrorBorder;
   bool? isobscuretext;
   TextStyle? hintStyle;
   Widget? suffixIcon;
   String feildname;
   TextEditingController? controller;
   void Function()? onTap;
+  Function(String?)? validator;
 
   AppTextFormFeild({
     super.key,
@@ -23,15 +25,18 @@ class AppTextFormFeild extends StatelessWidget {
     this.errorBorder,
     this.isobscuretext,
     this.hintStyle,
+    this.fouccsederrorBorder,
     this.suffixIcon,
     required this.feildname,
     this.onTap,
+    required this.validator,
     this.controller,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      validator: (value) => validator!(value),
       controller: controller,
 
       style: TextStyles.font16graymiduem,
@@ -61,6 +66,13 @@ class AppTextFormFeild extends StatelessWidget {
               borderSide: BorderSide(color: ColorsManager.mainBlue, width: 1.5),
               borderRadius: borderRadius ?? BorderRadius.circular(30),
             ),
+        focusedErrorBorder:
+            fouccsederrorBorder ??
+            OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.red, width: 1),
+              borderRadius: borderRadius ?? BorderRadius.circular(30),
+            ),
+
         enabledBorder:
             enabledBorder ??
             OutlineInputBorder(
@@ -71,6 +83,7 @@ class AppTextFormFeild extends StatelessWidget {
             errorBorder ??
             OutlineInputBorder(
               borderSide: BorderSide(color: Colors.red, width: 1),
+              borderRadius: borderRadius ?? BorderRadius.circular(30),
             ),
       ),
       onTap: onTap,
