@@ -3,6 +3,7 @@ import 'package:a7gzle/features/Home/home.dart';
 import 'package:a7gzle/features/auth/info/info.dart';
 import 'package:a7gzle/features/auth/login/data/logic/cubit/login_cubit.dart';
 import 'package:a7gzle/features/auth/login/login.dart';
+import 'package:a7gzle/features/auth/signup/data/cubit/sign_up_cubit.dart';
 import 'package:a7gzle/features/auth/signup/sign_up.dart';
 import 'package:a7gzle/features/details/details_screen.dart';
 import 'package:a7gzle/features/onboarding/onboarding.dart';
@@ -16,7 +17,10 @@ class GenerateRoute {
       case RoutesConstant.signup:
         return MaterialPageRoute(
           builder: (BuildContext context) {
-            return SignUp();
+            return BlocProvider(
+              create: (context) => getIt<SignUpCubit>(),
+              child: SignUp(),
+            );
           },
         );
       case RoutesConstant.onboarding:
@@ -28,7 +32,9 @@ class GenerateRoute {
       case RoutesConstant.info:
         return MaterialPageRoute(
           builder: (BuildContext context) {
-            return Info();
+            final cubit = settings.arguments as SignUpCubit;
+
+            return BlocProvider.value(value: cubit, child: Info());
           },
         );
       case RoutesConstant.home:

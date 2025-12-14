@@ -19,9 +19,7 @@ class LoginCubitCubit extends Cubit<LoginCubitState> {
       success: (loginResponseBody) {
         emit(LoginCubitState.loginsuccess(loginResponseBody));
       },
-      failure: (error) {
-        emit(LoginCubitState.loginfailure(error: error));
-      },
+      failure: (error) {},
     );
   }
 }
