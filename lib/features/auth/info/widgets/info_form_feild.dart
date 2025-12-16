@@ -1,3 +1,4 @@
+import 'package:a7gzle/core/theming/text_styles.dart';
 import 'package:a7gzle/core/widgets/app_text_form_feild.dart';
 import 'package:a7gzle/features/auth/signup/data/cubit/sign_up_cubit.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,7 @@ class InfoFormFeild extends StatelessWidget {
 
     if (dateTime != null) {
       context.read<SignUpCubit>().birthdatecontroller.text = DateFormat(
-        'dd-MM-yyyy',
+        'yyyy-MM-dd',
       ).format(dateTime);
     }
   }
@@ -67,6 +68,68 @@ class InfoFormFeild extends StatelessWidget {
               }
             },
             onTap: () => setTimeOnForm(context),
+          ),
+          SizedBox(height: 15.h),
+          ValueListenableBuilder<String>(
+            valueListenable: context.read<SignUpCubit>().userTypeController,
+            builder: (context, value, _) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("User Type", style: TextStyles.font18blackmideum),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: RadioListTile<String>(
+                          title: Text(
+                            "Owner",
+                            style: TextStyles.font14blackmideum,
+                          ),
+                          value: "owner",
+                          groupValue: value,
+                          onChanged: (val) {
+                            context
+                                    .read<SignUpCubit>()
+                                    .userTypeController
+                                    .value =
+                                val!;
+                            print(
+                              context
+                                  .read<SignUpCubit>()
+                                  .userTypeController
+                                  .value,
+                            );
+                          },
+                        ),
+                      ),
+                      Expanded(
+                        child: RadioListTile<String>(
+                          title: Text(
+                            "Pennat",
+                            style: TextStyles.font14blackmideum,
+                          ),
+                          value: "pennat",
+                          groupValue: value,
+                          onChanged: (val) {
+                            context
+                                    .read<SignUpCubit>()
+                                    .userTypeController
+                                    .value =
+                                val!;
+                            print(
+                              context
+                                  .read<SignUpCubit>()
+                                  .userTypeController
+                                  .value,
+                            );
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              );
+            },
           ),
         ],
       ),

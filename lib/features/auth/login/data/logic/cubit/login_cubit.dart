@@ -1,4 +1,7 @@
+import 'package:a7gzle/core/helpers/constant.dart';
+import 'package:a7gzle/core/helpers/shared_pref_helper.dart';
 import 'package:a7gzle/core/networking/api_result.dart';
+import 'package:a7gzle/core/networking/dio_factory.dart';
 import 'package:a7gzle/features/auth/login/data/logic/cubit/login_state.dart';
 import 'package:a7gzle/features/auth/login/data/model/login_request_body.dart';
 import 'package:a7gzle/features/auth/login/data/repo/login_repo.dart';
@@ -16,10 +19,17 @@ class LoginCubitCubit extends Cubit<LoginCubitState> {
     emit(LoginCubitState.loginloading());
     final response = await _loginRepo.login(loginrequesbody);
     response.when(
-      success: (loginResponseBody) {
+      success: (loginResponseBody) async {
+        await saveUserToken(loginResponseBody.token);
+
         emit(LoginCubitState.loginsuccess(loginResponseBody));
       },
       failure: (error) {},
     );
+  }
+
+  Future<void> saveUserToken(String token) async {
+    await SharedPrefHelper.setSecuredString(SharedPrefKeys.userToken, token);
+    DioFactory.setTokenIntoHeaderAfterLogin(token);
   }
 }

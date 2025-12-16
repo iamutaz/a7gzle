@@ -200,7 +200,10 @@ class _InfoState extends State<Info> {
                             .read<SignUpCubit>()
                             .birthdatecontroller
                             .text,
-                        type: "owner",
+                        type: context
+                            .read<SignUpCubit>()
+                            .userTypeController
+                            .value,
                         backid: backid,
                         frontid: frontid,
                         profileimage: profileimage,

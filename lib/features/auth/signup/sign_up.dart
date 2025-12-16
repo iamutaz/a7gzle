@@ -58,7 +58,7 @@ class SignUp extends StatelessWidget {
                         .firstpagekeyform
                         .currentState!
                         .validate()) {
-                      context.read<SignUpCubit>().saveStepOne();
+                      // context.read<SignUpCubit>().saveStepOne();
                       context.pushNamed(RoutesConstant.info, aurgment: cubit);
                     }
                   },
