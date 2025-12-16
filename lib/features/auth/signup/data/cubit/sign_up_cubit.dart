@@ -12,17 +12,22 @@ class SignUpCubit extends Cubit<SignUpState> {
   TextEditingController passwordcontroller = TextEditingController();
   TextEditingController passwordconfirmationcontroller =
       TextEditingController();
-  final firstpagekeyform = GlobalKey<FormState>();
-  final secondepagekeyform = GlobalKey<FormState>();
 
   TextEditingController birthdatecontroller = TextEditingController();
   TextEditingController firstnamecontooler = TextEditingController();
 
   TextEditingController lastnamecontroller = TextEditingController();
 
-  String? number;
-  String? password;
-  String? passwordconfirmation;
+  final ValueNotifier<String> userTypeController = ValueNotifier<String>(
+    'owner',
+  );
+
+  final firstpagekeyform = GlobalKey<FormState>();
+  final secondepagekeyform = GlobalKey<FormState>();
+
+  // String? number;
+  // String? password;
+  // String? passwordconfirmation;
 
   SignUpCubit(this._signUpRepo) : super(SignUpState.initial());
 
@@ -42,9 +47,9 @@ class SignUpCubit extends Cubit<SignUpState> {
     );
   }
 
-  void saveStepOne() {
-    number = numbercontroller.text;
-    password = passwordcontroller.text;
-    passwordconfirmation = passwordconfirmationcontroller.text;
-  }
+  // void saveStepOne() {
+  //   number = numbercontroller.text;
+  //   password = passwordcontroller.text;
+  //   passwordconfirmation = passwordconfirmationcontroller.text;
+  // }
 }

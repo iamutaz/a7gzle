@@ -14,4 +14,5 @@ class ColorsManager {
   static const Color sui = Color.fromARGB(36, 36, 124, 255);
   static const Color labelcolor = Color(0xFF151A2D);
   static const Color neartonormalgray = Color(0xFF666876);
+  static const Color onboardingblack = Color(0xFF191D31);
 }

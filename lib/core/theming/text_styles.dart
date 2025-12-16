@@ -26,6 +26,11 @@ class TextStyles {
     fontWeight: FontWeightHelper.mideum,
     color: Colors.black,
   );
+  static TextStyle font18whitemideum = TextStyle(
+    fontSize: 18.sp,
+    fontWeight: FontWeightHelper.mideum,
+    color: Colors.white,
+  );
   static TextStyle font16labelblackmideum = TextStyle(
     fontSize: 16.sp,
     fontWeight: FontWeightHelper.mideum,
@@ -82,5 +87,10 @@ class TextStyles {
     fontSize: 16.sp,
     fontWeight: FontWeightHelper.regular,
     color: ColorsManager.neartonormalgray,
+  );
+  static TextStyle font32blacksemibold = TextStyle(
+    fontSize: 32,
+    fontWeight: FontWeightHelper.semibold,
+    color: ColorsManager.onboardingblack,
   );
 }
