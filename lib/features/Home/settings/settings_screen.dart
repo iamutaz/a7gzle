@@ -1,9 +1,15 @@
+import 'package:a7gzle/core/helpers/shared_pref_helper.dart';
 import 'package:a7gzle/core/helpers/user_model.dart';
+import 'package:a7gzle/core/theming/colors_manager.dart';
 import 'package:a7gzle/core/theming/text_styles.dart';
+import 'package:a7gzle/core/widgets/app_text_button.dart';
+import 'package:a7gzle/features/Home/settings/data/cubit/logout_cubit.dart';
 import 'package:a7gzle/features/Home/settings/widgets/build_list_tiles_widget.dart';
 import 'package:a7gzle/features/Home/settings/widgets/logout_bloc_listener.dart';
 import 'package:a7gzle/features/Home/settings/widgets/user_settings_info.dart';
+import 'package:a7gzle/features/details/widget/user_info.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 

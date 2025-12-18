@@ -165,6 +165,7 @@ class _InfoState extends State<Info> {
                         .validate()) {
                       return;
                     }
+
                     final profileimage = await MultipartFile.fromFile(
                       _profileImage!.path,
                       filename: _profileImage!.path.split('/').last,

@@ -32,24 +32,20 @@ class _UserSettingsInfoState extends State<UserSettingsInfo> {
 
   @override
   Widget build(BuildContext context) {
-    if (user == null) {
-      return const SizedBox();
-    }
     return Column(
       children: [
         Center(
           child: SizedBox(
-            width: 120.w,
+            width: 120.h,
             height: 120.h,
             child: Stack(
               children: [
                 ClipOval(
-                  // child: Image.asset("assets/images/default_profile.png"),
-                  child: Image.file(
-                    width: double.infinity,
-                    File(user!.profileimage),
-                    fit: BoxFit.fitWidth,
-                  ),
+                  child: Image.asset("assets/images/default_profile.png"),
+                  //                   child: Image.file(
+                  //   File(user.profileimage),
+                  //   fit: BoxFit.cover,
+                  // ),
                 ),
                 Positioned(
                   bottom: 0,
@@ -68,7 +64,7 @@ class _UserSettingsInfoState extends State<UserSettingsInfo> {
         SizedBox(height: 15.h),
         Center(
           child: Text(
-            "${user?.firstname} ${user?.lastname}",
+            "${user?.firstname}  ${user?.lastname}",
             style: TextStyles.font24blackbold,
           ),
         ),
