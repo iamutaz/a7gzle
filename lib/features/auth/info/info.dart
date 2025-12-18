@@ -170,7 +170,6 @@ class _InfoState extends State<Info> {
                       _profileImage!.path,
                       filename: _profileImage!.path.split('/').last,
                     );
-
                     final backid = await MultipartFile.fromFile(
                       _backIdImage!.path,
                       filename: _backIdImage!.path.split('/').last,
