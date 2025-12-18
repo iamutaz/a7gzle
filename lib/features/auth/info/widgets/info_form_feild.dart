@@ -105,10 +105,10 @@ class InfoFormFeild extends StatelessWidget {
                       Expanded(
                         child: RadioListTile<String>(
                           title: Text(
-                            "Pennat",
+                            "Tennat",
                             style: TextStyles.font14blackmideum,
                           ),
-                          value: "pennat",
+                          value: "tenant",
                           groupValue: value,
                           onChanged: (val) {
                             context

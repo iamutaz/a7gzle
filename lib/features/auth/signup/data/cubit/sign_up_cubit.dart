@@ -1,4 +1,7 @@
+import 'package:a7gzle/core/helpers/shared_pref_helper.dart';
+import 'package:a7gzle/core/helpers/user_model.dart';
 import 'package:a7gzle/core/networking/api_result.dart';
+import 'package:a7gzle/features/auth/login/data/model/login_response_body.dart';
 import 'package:a7gzle/features/auth/signup/data/cubit/sign_up_state.dart';
 import 'package:a7gzle/features/auth/signup/data/model/signup_request_body.dart';
 import 'package:a7gzle/features/auth/signup/data/repo/sign_up_repo.dart';
@@ -8,6 +11,8 @@ import 'package:flutter/material.dart';
 class SignUpCubit extends Cubit<SignUpState> {
   // ignore: prefer_final_fields
   SignUpRepo _signUpRepo;
+
+  // controllers
   TextEditingController numbercontroller = TextEditingController();
   TextEditingController passwordcontroller = TextEditingController();
   TextEditingController passwordconfirmationcontroller =
@@ -22,12 +27,10 @@ class SignUpCubit extends Cubit<SignUpState> {
     'owner',
   );
 
+  String? profileImagePath;
+
   final firstpagekeyform = GlobalKey<FormState>();
   final secondepagekeyform = GlobalKey<FormState>();
-
-  // String? number;
-  // String? password;
-  // String? passwordconfirmation;
 
   SignUpCubit(this._signUpRepo) : super(SignUpState.initial());
 
@@ -37,6 +40,7 @@ class SignUpCubit extends Cubit<SignUpState> {
     response.when(
       success: (data) {
         print("success in cubit");
+
         emit(SignUpState.signupsuccess(data));
       },
 
@@ -47,9 +51,7 @@ class SignUpCubit extends Cubit<SignUpState> {
     );
   }
 
-  // void saveStepOne() {
-  //   number = numbercontroller.text;
-  //   password = passwordcontroller.text;
-  //   passwordconfirmation = passwordconfirmationcontroller.text;
-  // }
+  void setProfileImagePath(String path) {
+    profileImagePath = path;
+  }
 }

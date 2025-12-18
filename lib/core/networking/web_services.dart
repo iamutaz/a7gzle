@@ -1,4 +1,5 @@
 import 'package:a7gzle/core/networking/api_constant.dart';
+import 'package:a7gzle/features/Home/settings/data/model/logout_response_body.dart';
 import 'package:a7gzle/features/auth/login/data/model/login_request_body.dart';
 import 'package:a7gzle/features/auth/login/data/model/login_response_body.dart';
 import 'package:a7gzle/features/auth/signup/data/model/signupresponsebody.dart';
@@ -8,14 +9,14 @@ import 'package:retrofit/http.dart';
 
 part 'web_services.g.dart';
 
-@RestApi(baseUrl: ApiConstant.baseurl)
+@RestApi(baseUrl: WebServicesConstant.baseurl)
 abstract class WebServices {
   factory WebServices(Dio dio, {String? baseUrl}) = _WebServices;
 
-  @POST(ApiConstant.login)
+  @POST(WebServicesConstant.login)
   Future<LoginResponseBody> login(@Body() LoginRequestBody loginrequestbody);
 
-  @POST(ApiConstant.signup)
+  @POST(WebServicesConstant.signup)
   @MultiPart()
   Future<Signupresponsebody> signup({
     @Part(name: "first_name") required String firstname,
@@ -30,4 +31,7 @@ abstract class WebServices {
     @Part(name: 'id_photo_back') required MultipartFile idPhotoBack,
     @Part(name: 'id_photo_front') required MultipartFile idPhotoFront,
   });
+
+  @POST(WebServicesConstant.logout)
+  Future<LogoutResponseBody> logout();
 }
