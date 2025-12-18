@@ -7,7 +7,20 @@ class TextStyles {
   static TextStyle font24blackbold = TextStyle(
     fontSize: 24.sp,
     color: Colors.black,
-    fontWeight: FontWeight.bold,
+    fontWeight: FontWeightHelper.bold,
+    fontFamily: "Rubik",
+  );
+  static TextStyle font24blacksemibold = TextStyle(
+    fontSize: 24.sp,
+    color: Colors.black,
+    fontWeight: FontWeightHelper.semibold,
+    fontFamily: "Rubik",
+  );
+  static TextStyle font16lightblackregular = TextStyle(
+    fontSize: 16.sp,
+    color: ColorsManager.lightblack,
+    fontWeight: FontWeightHelper.regular,
+    fontFamily: "Rubik",
   );
   static TextStyle font16lightergrayregular = TextStyle(
     fontSize: 16.sp,
@@ -25,6 +38,13 @@ class TextStyles {
     fontSize: 18.sp,
     fontWeight: FontWeightHelper.mideum,
     color: Colors.black,
+    fontFamily: "Rubik",
+  );
+  static TextStyle font18blackbold = TextStyle(
+    fontSize: 18.sp,
+    fontWeight: FontWeightHelper.bold,
+    color: Colors.black,
+    fontFamily: "Rubik",
   );
   static TextStyle font18whitemideum = TextStyle(
     fontSize: 18.sp,
@@ -35,6 +55,7 @@ class TextStyles {
     fontSize: 16.sp,
     fontWeight: FontWeightHelper.mideum,
     color: ColorsManager.labelcolor,
+    fontFamily: "Rubik",
   );
   static TextStyle font17lightgrayregular = TextStyle(
     fontSize: 17.sp,
@@ -45,12 +66,14 @@ class TextStyles {
     fontSize: 24.sp,
     fontWeight: FontWeightHelper.bold,
     color: ColorsManager.mainBlue,
+    fontFamily: "Rubik",
   );
 
   static TextStyle font12mainbluesemibold = TextStyle(
     fontSize: 12.sp,
     fontWeight: FontWeightHelper.semibold,
     color: ColorsManager.mainBlue,
+    fontFamily: "Rubik",
   );
 
   static TextStyle font16whitesemibold = TextStyle(
@@ -81,6 +104,11 @@ class TextStyles {
   static TextStyle font14blackmideum = TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeightHelper.mideum,
+    color: Colors.black,
+  );
+  static TextStyle font20blacksemibold = TextStyle(
+    fontSize: 20.sp,
+    fontWeight: FontWeightHelper.semibold,
     color: Colors.black,
   );
   static TextStyle font16neartograyregular = TextStyle(

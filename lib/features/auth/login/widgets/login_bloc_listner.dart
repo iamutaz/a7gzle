@@ -1,4 +1,7 @@
+import 'package:a7gzle/core/DI/get_it.dart';
+import 'package:a7gzle/core/helpers/constant.dart';
 import 'package:a7gzle/core/helpers/extension.dart';
+import 'package:a7gzle/core/helpers/shared_pref_helper.dart';
 import 'package:a7gzle/core/networking/api_error_handler.dart';
 import 'package:a7gzle/core/routing/routes_constant.dart';
 import 'package:a7gzle/core/theming/text_styles.dart';
@@ -23,9 +26,29 @@ class LoginBlocListner extends StatelessWidget {
               },
             );
           },
-          loginsuccess: (data) {
+          loginsuccess: (data) async {
             context.pop();
-            context.pushNamed(RoutesConstant.home);
+            String status = await SharedPrefHelper.getString(
+              SharedPrefKeys.userstatus,
+            );
+            print(status);
+
+            if (await SharedPrefHelper.getString(SharedPrefKeys.userstatus) ==
+                "active") {
+              context.pushNamed(RoutesConstant.home);
+            } else {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) {
+                    return Scaffold(
+                      appBar: AppBar(),
+                      body: Center(child: Text("pending")),
+                    );
+                  },
+                ),
+              );
+            }
           },
           loginfailure: (error) {
             String message = ApiErrorHandler.handleApiError(error);

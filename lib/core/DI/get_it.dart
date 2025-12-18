@@ -1,5 +1,7 @@
 import 'package:a7gzle/core/networking/dio_factory.dart';
 import 'package:a7gzle/core/networking/web_services.dart';
+import 'package:a7gzle/features/Home/settings/data/cubit/logout_cubit.dart';
+import 'package:a7gzle/features/Home/settings/data/repo/logout_repo.dart';
 import 'package:a7gzle/features/auth/login/data/logic/cubit/login_cubit.dart';
 import 'package:a7gzle/features/auth/login/data/repo/login_repo.dart';
 import 'package:a7gzle/features/auth/signup/data/cubit/sign_up_cubit.dart';
@@ -21,5 +23,7 @@ void setupinjection() {
   getIt.registerLazySingleton<SignUpRepo>(() => SignUpRepo(getIt()));
   getIt.registerFactory<SignUpCubit>(() => SignUpCubit(getIt()));
 
-  //info
+  //log out
+  getIt.registerLazySingleton<LogoutRepo>(() => LogoutRepo(getIt()));
+  getIt.registerFactory<LogoutCubit>(() => LogoutCubit(getIt()));
 }

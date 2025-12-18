@@ -1,0 +1,34 @@
+import 'package:a7gzle/core/theming/colors_manager.dart';
+import 'package:a7gzle/core/theming/text_styles.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
+
+class RateAndApartmentType extends StatelessWidget {
+  const RateAndApartmentType({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Container(
+          padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+          decoration: BoxDecoration(
+            color: ColorsManager.sui,
+            borderRadius: BorderRadius.circular(25),
+          ),
+          child: Text("Apartment", style: TextStyles.font13mainbluesemibold),
+        ),
+        SizedBox(width: 15.w),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SvgPicture.asset("assets/svgs/star.svg"),
+            SizedBox(width: 8),
+            Text("4950", style: TextStyles.font14neartograymiduem),
+          ],
+        ),
+      ],
+    );
+  }
+}

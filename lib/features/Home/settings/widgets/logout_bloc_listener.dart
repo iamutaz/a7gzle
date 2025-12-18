@@ -1,23 +1,22 @@
 import 'package:a7gzle/core/helpers/extension.dart';
-import 'package:a7gzle/core/helpers/shared_pref_helper.dart';
-import 'package:a7gzle/core/helpers/user_model.dart';
 import 'package:a7gzle/core/networking/api_error_handler.dart';
 import 'package:a7gzle/core/routing/routes_constant.dart';
 import 'package:a7gzle/core/theming/text_styles.dart';
-import 'package:a7gzle/features/auth/signup/data/cubit/sign_up_cubit.dart';
-import 'package:a7gzle/features/auth/signup/data/cubit/sign_up_state.dart';
+import 'package:a7gzle/features/Home/settings/data/cubit/logout_cubit.dart';
+import 'package:a7gzle/features/Home/settings/data/cubit/logout_state.dart';
+import 'package:a7gzle/features/auth/login/data/logic/cubit/login_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class SignUpLisitner extends StatelessWidget {
-  const SignUpLisitner({super.key});
+class LogoutBlocListener extends StatelessWidget {
+  const LogoutBlocListener({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<SignUpCubit, SignUpState>(
+    return BlocListener<LogoutCubit, LogoutState>(
       listener: (context, state) {
         state.whenOrNull(
-          signuploading: () {
+          logoutloading: () {
             showDialog(
               context: context,
               builder: (BuildContext context) {
@@ -25,21 +24,11 @@ class SignUpLisitner extends StatelessWidget {
               },
             );
           },
-          signupsuccess: (data) {
-            print("success in listner");
+          logoutuccess: (data) {
             context.pop();
-            SharedPrefHelper.saveUser(
-              UserModel(
-                firstname: context.read<SignUpCubit>().firstnamecontooler.text,
-                lastname: context.read<SignUpCubit>().lastnamecontroller.text,
-                password: context.read<SignUpCubit>().passwordcontroller.text,
-                profileimage: context.read<SignUpCubit>().profileImagePath!,
-              ),
-            );
-            context.pushNamed(RoutesConstant.login);
+            context.pushNamed(RoutesConstant.onboarding);
           },
-          signupfailure: (error) {
-            print("error in listner");
+          logoutfailure: (error) {
             String message = ApiErrorHandler.handleApiError(error);
 
             setupErrorState(context, message);
@@ -47,9 +36,9 @@ class SignUpLisitner extends StatelessWidget {
         );
       },
       listenWhen: (previous, current) =>
-          current is SignupLoading ||
-          current is SignupSuccess ||
-          current is SignupFailure,
+          current is LogoutLoading ||
+          current is LogoutSuccess ||
+          current is LoginFailure,
       child: SizedBox.shrink(),
     );
   }

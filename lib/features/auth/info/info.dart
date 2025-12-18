@@ -1,5 +1,9 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:io';
 
+import 'package:a7gzle/core/helpers/shared_pref_helper.dart';
+import 'package:a7gzle/core/helpers/user_model.dart';
 import 'package:a7gzle/core/theming/colors_manager.dart';
 import 'package:a7gzle/core/theming/text_styles.dart';
 import 'package:a7gzle/core/widgets/app_text_button.dart';
@@ -37,6 +41,7 @@ class _InfoState extends State<Info> {
 
         if (imageType == 'profile') {
           _profileImage = imageFile;
+          context.read<SignUpCubit>().setProfileImagePath(imageFile.path);
         } else if (imageType == 'frontId') {
           _frontIdImage = imageFile;
         } else if (imageType == 'backId') {
@@ -164,7 +169,6 @@ class _InfoState extends State<Info> {
                       _profileImage!.path,
                       filename: _profileImage!.path.split('/').last,
                     );
-
                     final backid = await MultipartFile.fromFile(
                       _backIdImage!.path,
                       filename: _backIdImage!.path.split('/').last,
@@ -194,7 +198,7 @@ class _InfoState extends State<Info> {
                             .text,
                         lastname: context
                             .read<SignUpCubit>()
-                            .lastnamecontroller
+                            .firstnamecontooler
                             .text,
                         birthdate: context
                             .read<SignUpCubit>()
