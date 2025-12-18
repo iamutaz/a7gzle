@@ -1,3 +1,9 @@
+import 'dart:convert';
+import 'dart:ffi';
+
+import 'package:a7gzle/core/helpers/constant.dart';
+import 'package:a7gzle/core/helpers/user_model.dart';
+import 'package:a7gzle/features/auth/login/data/model/login_response_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -91,5 +97,28 @@ class SharedPrefHelper {
     debugPrint('FlutterSecureStorage : all data has been cleared');
     const flutterSecureStorage = FlutterSecureStorage();
     await flutterSecureStorage.deleteAll();
+  }
+
+  ///Save user object
+  static saveUser(UserModel user) async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    final userjson = jsonEncode(user.toJson());
+
+    print(userjson);
+    await sharedPreferences.setString(SharedPrefKeys.userKey, userjson);
+  }
+
+  static Future<UserModel> getUser() async {
+    final prefs = await SharedPreferences.getInstance();
+
+    final json = prefs.getString(SharedPrefKeys.userKey);
+
+    final Map<String, dynamic> jsonMap = jsonDecode(json!);
+    return UserModel.fromJson(jsonMap);
+  }
+
+  Future<void> clearUser() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.remove(SharedPrefKeys.userKey);
   }
 }

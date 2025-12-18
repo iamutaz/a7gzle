@@ -1,7 +1,11 @@
+import 'package:a7gzle/core/DI/get_it.dart';
 import 'package:a7gzle/features/Home/explore/explore_screen.dart';
 import 'package:a7gzle/features/Home/search/search_screen.dart';
+import 'package:a7gzle/features/Home/settings/data/cubit/logout_cubit.dart';
+import 'package:a7gzle/features/Home/settings/data/repo/logout_repo.dart';
 import 'package:a7gzle/features/Home/settings/settings_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -12,7 +16,20 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int currentindex = 0;
-  List<Widget> pages = [ExploreScreen(), SearchScreen(), SettingsScreen()];
+  List<Widget> pages = [
+    BlocProvider(
+      create: (context) => getIt<LogoutCubit>(),
+      child: ExploreScreen(),
+    ),
+    BlocProvider(
+      create: (context) => getIt<LogoutCubit>(),
+      child: SearchScreen(),
+    ),
+    BlocProvider(
+      create: (context) => getIt<LogoutCubit>(),
+      child: SettingsScreen(),
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
