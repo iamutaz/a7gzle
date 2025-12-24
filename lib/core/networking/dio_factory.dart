@@ -11,10 +11,12 @@ class DioFactory {
   static Dio? dio;
 
   static Dio getDio() {
-    Duration timeOut = const Duration(seconds: 30);
+    Duration timeOut = const Duration(seconds: 60);
 
     if (dio == null) {
-      dio = Dio();
+      dio = Dio(
+        BaseOptions(receiveDataWhenStatusError: true, receiveTimeout: timeOut),
+      );
       dio!
         ..options.connectTimeout = timeOut
         ..options.receiveTimeout = timeOut;
@@ -29,6 +31,7 @@ class DioFactory {
   static void addDioHeaders() async {
     dio?.options.headers = {
       'Accept': 'application/json',
+      'Connection': 'keep-alive',
       'Authorization':
           'Bearer ${await SharedPrefHelper.getSecuredString(SharedPrefKeys.userToken)}',
     };
@@ -48,38 +51,3 @@ class DioFactory {
     );
   }
 }
-
-// import 'package:dio/dio.dart';
-// import 'package:pretty_dio_logger/pretty_dio_logger.dart';
-
-// class DioFactory {
-//   static Dio? dio;
-//   DioFactory._();
-
-//   static Dio getDio() {
-//     Duration timeout = const Duration(seconds: 30);
-
-//     if (dio == null) {
-//       dio = Dio(BaseOptions(headers: {'Accept': 'application/json'}));
-//       dio!
-//         ..options.connectTimeout = timeout
-//         ..options.receiveTimeout = timeout;
-//       addDioInterceptor();
-
-//       return dio!;
-//     } else {
-//       return dio!;
-//     }
-//   }
-
-//   static void addDioInterceptor() {
-//     dio?.interceptors.add(
-//       PrettyDioLogger(
-//         requestBody: true,
-//         requestHeader: false,
-//         request: true,
-//         responseBody: true,
-//       ),
-//     );
-//   }
-// }

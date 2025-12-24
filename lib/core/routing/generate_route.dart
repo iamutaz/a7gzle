@@ -1,5 +1,5 @@
 import 'package:a7gzle/core/routing/routes_constant.dart';
-import 'package:a7gzle/features/Home/home.dart';
+import 'package:a7gzle/features/Home/home_manager.dart';
 import 'package:a7gzle/features/auth/info/info.dart';
 import 'package:a7gzle/features/auth/login/data/logic/cubit/login_cubit.dart';
 import 'package:a7gzle/features/auth/login/login.dart';
@@ -40,7 +40,7 @@ class GenerateRoute {
       case RoutesConstant.home:
         return MaterialPageRoute(
           builder: (BuildContext context) {
-            return Home();
+            return HomeManager();
           },
         );
       case RoutesConstant.login:
