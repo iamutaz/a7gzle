@@ -1,4 +1,5 @@
 import 'package:a7gzle/core/networking/api_constant.dart';
+import 'package:a7gzle/features/Home/home_screen/data/models/allapartment_response_body.dart';
 import 'package:a7gzle/features/Home/settings/data/model/logout_response_body.dart';
 import 'package:a7gzle/features/auth/login/data/model/login_request_body.dart';
 import 'package:a7gzle/features/auth/login/data/model/login_response_body.dart';
@@ -34,4 +35,7 @@ abstract class WebServices {
 
   @POST(WebServicesConstant.logout)
   Future<LogoutResponseBody> logout();
+
+  @GET(WebServicesConstant.allapartment)
+  Future<AllapartmentResponseBody> getAllApartment();
 }

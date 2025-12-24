@@ -52,6 +52,8 @@ dependencies:
   #local storage
   shared_preferences: ^2.5.4
   flutter_secure_storage: ^10.0.0
+  #network image
+  cached_network_image: ^3.4.1
   
   
 
@@ -78,6 +80,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - assets/
     - assets/images/
     - assets/svgs/
     - assets/svgs/settings/

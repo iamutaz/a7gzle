@@ -4,4 +4,5 @@ class WebServicesConstant {
   static const String register = "auth/register";
   static const String signup = "auth/register";
   static const String logout = "auth/logout";
+  static const String allapartment = "apartments/allApartments";
 }
