@@ -1,6 +1,7 @@
 import 'package:a7gzle/core/DI/get_it.dart';
-import 'package:a7gzle/features/Home/home_screen/data/cubit/allapartment_cubit.dart';
-import 'package:a7gzle/features/Home/home_screen/home_screen.dart';
+import 'package:a7gzle/features/Home/home_screen/owner/owner_screen.dart';
+import 'package:a7gzle/features/Home/home_screen/tenant/data/cubit/allapartment_cubit.dart';
+import 'package:a7gzle/features/Home/home_screen/tenant/tenant_screen.dart';
 import 'package:a7gzle/features/Home/search/search_screen.dart';
 import 'package:a7gzle/features/Home/settings/data/cubit/logout_cubit.dart';
 import 'package:a7gzle/features/Home/settings/settings_screen.dart';
@@ -8,7 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeManager extends StatefulWidget {
-  const HomeManager({super.key});
+  final String usertype;
+  const HomeManager({super.key, required this.usertype});
 
   @override
   State<HomeManager> createState() => _HomeManagerState();
@@ -16,17 +18,35 @@ class HomeManager extends StatefulWidget {
 
 class _HomeManagerState extends State<HomeManager> {
   int currentindex = 0;
-  List<Widget> pages = [
-    BlocProvider(
-      create: (context) => getIt<AllapartmentCubit>(),
-      child: HomeScreen(),
-    ),
-    SearchScreen(),
-    BlocProvider(
-      create: (context) => getIt<LogoutCubit>(),
-      child: SettingsScreen(),
-    ),
-  ];
+  late List<Widget> pages;
+
+  @override
+  void initState() {
+    super.initState();
+
+    if (widget.usertype == "tenant") {
+      pages = [
+        BlocProvider(
+          create: (context) => getIt<AllapartmentCubit>(),
+          child: TenantScreen(),
+        ),
+        SearchScreen(),
+        BlocProvider(
+          create: (context) => getIt<LogoutCubit>(),
+          child: SettingsScreen(),
+        ),
+      ];
+    } else {
+      pages = [
+        OwnerScreen(),
+        SearchScreen(),
+        BlocProvider(
+          create: (context) => getIt<LogoutCubit>(),
+          child: SettingsScreen(),
+        ),
+      ];
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,10 +66,14 @@ class _HomeManagerState extends State<HomeManager> {
         selectedFontSize: 12,
         unselectedFontSize: 12,
         type: BottomNavigationBarType.fixed,
-        items: const [
+        items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined),
-            activeIcon: Icon(Icons.home),
+            icon: Icon(
+              widget.usertype == "tenant" ? Icons.home_outlined : Icons.add,
+            ),
+            activeIcon: Icon(
+              widget.usertype == "tenant" ? Icons.home : Icons.add,
+            ),
             label: 'Home',
           ),
           BottomNavigationBarItem(

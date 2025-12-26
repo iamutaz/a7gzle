@@ -2,7 +2,8 @@ import 'package:a7gzle/core/theming/text_styles.dart';
 import 'package:flutter/material.dart';
 
 class Overview extends StatelessWidget {
-  const Overview({super.key});
+  String? description;
+  Overview({super.key, this.description});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +13,7 @@ class Overview extends StatelessWidget {
         Text("Overview", style: TextStyles.font20blacksemibold),
         SizedBox(height: 10),
         Text(
-          "Sleek, modern 2-bedroom apartment with open living space, high-end finishes, and city views. Minutes from downtown, dining, and transit.",
+          description?.isNotEmpty == true ? description! : "no desc",
           style: TextStyles.font16neartograyregular,
         ),
       ],

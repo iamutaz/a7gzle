@@ -1,9 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'dart:io';
-
-import 'package:a7gzle/core/helpers/shared_pref_helper.dart';
-import 'package:a7gzle/core/helpers/user_model.dart';
 import 'package:a7gzle/core/theming/colors_manager.dart';
 import 'package:a7gzle/core/theming/text_styles.dart';
 import 'package:a7gzle/core/widgets/app_text_button.dart';

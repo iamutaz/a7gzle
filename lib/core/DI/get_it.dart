@@ -1,7 +1,7 @@
 import 'package:a7gzle/core/networking/dio_factory.dart';
 import 'package:a7gzle/core/networking/web_services.dart';
-import 'package:a7gzle/features/Home/home_screen/data/cubit/allapartment_cubit.dart';
-import 'package:a7gzle/features/Home/home_screen/data/repo/all_apartment_repo.dart';
+import 'package:a7gzle/features/Home/home_screen/tenant/data/cubit/allapartment_cubit.dart';
+import 'package:a7gzle/features/Home/home_screen/tenant/data/repo/all_apartment_repo.dart';
 import 'package:a7gzle/features/Home/settings/data/cubit/logout_cubit.dart';
 import 'package:a7gzle/features/Home/settings/data/repo/logout_repo.dart';
 import 'package:a7gzle/features/auth/login/data/logic/cubit/login_cubit.dart';

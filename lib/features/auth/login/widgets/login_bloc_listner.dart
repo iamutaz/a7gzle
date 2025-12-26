@@ -28,14 +28,12 @@ class LoginBlocListner extends StatelessWidget {
           },
           loginsuccess: (data) async {
             context.pop();
-            String status = await SharedPrefHelper.getString(
-              SharedPrefKeys.userstatus,
-            );
-            print(status);
+
 
             if (await SharedPrefHelper.getString(SharedPrefKeys.userstatus) ==
                 "active") {
-              context.pushNamed(RoutesConstant.home);
+                  
+              context.pushNamed(RoutesConstant.home,aurgment: context.read<LoginCubitCubit>().usertype);
             } else {
               Navigator.push(
                 context,
