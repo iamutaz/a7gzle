@@ -1,29 +1,48 @@
-import 'package:a7gzle/features/Home/home_screen/data/cubit/allapartment_cubit.dart';
-import 'package:a7gzle/features/Home/home_screen/data/cubit/allapartment_state.dart';
-import 'package:a7gzle/features/Home/home_screen/data/models/apartment.dart';
-import 'package:a7gzle/features/Home/home_screen/widgets/bottomlist.dart';
-import 'package:a7gzle/features/Home/home_screen/widgets/topCard.dart';
-import 'package:a7gzle/features/Home/home_screen/widgets/topCard_model.dart';
-import 'package:a7gzle/features/Home/home_screen/test2.dart';
+import 'dart:io';
+
+import 'package:a7gzle/core/helpers/extension.dart';
+import 'package:a7gzle/core/helpers/shared_pref_helper.dart';
+import 'package:a7gzle/core/helpers/user_model.dart';
+import 'package:a7gzle/core/routing/routes_constant.dart';
+import 'package:a7gzle/core/widgets/app_text_form_feild.dart';
+import 'package:a7gzle/features/Home/home_screen/tenant/data/cubit/allapartment_cubit.dart';
+import 'package:a7gzle/features/Home/home_screen/tenant/data/cubit/allapartment_state.dart';
+import 'package:a7gzle/features/Home/home_screen/tenant/data/models/apartment.dart';
+import 'package:a7gzle/features/Home/home_screen/tenant/widgets/bottomlist.dart';
+import 'package:a7gzle/features/Home/home_screen/tenant/widgets/topCard.dart';
+import 'package:a7gzle/features/Home/home_screen/tenant/test2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class TenantScreen extends StatefulWidget {
+  const TenantScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<TenantScreen> createState() => _TenantScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _TenantScreenState extends State<TenantScreen> {
+  UserModel? user;
   @override
   void initState() {
     super.initState();
+    _loadUser();
     context.read<AllapartmentCubit>().emitAllApartmentState();
+  }
+
+  Future<void> _loadUser() async {
+    final storedUser = await SharedPrefHelper.getUser();
+    setState(() {
+      user = storedUser;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+    if (user == null) {
+      return const Scaffold(body: Center(child: CircularProgressIndicator()));
+    }
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -38,9 +57,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 60,
                       width: 60,
                       child: ClipOval(
-                        child: Image.asset(
-                          "assets/images/fa11e95f10b86f6fdf71816b20fb738ef9dd8a44.png",
-                          fit: BoxFit.cover,
+                        child: Image.file(
+                          width: double.infinity,
+                          File(user!.profileimage),
+                          fit: BoxFit.fitWidth,
                         ),
                       ),
                     ),
@@ -58,7 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                           Text(
-                            "Adrian Hajdin",
+                            "${user!.firstname} ${user!.lastname}",
                             style: TextStyle(
                               color: Color(0xff191D31),
                               fontWeight: FontWeight.w500,
@@ -69,7 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     SizedBox(width: 174),
 
-                    //TODO : THE NOTIFAI ICON here
+                    SvgPicture.asset("assets/svgs/settings/notifaication.svg"),
                   ],
                 ),
               ),
@@ -94,6 +114,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       List<Apartment> allapartments = data.apartmentlist;
                       return Column(
                         children: [
+                          SizedBox(height: 20),
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 20),
 

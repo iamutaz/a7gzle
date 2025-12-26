@@ -2,8 +2,7 @@ import 'dart:ui';
 
 import 'package:a7gzle/core/helpers/extension.dart';
 import 'package:a7gzle/core/routing/routes_constant.dart';
-import 'package:a7gzle/features/Home/home_screen/data/models/apartment.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:a7gzle/features/Home/home_screen/tenant/data/models/apartment.dart';
 import 'package:flutter/material.dart';
 
 class topCard extends StatelessWidget {
@@ -17,7 +16,7 @@ class topCard extends StatelessWidget {
       margin: const EdgeInsets.only(right: 16),
       child: GestureDetector(
         onTap: () {
-          context.pushNamed(RoutesConstant.details);
+          context.pushNamed(RoutesConstant.details, aurgment: apartment);
         },
         child: Stack(
           children: [

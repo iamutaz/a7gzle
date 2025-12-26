@@ -1,4 +1,4 @@
-import 'package:a7gzle/features/Home/home_screen/data/models/owner.dart';
+import 'package:a7gzle/features/Home/home_screen/tenant/data/models/owner.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'apartment.g.dart';

@@ -63,6 +63,7 @@ class BuildListTilesWidget extends StatelessWidget {
           InkWell(
             onTap: () {
               context.read<LogoutCubit>().emitLogoutState();
+              SharedPrefHelper.clearAllData();
               SharedPrefHelper.clearAllSecuredData();
             },
             child: ListTile(

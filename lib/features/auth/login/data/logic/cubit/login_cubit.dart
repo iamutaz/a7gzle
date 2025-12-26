@@ -12,6 +12,7 @@ class LoginCubitCubit extends Cubit<LoginCubitState> {
   final LoginRepo _loginRepo;
   TextEditingController numberController = TextEditingController();
   TextEditingController passController = TextEditingController();
+  String? usertype;
   final formkey = GlobalKey<FormState>();
   LoginCubitCubit(this._loginRepo) : super(LoginCubitState.initial());
 
@@ -21,6 +22,7 @@ class LoginCubitCubit extends Cubit<LoginCubitState> {
     response.when(
       success: (loginResponseBody) async {
         await saveUserToken(loginResponseBody.token);
+        usertype = loginResponseBody.user.type;
         await saveUserStatus(loginResponseBody.user.status);
         emit(LoginCubitState.loginsuccess(loginResponseBody));
       },

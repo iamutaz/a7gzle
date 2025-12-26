@@ -5,4 +5,5 @@ class RoutesConstant {
   static const String info = '/info';
   static const String home = '/home';
   static const String details = "/details";
+  static const String search = "/search";
 }

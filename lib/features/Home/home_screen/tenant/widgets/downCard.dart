@@ -1,4 +1,6 @@
-import 'package:a7gzle/features/Home/home_screen/widgets/downcard-model.dart';
+import 'package:a7gzle/core/helpers/extension.dart';
+import 'package:a7gzle/core/routing/routes_constant.dart';
+import 'package:a7gzle/features/Home/home_screen/tenant/widgets/downcard-model.dart';
 import 'package:flutter/material.dart';
 
 class Downcard extends StatelessWidget {
@@ -20,15 +22,20 @@ class Downcard extends StatelessWidget {
           // Image + Rating
           Stack(
             children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(14),
+              GestureDetector(
+                onTap: () {
+                  context.pushNamed(RoutesConstant.details);
+                },
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(14),
 
-                child: Image.asset(
-                  down.downimage,
-                  height: 154,
+                  child: Image.asset(
+                    down.downimage,
+                    height: 154,
 
-                  width: 187,
-                  fit: BoxFit.cover,
+                    width: 187,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
               Positioned(

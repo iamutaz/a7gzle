@@ -1,5 +1,6 @@
 import 'package:a7gzle/core/theming/colors_manager.dart';
 import 'package:a7gzle/core/theming/text_styles.dart';
+import 'package:a7gzle/features/Home/home_screen/tenant/data/models/apartment.dart';
 import 'package:a7gzle/features/details/widget/apartment_property.dart';
 import 'package:a7gzle/features/details/widget/gallery_section.dart';
 import 'package:a7gzle/features/details/widget/location.dart';
@@ -12,7 +13,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Details extends StatelessWidget {
-  Details({super.key});
+  final Apartment apartment;
+  Details({super.key, required this.apartment});
 
   final List imglist = [
     "assets/images/Image_details_2.png",
@@ -41,10 +43,10 @@ class Details extends StatelessWidget {
             elevation: 1,
             flexibleSpace: FlexibleSpaceBar(
               background: CarouselSlider(
-                items: imglist
+                items: apartment.images
                     .map(
-                      (e) => Image.asset(
-                        e,
+                      (e) => Image.network(
+                        e.path,
                         width: double.infinity,
                         fit: BoxFit.cover,
                       ),
@@ -61,7 +63,7 @@ class Details extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Modrnica Apartment", style: TextStyles.font24blackbold),
+                  Text(apartment.title, style: TextStyles.font24blackbold),
                   SizedBox(height: 16.h),
 
                   RateAndApartmentType(),
@@ -77,15 +79,14 @@ class Details extends StatelessWidget {
                   Text("Agent", style: TextStyles.font20blacksemibold),
 
                   SizedBox(height: 12),
-                  UserInfo(),
+                  UserInfo(owner: apartment.owner),
 
                   SizedBox(height: 20.h),
-                  Overview(),
+                  Overview(description: apartment.description),
                   SizedBox(height: 20.h),
-                  GallerySection(),
-                  SizedBox(height: 20.h),
-                  Location(),
-                  SizedBox(height: 3000.h),
+                  // GallerySection(),
+                  // SizedBox(height: 20.h),
+                  Location(location: apartment.city),
                 ],
               ),
             ),

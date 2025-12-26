@@ -1,5 +1,7 @@
 import 'package:a7gzle/core/routing/routes_constant.dart';
 import 'package:a7gzle/features/Home/home_manager.dart';
+import 'package:a7gzle/features/Home/home_screen/tenant/data/models/apartment.dart';
+import 'package:a7gzle/features/Home/search/search_screen.dart';
 import 'package:a7gzle/features/auth/info/info.dart';
 import 'package:a7gzle/features/auth/login/data/logic/cubit/login_cubit.dart';
 import 'package:a7gzle/features/auth/login/login.dart';
@@ -38,9 +40,10 @@ class GenerateRoute {
           },
         );
       case RoutesConstant.home:
+        // final usertype = settings.arguments as String;
         return MaterialPageRoute(
           builder: (BuildContext context) {
-            return HomeManager();
+            return HomeManager(usertype: "tenant");
           },
         );
       case RoutesConstant.login:
@@ -53,9 +56,17 @@ class GenerateRoute {
           },
         );
       case RoutesConstant.details:
+        final apartment = settings.arguments as Apartment;
+
         return MaterialPageRoute(
           builder: (BuildContext context) {
-            return Details();
+            return Details(apartment: apartment);
+          },
+        );
+      case RoutesConstant.search:
+        return MaterialPageRoute(
+          builder: (BuildContext context) {
+            return SearchScreen();
           },
         );
       default:

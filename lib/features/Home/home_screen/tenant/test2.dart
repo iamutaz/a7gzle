@@ -1,10 +1,10 @@
-import 'package:a7gzle/features/Home/home_screen/widgets/downcard-model.dart';
-import 'package:a7gzle/features/Home/home_screen/test.dart';
+import 'package:a7gzle/features/Home/home_screen/tenant/widgets/downcard-model.dart';
+import 'package:a7gzle/features/Home/home_screen/tenant/test.dart';
 import 'package:flutter/material.dart';
 
 class downcardlist extends StatelessWidget {
-  const downcardlist({super.key});
-  final List<DowncardModel> downcardd = const [
+  downcardlist({super.key});
+  final List<DowncardModel> downcardd = [
     DowncardModel(
       downimage: 'assets/images/6e672700ba29c8ccc0e79ba244ea8b1adc655d11.png',
       downprice: "\$12219",

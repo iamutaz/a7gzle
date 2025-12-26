@@ -5,7 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 class Location extends StatelessWidget {
-  const Location({super.key});
+  final String location;
+  const Location({super.key, required this.location});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class Location extends StatelessWidget {
           children: [
             SvgPicture.asset("assets/svgs/location.svg", width: 20),
             SizedBox(width: 10.h),
-            Text("Damascus", style: TextStyles.font16lightblackregular),
+            Text(location, style: TextStyles.font16lightblackregular),
           ],
         ),
       ],
