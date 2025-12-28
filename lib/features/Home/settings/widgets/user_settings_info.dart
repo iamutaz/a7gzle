@@ -30,14 +30,11 @@ class _UserSettingsInfoState extends State<UserSettingsInfo> {
 
   @override
   Widget build(BuildContext context) {
-    if (user == null) {
-      return const SizedBox();
-    }
     return Column(
       children: [
         Center(
           child: SizedBox(
-            width: 120.w,
+            width: 120.h,
             height: 120.h,
             child: Stack(
               children: [
