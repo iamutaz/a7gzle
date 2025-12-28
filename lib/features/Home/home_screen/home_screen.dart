@@ -1,48 +1,28 @@
-import 'dart:io';
-
-import 'package:a7gzle/core/helpers/extension.dart';
-import 'package:a7gzle/core/helpers/shared_pref_helper.dart';
-import 'package:a7gzle/core/helpers/user_model.dart';
-import 'package:a7gzle/core/routing/routes_constant.dart';
-import 'package:a7gzle/core/widgets/app_text_form_feild.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/data/cubit/allapartment_cubit.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/data/cubit/allapartment_state.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/data/models/apartment.dart';
+import 'package:a7gzle/features/Home/home_screen/tenant/test2.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/widgets/bottomlist.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/widgets/topCard.dart';
-import 'package:a7gzle/features/Home/home_screen/tenant/test2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 
-class TenantScreen extends StatefulWidget {
-  const TenantScreen({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
   @override
-  State<TenantScreen> createState() => _TenantScreenState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _TenantScreenState extends State<TenantScreen> {
-  UserModel? user;
+class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    _loadUser();
     context.read<AllapartmentCubit>().emitAllApartmentState();
-  }
-
-  Future<void> _loadUser() async {
-    final storedUser = await SharedPrefHelper.getUser();
-    setState(() {
-      user = storedUser;
-    });
   }
 
   @override
   Widget build(BuildContext context) {
-    if (user == null) {
-      return const Scaffold(body: Center(child: CircularProgressIndicator()));
-    }
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -57,12 +37,10 @@ class _TenantScreenState extends State<TenantScreen> {
                       height: 60,
                       width: 60,
                       child: ClipOval(
-                        child: Image.asset("assets/notload.jpeg"),
-                        // child: Image.file(
-                        //   width: double.infinity,
-                        //   File(user!.profileimage),
-                        //   fit: BoxFit.fitWidth,
-                        // ),
+                        child: Image.asset(
+                          "assets/images/fa11e95f10b86f6fdf71816b20fb738ef9dd8a44.png",
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                     SizedBox(width: 10),
@@ -79,7 +57,7 @@ class _TenantScreenState extends State<TenantScreen> {
                             ),
                           ),
                           Text(
-                            "${user!.firstname} ${user!.lastname}",
+                            "Adrian Hajdin",
                             style: TextStyle(
                               color: Color(0xff191D31),
                               fontWeight: FontWeight.w500,
@@ -90,7 +68,7 @@ class _TenantScreenState extends State<TenantScreen> {
                     ),
                     SizedBox(width: 174),
 
-                    SvgPicture.asset("assets/svgs/settings/notifaication.svg"),
+                    //TODO : THE NOTIFAI ICON here
                   ],
                 ),
               ),
@@ -115,7 +93,6 @@ class _TenantScreenState extends State<TenantScreen> {
                       List<Apartment> allapartments = data.apartmentlist;
                       return Column(
                         children: [
-                          SizedBox(height: 20),
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 20),
 

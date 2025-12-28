@@ -1,5 +1,6 @@
 import 'package:a7gzle/core/helpers/constant.dart';
 import 'package:a7gzle/core/helpers/extension.dart';
+import 'package:a7gzle/core/helpers/shared_pref_helper.dart';
 import 'package:a7gzle/core/routing/routes_constant.dart';
 import 'package:a7gzle/core/theming/text_styles.dart';
 import 'package:a7gzle/core/widgets/app_text_button.dart';
@@ -114,13 +115,29 @@ class Onboarding extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: 20.0.h),
                   child: AppTextButton(
                     raduisbutton: 30.sp,
-                    onpressed: () {
-                      if (isLoggedInUser) {
-                        context.pushNamed(RoutesConstant.home);
+                    onpressed: () async {
+                      final token = await SharedPrefHelper.getSecuredString(
+                        SharedPrefKeys.userToken,
+                      );
+
+                      if (token != null && token.isNotEmpty) {
+                        final userType = await SharedPrefHelper.getString(
+                          SharedPrefKeys.usertype,
+                        );
+
+                        if (userType != null) {
+                          context.pushNamed(
+                            RoutesConstant.home,
+                            aurgment: userType,
+                          );
+                        } else {
+                          context.pushNamed(RoutesConstant.login);
+                        }
                       } else {
                         context.pushNamed(RoutesConstant.signup);
                       }
                     },
+
                     textButton: "Get started",
                     textStyle: TextStyles.font18whitemideum,
                   ),

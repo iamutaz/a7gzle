@@ -6,14 +6,12 @@ part 'user_model.g.dart';
 class UserModel {
   late String firstname;
   late String lastname;
-  late String profileimage;
-  late String password;
+  late String type;
 
   UserModel({
     required this.firstname,
     required this.lastname,
-    required this.password,
-    required this.profileimage,
+    required this.type,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>

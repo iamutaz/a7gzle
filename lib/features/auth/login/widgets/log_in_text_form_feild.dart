@@ -1,3 +1,4 @@
+import 'package:a7gzle/core/helpers/app_regex.dart';
 import 'package:a7gzle/core/widgets/app_text_form_feild.dart';
 import 'package:a7gzle/features/auth/login/data/logic/cubit/login_cubit.dart';
 import 'package:flutter/material.dart';
@@ -23,13 +24,26 @@ class _LogInTextFormFeildState extends State<LogInTextFormFeild> {
         child: Column(
           children: [
             AppTextFormFeild(
-              validator: (value) {},
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return "this feild can't be empty";
+                } else if (!AppRegex.isNumberValid(value)) {
+                  return "enter a valid number ";
+                }
+              },
               feildname: "Number",
               controller: context.read<LoginCubitCubit>().numberController,
             ),
             SizedBox(height: 30.h),
             AppTextFormFeild(
-              validator: (value) {},
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return "this feild can't be empty";
+                }
+                if (!AppRegex.hasMinLength(value)) {
+                  return "must be 8 length at least";
+                }
+              },
               feildname: "Password",
               controller: context.read<LoginCubitCubit>().passController,
               isobscuretext: isobscuretext,

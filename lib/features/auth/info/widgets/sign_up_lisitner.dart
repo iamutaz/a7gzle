@@ -28,14 +28,6 @@ class SignUpLisitner extends StatelessWidget {
           signupsuccess: (data) {
             print("success in listner");
             context.pop();
-            SharedPrefHelper.saveUser(
-              UserModel(
-                firstname: context.read<SignUpCubit>().firstnamecontooler.text,
-                lastname: context.read<SignUpCubit>().lastnamecontroller.text,
-                password: context.read<SignUpCubit>().passwordcontroller.text,
-                profileimage: context.read<SignUpCubit>().profileImagePath!,
-              ),
-            );
             context.pushNamed(RoutesConstant.login);
           },
           signupfailure: (error) {
