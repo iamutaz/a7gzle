@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:a7gzle/core/helpers/shared_pref_helper.dart';
 import 'package:a7gzle/core/helpers/user_model.dart';
 import 'package:a7gzle/core/theming/text_styles.dart';
@@ -42,9 +40,10 @@ class _UserSettingsInfoState extends State<UserSettingsInfo> {
               children: [
                 ClipOval(
                   child: Image.asset("assets/images/default_profile.png"),
-                  //                   child: Image.file(
-                  //   File(user.profileimage),
-                  //   fit: BoxFit.cover,
+                  // child: Image.file(
+                  //   width: double.infinity,
+                  //   File(user!.profileimage),
+                  //   fit: BoxFit.fitWidth,
                   // ),
                 ),
                 Positioned(
@@ -64,7 +63,8 @@ class _UserSettingsInfoState extends State<UserSettingsInfo> {
         SizedBox(height: 15.h),
         Center(
           child: Text(
-            "${user?.firstname}  ${user?.lastname}",
+            // "first last",
+            "${user?.firstname} ${user?.lastname}",
             style: TextStyles.font24blackbold,
           ),
         ),

@@ -16,6 +16,7 @@ class AppTextFormFeild extends StatelessWidget {
   TextEditingController? controller;
   void Function()? onTap;
   Function(String?)? validator;
+  bool? readOnly;
 
   AppTextFormFeild({
     super.key,
@@ -31,6 +32,7 @@ class AppTextFormFeild extends StatelessWidget {
     this.onTap,
     required this.validator,
     this.controller,
+    this.readOnly,
   });
 
   @override

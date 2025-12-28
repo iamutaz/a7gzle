@@ -27,6 +27,8 @@ class LogoutBlocListener extends StatelessWidget {
           },
           logoutuccess: (data) {
             context.pop();
+            SharedPrefHelper.clearAllData();
+            SharedPrefHelper.clearAllSecuredData();
 
             context.pushNamed(RoutesConstant.onboarding);
           },

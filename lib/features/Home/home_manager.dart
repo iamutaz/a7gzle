@@ -1,4 +1,7 @@
 import 'package:a7gzle/core/DI/get_it.dart';
+import 'package:a7gzle/core/helpers/user_model.dart';
+import 'package:a7gzle/features/Home/home_screen/owner/data/cubit/create_apartment_cubit.dart';
+import 'package:a7gzle/features/Home/home_screen/owner/data/cubit/create_apartment_state.dart';
 import 'package:a7gzle/features/Home/home_screen/owner/owner_screen.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/data/cubit/allapartment_cubit.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/tenant_screen.dart';
@@ -23,6 +26,7 @@ class _HomeManagerState extends State<HomeManager> {
   @override
   void initState() {
     super.initState();
+    print(widget.usertype);
 
     if (widget.usertype == "tenant") {
       pages = [
@@ -38,7 +42,10 @@ class _HomeManagerState extends State<HomeManager> {
       ];
     } else {
       pages = [
-        OwnerScreen(),
+        BlocProvider(
+          create: (context) => getIt<CreateApartmentCubit>(),
+          child: OwnerScreen(),
+        ),
         SearchScreen(),
         BlocProvider(
           create: (context) => getIt<LogoutCubit>(),
