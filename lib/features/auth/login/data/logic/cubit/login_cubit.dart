@@ -1,5 +1,6 @@
 import 'package:a7gzle/core/helpers/constant.dart';
 import 'package:a7gzle/core/helpers/shared_pref_helper.dart';
+import 'package:a7gzle/core/helpers/user_model.dart';
 import 'package:a7gzle/core/networking/api_result.dart';
 import 'package:a7gzle/core/networking/dio_factory.dart';
 import 'package:a7gzle/features/auth/login/data/logic/cubit/login_state.dart';
@@ -23,7 +24,22 @@ class LoginCubitCubit extends Cubit<LoginCubitState> {
       success: (loginResponseBody) async {
         await saveUserToken(loginResponseBody.token);
         usertype = loginResponseBody.user.type;
+
         await saveUserStatus(loginResponseBody.user.status);
+
+        //for save user type "tenant - owner"
+        await SharedPrefHelper.setData(
+          SharedPrefKeys.usertype,
+          loginResponseBody.user.type,
+        );
+        // for save user
+        SharedPrefHelper.saveUser(
+          UserModel(
+            firstname: loginResponseBody.user.firstname,
+            lastname: loginResponseBody.user.lastname,
+            type: loginResponseBody.user.type,
+          ),
+        );
         emit(LoginCubitState.loginsuccess(loginResponseBody));
       },
       failure: (error) {},
@@ -35,6 +51,7 @@ class LoginCubitCubit extends Cubit<LoginCubitState> {
     DioFactory.setTokenIntoHeaderAfterLogin(token);
   }
 
+  ///FROZEN - acsepted - pending
   Future<void> saveUserStatus(String status) async {
     await SharedPrefHelper.removeData(SharedPrefKeys.userstatus);
 

@@ -40,10 +40,10 @@ class GenerateRoute {
           },
         );
       case RoutesConstant.home:
-        // final usertype = settings.arguments as String;
+        final usertype = settings.arguments as String;
         return MaterialPageRoute(
           builder: (BuildContext context) {
-            return HomeManager(usertype: "tenant");
+            return HomeManager(usertype: usertype);
           },
         );
       case RoutesConstant.login:
@@ -60,6 +60,7 @@ class GenerateRoute {
 
         return MaterialPageRoute(
           builder: (BuildContext context) {
+            // return Details();
             return Details(apartment: apartment);
           },
         );
@@ -69,6 +70,15 @@ class GenerateRoute {
             return SearchScreen();
           },
         );
+      // case RoutesConstant.createapartment:
+      //   return MaterialPageRoute(
+      //     builder: (BuildContext context) {
+      //       return BlocProvider(
+      //         create: (context) => getIt<CreateApartmentCubit>(),
+      //         child: OwnerScreen(),
+      //       );
+      //     },
+      //   );
       default:
         return MaterialPageRoute(
           builder: (BuildContext context) {

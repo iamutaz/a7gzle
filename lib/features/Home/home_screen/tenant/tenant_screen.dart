@@ -57,11 +57,12 @@ class _TenantScreenState extends State<TenantScreen> {
                       height: 60,
                       width: 60,
                       child: ClipOval(
-                        child: Image.file(
-                          width: double.infinity,
-                          File(user!.profileimage),
-                          fit: BoxFit.fitWidth,
-                        ),
+                        child: Image.asset("assets/notload.jpeg"),
+                        // child: Image.file(
+                        //   width: double.infinity,
+                        //   File(user!.profileimage),
+                        //   fit: BoxFit.fitWidth,
+                        // ),
                       ),
                     ),
                     SizedBox(width: 10),

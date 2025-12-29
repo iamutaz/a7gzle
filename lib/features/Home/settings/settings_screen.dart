@@ -14,8 +14,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SettingsScreen extends StatelessWidget {
-  UserModel? userModel;
-  SettingsScreen({super.key, this.userModel});
+  const SettingsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

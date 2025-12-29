@@ -1,9 +1,12 @@
 import 'package:a7gzle/core/networking/api_constant.dart';
+import 'package:a7gzle/features/Home/home_screen/owner/data/model/create_apartment_response_body.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/data/models/allapartment_response_body.dart';
 import 'package:a7gzle/features/Home/settings/data/model/logout_response_body.dart';
 import 'package:a7gzle/features/auth/login/data/model/login_request_body.dart';
 import 'package:a7gzle/features/auth/login/data/model/login_response_body.dart';
 import 'package:a7gzle/features/auth/signup/data/model/signupresponsebody.dart';
+import 'package:a7gzle/features/details/data/model/booking_request_body.dart';
+import 'package:a7gzle/features/details/data/model/booking_response_body.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
@@ -38,4 +41,23 @@ abstract class WebServices {
 
   @GET(WebServicesConstant.allapartment)
   Future<AllapartmentResponseBody> getAllApartment();
+
+  @POST(WebServicesConstant.createapartment)
+  @MultiPart()
+  Future<CreateApartmentResponseBody> createApartment({
+    @Part(name: "type") required String type,
+    @Part(name: "title") required String title,
+    @Part(name: "description") required String description,
+    @Part(name: "price") required String price,
+    @Part(name: "rooms") required int rooms,
+    @Part(name: "bathrooms") required int bathrooms,
+    @Part(name: "city") required String city,
+    @Part(name: 'area') required int area,
+    @Part(name: 'images[]') required List<MultipartFile> images,
+  });
+
+  @POST(WebServicesConstant.makereservations)
+  Future<BookingResponseBody> bookapartment(
+    @Body() BookingRequestBody bookingrequestbody,
+  );
 }

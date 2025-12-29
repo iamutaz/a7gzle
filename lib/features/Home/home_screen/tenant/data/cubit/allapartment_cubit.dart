@@ -7,6 +7,7 @@ import 'package:bloc/bloc.dart';
 class AllapartmentCubit extends Cubit<AllapartmentState> {
   AllApartmentRepo _allApartmentRepo;
   List<Apartment> allapartment = [];
+
   AllapartmentCubit(this._allApartmentRepo)
     : super(AllapartmentState.initial());
 

@@ -10,6 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+//TODO: don't forget to reset the routes
+
 class Login extends StatelessWidget {
   const Login({super.key});
 
@@ -51,6 +53,13 @@ class Login extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 25.0.w),
                 child: AppTextButton(
                   onpressed: () {
+                    if (!context
+                        .read<LoginCubitCubit>()
+                        .formkey
+                        .currentState!
+                        .validate()) {
+                      return;
+                    }
                     context.read<LoginCubitCubit>().emitLoginState(
                       LoginRequestBody(
                         number: context

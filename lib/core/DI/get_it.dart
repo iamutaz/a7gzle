@@ -1,5 +1,7 @@
 import 'package:a7gzle/core/networking/dio_factory.dart';
 import 'package:a7gzle/core/networking/web_services.dart';
+import 'package:a7gzle/features/Home/home_screen/owner/data/cubit/create_apartment_cubit.dart';
+import 'package:a7gzle/features/Home/home_screen/owner/data/repo/create_apartment_repo.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/data/cubit/allapartment_cubit.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/data/repo/all_apartment_repo.dart';
 import 'package:a7gzle/features/Home/settings/data/cubit/logout_cubit.dart';
@@ -8,11 +10,13 @@ import 'package:a7gzle/features/auth/login/data/logic/cubit/login_cubit.dart';
 import 'package:a7gzle/features/auth/login/data/repo/login_repo.dart';
 import 'package:a7gzle/features/auth/signup/data/cubit/sign_up_cubit.dart';
 import 'package:a7gzle/features/auth/signup/data/repo/sign_up_repo.dart';
+import 'package:a7gzle/features/details/data/cubit/booking_cubit.dart';
+import 'package:a7gzle/features/details/data/repo/book_repo.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
 final getIt = GetIt.instance;
-void setupinjection()async {
+void setupinjection() async {
   //web services
   Dio dio = DioFactory.getDio();
   getIt.registerLazySingleton<WebServices>(() => WebServices(dio));
@@ -33,4 +37,16 @@ void setupinjection()async {
     () => AllApartmentRepo(getIt()),
   );
   getIt.registerFactory<AllapartmentCubit>(() => AllapartmentCubit(getIt()));
+
+  //create apartment
+  getIt.registerLazySingleton<CreateApartmentRepo>(
+    () => CreateApartmentRepo(getIt()),
+  );
+  getIt.registerFactory<CreateApartmentCubit>(
+    () => CreateApartmentCubit(getIt()),
+  );
+
+  //book apartment
+  getIt.registerLazySingleton<BookRepo>(() => BookRepo(getIt()));
+  getIt.registerFactory<BookingCubit>(() => BookingCubit(getIt()));
 }
