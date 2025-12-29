@@ -5,22 +5,33 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 class ApartmentProperty extends StatelessWidget {
-  const ApartmentProperty({super.key});
+  final int bathnumber;
+  final int roomnumber;
+  final int area;
+  const ApartmentProperty({
+    super.key,
+    required this.area,
+    required this.bathnumber,
+    required this.roomnumber,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        _buildHomeProperty(path: "assets/svgs/bed.svg", text: "8 beds"),
+        _buildHomeProperty(
+          path: "assets/svgs/bed.svg",
+          text: "$roomnumber beds",
+        ),
         _buildHomeProperty(
           path: "assets/svgs/bath.svg",
-          text: "3 bath",
+          text: "$bathnumber bath",
           height: 25,
         ),
         _buildHomeProperty(
           path: "assets/svgs/distance.svg",
-          text: "200 hec",
+          text: "$area hec",
           height: 22,
         ),
       ],

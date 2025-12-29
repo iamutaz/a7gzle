@@ -14,7 +14,7 @@ class Manager extends StatelessWidget {
       designSize: Size(430, 932),
       child: MaterialApp(
         onGenerateRoute: generateRoute.generateRoute,
-        initialRoute: RoutesConstant.onboarding,
+        initialRoute: RoutesConstant.login,
         debugShowCheckedModeBanner: false,
       ),
     );

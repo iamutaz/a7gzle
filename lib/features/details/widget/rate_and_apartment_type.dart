@@ -5,7 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 class RateAndApartmentType extends StatelessWidget {
-  const RateAndApartmentType({super.key});
+  final String apartmenttype;
+  const RateAndApartmentType({super.key, required this.apartmenttype});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,7 @@ class RateAndApartmentType extends StatelessWidget {
             color: ColorsManager.sui,
             borderRadius: BorderRadius.circular(25),
           ),
-          child: Text("Apartment", style: TextStyles.font13mainbluesemibold),
+          child: Text(apartmenttype, style: TextStyles.font13mainbluesemibold),
         ),
         SizedBox(width: 15.w),
         Row(
