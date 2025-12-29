@@ -1,7 +1,10 @@
 import 'package:a7gzle/core/theming/colors_manager.dart';
 import 'package:a7gzle/core/theming/text_styles.dart';
+import 'package:a7gzle/core/widgets/app_text_button.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/data/models/apartment.dart';
 import 'package:a7gzle/features/details/widget/apartment_property.dart';
+import 'package:a7gzle/features/details/widget/book_nav_bar.dart';
+import 'package:a7gzle/features/details/widget/booking_widget.dart';
 import 'package:a7gzle/features/details/widget/gallery_section.dart';
 import 'package:a7gzle/features/details/widget/location.dart';
 import 'package:a7gzle/features/details/widget/overview.dart';
@@ -14,17 +17,21 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Details extends StatelessWidget {
   final Apartment apartment;
-  Details({super.key, required this.apartment});
+  const Details({super.key, required this.apartment});
 
-  final List imglist = [
-    "assets/images/Image_details_2.png",
-    "assets/images/Image_details.png",
-    "assets/images/Image_details_3.png",
-  ];
+  // final List imglist = [
+  //   "assets/images/Image_details_2.png",
+  //   "assets/images/Image_details.png",
+  //   "assets/images/Image_details_3.png",
+  // ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: BookNavBar(
+        apartmentid: apartment.id,
+        price: apartment.price,
+      ),
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
@@ -43,6 +50,14 @@ class Details extends StatelessWidget {
             elevation: 1,
             flexibleSpace: FlexibleSpaceBar(
               background: CarouselSlider(
+                // items: imglist
+                //     .map(
+                //       (e) => Image.asset(
+                //         e,
+                //         width: double.infinity,
+                //         fit: BoxFit.cover,
+                //       ),
+                //     )
                 items: apartment.images
                     .map(
                       (e) => Image.network(
@@ -64,13 +79,18 @@ class Details extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(apartment.title, style: TextStyles.font24blackbold),
+                  // Text("suuiiiiiiiiiii", style: TextStyles.font24blackbold),
                   SizedBox(height: 16.h),
 
-                  RateAndApartmentType(),
+                  RateAndApartmentType(apartmenttype: apartment.type),
 
                   SizedBox(height: 20.h),
 
-                  ApartmentProperty(),
+                  ApartmentProperty(
+                    bathnumber: apartment.bathrooms,
+                    area: apartment.area,
+                    roomnumber: apartment.rooms,
+                  ),
 
                   SizedBox(height: 15.h),
                   Divider(),
@@ -79,14 +99,14 @@ class Details extends StatelessWidget {
                   Text("Agent", style: TextStyles.font20blacksemibold),
 
                   SizedBox(height: 12),
-                  UserInfo(owner: apartment.owner),
 
+                  UserInfo(owner: apartment.owner),
                   SizedBox(height: 20.h),
                   Overview(description: apartment.description),
+                  // Overview(description: "description"),
                   SizedBox(height: 20.h),
-                  // GallerySection(),
-                  // SizedBox(height: 20.h),
                   Location(location: apartment.city),
+                  // Location(location: "damascus"),
                 ],
               ),
             ),

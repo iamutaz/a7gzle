@@ -5,6 +5,8 @@ import 'package:a7gzle/features/Home/settings/data/model/logout_response_body.da
 import 'package:a7gzle/features/auth/login/data/model/login_request_body.dart';
 import 'package:a7gzle/features/auth/login/data/model/login_response_body.dart';
 import 'package:a7gzle/features/auth/signup/data/model/signupresponsebody.dart';
+import 'package:a7gzle/features/details/data/model/booking_request_body.dart';
+import 'package:a7gzle/features/details/data/model/booking_response_body.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
@@ -53,4 +55,9 @@ abstract class WebServices {
     @Part(name: 'area') required int area,
     @Part(name: 'images[]') required List<MultipartFile> images,
   });
+
+  @POST(WebServicesConstant.makereservations)
+  Future<BookingResponseBody> bookapartment(
+    @Body() BookingRequestBody bookingrequestbody,
+  );
 }

@@ -111,11 +111,18 @@ class TextStyles {
     fontWeight: FontWeightHelper.semibold,
     color: Colors.black,
   );
+
   static TextStyle font16neartograyregular = TextStyle(
     fontSize: 16.sp,
     fontWeight: FontWeightHelper.regular,
     color: ColorsManager.neartonormalgray,
   );
+  static TextStyle font16neartograymiduem = TextStyle(
+    fontSize: 16.sp,
+    fontWeight: FontWeightHelper.mideum,
+    color: ColorsManager.neartonormalgray,
+  );
+
   static TextStyle font32blacksemibold = TextStyle(
     fontSize: 32,
     fontWeight: FontWeightHelper.semibold,

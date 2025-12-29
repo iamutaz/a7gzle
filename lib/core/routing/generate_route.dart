@@ -60,6 +60,7 @@ class GenerateRoute {
 
         return MaterialPageRoute(
           builder: (BuildContext context) {
+            // return Details();
             return Details(apartment: apartment);
           },
         );
