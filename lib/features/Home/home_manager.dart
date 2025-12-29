@@ -66,7 +66,7 @@ class _HomeManagerState extends State<HomeManager> {
             currentindex = index;
           });
         },
-        backgroundColor: Colors.white,
+       
         elevation: 0,
         selectedItemColor: Color(0xff0061FF),
         unselectedItemColor: Color(0xff8C8E98),

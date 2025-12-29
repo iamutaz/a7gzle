@@ -76,7 +76,7 @@ class AppCityDropDownFormField extends StatelessWidget {
           borderSide: BorderSide(color: Colors.red, width: 1),
           borderRadius: BorderRadius.circular(30),
         ),
-        fillColor: ColorsManager.offwhite,
+        fillColor:ColorsManager.offwhite(context),
         hintText: hint,
         contentPadding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
         enabledBorder: OutlineInputBorder(

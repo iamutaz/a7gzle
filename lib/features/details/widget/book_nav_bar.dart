@@ -43,7 +43,7 @@ class BookNavBar extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("price", style: TextStyles.font16neartograymiduem),
+                Text("price", style: TextStyles.font14neartograymiduem),
                 Text(price, style: TextStyles.font24mainbluebold),
               ],
             ),

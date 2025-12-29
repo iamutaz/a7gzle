@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class AppThemes {
-
-  //  الثيم الفاتح 
- static final lightTheme = ThemeData(
+  //  الثيم الفاتح
+  static final lightTheme = ThemeData(
     useMaterial3: true, // استخدام تصميم Material 3 الجديد
     brightness: Brightness.light, // وضع الثيم: فاتح
-
     // لون خلفية كل الصفحات
     scaffoldBackgroundColor: Colors.white,
 
@@ -22,7 +20,7 @@ class AppThemes {
         fontSize: 18,
         fontWeight: FontWeight.bold,
       ),
-      systemOverlayStyle: SystemUiOverlayStyle.dark, 
+      systemOverlayStyle: SystemUiOverlayStyle.dark,
       // لون الساعة والبطارية على status bar (غامق)(فزلكة)
     ),
 
@@ -42,13 +40,12 @@ class AppThemes {
       displayColor: Colors.black, // نصوص العناوين
     ),
   );
-  //الثيم الغامق 
+  //الثيم الغامق
   static final darkTheme = ThemeData(
     useMaterial3: true, // استخدام تصميم Material 3
     brightness: Brightness.dark, // وضع الثيم: غامق
 
     scaffoldBackgroundColor: Colors.black, // خلفية الصفحات سوداء
-
     // الي فوق
     appBarTheme: const AppBarTheme(
       backgroundColor: Colors.black, // خلفية الشريط
@@ -60,7 +57,7 @@ class AppThemes {
         fontSize: 18,
         fontWeight: FontWeight.bold,
       ),
-      systemOverlayStyle: SystemUiOverlayStyle.light, 
+      systemOverlayStyle: SystemUiOverlayStyle.light,
       // لون الساعة والبطارية أبيض(الفزلكة نفسا)
     ),
 
@@ -74,9 +71,7 @@ class AppThemes {
     // لون الأيقونات الي ما اشتغلت
     iconTheme: const IconThemeData(color: Colors.white),
 
-
     // ألوان Material 3
-    
     colorScheme: const ColorScheme.dark(
       surface: Colors.black, // خلفية الكروت والحوارات
       onSurface: Colors.white, // النص فوق الكروت
