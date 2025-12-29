@@ -30,19 +30,19 @@ class _UserSettingsInfoState extends State<UserSettingsInfo> {
 
   @override
   Widget build(BuildContext context) {
-    if (user == null) {
-      return const SizedBox();
-    }
     return Column(
       children: [
         Center(
           child: SizedBox(
-            width: 120.w,
+            width: 120.h,
             height: 120.h,
             child: Stack(
               children: [
                 ClipOval(
                   child: Image.asset("assets/images/default_profile.png"),
+                  //                   child: Image.file(
+                  //   File(user.profileimage),
+                  //   fit: BoxFit.cover,
                   // child: Image.file(
                   //   width: double.infinity,
                   //   File(user!.profileimage),
