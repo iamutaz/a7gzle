@@ -4,11 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class TextStyles {
-  
- //هون نصوص مالها لون لانها حتاخد لون من الثيممممم
+  //هون نصوص مالها لون لانها حتاخد لون من الثيممممم
   // Light Mode  → أسود
   // Dark Mode   → أبيض
-  
 
   static TextStyle font24blackbold = TextStyle(
     fontSize: 24.sp,
@@ -31,6 +29,11 @@ class TextStyles {
   static TextStyle font18blackmideum = TextStyle(
     fontSize: 18.sp,
     fontWeight: FontWeightHelper.mideum,
+    fontFamily: "Rubik",
+  );
+  static TextStyle font18blacksemibold = TextStyle(
+    fontSize: 18.sp,
+    fontWeight: FontWeightHelper.semibold,
     fontFamily: "Rubik",
   );
 
@@ -66,7 +69,6 @@ class TextStyles {
     fontWeight: FontWeightHelper.semibold,
   );
 
-  
   //  نصوص ثابتة اللون
 
   static TextStyle font18whitemideum = TextStyle(
@@ -78,13 +80,19 @@ class TextStyles {
   static TextStyle font16whitesemibold = TextStyle(
     fontSize: 16.sp,
     fontWeight: FontWeightHelper.semibold,
-    color: Colors.white, 
+    color: Colors.white,
   );
 
   static TextStyle font24mainbluebold = TextStyle(
     fontSize: 24.sp,
     fontWeight: FontWeightHelper.bold,
-    color: ColorsManager.mainBlue, 
+    color: ColorsManager.mainBlue,
+    fontFamily: "Rubik",
+  );
+  static TextStyle font18mainbluesemibold = TextStyle(
+    fontSize: 18.sp,
+    fontWeight: FontWeightHelper.semibold,
+    color: ColorsManager.mainBlue,
     fontFamily: "Rubik",
   );
 
@@ -101,10 +109,8 @@ class TextStyles {
     color: ColorsManager.mainBlue,
   );
 
-  
   //  نصوص رمادية
   // الرمادي مناسب للوضعين لهيك تركتو ثابت
-  
 
   static TextStyle font16lightergrayregular = TextStyle(
     fontSize: 16.sp,
