@@ -7,4 +7,5 @@ class RoutesConstant {
   static const String details = "/details";
   static const String search = "/search";
   static const String createapartment = "/createapartment";
+  static const String userreservations = "/userreservations";
 }

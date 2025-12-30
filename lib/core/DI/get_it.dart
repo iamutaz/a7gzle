@@ -12,6 +12,8 @@ import 'package:a7gzle/features/auth/signup/data/cubit/sign_up_cubit.dart';
 import 'package:a7gzle/features/auth/signup/data/repo/sign_up_repo.dart';
 import 'package:a7gzle/features/details/data/cubit/booking_cubit.dart';
 import 'package:a7gzle/features/details/data/repo/book_repo.dart';
+import 'package:a7gzle/features/reservations/data/cubit/get_all_user_reservations_cubit.dart';
+import 'package:a7gzle/features/reservations/data/repo/reservations_repo.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
@@ -49,4 +51,12 @@ void setupinjection() async {
   //book apartment
   getIt.registerLazySingleton<BookRepo>(() => BookRepo(getIt()));
   getIt.registerFactory<BookingCubit>(() => BookingCubit(getIt()));
+
+  //get reservation
+  getIt.registerLazySingleton<ReservationsRepo>(
+    () => ReservationsRepo(getIt()),
+  );
+  getIt.registerFactory<GetAllUserReservationsCubit>(
+    () => GetAllUserReservationsCubit(getIt()),
+  );
 }

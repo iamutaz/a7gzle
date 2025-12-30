@@ -9,6 +9,8 @@ import 'package:a7gzle/features/auth/signup/data/cubit/sign_up_cubit.dart';
 import 'package:a7gzle/features/auth/signup/sign_up.dart';
 import 'package:a7gzle/features/details/details_screen.dart';
 import 'package:a7gzle/features/onboarding/onboarding.dart';
+import 'package:a7gzle/features/reservations/data/cubit/get_all_user_reservations_cubit.dart';
+import 'package:a7gzle/features/reservations/user_reservations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:a7gzle/core/DI/get_it.dart';
@@ -68,6 +70,15 @@ class GenerateRoute {
         return MaterialPageRoute(
           builder: (BuildContext context) {
             return SearchScreen();
+          },
+        );
+      case RoutesConstant.userreservations:
+        return MaterialPageRoute(
+          builder: (BuildContext context) {
+            return BlocProvider(
+              create: (context) => getIt<GetAllUserReservationsCubit>(),
+              child: UserReservations(),
+            );
           },
         );
       // case RoutesConstant.createapartment:
