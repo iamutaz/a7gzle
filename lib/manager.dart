@@ -18,7 +18,7 @@ class Manager extends StatelessWidget {
      builder: (context, child) {// التطبيق بغير الثيم وبدي اضمن ان الواجهة بتعيد البناء صح لما الثيم يتغير
         return GetMaterialApp(// غيرت لهي لاني بدي استعمل  getx
         onGenerateRoute: generateRoute.generateRoute,
-        initialRoute: RoutesConstant.login,
+        initialRoute: RoutesConstant.onboarding,
         debugShowCheckedModeBanner: false,
            //  الثيم الفاتح
           theme: AppThemes.lightTheme,
