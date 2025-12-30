@@ -33,7 +33,7 @@ class SettingsScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(height: 60.h),
+          SizedBox(height: 30.h),
           UserSettingsInfo(),
 
           SizedBox(height: 30.h),

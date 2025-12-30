@@ -56,7 +56,7 @@ class AppTextFormFeild extends StatelessWidget {
 
         filled: true,
         contentPadding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
-        fillColor: ColorsManager.offwhite,
+        fillColor: ColorsManager.offwhite(context),
         suffixIcon: Padding(
           padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 20),
           child: suffixIcon,

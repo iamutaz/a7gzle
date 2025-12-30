@@ -109,7 +109,7 @@ class Onboarding extends StatelessWidget {
                 //   ),
                 // ),
                 OnboardingRichText(),
-                SizedBox(height: 30.h),
+                SizedBox(height: 15.h),
 
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20.0.h),
