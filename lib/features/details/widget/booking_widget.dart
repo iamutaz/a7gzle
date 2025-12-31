@@ -1,3 +1,4 @@
+import 'package:a7gzle/core/theming/colors_manager.dart';
 import 'package:a7gzle/core/theming/text_styles.dart';
 import 'package:a7gzle/core/widgets/app_text_button.dart';
 import 'package:a7gzle/core/widgets/app_text_form_feild.dart';
@@ -23,7 +24,7 @@ class BookingWidget extends StatelessWidget {
       builder: (BuildContext context, ScrollController scrollController) {
         return Container(
           decoration: BoxDecoration(
-            color: Colors.white,
+          color: ColorsManager.offwhite(context),
 
             borderRadius: BorderRadius.horizontal(
               right: Radius.circular(15),
@@ -40,12 +41,14 @@ class BookingWidget extends StatelessWidget {
                     Container(
                       width: 32,
                       height: 32,
-                      decoration: const BoxDecoration(
-                        color: Color(0xEBECF3FD),
+                      decoration: BoxDecoration(
+                       color: ColorsManager.isDark(context) 
+                            ? Colors.white.withOpacity(0.1) 
+                            : const Color(0xEBECF3FD),
                         shape: BoxShape.circle,
                       ),
                       child: IconButton(
-                        icon: const Icon(Icons.arrow_back, color: Colors.black),
+                        icon: Icon(Icons.arrow_back,color: ColorsManager.lightblack(context)),
                         onPressed: () {
                           Navigator.of(context).pop();
                         },
