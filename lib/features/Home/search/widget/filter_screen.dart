@@ -148,7 +148,6 @@ class _FilterScreenState extends State<FilterScreen> {
                 ),
                 const SizedBox(height: 8),
                 SimpleNumericRangeSlider(),
-
                 const SizedBox(height: 24),
 
                 SizedBox(
