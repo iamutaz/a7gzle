@@ -1,8 +1,9 @@
 import 'package:a7gzle/features/Home/home_screen/tenant/data/cubit/allapartment_cubit.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/data/cubit/allapartment_state.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/data/models/apartment.dart';
-import 'package:a7gzle/features/Home/home_screen/tenant/test2.dart';
+
 import 'package:a7gzle/features/Home/home_screen/tenant/widgets/bottomlist.dart';
+import 'package:a7gzle/features/Home/home_screen/tenant/widgets/downcardlist.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/widgets/topCard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

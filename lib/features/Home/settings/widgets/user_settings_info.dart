@@ -1,5 +1,6 @@
 import 'package:a7gzle/core/helpers/shared_pref_helper.dart';
 import 'package:a7gzle/core/helpers/user_model.dart';
+import 'package:a7gzle/core/theming/dark_mode/app_icon.dart';
 import 'package:a7gzle/core/theming/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -54,9 +55,7 @@ class _UserSettingsInfoState extends State<UserSettingsInfo> {
                   right: 0,
                   child: GestureDetector(
                     onTap: () {},
-                    child: SvgPicture.asset(
-                      "assets/svgs/settings/edit_pencil_settings.svg",
-                    ),
+              child: SvgPicture.asset( "assets/svgs/settings/edit_pencil_settings.svg"),
                   ),
                 ),
               ],

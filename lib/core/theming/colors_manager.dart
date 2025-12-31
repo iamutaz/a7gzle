@@ -4,7 +4,7 @@ class ColorsManager {
   // دالة ذكية تتحسس وضع الثيم الحالي
   static bool isDark(BuildContext context) => Theme.of(context).brightness == Brightness.dark;
 
-  // --- ألوان ثابتة لا تلمسا (بتبقى متل ما هي بالوضعين) ---
+  // --- ألوان ثابتة (بتبقى متل ما هي بالوضعين) ---
   static const Color mainBlue = Color(0xFF247CFF);
   static const Color gray = Color(0xFF757575);
   static const Color lightGray = Color(0xFF6F6F6F);
@@ -14,20 +14,32 @@ class ColorsManager {
   static const Color sui = Color.fromARGB(36, 36, 124, 255);
 
   // --- ألوان "ذكية" (بتقلب موازينها تلقائياً) ---
-  // ملاحظة: حولناها لـ functions عشان تقبل الـ context وتاخد اللون الصح
-  
- static Color offwhite(BuildContext context) => 
-    isDark(context) ? const Color(0xFF121212) : const Color(0xFFFDFDFF);
 
+  // 1. لون خلفية الصفحات
+
+  static Color scaffoldColor(BuildContext context) => 
+    isDark(context) ? const Color(0xFF1C1C1E): const Color(0xFFFDFDFF);
+
+  // 2. لون الحاويات/الكروت (اليسار بالصورة)
+
+  static Color offwhite(BuildContext context) => 
+    isDark(context) ? const Color(0xFF2C2C2E) : const Color(0xFFFDFDFF);
+
+  // 3. لون حدود الحقول (Enabled Border)
+  // هاد اللي بحدد شكل الـ TextFields والإطارات
   static Color enabledBorderbordercolor(BuildContext context) => 
-      isDark(context) ? const Color(0xFF333333) : const Color(0xFFEDEDED);
+    isDark(context) ? const Color(0xFF28272C) : const Color(0xFFEDEDED);
+
+  // 4. لون النصوص الأساسية)
 
   static Color lightblack(BuildContext context) => 
-      isDark(context) ? Colors.white : const Color(0xFF242424);
+    isDark(context) ? const Color(0xFFF1F1F3) : const Color(0xFF242424);
 
+  // 5. لون العناوين (Labels)
   static Color labelcolor(BuildContext context) => 
-      isDark(context) ? Colors.white : const Color(0xFF151A2D);
+    isDark(context) ? Colors.white : const Color(0xFF151A2D);
 
+  // 6. لون شاشات التعريف (Onboarding)
   static Color onboardingblack(BuildContext context) => 
-      isDark(context) ? Colors.white : const Color(0xFF191D31);
+    isDark(context) ? Colors.white : const Color(0xFF191D31);
 }

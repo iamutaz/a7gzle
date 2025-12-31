@@ -6,33 +6,28 @@ class ThemeService {
   static final ThemeService instance = ThemeService._();
   ThemeService._(); 
 
-  // المفتاح لحفظ وضع الثيم في SharedPreferences
   final String _key = 'isDarkMode';
 
-  // تخزين الوضع الحالي لتسهيل الوصول 
-  static bool isDark = false;
+  // جعلناها خاصة (private) وبدون static لضمان تحديثها بشكل صحيح
+  bool _isDark = false; 
 
-
-
-  // هاد التابع مشان: قراءة وضع الثيم المحفوظ على الجهاز قبل عرض التطبيق
+  // ميثود القراءة عند تشغيل التطبيق
   Future<void> init() async {
-    isDark = await SharedPrefHelper.getBool(_key); // بجيب القيمة من SharedPreferences
+    // ننتظر القيمة من SharedPreferences، وإذا كانت فارغة نفترض أنها false (Light)
+    _isDark = await SharedPrefHelper.getBool(_key) ?? false;
   }
 
-  // Getter للحصول على ThemeMode
-
-  // إذا isDark = true → Dark Theme
-  // إذا isDark = false → Light Theme
-  ThemeMode get themeMode => isDark ? ThemeMode.dark : ThemeMode.light;
-
+  // Getter للحصول على الوضع الحالي
+  ThemeMode get themeMode => _isDark ? ThemeMode.dark : ThemeMode.light;
 
   // تابع تبديل الثيم
-
   void switchTheme() {
-    isDark = !isDark; // قلب الوضع الحالي
-    // تطبيق الثيم الجديد فورا باستخدام GetX
-    Get.changeThemeMode(isDark ? ThemeMode.dark : ThemeMode.light);
-    // حفظ الخيار الجديد على الجهاز ليبقى محفوظ عند إعادة التشغيل
-    SharedPrefHelper.setData(_key, isDark);
+    _isDark = !_isDark; // قلب القيمة في الذاكرة
+    
+    // إخبار GetX بتغيير الثيم فوراً
+    Get.changeThemeMode(_isDark ? ThemeMode.dark : ThemeMode.light);
+    
+    // حفظ القيمة الجديدة في الذاكرة الدائمة
+    SharedPrefHelper.setData(_key, _isDark);
   }
 }

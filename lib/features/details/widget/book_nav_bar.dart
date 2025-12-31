@@ -1,4 +1,5 @@
 import 'package:a7gzle/core/DI/get_it.dart';
+import 'package:a7gzle/core/theming/colors_manager.dart';
 import 'package:a7gzle/core/theming/text_styles.dart';
 import 'package:a7gzle/core/widgets/app_text_button.dart';
 import 'package:a7gzle/features/details/data/cubit/booking_cubit.dart';
@@ -21,17 +22,17 @@ class BookNavBar extends StatelessWidget {
         height: 110.h,
         padding: EdgeInsets.symmetric(horizontal: 16.w),
         decoration: BoxDecoration(
-          color: Colors.white,
+         color: ColorsManager.offwhite(context),
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(20),
             topRight: Radius.circular(20),
           ),
           border: Border(
-            top: BorderSide(color: Colors.grey.shade300, width: 1),
+            top: BorderSide(color: ColorsManager.enabledBorderbordercolor(context), width: 1),
           ),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.05),
+            color: ColorsManager.isDark(context) ? Colors.black.withOpacity(0.3) : Colors.black.withOpacity(0.05),
               blurRadius: 10,
               offset: Offset(0, -4),
             ),

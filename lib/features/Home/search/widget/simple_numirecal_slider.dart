@@ -1,15 +1,17 @@
+import 'package:a7gzle/core/theming/colors_manager.dart';
 import 'package:flutter/material.dart';
 
-class SimpleNumericRangeSlider extends StatefulWidget {
-  const SimpleNumericRangeSlider({super.key});
+class SimpleNumericRangeSlider extends StatelessWidget {
+  final RangeValues values; // القيم المختارة (بداية ونهاية المدى)
+  final ValueChanged<RangeValues> onChanged; // ماذا يحدث عند سحب السلايدر
 
-  @override
-  State<SimpleNumericRangeSlider> createState() =>
-      _SimpleNumericRangeSliderState();
-}
+  SimpleNumericRangeSlider({
+    super.key,
+    required this.values,
+    required this.onChanged,
+  });
 
-class _SimpleNumericRangeSliderState extends State<SimpleNumericRangeSlider> {
-  RangeValues _currentValues = const RangeValues(1370, 2720);
+  // تحديد أدنى وأعلى قيمة رقمية للسلايدر (مثلاً المساحة من 500 لـ 4000)
   final double minVal = 500;
   final double maxVal = 4000;
 
@@ -17,57 +19,56 @@ class _SimpleNumericRangeSliderState extends State<SimpleNumericRangeSlider> {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
+        // نحسب عرض الويدجت المتاح عشان نحرك نصوص الأرقام بدقة
         double width = constraints.maxWidth;
 
         return Column(
           mainAxisSize: MainAxisSize.min,
           children: [
+            /// 1. تخصيص شكل وثيم السلايدر
             SliderTheme(
               data: SliderTheme.of(context).copyWith(
-                trackHeight: 2,
-                activeTrackColor: const Color(0xff0061FF),
-                inactiveTrackColor: Colors.grey[200],
-                overlayColor: Colors.transparent,
-                rangeThumbShape: _CustomThumbShape(),
+                trackHeight: 2, // نحافة الخط
+                activeTrackColor: ColorsManager.mainBlue, // لون الجزء المختار (أزرق)
+                inactiveTrackColor: Colors.grey.withOpacity(0.3), // لون الجزء غير المختار
+                overlayColor: Colors.transparent, // إلغاء الهالة اللي بتظهر عند اللمس
+                
+                // نستخدم الشكل الدائري المخصص اللي رسمناه تحت (مررنا الـ context للثيم)
+                rangeThumbShape: _SizeThumbShape(context), 
                 rangeTrackShape: const RoundedRectRangeSliderTrackShape(),
               ),
               child: RangeSlider(
-                values: _currentValues,
+                values: values,
                 min: minVal,
                 max: maxVal,
-                onChanged: (values) {
-                  setState(() {
-                    _currentValues = values;
-                  });
-                },
+                onChanged: onChanged,
               ),
             ),
 
+            /// 2. عرض القيم الرقمية (الأسعار أو المساحات) تحت المقابض مباشرة
             SizedBox(
               height: 25,
-              width: double.infinity,
               child: Stack(
                 children: [
+                  // القيمة الأولى (البداية)
                   Positioned(
-                    left: _calculatePosition(_currentValues.start, width),
+                    left: _calculatePosition(values.start, width),
                     child: Text(
-                      '${_currentValues.start.round()}',
-                      style: const TextStyle(
-                        color: Color(0xff0061FF),
+                      values.start.round().toString(), // تحويل الرقم لعدد صحيح
+                      style: TextStyle(
+                        color: ColorsManager.mainBlue,
                         fontWeight: FontWeight.bold,
-                        fontSize: 14,
                       ),
                     ),
                   ),
-
+                  // القيمة الثانية (النهاية)
                   Positioned(
-                    left: _calculatePosition(_currentValues.end, width),
+                    left: _calculatePosition(values.end, width),
                     child: Text(
-                      '${_currentValues.end.round()}',
-                      style: const TextStyle(
-                        color: Color(0xff0061FF),
+                      values.end.round().toString(),
+                      style: TextStyle(
+                        color: ColorsManager.mainBlue,
                         fontWeight: FontWeight.bold,
-                        fontSize: 14,
                       ),
                     ),
                   ),
@@ -80,16 +81,24 @@ class _SimpleNumericRangeSliderState extends State<SimpleNumericRangeSlider> {
     );
   }
 
+  /// دالة حسابية لتحويل القيمة الرقمية إلى "مكان" (بكسل) على الشاشة
+  /// عشان النص يلحق المقبض وين ما راح
   double _calculatePosition(double value, double width) {
+    // نسبة القيمة بالنسبة للمدى الكلي
     double ratio = (value - minVal) / (maxVal - minVal);
-
+    // تحويل النسبة لبكسلات مع مراعاة حجم المقبض (24)
     return (ratio * (width - 24)) + 2;
   }
 }
 
-class _CustomThumbShape extends RangeSliderThumbShape {
+/// كلاس مخصص لرسم المقابض الدائرية (Thumbs)
+class _SizeThumbShape extends RangeSliderThumbShape {
+  final BuildContext context;
+  _SizeThumbShape(this.context);
+
   @override
   Size getPreferredSize(bool isEnabled, bool isDiscrete) => const Size(20, 20);
+
   @override
   void paint(
     PaintingContext context,
@@ -104,15 +113,20 @@ class _CustomThumbShape extends RangeSliderThumbShape {
     Thumb? thumb,
     bool? isPressed,
   }) {
-    final Canvas canvas = context.canvas;
-    final fillPaint = Paint()
-      ..color = Colors.white
-      ..style = PaintingStyle.fill;
+    final canvas = context.canvas;
+
+
+    final fillPaint = Paint()..color = ColorsManager.offwhite(this.context);
+
+    // لون الإطار الخارجي 
     final strokePaint = Paint()
-      ..color = const Color(0xff0061FF)
+      ..color = ColorsManager.mainBlue
       ..strokeWidth = 2.5
       ..style = PaintingStyle.stroke;
+
+    // رسم الدائرة الأساسية
     canvas.drawCircle(center, 9, fillPaint);
+    // رسم حدود الدائرة
     canvas.drawCircle(center, 9, strokePaint);
   }
 }

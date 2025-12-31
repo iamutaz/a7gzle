@@ -1,6 +1,7 @@
 import 'package:a7gzle/core/helpers/shared_pref_helper.dart';
 import 'package:a7gzle/core/helpers/user_model.dart';
 import 'package:a7gzle/core/theming/colors_manager.dart';
+import 'package:a7gzle/core/theming/dark_mode/app_icon.dart';
 import 'package:a7gzle/core/theming/text_styles.dart';
 import 'package:a7gzle/core/widgets/app_text_button.dart';
 import 'package:a7gzle/features/Home/settings/data/cubit/logout_cubit.dart';
@@ -25,7 +26,7 @@ class SettingsScreen extends StatelessWidget {
         actions: [
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 15.0.w),
-            child: SvgPicture.asset("assets/svgs/settings/notifaication.svg"),
+            child: AppIcon(path: "assets/svgs/settings/notifaication.svg"),
           ),
         ],
       ),

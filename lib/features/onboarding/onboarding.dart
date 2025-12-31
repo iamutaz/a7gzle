@@ -2,6 +2,7 @@ import 'package:a7gzle/core/helpers/constant.dart';
 import 'package:a7gzle/core/helpers/extension.dart';
 import 'package:a7gzle/core/helpers/shared_pref_helper.dart';
 import 'package:a7gzle/core/routing/routes_constant.dart';
+import 'package:a7gzle/core/theming/colors_manager.dart';
 import 'package:a7gzle/core/theming/text_styles.dart';
 import 'package:a7gzle/core/widgets/app_text_button.dart';
 import 'package:a7gzle/features/onboarding/widgets/home_images.dart';
@@ -15,7 +16,7 @@ class Onboarding extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+   backgroundColor:ColorsManager.scaffoldColor(context),
       body: Column(
         children: [
           const SizedBox(height: 15),

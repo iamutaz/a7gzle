@@ -1,5 +1,5 @@
+import 'package:a7gzle/core/theming/colors_manager.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomeImages extends StatelessWidget {
@@ -7,13 +7,24 @@ class HomeImages extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // اللون اللي عم نسحب منه الشفافية
+    final Color shadowColor = ColorsManager.scaffoldColor(context);
+
     return Container(
       foregroundDecoration: BoxDecoration(
         gradient: LinearGradient(
-          begin: Alignment(0, 1.4),
+          begin: Alignment.bottomCenter,
           end: Alignment.topCenter,
-          colors: [Colors.white, Colors.white.withOpacity(0.0)],
-          stops: const [0.20, 0.55],
+          colors: [
+            shadowColor, // لون كامل تحت
+            shadowColor.withOpacity(0.9), // شفافية خفيفة جداً
+            shadowColor.withOpacity(0.0), // شفافية كاملة (بيختفي)
+          ],
+          stops: const [
+            0.15,
+            0.4,
+            0.6,
+          ], // المسافات القديمة اللي كانت بتعمل دمج سريع
         ),
       ),
       padding: const EdgeInsets.symmetric(horizontal: 10),
