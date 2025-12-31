@@ -12,13 +12,13 @@ class FilterScreen extends StatefulWidget {
 }
 
 class _FilterScreenState extends State<FilterScreen> {
-  // الحالات (States) الخاصة بالمدخلات
-  RangeValues priceRange = const RangeValues(0, 450);
-  RangeValues sizeRange = const RangeValues(500, 4000);
-  int bedrooms = 0;
-  int bathrooms = 0;
+ 
+  RangeValues priceRange = const RangeValues(0, 450); // قيم سلايدر السعر (موضع افتراضي)
+  RangeValues sizeRange = const RangeValues(500, 4000); // قيم سلايدر المساحة
+  int bedrooms = 0; // عداد غرف النوم
+  int bathrooms = 0; // عداد دورات المياه
 
-  // حالات اختيار أنواع العقارات
+  // حالات اختيار أنواع العقارات 
   bool apartmentsSelected = false;
   bool townhomesSelected = false;
   bool homesSelected = false;
@@ -26,7 +26,7 @@ class _FilterScreenState extends State<FilterScreen> {
   bool duplexesSelected = false;
   bool studiosSelected = false;
 
-  /// دالة تحويل موضع السلايدر لسعر حقيقي (الحساب الهرمي)
+  /// دالة حساب السعر الحقيقي بناءً على موضع السلايدر (حساب هرمي)
   double _getActualPrice(double position) {
     const double maxPos = 450;
     const double mid = maxPos / 2;
@@ -34,7 +34,7 @@ class _FilterScreenState extends State<FilterScreen> {
     else return (maxPos - position) * 2;
   }
 
-  /// إعادة تعيين كافة الفلاتر للقيم الافتراضية
+  /// دالة تصفير جميع الفلاتر للوضع الافتراضي
   void _resetFilters() {
     setState(() {
       priceRange = const RangeValues(0, 450);
@@ -48,39 +48,37 @@ class _FilterScreenState extends State<FilterScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // استخدام ورقة قابلة للسحب تظهر فوق الشاشة الحالية
+    // استخدام ورقة سفلية قابلة للسحب لتظهر كـ Filter من الأسفل
     return DraggableScrollableSheet(
-      initialChildSize: 0.79, // الحجم المبدئي (79% من الشاشة)
+      initialChildSize: 0.79, // تبدأ من 79% من ارتفاع الشاشة
       minChildSize: 0.0,
       maxChildSize: 0.85,
       builder: (_, controller) {
         return Container(
           decoration: BoxDecoration(
-            // --- لون خلفية الفلتر ---
-
+          
             color: ColorsManager.offwhite(context),
             borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
           ),
           child: SingleChildScrollView(
-            controller: controller,
+            controller: controller, // ربط السكرول مع حركة السحب
             padding: const EdgeInsets.all(16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                /// 1. شريط العنوان (Header): الرجوع، العنوان، وإعادة التعيين
+                /// --- 1.(Header) ---
                 Row(
                   children: [
                     Container(
                       width: 32,
                       height: 32,
                       decoration: BoxDecoration(
-                        // خلفية زر الرجوع شفافة قليلاً
                         color: ColorsManager.offwhite(context).withOpacity(0.5),
                         shape: BoxShape.circle,
                       ),
                       child: IconButton(
                         icon: const Icon(Icons.arrow_back),
-                        color: ColorsManager.lightblack(context), // يتغير لون السهم حسب الثيم
+                        color: ColorsManager.lightblack(context), // لون السهم يتغير مع الثيم
                         onPressed: () => Navigator.of(context).pop(),
                         iconSize: 20,
                         padding: EdgeInsets.zero,
@@ -93,7 +91,7 @@ class _FilterScreenState extends State<FilterScreen> {
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w500,
-                            color: ColorsManager.lightblack(context), // لون النص الأساسي
+                            color: ColorsManager.lightblack(context), 
                           ),
                         ),
                       ),
@@ -103,7 +101,7 @@ class _FilterScreenState extends State<FilterScreen> {
                       child: Text(
                         "Reset",
                         style: TextStyle(
-                          color: ColorsManager.mainBlue, // لون أزرق ثابت
+                          color: ColorsManager.mainBlue, 
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
                         ),
@@ -113,7 +111,7 @@ class _FilterScreenState extends State<FilterScreen> {
                 ),
                 const SizedBox(height: 16),
 
-                /// (Price Range)
+                /// --- 2. قسم نطاق السعر ---
                 Text(
                   "Price Range",
                   style: TextStyle(
@@ -129,7 +127,7 @@ class _FilterScreenState extends State<FilterScreen> {
                 ),
                 const SizedBox(height: 24),
 
-                ///(Property Type)
+                /// --- 3. قسم أنواع العقارات ---
                 Text(
                   "Property Type",
                   style: TextStyle(
@@ -153,7 +151,7 @@ class _FilterScreenState extends State<FilterScreen> {
                 ),
                 const SizedBox(height: 24),
 
-                /// (Bedrooms & Bathrooms)
+                /// --- 4. قسم تفاصيل الغرف (العدادات) ---
                 Text(
                   "Home Details",
                   style: TextStyle(
@@ -178,7 +176,7 @@ class _FilterScreenState extends State<FilterScreen> {
                 ),
                 const SizedBox(height: 24),
 
-                /// (Building Size)
+                /// --- 5. قسم مساحة البناء ---
                 Text(
                   "Building Size",
                   style: TextStyle(
@@ -192,19 +190,31 @@ class _FilterScreenState extends State<FilterScreen> {
                   values: sizeRange,
                   onChanged: (val) => setState(() => sizeRange = val),
                 ),
-                const SizedBox(height: 30),
+                const SizedBox(height: 10),
 
-                /// (Set Filter)
+                /// --- 6. زر التأكيد (Set Filter) وطباعة النتائج ---
                 SizedBox(
                   width: double.infinity,
                   height: 54,
-                  child: ElevatedButton(
+                  child:  ElevatedButton(
                     onPressed: () {
+                      /// حساب الأسعار النهائية قبل الخروج من الصفحة
+                      double actualStart = _getActualPrice(priceRange.start);
+                      double actualEnd = _getActualPrice(priceRange.end);
+
                  
+                      print("-----------------------");
+                      print("Price Range: \$${actualStart.round()} - \$${actualEnd.round()}");
+                      print("Size Range: ${sizeRange.start.round()} - ${sizeRange.end.round()}");
+                      print("Bedrooms: $bedrooms, Bathrooms: $bathrooms");
+                      print("Property Types:");
+                      print("  Apartments: $apartmentsSelected, Townhomes: $townhomesSelected, Homes: $homesSelected");
+                      print("-----------------------");
+
                       Navigator.of(context).pop();
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: ColorsManager.mainBlue, // لون أزرق ثابت
+                      backgroundColor: const Color(0xff0061FF),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(100),
                       ),
@@ -223,7 +233,7 @@ class _FilterScreenState extends State<FilterScreen> {
     );
   }
 
-  // ويدجت مساعدة لبناء أزرار الفلترة العلوية
+  ///  لإنشاء أزرار الاختيار (Property Types)
   Widget _buildFilterBtn(String title, bool isSelected, Function(bool) onUpdate, double width) {
     return CustomFilterButton(
       text: title,
@@ -233,7 +243,7 @@ class _FilterScreenState extends State<FilterScreen> {
     );
   }
 
-  // ويدجت مساعدة لبناء صفوف العدادات (Bedrooms / Bathrooms)
+  /// لإنشاء صف العداد (نص + أزرار +/-)
   Widget _counterRow({required String title, required int value, required VoidCallback onMinus, required VoidCallback onPlus}) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -253,7 +263,7 @@ class _FilterScreenState extends State<FilterScreen> {
               value.toString(),
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                color: ColorsManager.lightblack(context),
+                color: ColorsManager.lightblack(context), 
               ),
             ),
             const SizedBox(width: 12),
@@ -264,7 +274,7 @@ class _FilterScreenState extends State<FilterScreen> {
     );
   }
 
-  // رسم أزرار الزائد والناقص الدائرية المخصصة
+  ///  لرسم الأزرار الدائرية الصغيرة (+ و -)
   Widget _circleIconButton({required IconData icon, required VoidCallback onTap}) {
     return InkWell(
       onTap: onTap,
@@ -273,11 +283,10 @@ class _FilterScreenState extends State<FilterScreen> {
         width: 32,
         height: 32,
         decoration: BoxDecoration(
-          // نستخدم لون الحدود (BorderColor) لخلفية الدائرة الصغيرة
-          color: ColorsManager.enabledBorderbordercolor(context),
+        color: ColorsManager.enabledBorderbordercolor(context),
           shape: BoxShape.circle,
         ),
-        child: Icon(icon, size: 18, color: ColorsManager.mainBlue), // أيقونة زرقاء
+        child: Icon(icon, size: 18, color: ColorsManager.mainBlue), 
       ),
     );
   }
