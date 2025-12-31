@@ -190,7 +190,7 @@ class _FilterScreenState extends State<FilterScreen> {
                   values: sizeRange,
                   onChanged: (val) => setState(() => sizeRange = val),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 30),
 
                 /// --- 6. زر التأكيد (Set Filter) وطباعة النتائج ---
                 SizedBox(
