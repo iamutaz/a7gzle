@@ -1,12 +1,15 @@
 import 'package:a7gzle/core/networking/api_constant.dart';
 import 'package:a7gzle/features/Home/home_screen/owner/data/model/create_apartment_response_body.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/data/models/allapartment_response_body.dart';
+import 'package:a7gzle/features/Home/search/data/model/filter_request_body.dart';
 import 'package:a7gzle/features/Home/settings/data/model/logout_response_body.dart';
 import 'package:a7gzle/features/auth/login/data/model/login_request_body.dart';
 import 'package:a7gzle/features/auth/login/data/model/login_response_body.dart';
 import 'package:a7gzle/features/auth/signup/data/model/signupresponsebody.dart';
 import 'package:a7gzle/features/details/data/model/booking_request_body.dart';
 import 'package:a7gzle/features/details/data/model/booking_response_body.dart';
+import 'package:a7gzle/features/reservations/data/model/cancel_reservation_request_body.dart';
+import 'package:a7gzle/features/reservations/data/model/cancel_reservation_response_body.dart';
 import 'package:a7gzle/features/reservations/data/model/user_reservations_response_body.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/error_logger.dart';
@@ -63,4 +66,14 @@ abstract class WebServices {
   );
   @GET(WebServicesConstant.myreservations)
   Future<UserReservationsResponseBody> getAllUserReservations();
+
+  @POST(WebServicesConstant.cancelreservation)
+  Future<CancelReservationResponseBody> cancelreservation(
+    @Body() CancelReservationRequestBody cancerreservationrequestbody,
+  );
+
+  @POST(WebServicesConstant.filtering)
+  Future<AllapartmentResponseBody> filtering(
+    @Body() FilterRequestBody filterrequestbody,
+  );
 }

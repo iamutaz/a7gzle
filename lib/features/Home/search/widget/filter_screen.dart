@@ -12,13 +12,13 @@ class FilterScreen extends StatefulWidget {
 }
 
 class _FilterScreenState extends State<FilterScreen> {
- 
+
   RangeValues priceRange = const RangeValues(0, 450); // قيم سلايدر السعر (موضع افتراضي)
   RangeValues sizeRange = const RangeValues(500, 4000); // قيم سلايدر المساحة
   int bedrooms = 0; // عداد غرف النوم
   int bathrooms = 0; // عداد دورات المياه
 
-  // حالات اختيار أنواع العقارات 
+  // حالات اختيار أنواع العقارات (True/False)
   bool apartmentsSelected = false;
   bool townhomesSelected = false;
   bool homesSelected = false;
@@ -56,7 +56,7 @@ class _FilterScreenState extends State<FilterScreen> {
       builder: (_, controller) {
         return Container(
           decoration: BoxDecoration(
-          
+            // لون الخلفية المتغير)
             color: ColorsManager.offwhite(context),
             borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
           ),
@@ -66,7 +66,7 @@ class _FilterScreenState extends State<FilterScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                /// --- 1.(Header) ---
+                /// --- 1. رأس الصفحة (Header) ---
                 Row(
                   children: [
                     Container(
@@ -202,19 +202,43 @@ class _FilterScreenState extends State<FilterScreen> {
                       double actualStart = _getActualPrice(priceRange.start);
                       double actualEnd = _getActualPrice(priceRange.end);
 
-                 
-                      print("-----------------------");
-                      print("Price Range: \$${actualStart.round()} - \$${actualEnd.round()}");
-                      print("Size Range: ${sizeRange.start.round()} - ${sizeRange.end.round()}");
+                    
+                           print("-----------------------");
+
+                      print(
+
+                        "Price Range: \$${actualStart.round()} - \$${actualEnd.round()}",
+
+                      );
+
+                      print(
+
+                        "Size Range: ${sizeRange.start.round()} - ${sizeRange.end.round()}",
+
+                      );
+
                       print("Bedrooms: $bedrooms, Bathrooms: $bathrooms");
+
                       print("Property Types:");
-                      print("  Apartments: $apartmentsSelected, Townhomes: $townhomesSelected, Homes: $homesSelected");
+
+                      print("  Apartments: $apartmentsSelected");
+
+                      print("  Townhomes: $townhomesSelected");
+
+                      print("  Homes: $homesSelected");
+
+                      print("  Condos: $condosSelected");
+
+                      print("  Duplexes: $duplexesSelected");
+
+                      print("  Studios: $studiosSelected");
+
                       print("-----------------------");
 
                       Navigator.of(context).pop();
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xff0061FF),
+                      backgroundColor: const Color(0xff0061FF), // أزرق البراند
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(100),
                       ),
@@ -243,7 +267,7 @@ class _FilterScreenState extends State<FilterScreen> {
     );
   }
 
-  /// لإنشاء صف العداد (نص + أزرار +/-)
+  ///  لإنشاء صف العداد (نص + أزرار +/-)
   Widget _counterRow({required String title, required int value, required VoidCallback onMinus, required VoidCallback onPlus}) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -274,7 +298,7 @@ class _FilterScreenState extends State<FilterScreen> {
     );
   }
 
-  ///  لرسم الأزرار الدائرية الصغيرة (+ و -)
+  /// لرسم الأزرار الدائرية الصغيرة (+ و -)
   Widget _circleIconButton({required IconData icon, required VoidCallback onTap}) {
     return InkWell(
       onTap: onTap,
