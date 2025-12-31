@@ -1,11 +1,21 @@
+import 'package:a7gzle/core/DI/get_it.dart';
 import 'package:a7gzle/core/widgets/app_search_card.dart' show AppSearchCard;
 import 'package:a7gzle/core/widgets/searched_apartment_card_model.dart';
+import 'package:a7gzle/features/reservations/data/logic/cancel_reservation/cancel_reservation_cubit.dart';
+import 'package:a7gzle/features/reservations/data/logic/cancel_reservation/cancel_reservation_cubit.dart';
+import 'package:a7gzle/features/reservations/data/model/cancel_reservation_request_body.dart';
 import 'package:a7gzle/features/reservations/data/model/user_reservations_response_body.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class BuildPendingList extends StatelessWidget {
+class BuildrReservationTypeList extends StatelessWidget {
   final List<ReservationBody> reservationBody;
-  const BuildPendingList({super.key, required this.reservationBody});
+  bool? ispending;
+  BuildrReservationTypeList({
+    super.key,
+    required this.reservationBody,
+    this.ispending,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +30,16 @@ class BuildPendingList extends StatelessWidget {
             );
 
         return AppSearchCard(
+          oncancelTap: () {
+            CancelReservationRequestBody cancelReservationRequestBody =
+                CancelReservationRequestBody(
+                  reservationid: reservationBody[index].reservationid,
+                );
+            context.read<CancelReservationCubit>().emitcancelreservation(
+              cancelReservationRequestBody,
+            );
+          },
+          ispending: ispending,
           searchedApartmentCardModel: searchedApartmentCardModel,
         );
       }, childCount: reservationBody.length),

@@ -1,5 +1,5 @@
 import 'package:a7gzle/core/networking/api_result.dart';
-import 'package:a7gzle/features/reservations/data/cubit/get_all_user_reservations_state.dart';
+import 'package:a7gzle/features/reservations/data/logic/get_reservation_cubit/get_all_user_reservations_state.dart';
 import 'package:a7gzle/features/reservations/data/repo/reservations_repo.dart';
 import 'package:bloc/bloc.dart';
 

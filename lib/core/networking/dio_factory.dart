@@ -32,6 +32,7 @@ class DioFactory {
     dio?.options.headers = {
       'Accept': 'application/json',
       'Connection': 'keep-alive',
+      'Content-Type': 'application/json',
       'Authorization':
           'Bearer ${await SharedPrefHelper.getSecuredString(SharedPrefKeys.userToken)}',
     };
