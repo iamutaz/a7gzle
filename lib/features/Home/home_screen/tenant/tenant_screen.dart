@@ -1,6 +1,3 @@
-
-
-
 import 'package:a7gzle/core/helpers/shared_pref_helper.dart';
 import 'package:a7gzle/core/helpers/user_model.dart';
 import 'package:a7gzle/core/theming/colors_manager.dart';
@@ -14,7 +11,6 @@ import 'package:a7gzle/features/Home/home_screen/tenant/widgets/downcardlist.dar
 import 'package:a7gzle/features/Home/home_screen/tenant/widgets/topCard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 
 class TenantScreen extends StatefulWidget {
   const TenantScreen({super.key});
@@ -45,7 +41,6 @@ class _TenantScreenState extends State<TenantScreen> {
       return const Scaffold(body: Center(child: CircularProgressIndicator()));
     }
     return Scaffold(
-    
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -83,16 +78,16 @@ class _TenantScreenState extends State<TenantScreen> {
                           Text(
                             "${user!.firstname} ${user!.lastname}",
                             style: TextStyle(
-                          color: ColorsManager.lightblack(context),
+                              color: ColorsManager.lightblack(context),
                               fontWeight: FontWeight.w500,
                             ),
                           ),
                         ],
                       ),
                     ),
-                    SizedBox(width: 150),
+                    Spacer(),
 
-                   AppIcon(path: "assets/svgs/settings/notifaication.svg"),
+                    AppIcon(path: "assets/svgs/settings/notifaication.svg"),
                   ],
                 ),
               ),
@@ -127,7 +122,7 @@ class _TenantScreenState extends State<TenantScreen> {
                                 Text(
                                   "Featured",
                                   style: TextStyle(
-                                   color: ColorsManager.lightblack(context),
+                                    color: ColorsManager.lightblack(context),
                                     fontSize: 20,
                                     fontWeight: FontWeight.w600,
                                   ),
@@ -171,7 +166,7 @@ class _TenantScreenState extends State<TenantScreen> {
                                 Text(
                                   "Our Recommendation",
                                   style: TextStyle(
-                                  color: ColorsManager.lightblack(context),
+                                    color: ColorsManager.lightblack(context),
                                     fontSize: 20,
                                     fontWeight: FontWeight.w600,
                                   ),
@@ -179,7 +174,7 @@ class _TenantScreenState extends State<TenantScreen> {
                                 Text(
                                   "See All",
                                   style: TextStyle(
-                                           color: ColorsManager.mainBlue,
+                                    color: ColorsManager.mainBlue,
                                     fontSize: 16,
                                     fontWeight: FontWeight.w600,
                                   ),
@@ -198,7 +193,7 @@ class _TenantScreenState extends State<TenantScreen> {
                           ),
                           SizedBox(height: 25),
 
-                    downcardlist(),
+                          downcardlist(),
 
                           SizedBox(height: 30),
                         ],

@@ -13,7 +13,7 @@ class OnboardingRichText extends StatelessWidget {
         style: TextStyles.font32blacksemibold.copyWith(fontFamily: "Rubik"),
 
         children: [
-          const TextSpan(text: "Let's Get You Closer\nTo "),
+          TextSpan(text: "Let's Get You Closer\nTo "),
           TextSpan(
             text: "Your Ideal Home",
             style: TextStyle(color: ColorsManager.mainBlue),

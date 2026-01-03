@@ -8,8 +8,10 @@ import 'package:a7gzle/features/auth/login/data/model/login_response_body.dart';
 import 'package:a7gzle/features/auth/signup/data/model/signupresponsebody.dart';
 import 'package:a7gzle/features/details/data/model/booking_request_body.dart';
 import 'package:a7gzle/features/details/data/model/booking_response_body.dart';
-import 'package:a7gzle/features/reservations/data/model/cancel_reservation_request_body.dart';
-import 'package:a7gzle/features/reservations/data/model/cancel_reservation_response_body.dart';
+import 'package:a7gzle/features/reservations/data/model/cancel/cancel_reservation_request_body.dart';
+import 'package:a7gzle/features/reservations/data/model/cancel/cancel_reservation_response_body.dart';
+import 'package:a7gzle/features/reservations/data/model/update/update_reservation_request_body.dart';
+import 'package:a7gzle/features/reservations/data/model/update/update_reservation_response_body.dart';
 import 'package:a7gzle/features/reservations/data/model/user_reservations_response_body.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/error_logger.dart';
@@ -20,6 +22,8 @@ part 'web_services.g.dart';
 @RestApi(baseUrl: WebServicesConstant.baseurl)
 abstract class WebServices {
   factory WebServices(Dio dio, {String? baseUrl}) = _WebServices;
+
+  //authintaction----------------
 
   @POST(WebServicesConstant.login)
   Future<LoginResponseBody> login(@Body() LoginRequestBody loginrequestbody);
@@ -43,6 +47,8 @@ abstract class WebServices {
   @POST(WebServicesConstant.logout)
   Future<LogoutResponseBody> logout();
 
+  //apartments-----------------
+
   @GET(WebServicesConstant.allapartment)
   Future<AllapartmentResponseBody> getAllApartment();
 
@@ -60,6 +66,7 @@ abstract class WebServices {
     @Part(name: 'images[]') required List<MultipartFile> images,
   });
 
+  //reservations----------------
   @POST(WebServicesConstant.makereservations)
   Future<BookingResponseBody> bookapartment(
     @Body() BookingRequestBody bookingrequestbody,
@@ -71,9 +78,8 @@ abstract class WebServices {
   Future<CancelReservationResponseBody> cancelreservation(
     @Body() CancelReservationRequestBody cancerreservationrequestbody,
   );
-
-  @POST(WebServicesConstant.filtering)
-  Future<AllapartmentResponseBody> filtering(
-    @Body() FilterRequestBody filterrequestbody,
+  @PUT(WebServicesConstant.updatereservation)
+  Future<UpdateReservationResponseBody> updatereservation(
+    @Body() UpdateReservationRequestBody updatereservationrequestbody,
   );
 }

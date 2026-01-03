@@ -9,12 +9,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class AppSearchCard extends StatelessWidget {
   final SearchedApartmentCardModel searchedApartmentCardModel;
   void Function()? oncancelTap;
+  void Function()? oneditTap;
   bool? ispending;
   AppSearchCard({
     super.key,
     this.oncancelTap,
     required this.searchedApartmentCardModel,
     this.ispending,
+    this.oneditTap,
   });
 
   @override
@@ -55,6 +57,7 @@ class AppSearchCard extends StatelessWidget {
                 SizedBox(height: 10.h),
                 ispending == true
                     ? InkWell(
+                        onTap: oneditTap,
                         child: Text(
                           "Edit",
                           style: TextStyles.font18mainbluesemibold,

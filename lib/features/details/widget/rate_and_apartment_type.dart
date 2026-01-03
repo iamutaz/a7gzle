@@ -38,33 +38,43 @@ class _RateAndApartmentTypeState extends State<RateAndApartmentType> {
                 showDialog(
                   context: context,
                   builder: (context) {
-                    return AlertDialog(
-                      title: Text("Rate this apartment"),
-                      backgroundColor: Colors.white,
-                      content: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text("$_reatevalue"),
-                          Slider(
-                            min: 0,
-                            max: 5,
-                            value: _reatevalue,
-                            onChanged: (value) {
-                              setState(() {
-                                _reatevalue = value;
-                              });
-                              ;
-                            },
+                    return StatefulBuilder(
+                      builder: (context, setDialogState) {
+                        return AlertDialog(
+                          title: Text("Rate this apartment"),
+                          backgroundColor: ColorsManager.scaffoldColor(context),
+                          content: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                _reatevalue.toStringAsFixed(1),
+                                style: TextStyles.font16graymiduem,
+                              ),
+                              Slider(
+                                min: 0,
+                                divisions: 50,
+                                max: 5,
+                                value: _reatevalue,
+                                onChanged: (value) {
+                                  setDialogState(() {
+                                    _reatevalue = value;
+                                  });
+                                },
+                              ),
+                              Align(
+                                alignment: Alignment.bottomRight,
+                                child: InkWell(
+                                  onTap: () => print(_reatevalue),
+                                  child: Text(
+                                    "rate",
+                                    style: TextStyles.font18mainbluesemibold,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
-                          Align(
-                            alignment: Alignment.bottomRight,
-                            child: Text(
-                              "rate",
-                              style: TextStyles.font18mainbluesemibold,
-                            ),
-                          ),
-                        ],
-                      ),
+                        );
+                      },
                     );
                   },
                 );

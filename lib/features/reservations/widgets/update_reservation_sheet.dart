@@ -2,18 +2,17 @@ import 'package:a7gzle/core/theming/colors_manager.dart';
 import 'package:a7gzle/core/theming/text_styles.dart';
 import 'package:a7gzle/core/widgets/app_text_button.dart';
 import 'package:a7gzle/core/widgets/app_text_form_feild.dart';
-import 'package:a7gzle/features/auth/signup/data/cubit/sign_up_cubit.dart';
-import 'package:a7gzle/features/details/data/cubit/booking_cubit.dart';
-import 'package:a7gzle/features/details/data/model/booking_request_body.dart';
-import 'package:a7gzle/features/details/widget/book_apartment_listiner.dart';
+import 'package:a7gzle/features/reservations/data/logic/update_reservation/update_reservation_cubit.dart';
+import 'package:a7gzle/features/reservations/data/model/update/update_reservation_request_body.dart';
+import 'package:a7gzle/features/reservations/widgets/update_reservation_listiner.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 
-class BookingWidget extends StatelessWidget {
-  final int apartmentid;
-  const BookingWidget({super.key, required this.apartmentid});
+class UpdateReservationSheet extends StatelessWidget {
+  final int reservationid;
+  const UpdateReservationSheet({super.key, required this.reservationid});
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +60,7 @@ class BookingWidget extends StatelessWidget {
                     ),
                     SizedBox(width: 130.w),
                     Text(
-                      "Booking",
+                      "Update",
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
@@ -71,13 +70,13 @@ class BookingWidget extends StatelessWidget {
                 ),
                 SizedBox(height: 40.h),
                 Form(
-                  key: context.read<BookingCubit>().formkey,
+                  key: context.read<UpdateReservationCubit>().formkey,
                   child: Row(
                     children: [
                       Expanded(
                         child: AppTextFormFeild(
                           controller: context
-                              .read<BookingCubit>()
+                              .read<UpdateReservationCubit>()
                               .startdatecontroller,
                           feildname: "start date",
                           validator: (value) {
@@ -93,7 +92,7 @@ class BookingWidget extends StatelessWidget {
                         child: AppTextFormFeild(
                           feildname: "end date",
                           controller: context
-                              .read<BookingCubit>()
+                              .read<UpdateReservationCubit>()
                               .enddatecontroller,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
@@ -111,31 +110,33 @@ class BookingWidget extends StatelessWidget {
                 AppTextButton(
                   onpressed: () {
                     if (!context
-                        .read<BookingCubit>()
+                        .read<UpdateReservationCubit>()
                         .formkey
                         .currentState!
                         .validate()) {
                       return;
                     }
-                    context.read<BookingCubit>().emitbookapartment(
-                      BookingRequestBody(
-                        enddate: context
-                            .read<BookingCubit>()
-                            .enddatecontroller
-                            .text,
-                        roomid: apartmentid,
-                        startdate: context
-                            .read<BookingCubit>()
-                            .startdatecontroller
-                            .text,
-                      ),
-                    );
+                    context
+                        .read<UpdateReservationCubit>()
+                        .emitupdatereservation(
+                          UpdateReservationRequestBody(
+                            enddate: context
+                                .read<UpdateReservationCubit>()
+                                .enddatecontroller
+                                .text,
+                            reservationid: reservationid,
+                            startdate: context
+                                .read<UpdateReservationCubit>()
+                                .startdatecontroller
+                                .text,
+                          ),
+                        );
                   },
                   raduisbutton: 30,
-                  textButton: "Book now",
+                  textButton: "Update now",
                   textStyle: TextStyles.font16whitesemibold,
                 ),
-                BookApartmentListiner(),
+                UpdateReservationListiner(),
               ],
             ),
           ),
@@ -155,13 +156,11 @@ void setTimeOnForm(BuildContext context, String feildname) async {
 
   if (dateTime != null) {
     if (feildname == "startdate") {
-      context.read<BookingCubit>().startdatecontroller.text = DateFormat(
-        'yyyy-MM-dd',
-      ).format(dateTime);
+      context.read<UpdateReservationCubit>().startdatecontroller.text =
+          DateFormat('yyyy-MM-dd').format(dateTime);
     } else {
-      context.read<BookingCubit>().enddatecontroller.text = DateFormat(
-        'yyyy-MM-dd',
-      ).format(dateTime);
+      context.read<UpdateReservationCubit>().enddatecontroller.text =
+          DateFormat('yyyy-MM-dd').format(dateTime);
     }
   }
 }
