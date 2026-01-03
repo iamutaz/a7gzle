@@ -295,6 +295,36 @@ class _WebServices implements WebServices {
   }
 
   @override
+  Future<UpdateReservationResponseBody> updatereservation(
+    UpdateReservationRequestBody updatereservationrequestbody,
+  ) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(updatereservationrequestbody.toJson());
+    final _options = _setStreamType<UpdateReservationResponseBody>(
+      Options(method: 'PUT', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            "reservations/update",
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late UpdateReservationResponseBody _value;
+    try {
+      _value = UpdateReservationResponseBody.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options, _result);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
   Future<AllapartmentResponseBody> filtering(
     FilterRequestBody filterrequestbody,
   ) async {

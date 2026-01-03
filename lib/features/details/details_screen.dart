@@ -1,4 +1,5 @@
 import 'package:a7gzle/core/theming/colors_manager.dart';
+import 'package:a7gzle/core/theming/dark_mode/app_icon.dart';
 import 'package:a7gzle/core/theming/text_styles.dart';
 import 'package:a7gzle/core/widgets/app_text_button.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/data/models/apartment.dart';
@@ -40,7 +41,7 @@ class Details extends StatelessWidget {
               InkWell(
                 child: Padding(
                   padding: EdgeInsets.only(right: 24.0.w),
-                  child: SvgPicture.asset("assets/svgs/favorite.svg"),
+               child:  AppIcon(path: "assets/svgs/favorite.svg"),
                 ),
               ),
             ],

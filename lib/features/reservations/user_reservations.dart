@@ -1,5 +1,6 @@
 import 'package:a7gzle/core/DI/get_it.dart';
 import 'package:a7gzle/core/theming/colors_manager.dart';
+import 'package:a7gzle/core/theming/dark_mode/app_themes.dart';
 import 'package:a7gzle/core/theming/text_styles.dart';
 import 'package:a7gzle/features/reservations/data/logic/cancel_reservation/cancel_reservation_cubit.dart';
 import 'package:a7gzle/features/reservations/data/logic/get_reservation_cubit/get_all_user_reservations_cubit.dart';
@@ -29,10 +30,10 @@ class _UserReservationsState extends State<UserReservations> {
   Widget build(BuildContext context) {
     return Scaffold(
       //TODO:here is the color that we want to user in any background color
-      backgroundColor: const Color.fromARGB(255, 246, 245, 245),
+      backgroundColor: ColorsManager.scaffoldColor(context),
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 246, 245, 245),
         title: Text("Check Your reservations"),
+        backgroundColor: ColorsManager.scaffoldColor(context),
       ),
       body:
           BlocBuilder<GetAllUserReservationsCubit, GetAllUserReservationsState>(

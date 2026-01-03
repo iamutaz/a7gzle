@@ -1,5 +1,6 @@
 import 'package:a7gzle/core/helpers/extension.dart';
 import 'package:a7gzle/core/routing/routes_constant.dart';
+import 'package:a7gzle/core/theming/dark_mode/app_icon.dart';
 import 'package:a7gzle/core/theming/text_styles.dart';
 import 'package:a7gzle/core/widgets/app_text_form_feild.dart';
 import 'package:a7gzle/features/Home/search/widget/filter_screen.dart';
@@ -24,7 +25,7 @@ class SearchScreen extends StatelessWidget {
           InkWell(
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 15.0.w),
-              child: SvgPicture.asset("assets/svgs/settings/notifaication.svg"),
+              child: AppIcon(path: "assets/svgs/settings/notifaication.svg"),
             ),
           ),
         ],
@@ -39,7 +40,7 @@ class SearchScreen extends StatelessWidget {
                   onTap: () {
                     _openFilter(context);
                   },
-                  child: SvgPicture.asset("assets/svgs/filter.svg"),
+                 child: AppIcon(path: "assets/svgs/filter.svg"),
                 ),
                 borderRadius: BorderRadius.circular(20),
                 feildname: "search for location",

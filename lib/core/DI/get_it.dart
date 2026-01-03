@@ -14,6 +14,7 @@ import 'package:a7gzle/features/details/data/cubit/booking_cubit.dart';
 import 'package:a7gzle/features/details/data/repo/book_repo.dart';
 import 'package:a7gzle/features/reservations/data/logic/cancel_reservation/cancel_reservation_cubit.dart';
 import 'package:a7gzle/features/reservations/data/logic/get_reservation_cubit/get_all_user_reservations_cubit.dart';
+import 'package:a7gzle/features/reservations/data/logic/update_reservation/update_reservation_cubit.dart';
 import 'package:a7gzle/features/reservations/data/repo/reservations_repo.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
@@ -64,5 +65,10 @@ void setupinjection() async {
   //cancel reservation
   getIt.registerFactory<CancelReservationCubit>(
     () => CancelReservationCubit(getIt()),
+  );
+
+  //update reservation
+  getIt.registerFactory<UpdateReservationCubit>(
+    () => UpdateReservationCubit(getIt()),
   );
 }

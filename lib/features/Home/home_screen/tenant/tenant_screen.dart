@@ -1,19 +1,16 @@
-import 'dart:io';
-
-import 'package:a7gzle/core/helpers/extension.dart';
 import 'package:a7gzle/core/helpers/shared_pref_helper.dart';
 import 'package:a7gzle/core/helpers/user_model.dart';
-import 'package:a7gzle/core/routing/routes_constant.dart';
-import 'package:a7gzle/core/widgets/app_text_form_feild.dart';
+import 'package:a7gzle/core/theming/colors_manager.dart';
+import 'package:a7gzle/core/theming/dark_mode/app_icon.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/data/cubit/allapartment_cubit.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/data/cubit/allapartment_state.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/data/models/apartment.dart';
+
 import 'package:a7gzle/features/Home/home_screen/tenant/widgets/bottomlist.dart';
+import 'package:a7gzle/features/Home/home_screen/tenant/widgets/downcardlist.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/widgets/topCard.dart';
-import 'package:a7gzle/features/Home/home_screen/tenant/test2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 
 class TenantScreen extends StatefulWidget {
   const TenantScreen({super.key});
@@ -81,16 +78,16 @@ class _TenantScreenState extends State<TenantScreen> {
                           Text(
                             "${user!.firstname} ${user!.lastname}",
                             style: TextStyle(
-                              color: Color(0xff191D31),
+                              color: ColorsManager.lightblack(context),
                               fontWeight: FontWeight.w500,
                             ),
                           ),
                         ],
                       ),
                     ),
-                    SizedBox(width: 174),
+                    Spacer(),
 
-                    SvgPicture.asset("assets/svgs/settings/notifaication.svg"),
+                    AppIcon(path: "assets/svgs/settings/notifaication.svg"),
                   ],
                 ),
               ),
@@ -125,7 +122,7 @@ class _TenantScreenState extends State<TenantScreen> {
                                 Text(
                                   "Featured",
                                   style: TextStyle(
-                                    color: Color(0xff191D31),
+                                    color: ColorsManager.lightblack(context),
                                     fontSize: 20,
                                     fontWeight: FontWeight.w600,
                                   ),
@@ -133,7 +130,7 @@ class _TenantScreenState extends State<TenantScreen> {
                                 Text(
                                   "See All",
                                   style: TextStyle(
-                                    color: Color(0xff0061FF),
+                                    color: ColorsManager.mainBlue,
                                     fontSize: 16,
                                     fontWeight: FontWeight.w600,
                                   ),
@@ -169,7 +166,7 @@ class _TenantScreenState extends State<TenantScreen> {
                                 Text(
                                   "Our Recommendation",
                                   style: TextStyle(
-                                    color: Color(0xff191D31),
+                                    color: ColorsManager.lightblack(context),
                                     fontSize: 20,
                                     fontWeight: FontWeight.w600,
                                   ),
@@ -177,7 +174,7 @@ class _TenantScreenState extends State<TenantScreen> {
                                 Text(
                                   "See All",
                                   style: TextStyle(
-                                    color: Color(0xff0061FF),
+                                    color: ColorsManager.mainBlue,
                                     fontSize: 16,
                                     fontWeight: FontWeight.w600,
                                   ),

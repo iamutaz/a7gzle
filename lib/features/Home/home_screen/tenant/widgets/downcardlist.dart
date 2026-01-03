@@ -1,5 +1,6 @@
+import 'package:a7gzle/features/Home/home_screen/tenant/widgets/downCard.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/widgets/downcard-model.dart';
-import 'package:a7gzle/features/Home/home_screen/tenant/test.dart';
+
 import 'package:flutter/material.dart';
 
 class downcardlist extends StatelessWidget {

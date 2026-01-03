@@ -1,7 +1,9 @@
 import 'package:a7gzle/core/networking/api_result.dart';
 import 'package:a7gzle/core/networking/web_services.dart';
-import 'package:a7gzle/features/reservations/data/model/cancel_reservation_request_body.dart';
-import 'package:a7gzle/features/reservations/data/model/cancel_reservation_response_body.dart';
+import 'package:a7gzle/features/reservations/data/model/cancel/cancel_reservation_request_body.dart';
+import 'package:a7gzle/features/reservations/data/model/cancel/cancel_reservation_response_body.dart';
+import 'package:a7gzle/features/reservations/data/model/update/update_reservation_request_body.dart';
+import 'package:a7gzle/features/reservations/data/model/update/update_reservation_response_body.dart';
 import 'package:a7gzle/features/reservations/data/model/user_reservations_response_body.dart';
 
 class ReservationsRepo {
@@ -24,6 +26,19 @@ class ReservationsRepo {
     try {
       var response = await _webServices.cancelreservation(
         cancelreservationrequestbody,
+      );
+      return ApiResult.success(response);
+    } catch (e) {
+      return ApiResult.failure(e);
+    }
+  }
+
+  Future<ApiResult<UpdateReservationResponseBody>> updatereservation(
+    UpdateReservationRequestBody updatereservationrequestbody,
+  ) async {
+    try {
+      final response = await _webServices.updatereservation(
+        updatereservationrequestbody,
       );
       return ApiResult.success(response);
     } catch (e) {
