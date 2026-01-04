@@ -24,7 +24,11 @@ class BookingCubit extends Cubit<BookingState> {
       },
       failure: (message) {
         print("fali in cubit");
-        emit(BookingState.bookingfailure(exception: message));
+        emit(
+          BookingState.bookingfailure(
+            error: message.apiErrorModel.message ?? '',
+          ),
+        );
       },
     );
   }

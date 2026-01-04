@@ -26,7 +26,9 @@ class UpdateReservationCubit extends Cubit<UpdateReservationState> {
       },
       failure: (exception) {
         emit(
-          UpdateReservationState.updatereservationfailure(exception: exception),
+          UpdateReservationState.updatereservationfailure(
+            error: exception.apiErrorModel.message ?? '',
+          ),
         );
       },
     );

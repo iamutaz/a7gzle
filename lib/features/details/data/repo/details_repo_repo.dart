@@ -1,3 +1,4 @@
+import 'package:a7gzle/core/networking/api_error_handler.dart';
 import 'package:a7gzle/core/networking/api_result.dart';
 import 'package:a7gzle/core/networking/web_services.dart';
 import 'package:a7gzle/features/details/data/model/booking_request_body.dart';
@@ -19,7 +20,7 @@ class DetailsRepo {
       return ApiResult.success(respose);
     } catch (e) {
       print("fail in repo");
-      return ApiResult.failure(e);
+      return ApiResult.failure(ErrorHandler.handle(e));
     }
   }
 
@@ -30,7 +31,7 @@ class DetailsRepo {
       final response = await _webServices.rateapartment(raterequest);
       return ApiResult.success(response);
     } catch (e) {
-      return ApiResult.failure(e);
+      return ApiResult.failure(ErrorHandler.handle(e));
     }
   }
 }

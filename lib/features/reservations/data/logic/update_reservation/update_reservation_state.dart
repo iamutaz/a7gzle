@@ -10,6 +10,6 @@ class UpdateReservationState<T> with _$UpdateReservationState {
   const factory UpdateReservationState.updatereservationsuccess(T data) =
       UpdateReservationSuccess;
   const factory UpdateReservationState.updatereservationfailure({
-    required Exception exception,
+    required String error,
   }) = UpdateReservationFailure;
 }

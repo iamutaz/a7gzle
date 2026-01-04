@@ -7,6 +7,6 @@ class LoginCubitState<T> with _$LoginCubitState {
   const factory LoginCubitState.initial() = _LoginInitial;
   const factory LoginCubitState.loginloading() = LoginLoading;
   const factory LoginCubitState.loginsuccess(T data) = LoginSuccess;
-  const factory LoginCubitState.loginfailure({required Exception exception}) =
+  const factory LoginCubitState.loginfailure({required String error}) =
       LoginFailure;
 }

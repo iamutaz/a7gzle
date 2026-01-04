@@ -32,9 +32,9 @@ class UpdateReservationListiner extends StatelessWidget {
           },
           updatereservationfailure: (exception) {
             context.pop();
-            String message = ApiErrorHandler.handleApiError(exception);
+            // String message = ApiErrorHandler.handleApiError(exception);
 
-            setupErrorState(context, message);
+            setupErrorState(context, exception);
           },
         );
       },

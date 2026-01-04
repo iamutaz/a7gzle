@@ -16,7 +16,11 @@ class GetAllUserReservationsCubit extends Cubit<GetAllUserReservationsState> {
         emit(GetAllUserReservationsState.reservationssuccess(data));
       },
       failure: (e) {
-        emit(GetAllUserReservationsState.reservationsfailure(exception: e));
+        emit(
+          GetAllUserReservationsState.reservationsfailure(
+            error: e.apiErrorModel.message ?? '',
+          ),
+        );
       },
     );
   }

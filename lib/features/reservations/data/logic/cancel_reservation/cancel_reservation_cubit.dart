@@ -21,7 +21,11 @@ class CancelReservationCubit extends Cubit<CancelReservationState> {
         emit(CancelReservationsSuccess(data));
       },
       failure: (exception) {
-        emit(CancelReservationsFailure(exception: exception));
+        emit(
+          CancelReservationsFailure(
+            error: exception.apiErrorModel.message ?? '',
+          ),
+        );
       },
     );
   }

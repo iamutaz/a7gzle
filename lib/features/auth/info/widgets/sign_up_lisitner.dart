@@ -30,9 +30,9 @@ class SignUpLisitner extends StatelessWidget {
           },
           signupfailure: (error) {
             print("error in listner");
-            String message = ApiErrorHandler.handleApiError(error);
+            // String message = ApiErrorHandler.handleApiError(error);
 
-            setupErrorState(context, message);
+            setupErrorState(context, error);
           },
         );
       },

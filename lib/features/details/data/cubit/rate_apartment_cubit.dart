@@ -16,7 +16,11 @@ class RateApartmentCubit extends Cubit<RateApartmentState> {
         emit(RateApartmentState.ratingsuccess(data));
       },
       failure: (error) {
-        emit(RateApartmentState.ratingfailure(exception: error));
+        emit(
+          RateApartmentState.ratingfailure(
+            error: error.apiErrorModel.message ?? '',
+          ),
+        );
       },
     );
   }

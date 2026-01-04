@@ -7,7 +7,6 @@ class RateApartmentState<T> with _$RateApartmentState {
   const factory RateApartmentState.initial() = _RatingInitial;
   const factory RateApartmentState.ratingloading() = RatingLoading;
   const factory RateApartmentState.ratingsuccess(T data) = RatingSuccess;
-  const factory RateApartmentState.ratingfailure({
-    required Exception exception,
-  }) = RatingFailure;
+  const factory RateApartmentState.ratingfailure({required String error}) =
+      RatingFailure;
 }

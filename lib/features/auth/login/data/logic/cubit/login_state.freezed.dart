@@ -128,13 +128,13 @@ return loginfailure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loginloading,TResult Function( T data)?  loginsuccess,TResult Function( Exception exception)?  loginfailure,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loginloading,TResult Function( T data)?  loginsuccess,TResult Function( String error)?  loginfailure,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _LoginInitial() when initial != null:
 return initial();case LoginLoading() when loginloading != null:
 return loginloading();case LoginSuccess() when loginsuccess != null:
 return loginsuccess(_that.data);case LoginFailure() when loginfailure != null:
-return loginfailure(_that.exception);case _:
+return loginfailure(_that.error);case _:
   return orElse();
 
 }
@@ -152,13 +152,13 @@ return loginfailure(_that.exception);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loginloading,required TResult Function( T data)  loginsuccess,required TResult Function( Exception exception)  loginfailure,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loginloading,required TResult Function( T data)  loginsuccess,required TResult Function( String error)  loginfailure,}) {final _that = this;
 switch (_that) {
 case _LoginInitial():
 return initial();case LoginLoading():
 return loginloading();case LoginSuccess():
 return loginsuccess(_that.data);case LoginFailure():
-return loginfailure(_that.exception);case _:
+return loginfailure(_that.error);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -175,13 +175,13 @@ return loginfailure(_that.exception);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loginloading,TResult? Function( T data)?  loginsuccess,TResult? Function( Exception exception)?  loginfailure,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loginloading,TResult? Function( T data)?  loginsuccess,TResult? Function( String error)?  loginfailure,}) {final _that = this;
 switch (_that) {
 case _LoginInitial() when initial != null:
 return initial();case LoginLoading() when loginloading != null:
 return loginloading();case LoginSuccess() when loginsuccess != null:
 return loginsuccess(_that.data);case LoginFailure() when loginfailure != null:
-return loginfailure(_that.exception);case _:
+return loginfailure(_that.error);case _:
   return null;
 
 }
@@ -323,10 +323,10 @@ as T,
 
 
 class LoginFailure<T> implements LoginCubitState<T> {
-  const LoginFailure({required this.exception});
+  const LoginFailure({required this.error});
   
 
- final  Exception exception;
+ final  String error;
 
 /// Create a copy of LoginCubitState
 /// with the given fields replaced by the non-null parameter values.
@@ -338,16 +338,16 @@ $LoginFailureCopyWith<T, LoginFailure<T>> get copyWith => _$LoginFailureCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is LoginFailure<T>&&(identical(other.exception, exception) || other.exception == exception));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LoginFailure<T>&&(identical(other.error, error) || other.error == error));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,exception);
+int get hashCode => Object.hash(runtimeType,error);
 
 @override
 String toString() {
-  return 'LoginCubitState<$T>.loginfailure(exception: $exception)';
+  return 'LoginCubitState<$T>.loginfailure(error: $error)';
 }
 
 
@@ -358,7 +358,7 @@ abstract mixin class $LoginFailureCopyWith<T,$Res> implements $LoginCubitStateCo
   factory $LoginFailureCopyWith(LoginFailure<T> value, $Res Function(LoginFailure<T>) _then) = _$LoginFailureCopyWithImpl;
 @useResult
 $Res call({
- Exception exception
+ String error
 });
 
 
@@ -375,10 +375,10 @@ class _$LoginFailureCopyWithImpl<T,$Res>
 
 /// Create a copy of LoginCubitState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? exception = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? error = null,}) {
   return _then(LoginFailure<T>(
-exception: null == exception ? _self.exception : exception // ignore: cast_nullable_to_non_nullable
-as Exception,
+error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 

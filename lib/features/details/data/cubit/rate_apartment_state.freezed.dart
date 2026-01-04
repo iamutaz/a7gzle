@@ -128,13 +128,13 @@ return ratingfailure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  ratingloading,TResult Function( T data)?  ratingsuccess,TResult Function( Exception exception)?  ratingfailure,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  ratingloading,TResult Function( T data)?  ratingsuccess,TResult Function( String error)?  ratingfailure,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _RatingInitial() when initial != null:
 return initial();case RatingLoading() when ratingloading != null:
 return ratingloading();case RatingSuccess() when ratingsuccess != null:
 return ratingsuccess(_that.data);case RatingFailure() when ratingfailure != null:
-return ratingfailure(_that.exception);case _:
+return ratingfailure(_that.error);case _:
   return orElse();
 
 }
@@ -152,13 +152,13 @@ return ratingfailure(_that.exception);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  ratingloading,required TResult Function( T data)  ratingsuccess,required TResult Function( Exception exception)  ratingfailure,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  ratingloading,required TResult Function( T data)  ratingsuccess,required TResult Function( String error)  ratingfailure,}) {final _that = this;
 switch (_that) {
 case _RatingInitial():
 return initial();case RatingLoading():
 return ratingloading();case RatingSuccess():
 return ratingsuccess(_that.data);case RatingFailure():
-return ratingfailure(_that.exception);case _:
+return ratingfailure(_that.error);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -175,13 +175,13 @@ return ratingfailure(_that.exception);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  ratingloading,TResult? Function( T data)?  ratingsuccess,TResult? Function( Exception exception)?  ratingfailure,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  ratingloading,TResult? Function( T data)?  ratingsuccess,TResult? Function( String error)?  ratingfailure,}) {final _that = this;
 switch (_that) {
 case _RatingInitial() when initial != null:
 return initial();case RatingLoading() when ratingloading != null:
 return ratingloading();case RatingSuccess() when ratingsuccess != null:
 return ratingsuccess(_that.data);case RatingFailure() when ratingfailure != null:
-return ratingfailure(_that.exception);case _:
+return ratingfailure(_that.error);case _:
   return null;
 
 }
@@ -323,10 +323,10 @@ as T,
 
 
 class RatingFailure<T> implements RateApartmentState<T> {
-  const RatingFailure({required this.exception});
+  const RatingFailure({required this.error});
   
 
- final  Exception exception;
+ final  String error;
 
 /// Create a copy of RateApartmentState
 /// with the given fields replaced by the non-null parameter values.
@@ -338,16 +338,16 @@ $RatingFailureCopyWith<T, RatingFailure<T>> get copyWith => _$RatingFailureCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is RatingFailure<T>&&(identical(other.exception, exception) || other.exception == exception));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is RatingFailure<T>&&(identical(other.error, error) || other.error == error));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,exception);
+int get hashCode => Object.hash(runtimeType,error);
 
 @override
 String toString() {
-  return 'RateApartmentState<$T>.ratingfailure(exception: $exception)';
+  return 'RateApartmentState<$T>.ratingfailure(error: $error)';
 }
 
 
@@ -358,7 +358,7 @@ abstract mixin class $RatingFailureCopyWith<T,$Res> implements $RateApartmentSta
   factory $RatingFailureCopyWith(RatingFailure<T> value, $Res Function(RatingFailure<T>) _then) = _$RatingFailureCopyWithImpl;
 @useResult
 $Res call({
- Exception exception
+ String error
 });
 
 
@@ -375,10 +375,10 @@ class _$RatingFailureCopyWithImpl<T,$Res>
 
 /// Create a copy of RateApartmentState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? exception = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? error = null,}) {
   return _then(RatingFailure<T>(
-exception: null == exception ? _self.exception : exception // ignore: cast_nullable_to_non_nullable
-as Exception,
+error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 

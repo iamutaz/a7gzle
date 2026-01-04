@@ -30,9 +30,9 @@ class CreateApartmentLisitner extends StatelessWidget {
             context.read<CreateApartmentCubit>().clearControllers();
           },
           createapartmentfailure: (error) {
-            String message = ApiErrorHandler.handleApiError(error);
+            // String message = ApiErrorHandler.handleApiError(error);
 
-            setupErrorState(context, message);
+            setupErrorState(context, error);
           },
         );
       },

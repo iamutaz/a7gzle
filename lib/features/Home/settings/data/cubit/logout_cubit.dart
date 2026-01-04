@@ -16,7 +16,7 @@ class LogoutCubit extends Cubit<LogoutState> {
         emit(LogoutSuccess(data));
       },
       failure: (error) {
-        emit(LogoutFailure(exception: error));
+        emit(LogoutFailure(error: error.apiErrorModel.message ?? ''));
       },
     );
   }

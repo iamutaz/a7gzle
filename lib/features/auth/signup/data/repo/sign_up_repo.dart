@@ -1,3 +1,4 @@
+import 'package:a7gzle/core/networking/api_error_handler.dart';
 import 'package:a7gzle/core/networking/api_result.dart';
 import 'package:a7gzle/core/networking/web_services.dart';
 import 'package:a7gzle/features/auth/signup/data/model/signup_request_body.dart';
@@ -30,7 +31,7 @@ class SignUpRepo {
       return ApiResult.success(response);
     } catch (error) {
       print("fail in repo");
-      return ApiResult.failure(error);
+      return ApiResult.failure(ErrorHandler.handle(error));
     }
   }
 }
