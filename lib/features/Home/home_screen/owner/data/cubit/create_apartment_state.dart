@@ -10,6 +10,6 @@ class CreateApartmentState<T> with _$CreateApartmentState<T> {
   const factory CreateApartmentState.createapartmentsuccess(T data) =
       CreateApartmentStateSuccess;
   const factory CreateApartmentState.createapartmentfailure({
-    required dynamic exception,
+    required String error,
   }) = CreateApartmentStateFailure;
 }

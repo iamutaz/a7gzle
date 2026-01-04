@@ -33,9 +33,9 @@ class LogoutBlocListener extends StatelessWidget {
             context.pushNamed(RoutesConstant.onboarding);
           },
           logoutfailure: (error) {
-            String message = ApiErrorHandler.handleApiError(error);
+            // String message = ApiErrorHandler.handleApiError(error);
 
-            setupErrorState(context, message);
+            setupErrorState(context, error);
           },
         );
       },

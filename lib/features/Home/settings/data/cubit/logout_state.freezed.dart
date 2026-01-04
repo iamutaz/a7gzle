@@ -128,13 +128,13 @@ return logoutfailure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  logoutloading,TResult Function( T data)?  logoutuccess,TResult Function( Exception exception)?  logoutfailure,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  logoutloading,TResult Function( T data)?  logoutuccess,TResult Function( String error)?  logoutfailure,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _LogoutInitial() when initial != null:
 return initial();case LogoutLoading() when logoutloading != null:
 return logoutloading();case LogoutSuccess() when logoutuccess != null:
 return logoutuccess(_that.data);case LogoutFailure() when logoutfailure != null:
-return logoutfailure(_that.exception);case _:
+return logoutfailure(_that.error);case _:
   return orElse();
 
 }
@@ -152,13 +152,13 @@ return logoutfailure(_that.exception);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  logoutloading,required TResult Function( T data)  logoutuccess,required TResult Function( Exception exception)  logoutfailure,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  logoutloading,required TResult Function( T data)  logoutuccess,required TResult Function( String error)  logoutfailure,}) {final _that = this;
 switch (_that) {
 case _LogoutInitial():
 return initial();case LogoutLoading():
 return logoutloading();case LogoutSuccess():
 return logoutuccess(_that.data);case LogoutFailure():
-return logoutfailure(_that.exception);case _:
+return logoutfailure(_that.error);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -175,13 +175,13 @@ return logoutfailure(_that.exception);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  logoutloading,TResult? Function( T data)?  logoutuccess,TResult? Function( Exception exception)?  logoutfailure,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  logoutloading,TResult? Function( T data)?  logoutuccess,TResult? Function( String error)?  logoutfailure,}) {final _that = this;
 switch (_that) {
 case _LogoutInitial() when initial != null:
 return initial();case LogoutLoading() when logoutloading != null:
 return logoutloading();case LogoutSuccess() when logoutuccess != null:
 return logoutuccess(_that.data);case LogoutFailure() when logoutfailure != null:
-return logoutfailure(_that.exception);case _:
+return logoutfailure(_that.error);case _:
   return null;
 
 }
@@ -323,10 +323,10 @@ as T,
 
 
 class LogoutFailure<T> implements LogoutState<T> {
-  const LogoutFailure({required this.exception});
+  const LogoutFailure({required this.error});
   
 
- final  Exception exception;
+ final  String error;
 
 /// Create a copy of LogoutState
 /// with the given fields replaced by the non-null parameter values.
@@ -338,16 +338,16 @@ $LogoutFailureCopyWith<T, LogoutFailure<T>> get copyWith => _$LogoutFailureCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is LogoutFailure<T>&&(identical(other.exception, exception) || other.exception == exception));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LogoutFailure<T>&&(identical(other.error, error) || other.error == error));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,exception);
+int get hashCode => Object.hash(runtimeType,error);
 
 @override
 String toString() {
-  return 'LogoutState<$T>.logoutfailure(exception: $exception)';
+  return 'LogoutState<$T>.logoutfailure(error: $error)';
 }
 
 
@@ -358,7 +358,7 @@ abstract mixin class $LogoutFailureCopyWith<T,$Res> implements $LogoutStateCopyW
   factory $LogoutFailureCopyWith(LogoutFailure<T> value, $Res Function(LogoutFailure<T>) _then) = _$LogoutFailureCopyWithImpl;
 @useResult
 $Res call({
- Exception exception
+ String error
 });
 
 
@@ -375,10 +375,10 @@ class _$LogoutFailureCopyWithImpl<T,$Res>
 
 /// Create a copy of LogoutState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? exception = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? error = null,}) {
   return _then(LogoutFailure<T>(
-exception: null == exception ? _self.exception : exception // ignore: cast_nullable_to_non_nullable
-as Exception,
+error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 

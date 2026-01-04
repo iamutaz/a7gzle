@@ -10,6 +10,6 @@ class GetAllUserReservationsState<T> with _$GetAllUserReservationsState {
   const factory GetAllUserReservationsState.reservationssuccess(T data) =
       ReservationsSuccess;
   const factory GetAllUserReservationsState.reservationsfailure({
-    required Exception exception,
+    required String error,
   }) = ReservationsFailure;
 }

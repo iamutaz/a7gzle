@@ -7,6 +7,6 @@ class BookingState<T> with _$BookingState {
   const factory BookingState.initial() = _BookingInitial;
   const factory BookingState.bookingloading() = BookingLoading;
   const factory BookingState.bookingsuccess(T data) = BookingSuccess;
-  const factory BookingState.bookingfailure({required Exception exception}) =
+  const factory BookingState.bookingfailure({required String error}) =
       BookingFailure;
 }

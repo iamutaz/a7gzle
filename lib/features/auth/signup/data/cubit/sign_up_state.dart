@@ -7,6 +7,6 @@ class SignUpState<T> with _$SignUpState {
   const factory SignUpState.initial() = _SignupInitial;
   const factory SignUpState.signuploading() = SignupLoading;
   const factory SignUpState.signupsuccess(T data) = SignupSuccess;
-  const factory SignUpState.signupfailure({required Exception exception}) =
+  const factory SignUpState.signupfailure({required String error}) =
       SignupFailure;
 }

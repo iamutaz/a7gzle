@@ -128,13 +128,13 @@ return createapartmentfailure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  createapartmentloading,TResult Function( T data)?  createapartmentsuccess,TResult Function( dynamic exception)?  createapartmentfailure,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  createapartmentloading,TResult Function( T data)?  createapartmentsuccess,TResult Function( String error)?  createapartmentfailure,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CreateApartmentStateInitial() when initial != null:
 return initial();case CreateApartmentStateLoading() when createapartmentloading != null:
 return createapartmentloading();case CreateApartmentStateSuccess() when createapartmentsuccess != null:
 return createapartmentsuccess(_that.data);case CreateApartmentStateFailure() when createapartmentfailure != null:
-return createapartmentfailure(_that.exception);case _:
+return createapartmentfailure(_that.error);case _:
   return orElse();
 
 }
@@ -152,13 +152,13 @@ return createapartmentfailure(_that.exception);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  createapartmentloading,required TResult Function( T data)  createapartmentsuccess,required TResult Function( dynamic exception)  createapartmentfailure,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  createapartmentloading,required TResult Function( T data)  createapartmentsuccess,required TResult Function( String error)  createapartmentfailure,}) {final _that = this;
 switch (_that) {
 case _CreateApartmentStateInitial():
 return initial();case CreateApartmentStateLoading():
 return createapartmentloading();case CreateApartmentStateSuccess():
 return createapartmentsuccess(_that.data);case CreateApartmentStateFailure():
-return createapartmentfailure(_that.exception);case _:
+return createapartmentfailure(_that.error);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -175,13 +175,13 @@ return createapartmentfailure(_that.exception);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  createapartmentloading,TResult? Function( T data)?  createapartmentsuccess,TResult? Function( dynamic exception)?  createapartmentfailure,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  createapartmentloading,TResult? Function( T data)?  createapartmentsuccess,TResult? Function( String error)?  createapartmentfailure,}) {final _that = this;
 switch (_that) {
 case _CreateApartmentStateInitial() when initial != null:
 return initial();case CreateApartmentStateLoading() when createapartmentloading != null:
 return createapartmentloading();case CreateApartmentStateSuccess() when createapartmentsuccess != null:
 return createapartmentsuccess(_that.data);case CreateApartmentStateFailure() when createapartmentfailure != null:
-return createapartmentfailure(_that.exception);case _:
+return createapartmentfailure(_that.error);case _:
   return null;
 
 }
@@ -323,10 +323,10 @@ as T,
 
 
 class CreateApartmentStateFailure<T> implements CreateApartmentState<T> {
-  const CreateApartmentStateFailure({required this.exception});
+  const CreateApartmentStateFailure({required this.error});
   
 
- final  dynamic exception;
+ final  String error;
 
 /// Create a copy of CreateApartmentState
 /// with the given fields replaced by the non-null parameter values.
@@ -338,16 +338,16 @@ $CreateApartmentStateFailureCopyWith<T, CreateApartmentStateFailure<T>> get copy
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CreateApartmentStateFailure<T>&&const DeepCollectionEquality().equals(other.exception, exception));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CreateApartmentStateFailure<T>&&(identical(other.error, error) || other.error == error));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(exception));
+int get hashCode => Object.hash(runtimeType,error);
 
 @override
 String toString() {
-  return 'CreateApartmentState<$T>.createapartmentfailure(exception: $exception)';
+  return 'CreateApartmentState<$T>.createapartmentfailure(error: $error)';
 }
 
 
@@ -358,7 +358,7 @@ abstract mixin class $CreateApartmentStateFailureCopyWith<T,$Res> implements $Cr
   factory $CreateApartmentStateFailureCopyWith(CreateApartmentStateFailure<T> value, $Res Function(CreateApartmentStateFailure<T>) _then) = _$CreateApartmentStateFailureCopyWithImpl;
 @useResult
 $Res call({
- dynamic exception
+ String error
 });
 
 
@@ -375,10 +375,10 @@ class _$CreateApartmentStateFailureCopyWithImpl<T,$Res>
 
 /// Create a copy of CreateApartmentState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? exception = freezed,}) {
+@pragma('vm:prefer-inline') $Res call({Object? error = null,}) {
   return _then(CreateApartmentStateFailure<T>(
-exception: freezed == exception ? _self.exception : exception // ignore: cast_nullable_to_non_nullable
-as dynamic,
+error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 

@@ -7,6 +7,6 @@ class LogoutState<T> with _$LogoutState {
   const factory LogoutState.initial() = _LogoutInitial;
   const factory LogoutState.logoutloading() = LogoutLoading;
   const factory LogoutState.logoutuccess(T data) = LogoutSuccess;
-  const factory LogoutState.logoutfailure({required Exception exception}) =
+  const factory LogoutState.logoutfailure({required String error}) =
       LogoutFailure;
 }

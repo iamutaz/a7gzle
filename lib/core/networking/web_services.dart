@@ -1,13 +1,14 @@
 import 'package:a7gzle/core/networking/api_constant.dart';
 import 'package:a7gzle/features/Home/home_screen/owner/data/model/create_apartment_response_body.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/data/models/allapartment_response_body.dart';
-import 'package:a7gzle/features/Home/search/data/model/filter_request_body.dart';
 import 'package:a7gzle/features/Home/settings/data/model/logout_response_body.dart';
 import 'package:a7gzle/features/auth/login/data/model/login_request_body.dart';
 import 'package:a7gzle/features/auth/login/data/model/login_response_body.dart';
 import 'package:a7gzle/features/auth/signup/data/model/signupresponsebody.dart';
 import 'package:a7gzle/features/details/data/model/booking_request_body.dart';
 import 'package:a7gzle/features/details/data/model/booking_response_body.dart';
+import 'package:a7gzle/features/details/data/model/rate_request_body.dart';
+import 'package:a7gzle/features/details/data/model/rate_response_body.dart';
 import 'package:a7gzle/features/reservations/data/model/cancel/cancel_reservation_request_body.dart';
 import 'package:a7gzle/features/reservations/data/model/cancel/cancel_reservation_response_body.dart';
 import 'package:a7gzle/features/reservations/data/model/update/update_reservation_request_body.dart';
@@ -65,6 +66,11 @@ abstract class WebServices {
     @Part(name: 'area') required int area,
     @Part(name: 'images[]') required List<MultipartFile> images,
   });
+
+  @POST(WebServicesConstant.rateapartment)
+  Future<RateResponseBody> rateapartment(
+    @Body() RateRequestBody raterequestbody,
+  );
 
   //reservations----------------
   @POST(WebServicesConstant.makereservations)

@@ -128,13 +128,13 @@ return cancelreservationfailure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  cancelreservationloading,TResult Function( T data)?  cancelreservationsuccess,TResult Function( Exception exception)?  cancelreservationfailure,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  cancelreservationloading,TResult Function( T data)?  cancelreservationsuccess,TResult Function( String error)?  cancelreservationfailure,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CancelReservationInitial() when initial != null:
 return initial();case CancelReservationsLoading() when cancelreservationloading != null:
 return cancelreservationloading();case CancelReservationsSuccess() when cancelreservationsuccess != null:
 return cancelreservationsuccess(_that.data);case CancelReservationsFailure() when cancelreservationfailure != null:
-return cancelreservationfailure(_that.exception);case _:
+return cancelreservationfailure(_that.error);case _:
   return orElse();
 
 }
@@ -152,13 +152,13 @@ return cancelreservationfailure(_that.exception);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  cancelreservationloading,required TResult Function( T data)  cancelreservationsuccess,required TResult Function( Exception exception)  cancelreservationfailure,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  cancelreservationloading,required TResult Function( T data)  cancelreservationsuccess,required TResult Function( String error)  cancelreservationfailure,}) {final _that = this;
 switch (_that) {
 case _CancelReservationInitial():
 return initial();case CancelReservationsLoading():
 return cancelreservationloading();case CancelReservationsSuccess():
 return cancelreservationsuccess(_that.data);case CancelReservationsFailure():
-return cancelreservationfailure(_that.exception);case _:
+return cancelreservationfailure(_that.error);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -175,13 +175,13 @@ return cancelreservationfailure(_that.exception);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  cancelreservationloading,TResult? Function( T data)?  cancelreservationsuccess,TResult? Function( Exception exception)?  cancelreservationfailure,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  cancelreservationloading,TResult? Function( T data)?  cancelreservationsuccess,TResult? Function( String error)?  cancelreservationfailure,}) {final _that = this;
 switch (_that) {
 case _CancelReservationInitial() when initial != null:
 return initial();case CancelReservationsLoading() when cancelreservationloading != null:
 return cancelreservationloading();case CancelReservationsSuccess() when cancelreservationsuccess != null:
 return cancelreservationsuccess(_that.data);case CancelReservationsFailure() when cancelreservationfailure != null:
-return cancelreservationfailure(_that.exception);case _:
+return cancelreservationfailure(_that.error);case _:
   return null;
 
 }
@@ -323,10 +323,10 @@ as T,
 
 
 class CancelReservationsFailure<T> implements CancelReservationState<T> {
-  const CancelReservationsFailure({required this.exception});
+  const CancelReservationsFailure({required this.error});
   
 
- final  Exception exception;
+ final  String error;
 
 /// Create a copy of CancelReservationState
 /// with the given fields replaced by the non-null parameter values.
@@ -338,16 +338,16 @@ $CancelReservationsFailureCopyWith<T, CancelReservationsFailure<T>> get copyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CancelReservationsFailure<T>&&(identical(other.exception, exception) || other.exception == exception));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CancelReservationsFailure<T>&&(identical(other.error, error) || other.error == error));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,exception);
+int get hashCode => Object.hash(runtimeType,error);
 
 @override
 String toString() {
-  return 'CancelReservationState<$T>.cancelreservationfailure(exception: $exception)';
+  return 'CancelReservationState<$T>.cancelreservationfailure(error: $error)';
 }
 
 
@@ -358,7 +358,7 @@ abstract mixin class $CancelReservationsFailureCopyWith<T,$Res> implements $Canc
   factory $CancelReservationsFailureCopyWith(CancelReservationsFailure<T> value, $Res Function(CancelReservationsFailure<T>) _then) = _$CancelReservationsFailureCopyWithImpl;
 @useResult
 $Res call({
- Exception exception
+ String error
 });
 
 
@@ -375,10 +375,10 @@ class _$CancelReservationsFailureCopyWithImpl<T,$Res>
 
 /// Create a copy of CancelReservationState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? exception = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? error = null,}) {
   return _then(CancelReservationsFailure<T>(
-exception: null == exception ? _self.exception : exception // ignore: cast_nullable_to_non_nullable
-as Exception,
+error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 

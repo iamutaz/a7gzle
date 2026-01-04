@@ -128,13 +128,13 @@ return signupfailure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  signuploading,TResult Function( T data)?  signupsuccess,TResult Function( Exception exception)?  signupfailure,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  signuploading,TResult Function( T data)?  signupsuccess,TResult Function( String error)?  signupfailure,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SignupInitial() when initial != null:
 return initial();case SignupLoading() when signuploading != null:
 return signuploading();case SignupSuccess() when signupsuccess != null:
 return signupsuccess(_that.data);case SignupFailure() when signupfailure != null:
-return signupfailure(_that.exception);case _:
+return signupfailure(_that.error);case _:
   return orElse();
 
 }
@@ -152,13 +152,13 @@ return signupfailure(_that.exception);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  signuploading,required TResult Function( T data)  signupsuccess,required TResult Function( Exception exception)  signupfailure,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  signuploading,required TResult Function( T data)  signupsuccess,required TResult Function( String error)  signupfailure,}) {final _that = this;
 switch (_that) {
 case _SignupInitial():
 return initial();case SignupLoading():
 return signuploading();case SignupSuccess():
 return signupsuccess(_that.data);case SignupFailure():
-return signupfailure(_that.exception);case _:
+return signupfailure(_that.error);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -175,13 +175,13 @@ return signupfailure(_that.exception);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  signuploading,TResult? Function( T data)?  signupsuccess,TResult? Function( Exception exception)?  signupfailure,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  signuploading,TResult? Function( T data)?  signupsuccess,TResult? Function( String error)?  signupfailure,}) {final _that = this;
 switch (_that) {
 case _SignupInitial() when initial != null:
 return initial();case SignupLoading() when signuploading != null:
 return signuploading();case SignupSuccess() when signupsuccess != null:
 return signupsuccess(_that.data);case SignupFailure() when signupfailure != null:
-return signupfailure(_that.exception);case _:
+return signupfailure(_that.error);case _:
   return null;
 
 }
@@ -323,10 +323,10 @@ as T,
 
 
 class SignupFailure<T> implements SignUpState<T> {
-  const SignupFailure({required this.exception});
+  const SignupFailure({required this.error});
   
 
- final  Exception exception;
+ final  String error;
 
 /// Create a copy of SignUpState
 /// with the given fields replaced by the non-null parameter values.
@@ -338,16 +338,16 @@ $SignupFailureCopyWith<T, SignupFailure<T>> get copyWith => _$SignupFailureCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SignupFailure<T>&&(identical(other.exception, exception) || other.exception == exception));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SignupFailure<T>&&(identical(other.error, error) || other.error == error));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,exception);
+int get hashCode => Object.hash(runtimeType,error);
 
 @override
 String toString() {
-  return 'SignUpState<$T>.signupfailure(exception: $exception)';
+  return 'SignUpState<$T>.signupfailure(error: $error)';
 }
 
 
@@ -358,7 +358,7 @@ abstract mixin class $SignupFailureCopyWith<T,$Res> implements $SignUpStateCopyW
   factory $SignupFailureCopyWith(SignupFailure<T> value, $Res Function(SignupFailure<T>) _then) = _$SignupFailureCopyWithImpl;
 @useResult
 $Res call({
- Exception exception
+ String error
 });
 
 
@@ -375,10 +375,10 @@ class _$SignupFailureCopyWithImpl<T,$Res>
 
 /// Create a copy of SignUpState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? exception = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? error = null,}) {
   return _then(SignupFailure<T>(
-exception: null == exception ? _self.exception : exception // ignore: cast_nullable_to_non_nullable
-as Exception,
+error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 

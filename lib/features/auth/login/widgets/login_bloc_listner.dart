@@ -51,9 +51,9 @@ class LoginBlocListner extends StatelessWidget {
             }
           },
           loginfailure: (error) {
-            String message = ApiErrorHandler.handleApiError(error);
+            // String message = ApiErrorHandler.handleApiError(error);
 
-            setupErrorState(context, message);
+            setupErrorState(context, error);
           },
         );
       },

@@ -25,22 +25,16 @@ class UpdateReservationListiner extends StatelessWidget {
           updatereservationloading: () => CircularProgressIndicator(),
           updatereservationsuccess: (data) {
             context.pop();
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(
-                  'Updated successfuly',
-                  style: TextStyles.font16labelblackmideum,
-                ),
-                backgroundColor: ColorsManager.offwhite(context),
-              ),
-            );
+            ScaffoldMessenger.of(
+              context,
+            ).showSnackBar(SnackBar(content: Text('Updated successfuly')));
             // context.pushNamed(RoutesConstant.userreservations);
           },
           updatereservationfailure: (exception) {
             context.pop();
-            String message = ApiErrorHandler.handleApiError(exception);
+            // String message = ApiErrorHandler.handleApiError(exception);
 
-            setupErrorState(context, message);
+            setupErrorState(context, exception);
           },
         );
       },

@@ -128,13 +128,13 @@ return updatereservationfailure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  updatereservationloading,TResult Function( T data)?  updatereservationsuccess,TResult Function( Exception exception)?  updatereservationfailure,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  updatereservationloading,TResult Function( T data)?  updatereservationsuccess,TResult Function( String error)?  updatereservationfailure,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _UpdateReservationIntial() when initial != null:
 return initial();case UpdatedReservationLoading() when updatereservationloading != null:
 return updatereservationloading();case UpdateReservationSuccess() when updatereservationsuccess != null:
 return updatereservationsuccess(_that.data);case UpdateReservationFailure() when updatereservationfailure != null:
-return updatereservationfailure(_that.exception);case _:
+return updatereservationfailure(_that.error);case _:
   return orElse();
 
 }
@@ -152,13 +152,13 @@ return updatereservationfailure(_that.exception);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  updatereservationloading,required TResult Function( T data)  updatereservationsuccess,required TResult Function( Exception exception)  updatereservationfailure,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  updatereservationloading,required TResult Function( T data)  updatereservationsuccess,required TResult Function( String error)  updatereservationfailure,}) {final _that = this;
 switch (_that) {
 case _UpdateReservationIntial():
 return initial();case UpdatedReservationLoading():
 return updatereservationloading();case UpdateReservationSuccess():
 return updatereservationsuccess(_that.data);case UpdateReservationFailure():
-return updatereservationfailure(_that.exception);case _:
+return updatereservationfailure(_that.error);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -175,13 +175,13 @@ return updatereservationfailure(_that.exception);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  updatereservationloading,TResult? Function( T data)?  updatereservationsuccess,TResult? Function( Exception exception)?  updatereservationfailure,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  updatereservationloading,TResult? Function( T data)?  updatereservationsuccess,TResult? Function( String error)?  updatereservationfailure,}) {final _that = this;
 switch (_that) {
 case _UpdateReservationIntial() when initial != null:
 return initial();case UpdatedReservationLoading() when updatereservationloading != null:
 return updatereservationloading();case UpdateReservationSuccess() when updatereservationsuccess != null:
 return updatereservationsuccess(_that.data);case UpdateReservationFailure() when updatereservationfailure != null:
-return updatereservationfailure(_that.exception);case _:
+return updatereservationfailure(_that.error);case _:
   return null;
 
 }
@@ -323,10 +323,10 @@ as T,
 
 
 class UpdateReservationFailure<T> implements UpdateReservationState<T> {
-  const UpdateReservationFailure({required this.exception});
+  const UpdateReservationFailure({required this.error});
   
 
- final  Exception exception;
+ final  String error;
 
 /// Create a copy of UpdateReservationState
 /// with the given fields replaced by the non-null parameter values.
@@ -338,16 +338,16 @@ $UpdateReservationFailureCopyWith<T, UpdateReservationFailure<T>> get copyWith =
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is UpdateReservationFailure<T>&&(identical(other.exception, exception) || other.exception == exception));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UpdateReservationFailure<T>&&(identical(other.error, error) || other.error == error));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,exception);
+int get hashCode => Object.hash(runtimeType,error);
 
 @override
 String toString() {
-  return 'UpdateReservationState<$T>.updatereservationfailure(exception: $exception)';
+  return 'UpdateReservationState<$T>.updatereservationfailure(error: $error)';
 }
 
 
@@ -358,7 +358,7 @@ abstract mixin class $UpdateReservationFailureCopyWith<T,$Res> implements $Updat
   factory $UpdateReservationFailureCopyWith(UpdateReservationFailure<T> value, $Res Function(UpdateReservationFailure<T>) _then) = _$UpdateReservationFailureCopyWithImpl;
 @useResult
 $Res call({
- Exception exception
+ String error
 });
 
 
@@ -375,10 +375,10 @@ class _$UpdateReservationFailureCopyWithImpl<T,$Res>
 
 /// Create a copy of UpdateReservationState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? exception = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? error = null,}) {
   return _then(UpdateReservationFailure<T>(
-exception: null == exception ? _self.exception : exception // ignore: cast_nullable_to_non_nullable
-as Exception,
+error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 
