@@ -7,6 +7,7 @@ part of 'apartment.dart';
 // **************************************************************************
 
 Apartment _$ApartmentFromJson(Map<String, dynamic> json) => Apartment(
+  rate: (json['rate'] as num?)?.toDouble(),
   type: json['type'] as String,
   id: (json['id'] as num).toInt(),
   title: json['title'] as String,
@@ -25,6 +26,7 @@ Apartment _$ApartmentFromJson(Map<String, dynamic> json) => Apartment(
 
 Map<String, dynamic> _$ApartmentToJson(Apartment instance) => <String, dynamic>{
   'id': instance.id,
+  'rate': instance.rate,
   'title': instance.title,
   'description': instance.description,
   'price': instance.price,

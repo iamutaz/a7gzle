@@ -79,7 +79,7 @@ class Downcard extends StatelessWidget {
             child: Text(
               'La Grand Maison',
               style: TextStyle(
-                fontSize: 14, 
+                fontSize: 14,
                 fontWeight: FontWeight.bold,
                 // التعديل: نص العنوان يقلب أبيض بالدارك
                 color: ColorsManager.lightblack(context),

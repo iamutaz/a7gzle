@@ -4,7 +4,7 @@ import 'package:a7gzle/core/routing/routes_constant.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/data/models/apartment.dart';
 import 'package:flutter/material.dart';
 
-import 'package:a7gzle/core/theming/colors_manager.dart'; 
+import 'package:a7gzle/core/theming/colors_manager.dart';
 
 class topCard extends StatelessWidget {
   topCard({super.key, required this.apartment});
@@ -22,9 +22,8 @@ class topCard extends StatelessWidget {
         },
         child: Stack(
           children: [
-           
             Container(
-              clipBehavior: Clip.antiAlias, 
+              clipBehavior: Clip.antiAlias,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
               ),
@@ -43,7 +42,7 @@ class topCard extends StatelessWidget {
                       fit: BoxFit.cover,
                     ),
             ),
-        
+
             Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
@@ -54,7 +53,7 @@ class topCard extends StatelessWidget {
                 ),
               ),
             ),
-           
+
             Positioned(
               left: 16,
               bottom: 16,
@@ -72,7 +71,10 @@ class topCard extends StatelessWidget {
                   ),
                   Text(
                     apartment.city,
-                    style: TextStyle(color: Colors.white.withOpacity(0.7), fontSize: 12),
+                    style: TextStyle(
+                      color: Colors.white.withOpacity(0.7),
+                      fontSize: 12,
+                    ),
                   ),
                   const SizedBox(height: 6),
                   Text(
@@ -87,25 +89,25 @@ class topCard extends StatelessWidget {
               ),
             ),
 
-          
             Positioned(
               top: 12,
               right: 12,
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 decoration: BoxDecoration(
-             
                   color: Theme.of(context).cardColor.withOpacity(0.9),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
-                  children: const [
-                    Icon(Icons.star, color: Colors.orange, size: 14),
-                    SizedBox(width: 4),
+                  children: [
+                    const Icon(Icons.star, color: Colors.orange, size: 14),
+                    const SizedBox(width: 4),
                     Text(
-                      "4.8",
-                      style: TextStyle(
+                      apartment.rate == null
+                          ? "not rated yet"
+                          : "${apartment.rate}",
+                      style: const TextStyle(
                         color: Color(0xff246BFD), // اللون الأزرق بضل ثابت
                         fontWeight: FontWeight.bold,
                       ),
@@ -114,7 +116,7 @@ class topCard extends StatelessWidget {
                 ),
               ),
             ),
-            // زر المفضلة 
+            // زر المفضلة
             Positioned(
               bottom: 16,
               right: 16,
@@ -131,7 +133,7 @@ class topCard extends StatelessWidget {
                     ),
                     child: const Icon(
                       Icons.favorite_border,
-                      color: Colors.white, 
+                      color: Colors.white,
                       size: 20,
                     ),
                   ),

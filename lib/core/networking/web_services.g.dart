@@ -208,6 +208,36 @@ class _WebServices implements WebServices {
   }
 
   @override
+  Future<RateResponseBody> rateapartment(
+    RateRequestBody raterequestbody,
+  ) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(raterequestbody.toJson());
+    final _options = _setStreamType<RateResponseBody>(
+      Options(method: 'POST', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            'apartments/rate',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late RateResponseBody _value;
+    try {
+      _value = RateResponseBody.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options, _result);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
   Future<BookingResponseBody> bookapartment(
     BookingRequestBody bookingrequestbody,
   ) async {
@@ -307,7 +337,7 @@ class _WebServices implements WebServices {
       Options(method: 'PUT', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            "reservations/update",
+            'reservations/update',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -317,36 +347,6 @@ class _WebServices implements WebServices {
     late UpdateReservationResponseBody _value;
     try {
       _value = UpdateReservationResponseBody.fromJson(_result.data!);
-    } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options, _result);
-      rethrow;
-    }
-    return _value;
-  }
-
-  @override
-  Future<AllapartmentResponseBody> filtering(
-    FilterRequestBody filterrequestbody,
-  ) async {
-    final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(filterrequestbody.toJson());
-    final _options = _setStreamType<AllapartmentResponseBody>(
-      Options(method: 'POST', headers: _headers, extra: _extra)
-          .compose(
-            _dio.options,
-            'apartments/filtering',
-            queryParameters: queryParameters,
-            data: _data,
-          )
-          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
-    );
-    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late AllapartmentResponseBody _value;
-    try {
-      _value = AllapartmentResponseBody.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, _result);
       rethrow;

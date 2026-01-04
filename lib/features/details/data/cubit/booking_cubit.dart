@@ -1,12 +1,12 @@
 import 'package:a7gzle/core/networking/api_result.dart';
 import 'package:a7gzle/features/details/data/cubit/booking_state.dart';
 import 'package:a7gzle/features/details/data/model/booking_request_body.dart';
-import 'package:a7gzle/features/details/data/repo/book_repo.dart';
+import 'package:a7gzle/features/details/data/repo/details_repo_repo.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/widgets.dart';
 
 class BookingCubit extends Cubit<BookingState> {
-  final BookRepo _bookRepo;
+  final DetailsRepo _bookRepo;
 
   TextEditingController startdatecontroller = TextEditingController();
   TextEditingController enddatecontroller = TextEditingController();
