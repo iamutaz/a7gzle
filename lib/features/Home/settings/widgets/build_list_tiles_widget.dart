@@ -88,7 +88,7 @@ class _BuildListTilesWidgetState extends State<BuildListTilesWidget> {
             trailing: Icon(Icons.arrow_forward_ios, color: dynamicTextColor),
           ),
           ListTile(
-            leading: const AppIcon(path: "assets/svgs/settings/helpcenter.svg"),
+            leading: const AppIcon(path: "assets/svgs/settings/dark_mode.svg"),
             title: Text(
               "Dark Mode",
               style: TextStyles.font18blackbold.copyWith(color: dynamicTextColor),

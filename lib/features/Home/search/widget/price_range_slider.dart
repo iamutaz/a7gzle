@@ -1,4 +1,5 @@
 import 'package:a7gzle/core/theming/colors_manager.dart';
+import 'package:a7gzle/core/theming/text_styles.dart'; 
 import 'package:flutter/material.dart';
 
 class PriceRangeSliderWidget extends StatelessWidget {
@@ -89,10 +90,10 @@ class PriceRangeSliderWidget extends StatelessWidget {
                         left: (values.start / maxPos) * (width - 24),
                         child: Text(
                           '\$${getPyramidPrice(values.start).round()}', // عرض السعر مقرباً
-                          style: TextStyle(
+                          style: TextStyles.font14blackmideum.copyWith(
                             color: primaryColor,
                             fontWeight: FontWeight.bold,
-                          ),
+                          ), 
                         ),
                       ),
                       // نص السعر للمقبض الثاني (النهاية)
@@ -100,10 +101,10 @@ class PriceRangeSliderWidget extends StatelessWidget {
                         left: (values.end / maxPos) * (width - 24),
                         child: Text(
                           '\$${getPyramidPrice(values.end).round()}',
-                          style: TextStyle(
+                          style: TextStyles.font14blackmideum.copyWith(
                             color: primaryColor,
                             fontWeight: FontWeight.bold,
-                          ),
+                          ), 
                         ),
                       ),
                     ],

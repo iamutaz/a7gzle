@@ -1,14 +1,14 @@
 import 'dart:ui';
 import 'package:a7gzle/core/helpers/extension.dart';
 import 'package:a7gzle/core/routing/routes_constant.dart';
+import 'package:a7gzle/core/theming/text_styles.dart'; 
 import 'package:a7gzle/features/Home/home_screen/tenant/data/models/apartment.dart';
 import 'package:flutter/material.dart';
-
 import 'package:a7gzle/core/theming/colors_manager.dart'; 
 
 class topCard extends StatelessWidget {
   topCard({super.key, required this.apartment});
-  Apartment apartment;
+  final Apartment apartment;
 
   @override
   Widget build(BuildContext context) {
@@ -22,13 +22,13 @@ class topCard extends StatelessWidget {
         },
         child: Stack(
           children: [
-           
+            // صورة الشقة
             Container(
               clipBehavior: Clip.antiAlias, 
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
               ),
-              child: apartment.images.first.path.isNotEmpty
+              child: apartment.images.isNotEmpty && apartment.images.first.path.isNotEmpty
                   ? FadeInImage.assetNetwork(
                       width: double.infinity,
                       height: double.infinity,
@@ -54,7 +54,8 @@ class topCard extends StatelessWidget {
                 ),
               ),
             ),
-           
+            
+            // نصوص المعلومات
             Positioned(
               left: 16,
               bottom: 16,
@@ -64,49 +65,45 @@ class topCard extends StatelessWidget {
                 children: [
                   Text(
                     apartment.title,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyles.font18blackbold.copyWith(color: Colors.white, fontSize: 16),
                   ),
                   Text(
                     apartment.city,
-                    style: TextStyle(color: Colors.white.withOpacity(0.7), fontSize: 12),
+                    style: TextStyles.font14neartograymiduem.copyWith(
+                      color: Colors.white.withOpacity(0.7), 
+                      fontSize: 12
+                    ),
                   ),
                   const SizedBox(height: 6),
                   Text(
                     apartment.price,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: TextStyles.font18blackbold.copyWith(color: Colors.white),
                   ),
                 ],
               ),
             ),
 
-          
+            // مربع التقييم
             Positioned(
               top: 12,
               right: 12,
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 decoration: BoxDecoration(
-             
                   color: Theme.of(context).cardColor.withOpacity(0.9),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
-                  children: const [
-                    Icon(Icons.star, color: Colors.orange, size: 14),
-                    SizedBox(width: 4),
+                  children: [
+                    const Icon(Icons.star, color: Colors.orange, size: 14),
+                    const SizedBox(width: 4),
                     Text(
                       "4.8",
-                      style: TextStyle(
-                        color: Color(0xff246BFD), // اللون الأزرق بضل ثابت
+                      style: TextStyles.font14blackmideum.copyWith(
+                        color: const Color(0xff246BFD), 
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -114,7 +111,8 @@ class topCard extends StatelessWidget {
                 ),
               ),
             ),
-            // زر المفضلة 
+
+            // زر المفضلة
             Positioned(
               bottom: 16,
               right: 16,

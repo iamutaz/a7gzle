@@ -15,11 +15,12 @@ class Apartment {
   int bathrooms;
   String status;
   String type;
-
+  double? rate;
   List<ApartmentImage> images;
   Owner owner;
 
   Apartment({
+    this.rate,
     required this.type,
     required this.id,
     required this.title,

@@ -1,9 +1,7 @@
-
-
-
 import 'package:a7gzle/core/helpers/shared_pref_helper.dart';
 import 'package:a7gzle/core/helpers/user_model.dart';
 import 'package:a7gzle/core/theming/colors_manager.dart';
+import 'package:a7gzle/core/theming/text_styles.dart'; 
 import 'package:a7gzle/core/theming/dark_mode/app_icon.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/data/cubit/allapartment_cubit.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/data/cubit/allapartment_state.dart';
@@ -14,7 +12,6 @@ import 'package:a7gzle/features/Home/home_screen/tenant/widgets/downcardlist.dar
 import 'package:a7gzle/features/Home/home_screen/tenant/widgets/topCard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 
 class TenantScreen extends StatefulWidget {
   const TenantScreen({super.key});
@@ -45,14 +42,12 @@ class _TenantScreenState extends State<TenantScreen> {
       return const Scaffold(body: Center(child: CircularProgressIndicator()));
     }
     return Scaffold(
-    
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
-
                 child: Row(
                   children: [
                     Container(
@@ -60,11 +55,6 @@ class _TenantScreenState extends State<TenantScreen> {
                       width: 60,
                       child: ClipOval(
                         child: Image.asset("assets/notload.jpeg"),
-                        // child: Image.file(
-                        //   width: double.infinity,
-                        //   File(user!.profileimage),
-                        //   fit: BoxFit.fitWidth,
-                        // ),
                       ),
                     ),
                     SizedBox(width: 10),
@@ -75,15 +65,14 @@ class _TenantScreenState extends State<TenantScreen> {
                         children: [
                           Text(
                             "Good Morning",
-                            style: TextStyle(
+                            style: TextStyles.font14neartograymiduem.copyWith(
                               color: Color(0xff8C8E98),
-                              fontWeight: FontWeight.w400,
                             ),
                           ),
                           Text(
                             "${user!.firstname} ${user!.lastname}",
-                            style: TextStyle(
-                          color: ColorsManager.lightblack(context),
+                            style: TextStyles.font14blackmideum.copyWith(
+                              color: ColorsManager.lightblack(context),
                               fontWeight: FontWeight.w500,
                             ),
                           ),
@@ -91,18 +80,11 @@ class _TenantScreenState extends State<TenantScreen> {
                       ),
                     ),
                     SizedBox(width: 150),
-
-                   AppIcon(path: "assets/svgs/settings/notifaication.svg"),
+                    AppIcon(path: "assets/svgs/settings/notifaication.svg"),
                   ],
                 ),
               ),
               SizedBox(height: 20),
-
-              // Padding(
-              //   padding: const EdgeInsets.symmetric(horizontal: 20),
-
-              //   child: ,
-              // ),
               SizedBox(height: 20),
               BlocBuilder<AllapartmentCubit, AllapartmentState>(
                 builder: (context, state) {
@@ -120,21 +102,20 @@ class _TenantScreenState extends State<TenantScreen> {
                           SizedBox(height: 20),
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 20),
-
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
                                   "Featured",
-                                  style: TextStyle(
-                                   color: ColorsManager.lightblack(context),
+                                  style: TextStyles.font18blackbold.copyWith(
+                                    color: ColorsManager.lightblack(context),
                                     fontSize: 20,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
                                 Text(
                                   "See All",
-                                  style: TextStyle(
+                                  style: TextStyles.font14blackmideum.copyWith(
                                     color: ColorsManager.mainBlue,
                                     fontSize: 16,
                                     fontWeight: FontWeight.w600,
@@ -148,10 +129,8 @@ class _TenantScreenState extends State<TenantScreen> {
                             height: 340,
                             child: Padding(
                               padding: const EdgeInsets.only(left: 20),
-
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
-
                                 itemCount: allapartments.length,
                                 itemBuilder: (context, index) {
                                   return topCard(
@@ -164,22 +143,21 @@ class _TenantScreenState extends State<TenantScreen> {
                           SizedBox(height: 20),
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 20),
-
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
                                   "Our Recommendation",
-                                  style: TextStyle(
-                                  color: ColorsManager.lightblack(context),
+                                  style: TextStyles.font18blackbold.copyWith(
+                                    color: ColorsManager.lightblack(context),
                                     fontSize: 20,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
                                 Text(
                                   "See All",
-                                  style: TextStyle(
-                                           color: ColorsManager.mainBlue,
+                                  style: TextStyles.font14blackmideum.copyWith(
+                                    color: ColorsManager.mainBlue,
                                     fontSize: 16,
                                     fontWeight: FontWeight.w600,
                                   ),
@@ -192,14 +170,11 @@ class _TenantScreenState extends State<TenantScreen> {
                             height: 41,
                             child: Padding(
                               padding: const EdgeInsets.only(left: 20),
-
                               child: const ButtonList(),
                             ),
                           ),
                           SizedBox(height: 25),
-
-                    downcardlist(),
-
+                          downcardlist(apartments: allapartments),
                           SizedBox(height: 30),
                         ],
                       );
