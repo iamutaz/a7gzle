@@ -24,7 +24,7 @@ class BookingWidget extends StatelessWidget {
       builder: (BuildContext context, ScrollController scrollController) {
         return Container(
           decoration: BoxDecoration(
-          color: ColorsManager.offwhite(context),
+            color: ColorsManager.offwhite(context),
 
             borderRadius: BorderRadius.horizontal(
               right: Radius.circular(15),
@@ -42,13 +42,16 @@ class BookingWidget extends StatelessWidget {
                       width: 32,
                       height: 32,
                       decoration: BoxDecoration(
-                       color: ColorsManager.isDark(context) 
-                            ? Colors.white.withOpacity(0.1) 
+                        color: ColorsManager.isDark(context)
+                            ? Colors.white.withOpacity(0.1)
                             : const Color(0xEBECF3FD),
                         shape: BoxShape.circle,
                       ),
                       child: IconButton(
-                        icon: Icon(Icons.arrow_back,color: ColorsManager.lightblack(context)),
+                        icon: Icon(
+                          Icons.arrow_back,
+                          color: ColorsManager.lightblack(context),
+                        ),
                         onPressed: () {
                           Navigator.of(context).pop();
                         },
@@ -145,9 +148,9 @@ class BookingWidget extends StatelessWidget {
 void setTimeOnForm(BuildContext context, String feildname) async {
   DateTime? dateTime = await showDatePicker(
     context: context,
-    firstDate: DateTime(2024),
-    lastDate: DateTime(2027),
-    initialDate: DateTime(2025),
+    firstDate: DateTime(2026),
+    lastDate: DateTime(2029),
+    initialDate: DateTime(2026),
   );
 
   if (dateTime != null) {

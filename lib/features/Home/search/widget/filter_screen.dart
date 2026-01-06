@@ -1,5 +1,5 @@
 import 'package:a7gzle/core/theming/colors_manager.dart';
-import 'package:a7gzle/core/theming/text_styles.dart'; 
+import 'package:a7gzle/core/theming/text_styles.dart';
 import 'package:a7gzle/core/widgets/app_drop_down_button.dart';
 import 'package:a7gzle/features/Home/home_screen/owner/data/model/drop_down_button_value_model.dart';
 import 'package:a7gzle/features/Home/search/widget/cards/cards_models.dart';
@@ -71,7 +71,7 @@ class _FilterScreenState extends State<FilterScreen> {
   ];
 
   RangeValues priceRange = const RangeValues(0, 450);
-  RangeValues sizeRange = const RangeValues(500, 4000);
+  RangeValues sizeRange = const RangeValues(0, 4000);
   int bedrooms = 0;
   int bathrooms = 0;
 
@@ -86,7 +86,7 @@ class _FilterScreenState extends State<FilterScreen> {
     setState(() {
       cityController.clear();
       priceRange = const RangeValues(0, 450);
-      sizeRange = const RangeValues(500, 4000);
+      sizeRange = const RangeValues(0, 4000);
       bedrooms = 0;
       bathrooms = 0;
     });
@@ -132,7 +132,7 @@ class _FilterScreenState extends State<FilterScreen> {
                       child: Center(
                         child: Text(
                           "Filter",
-                          style: TextStyles.font16labelblackmideum, 
+                          style: TextStyles.font16labelblackmideum,
                         ),
                       ),
                     ),
@@ -142,7 +142,7 @@ class _FilterScreenState extends State<FilterScreen> {
                         "Reset",
                         style: TextStyles.font14blackmideum.copyWith(
                           color: ColorsManager.mainBlue,
-                        ), 
+                        ),
                       ),
                     ),
                   ],
@@ -186,7 +186,7 @@ class _FilterScreenState extends State<FilterScreen> {
                   "Home Details",
                   style: TextStyles.font16labelblackmideum.copyWith(
                     fontWeight: FontWeight.bold,
-                  ), 
+                  ),
                 ),
                 const SizedBox(height: 12),
                 _counterRow(
@@ -227,57 +227,60 @@ class _FilterScreenState extends State<FilterScreen> {
                   width: double.infinity,
                   height: 54,
                   child: ElevatedButton(
-                    onPressed: () async {
-                      double actualStart = _getActualPrice(priceRange.start);
-                      double actualEnd = _getActualPrice(priceRange.end);
-                      // قائمة الشروط للسيرفر
-                      Map<String, dynamic> filterParams = {
-                        'min_bathrooms': 0,
-                        'max_bathrooms': bathrooms,
-                        'min_bedrooms': 0,
-                        'max_bedrooms': bedrooms,
-                        'min_area': sizeRange.start.round(),
-                        'max_area': sizeRange.end.round(),
-                        'min_price': actualStart.round(),
-                        'max_price': actualEnd.round(),
-                        'city': cityController.text.isEmpty
-                            ? 'damascus'//قررت اعرض شقق دمشق اذا حدد سيتي
-                            : cityController.text,
-                      };
+                   onPressed: () async {
+  // ماب فاضية لحط فيها الشروط الي بيختارا اليوزر
+  // والي ما بيختارو بجيب كلشي بخصو
+  Map<String, dynamic> filterParams = {};
 
-                      try {
-                        // 1.  صار عندي قائمة جاهزة من الشقق
-                        List<FilterCardModel> results = await sendFilterRequest(
-                          filterParams,
-                        );
+  // إذا اليوزر اختار مدينة، بنضيفها للشنطة.
+  if (cityController.text.isNotEmpty) {
+    filterParams['city'] = cityController.text;
+  }
 
-                        // طبااعة
-                        debugPrint(
-                          "=============== FILTER RESULTS ============",
-                        );
-                        debugPrint("Total Apartments Found: ${results.length}");
+  if (priceRange.start != 0 || priceRange.end != 450) {
+    filterParams['min_price'] = _getActualPrice(priceRange.start).round();
+    filterParams['max_price'] = _getActualPrice(priceRange.end).round();
+  }
 
-                        for (var i = 0; i < results.length; i++) {
-                          debugPrint("------- Apartment #${i + 1} -------");
-                          debugPrint("Title: ${results[i].title}");
-                          debugPrint("Price: ${results[i].price}");
-                          debugPrint("Location: ${results[i].location}");
-                          debugPrint("rate: ${results[i].rate}");
-                          debugPrint(
-                            "Image URL: ${results[i].image}",
-                          );
-                        }
-                        debugPrint(
-                          "==========================================",
-                        );
-                  
-                      //  إذا الشاشة لساها مفتوحة وما سكرها المستخدم، سكرها هلق وبعت "نتائج البحث" للشاشة اللي قبلها
-                     if (mounted) Navigator.of(context).pop(results);
+  if (bedrooms > 0) {
+    filterParams['min_rooms'] = 0;
+    filterParams['max_rooms'] = bedrooms; 
+  }
+  
+  if (bathrooms > 0) {
+    filterParams['min_bathrooms'] = 0;
+    filterParams['max_bathrooms'] = bathrooms;
+  }
+//اذا تغيرت عن هي القيم يعني حرك المقابض
+  if (sizeRange.start != 0 || sizeRange.end != 4000) {
+    filterParams['min_area'] = sizeRange.start.round();
+    filterParams['max_area'] = sizeRange.end.round();
+  }
 
-                      } catch (e) {
-                        debugPrint(" Filter Error: $e");
-                      }
-                    },
+  try {
+    
+    List<FilterCardModel> results = await sendFilterRequest(filterParams);
+
+    debugPrint("=============== FILTER RESULTS ============");
+    debugPrint("Total Apartments Found: ${results.length}");
+
+    for (var i = 0; i < results.length; i++) {
+      debugPrint("------- Apartment #${i + 1} -------");
+      debugPrint("Title: ${results[i].title}");     
+      debugPrint("Price: ${results[i].price}");      
+      debugPrint("Location: ${results[i].location}"); 
+      debugPrint("rate: ${results[i].rate}");         
+      debugPrint("Image URL: ${results[i].image}");  
+    }
+    debugPrint("==========================================");
+
+    //  إذا الشاشة لساها مفتوحة وما سكرها المستخدم، سكرها هلق وبعت "نتائج البحث" للشاشة اللي قبلها
+    if (mounted) Navigator.of(context).pop(results);
+    
+  } catch (e) {
+    debugPrint(" Filter Error: $e");
+  }
+},
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xff0061FF),
                       shape: RoundedRectangleBorder(
@@ -308,10 +311,7 @@ class _FilterScreenState extends State<FilterScreen> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
-          title,
-          style: TextStyles.font14neartograymiduem, 
-        ),
+        Text(title, style: TextStyles.font14neartograymiduem),
         Row(
           children: [
             _circleIconButton(icon: Icons.remove, onTap: onMinus),

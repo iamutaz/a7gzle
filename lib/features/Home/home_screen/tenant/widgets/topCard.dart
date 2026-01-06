@@ -24,7 +24,7 @@ class topCard extends StatelessWidget {
           children: [
             // صورة الشقة
             Container(
-              clipBehavior: Clip.antiAlias, 
+              clipBehavior: Clip.antiAlias,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
               ),
@@ -43,7 +43,7 @@ class topCard extends StatelessWidget {
                       fit: BoxFit.cover,
                     ),
             ),
-        
+
             Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
@@ -54,12 +54,11 @@ class topCard extends StatelessWidget {
                 ),
               ),
             ),
-            
-            // نصوص المعلومات
+
             Positioned(
               left: 16,
-              bottom: 16,
               right: 16,
+              bottom: 16, // أضفت الـ bottom هنا ليظهر النص أسفل الكرت بشكل صحيح
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -73,13 +72,13 @@ class topCard extends StatelessWidget {
                     apartment.city,
                     style: TextStyles.font14neartograymiduem.copyWith(
                       color: Colors.white.withOpacity(0.7), 
-                      fontSize: 12
+                      fontSize: 12,
                     ),
                   ),
                   const SizedBox(height: 6),
                   Text(
                     apartment.price,
-                    style: TextStyles.font18blackbold.copyWith(color: Colors.white),
+                    style: const TextStyle(color: Colors.white),
                   ),
                 ],
               ),
@@ -101,9 +100,11 @@ class topCard extends StatelessWidget {
                     const Icon(Icons.star, color: Colors.orange, size: 14),
                     const SizedBox(width: 4),
                     Text(
-                      "4.8",
-                      style: TextStyles.font14blackmideum.copyWith(
-                        color: const Color(0xff246BFD), 
+                      apartment.rate == null
+                          ? "not rated yet"
+                          : "${apartment.rate}",
+                      style: const TextStyle(
+                        color: Color(0xff246BFD),
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -129,7 +130,7 @@ class topCard extends StatelessWidget {
                     ),
                     child: const Icon(
                       Icons.favorite_border,
-                      color: Colors.white, 
+                      color: Colors.white,
                       size: 20,
                     ),
                   ),

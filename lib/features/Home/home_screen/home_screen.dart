@@ -1,171 +1,196 @@
-import 'package:a7gzle/core/theming/colors_manager.dart';
-import 'package:a7gzle/core/theming/text_styles.dart';
-import 'package:a7gzle/features/Home/home_screen/tenant/data/cubit/allapartment_cubit.dart';
-import 'package:a7gzle/features/Home/home_screen/tenant/data/cubit/allapartment_state.dart';
-import 'package:a7gzle/features/Home/home_screen/tenant/data/models/apartment.dart';
-import 'package:a7gzle/features/Home/home_screen/tenant/widgets/bottomlist.dart';
-import 'package:a7gzle/features/Home/home_screen/tenant/widgets/downcardlist.dart';
-import 'package:a7gzle/features/Home/home_screen/tenant/widgets/topCard.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+// import 'package:a7gzle/features/Home/home_screen/tenant/data/cubit/allapartment_cubit.dart';
+// import 'package:a7gzle/features/Home/home_screen/tenant/data/cubit/allapartment_state.dart';
+// import 'package:a7gzle/features/Home/home_screen/tenant/data/models/apartment.dart';
 
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
+// import 'package:a7gzle/features/Home/home_screen/tenant/widgets/bottomlist.dart';
+// import 'package:a7gzle/features/Home/home_screen/tenant/widgets/downcardlist.dart';
+// import 'package:a7gzle/features/Home/home_screen/tenant/widgets/topCard.dart';
+// import 'package:flutter/material.dart';
+// import 'package:flutter_bloc/flutter_bloc.dart';
 
-class _HomeScreenState extends State<HomeScreen> {
-  @override
-  void initState() {
-    super.initState();
-    // استدعاء البيانات عند بدء تشغيل الصفحة
-    context.read<AllapartmentCubit>().emitAllApartmentState();
-  }
+// class HomeScreen extends StatefulWidget {
+//   const HomeScreen({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              /// 1. Header: Profile Image & Welcome Message
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                child: Row(
-                  children: [
-                    CircleAvatar(
-                      radius: 30,
-                      backgroundImage: const AssetImage(
-                        "assets/images/fa11e95f10b86f6fdf71816b20fb738ef9dd8a44.png",
-                      ),
-                    ),
-                    const SizedBox(width: 12),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Good Morning",
-                          style: TextStyles.font14neartograymiduem.copyWith(
-                            color: const Color(0xff8C8E98),
-                          ),
-                        ),
-                        Text(
-                          "Adrian Hajdin",
-                          style: TextStyles.font18blackbold.copyWith(
-                            fontSize: 16,
-                            color: ColorsManager.lightblack(context),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const Spacer(),
-                    // TODO: أضف أيقونة التنبيهات هنا
-                  ],
-                ),
-              ),
+//   @override
+//   State<HomeScreen> createState() => _HomeScreenState();
+// }
 
-              const SizedBox(height: 20),
+// class _HomeScreenState extends State<HomeScreen> {
+//   @override
+//   void initState() {
+//     super.initState();
+//     context.read<AllapartmentCubit>().emitAllApartmentState();
+//   }
 
-              /// 2. Body: BlocBuilder to handle states
-              BlocBuilder<AllapartmentCubit, AllapartmentState>(
-                builder: (context, state) {
-                  return state.when(
-                    initial: () => const SizedBox.shrink(),
-                    allapartmentloading: () => const Center(
-                      child: CircularProgressIndicator(color: ColorsManager.mainBlue),
-                    ),
-                    allapartmentsuccess: (data) {
-                      List<Apartment> allapartments = data.apartmentlist;
-                      return Column(
-                        children: [
-                          /// Section: Featured
-                          _buildSectionHeader("Featured"),
-                          const SizedBox(height: 16),
-                          SizedBox(
-                            height: 340,
-                            child: ListView.builder(
-                              scrollDirection: Axis.horizontal,
-                              padding: const EdgeInsets.only(left: 20),
-                              itemCount: allapartments.length,
-                              itemBuilder: (context, index) {
-                                return topCard(
-                                  apartment: allapartments[index],
-                                );
-                              },
-                            ),
-                          ),
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: SafeArea(
+//         child: SingleChildScrollView(
+//           child: Column(
+//             children: [
+//               Padding(
+//                 padding: const EdgeInsets.symmetric(horizontal: 20),
 
-                          const SizedBox(height: 25),
+//                 child: Row(
+//                   children: [
+//                     Container(
+//                       height: 60,
+//                       width: 60,
+//                       child: ClipOval(
+//                         child: Image.asset(
+//                           "assets/images/fa11e95f10b86f6fdf71816b20fb738ef9dd8a44.png",
+//                           fit: BoxFit.cover,
+//                         ),
+//                       ),
+//                     ),
+//                     SizedBox(width: 10),
+//                     Container(
+//                       height: 43,
+//                       width: 105,
+//                       child: Column(
+//                         children: [
+//                           Text(
+//                             "Good Morning",
+//                             style: TextStyle(
+//                               color: Color(0xff8C8E98),
+//                               fontWeight: FontWeight.w400,
+//                             ),
+//                           ),
+//                           Text(
+//                             "Adrian Hajdin",
+//                             style: TextStyle(
+//                               color: Color(0xff191D31),
+//                               fontWeight: FontWeight.w500,
+//                             ),
+//                           ),
+//                         ],
+//                       ),
+//                     ),
+//                     SizedBox(width: 174),
 
-                          /// Section: Recommendations
-                          _buildSectionHeader("Our Recommendation"),
-                          const SizedBox(height: 16),
-                          
-                          // فئات الفلترة (House, Villa, etc.)
-                          const SizedBox(
-                            height: 41,
-                            child: Padding(
-                              padding: EdgeInsets.only(left: 20),
-                              child: ButtonList(),
-                            ),
-                          ),
-                          
-                          const SizedBox(height: 20),
+//                     //TODO : THE NOTIFAI ICON here
+//                   ],
+//                 ),
+//               ),
+//               SizedBox(height: 20),
 
-                          // قائمة الكروت السفلية (Grid)
-                          downcardlist(apartments: allapartments),
+//               // Padding(
+//               //   padding: const EdgeInsets.symmetric(horizontal: 20),
 
-                          const SizedBox(height: 30),
-                        ],
-                      );
-                    },
-                    allapartmentfailure: (exception) => Center(
-                      child: Text(
-                        "Error: ${exception.toString()}",
-                        style: TextStyles.font14blackmideum.copyWith(color: Colors.red),
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
+//               //   child: ,
+//               // ),
+//               SizedBox(height: 20),
+//               BlocBuilder<AllapartmentCubit, AllapartmentState>(
+//                 builder: (context, state) {
+//                   return state.when(
+//                     initial: () {
+//                       return SizedBox.shrink();
+//                     },
+//                     allapartmentloading: () {
+//                       return Center(child: CircularProgressIndicator());
+//                     },
+//                     allapartmentsuccess: (data) {
+//                       List<Apartment> allapartments = data.apartmentlist;
+//                       return Column(
+//                         children: [
+//                           Padding(
+//                             padding: const EdgeInsets.symmetric(horizontal: 20),
 
-  /// ويدجت مساعد لبناء رؤوس الأقسام (Section Headers)
-  Widget _buildSectionHeader(String title) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            title,
-            style: TextStyles.font18blackbold.copyWith(
-              fontSize: 20,
-              color: ColorsManager.lightblack(context),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              // TODO: Navigate to See All page
-            },
-            child: Text(
-              "See All",
-              style: TextStyles.font14blackmideum.copyWith(
-                color: ColorsManager.mainBlue,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
+//                             child: Row(
+//                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                               children: [
+//                                 Text(
+//                                   "Featured",
+//                                   style: TextStyle(
+//                                     color: Color(0xff191D31),
+//                                     fontSize: 20,
+//                                     fontWeight: FontWeight.w600,
+//                                   ),
+//                                 ),
+//                                 Text(
+//                                   "See All",
+//                                   style: TextStyle(
+//                                     color: Color(0xff0061FF),
+//                                     fontSize: 16,
+//                                     fontWeight: FontWeight.w600,
+//                                   ),
+//                                 ),
+//                               ],
+//                             ),
+//                           ),
+//                           SizedBox(height: 20),
+//                           SizedBox(
+//                             height: 340,
+//                             child: Padding(
+//                               padding: const EdgeInsets.only(left: 20),
+
+//                               child: ListView.builder(
+//                                 scrollDirection: Axis.horizontal,
+
+//                                 itemCount: allapartments.length,
+//                                 itemBuilder: (context, index) {
+//                                   return topCard(
+//                                     apartment: allapartments[index],
+//                                   );
+//                                 },
+//                               ),
+//                             ),
+//                           ),
+//                           SizedBox(height: 20),
+//                           Padding(
+//                             padding: const EdgeInsets.symmetric(horizontal: 20),
+
+//                             child: Row(
+//                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                               children: [
+//                                 Text(
+//                                   "Our Recommendation",
+//                                   style: TextStyle(
+//                                     color: Color(0xff191D31),
+//                                     fontSize: 20,
+//                                     fontWeight: FontWeight.w600,
+//                                   ),
+//                                 ),
+//                                 Text(
+//                                   "See All",
+//                                   style: TextStyle(
+//                                     color: Color(0xff0061FF),
+//                                     fontSize: 16,
+//                                     fontWeight: FontWeight.w600,
+//                                   ),
+//                                 ),
+//                               ],
+//                             ),
+//                           ),
+//                           SizedBox(height: 20),
+//                           SizedBox(
+//                             height: 41,
+//                             child: Padding(
+//                               padding: const EdgeInsets.only(left: 20),
+
+//                               child: const ButtonList(),
+//                             ),
+//                           ),
+//                           SizedBox(height: 25),
+
+//                           downcardlist(),
+
+//                           SizedBox(height: 30),
+//                         ],
+//                       );
+//                     },
+//                     allapartmentfailure: (exception) {
+//                       return Text(exception.toString());
+//                     },
+//                   );
+//                 },
+//               ),
+//             ],
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }

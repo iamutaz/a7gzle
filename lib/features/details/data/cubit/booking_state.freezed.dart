@@ -128,13 +128,13 @@ return bookingfailure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  bookingloading,TResult Function( T data)?  bookingsuccess,TResult Function( Exception exception)?  bookingfailure,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  bookingloading,TResult Function( T data)?  bookingsuccess,TResult Function( String error)?  bookingfailure,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _BookingInitial() when initial != null:
 return initial();case BookingLoading() when bookingloading != null:
 return bookingloading();case BookingSuccess() when bookingsuccess != null:
 return bookingsuccess(_that.data);case BookingFailure() when bookingfailure != null:
-return bookingfailure(_that.exception);case _:
+return bookingfailure(_that.error);case _:
   return orElse();
 
 }
@@ -152,13 +152,13 @@ return bookingfailure(_that.exception);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  bookingloading,required TResult Function( T data)  bookingsuccess,required TResult Function( Exception exception)  bookingfailure,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  bookingloading,required TResult Function( T data)  bookingsuccess,required TResult Function( String error)  bookingfailure,}) {final _that = this;
 switch (_that) {
 case _BookingInitial():
 return initial();case BookingLoading():
 return bookingloading();case BookingSuccess():
 return bookingsuccess(_that.data);case BookingFailure():
-return bookingfailure(_that.exception);case _:
+return bookingfailure(_that.error);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -175,13 +175,13 @@ return bookingfailure(_that.exception);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  bookingloading,TResult? Function( T data)?  bookingsuccess,TResult? Function( Exception exception)?  bookingfailure,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  bookingloading,TResult? Function( T data)?  bookingsuccess,TResult? Function( String error)?  bookingfailure,}) {final _that = this;
 switch (_that) {
 case _BookingInitial() when initial != null:
 return initial();case BookingLoading() when bookingloading != null:
 return bookingloading();case BookingSuccess() when bookingsuccess != null:
 return bookingsuccess(_that.data);case BookingFailure() when bookingfailure != null:
-return bookingfailure(_that.exception);case _:
+return bookingfailure(_that.error);case _:
   return null;
 
 }
@@ -323,10 +323,10 @@ as T,
 
 
 class BookingFailure<T> implements BookingState<T> {
-  const BookingFailure({required this.exception});
+  const BookingFailure({required this.error});
   
 
- final  Exception exception;
+ final  String error;
 
 /// Create a copy of BookingState
 /// with the given fields replaced by the non-null parameter values.
@@ -338,16 +338,16 @@ $BookingFailureCopyWith<T, BookingFailure<T>> get copyWith => _$BookingFailureCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is BookingFailure<T>&&(identical(other.exception, exception) || other.exception == exception));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is BookingFailure<T>&&(identical(other.error, error) || other.error == error));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,exception);
+int get hashCode => Object.hash(runtimeType,error);
 
 @override
 String toString() {
-  return 'BookingState<$T>.bookingfailure(exception: $exception)';
+  return 'BookingState<$T>.bookingfailure(error: $error)';
 }
 
 
@@ -358,7 +358,7 @@ abstract mixin class $BookingFailureCopyWith<T,$Res> implements $BookingStateCop
   factory $BookingFailureCopyWith(BookingFailure<T> value, $Res Function(BookingFailure<T>) _then) = _$BookingFailureCopyWithImpl;
 @useResult
 $Res call({
- Exception exception
+ String error
 });
 
 
@@ -375,10 +375,10 @@ class _$BookingFailureCopyWithImpl<T,$Res>
 
 /// Create a copy of BookingState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? exception = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? error = null,}) {
   return _then(BookingFailure<T>(
-exception: null == exception ? _self.exception : exception // ignore: cast_nullable_to_non_nullable
-as Exception,
+error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 

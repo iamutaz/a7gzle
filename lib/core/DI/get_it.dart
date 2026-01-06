@@ -11,9 +11,11 @@ import 'package:a7gzle/features/auth/login/data/repo/login_repo.dart';
 import 'package:a7gzle/features/auth/signup/data/cubit/sign_up_cubit.dart';
 import 'package:a7gzle/features/auth/signup/data/repo/sign_up_repo.dart';
 import 'package:a7gzle/features/details/data/cubit/booking_cubit.dart';
-import 'package:a7gzle/features/details/data/repo/book_repo.dart';
+import 'package:a7gzle/features/details/data/cubit/rate_apartment_cubit.dart';
+import 'package:a7gzle/features/details/data/repo/details_repo_repo.dart';
 import 'package:a7gzle/features/reservations/data/logic/cancel_reservation/cancel_reservation_cubit.dart';
 import 'package:a7gzle/features/reservations/data/logic/get_reservation_cubit/get_all_user_reservations_cubit.dart';
+import 'package:a7gzle/features/reservations/data/logic/update_reservation/update_reservation_cubit.dart';
 import 'package:a7gzle/features/reservations/data/repo/reservations_repo.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
@@ -50,7 +52,7 @@ void setupinjection() async {
   );
 
   //book apartment
-  getIt.registerLazySingleton<BookRepo>(() => BookRepo(getIt()));
+  getIt.registerLazySingleton<DetailsRepo>(() => DetailsRepo(getIt()));
   getIt.registerFactory<BookingCubit>(() => BookingCubit(getIt()));
 
   //get reservation
@@ -65,4 +67,11 @@ void setupinjection() async {
   getIt.registerFactory<CancelReservationCubit>(
     () => CancelReservationCubit(getIt()),
   );
+
+  //update reservation
+  getIt.registerFactory<UpdateReservationCubit>(
+    () => UpdateReservationCubit(getIt()),
+  );
+
+  getIt.registerFactory<RateApartmentCubit>(() => RateApartmentCubit(getIt()));
 }

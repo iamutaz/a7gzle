@@ -1,6 +1,6 @@
 import 'package:a7gzle/core/networking/api_result.dart';
 import 'package:a7gzle/features/reservations/data/logic/cancel_reservation/cancel_reservation_state.dart';
-import 'package:a7gzle/features/reservations/data/model/cancel_reservation_request_body.dart';
+import 'package:a7gzle/features/reservations/data/model/cancel/cancel_reservation_request_body.dart';
 import 'package:a7gzle/features/reservations/data/repo/reservations_repo.dart';
 import 'package:bloc/bloc.dart';
 
@@ -21,7 +21,11 @@ class CancelReservationCubit extends Cubit<CancelReservationState> {
         emit(CancelReservationsSuccess(data));
       },
       failure: (exception) {
-        emit(CancelReservationsFailure(exception: exception));
+        emit(
+          CancelReservationsFailure(
+            error: exception.apiErrorModel.message ?? '',
+          ),
+        );
       },
     );
   }

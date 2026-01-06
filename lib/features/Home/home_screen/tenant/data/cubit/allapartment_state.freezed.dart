@@ -128,13 +128,13 @@ return allapartmentfailure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  allapartmentloading,TResult Function( T data)?  allapartmentsuccess,TResult Function( dynamic exception)?  allapartmentfailure,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  allapartmentloading,TResult Function( T data)?  allapartmentsuccess,TResult Function( String error)?  allapartmentfailure,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _AllapartmentInitial() when initial != null:
 return initial();case AllapartmentLoading() when allapartmentloading != null:
 return allapartmentloading();case AllapartmentSuccess() when allapartmentsuccess != null:
 return allapartmentsuccess(_that.data);case AllaprtmentFailure() when allapartmentfailure != null:
-return allapartmentfailure(_that.exception);case _:
+return allapartmentfailure(_that.error);case _:
   return orElse();
 
 }
@@ -152,13 +152,13 @@ return allapartmentfailure(_that.exception);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  allapartmentloading,required TResult Function( T data)  allapartmentsuccess,required TResult Function( dynamic exception)  allapartmentfailure,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  allapartmentloading,required TResult Function( T data)  allapartmentsuccess,required TResult Function( String error)  allapartmentfailure,}) {final _that = this;
 switch (_that) {
 case _AllapartmentInitial():
 return initial();case AllapartmentLoading():
 return allapartmentloading();case AllapartmentSuccess():
 return allapartmentsuccess(_that.data);case AllaprtmentFailure():
-return allapartmentfailure(_that.exception);case _:
+return allapartmentfailure(_that.error);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -175,13 +175,13 @@ return allapartmentfailure(_that.exception);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  allapartmentloading,TResult? Function( T data)?  allapartmentsuccess,TResult? Function( dynamic exception)?  allapartmentfailure,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  allapartmentloading,TResult? Function( T data)?  allapartmentsuccess,TResult? Function( String error)?  allapartmentfailure,}) {final _that = this;
 switch (_that) {
 case _AllapartmentInitial() when initial != null:
 return initial();case AllapartmentLoading() when allapartmentloading != null:
 return allapartmentloading();case AllapartmentSuccess() when allapartmentsuccess != null:
 return allapartmentsuccess(_that.data);case AllaprtmentFailure() when allapartmentfailure != null:
-return allapartmentfailure(_that.exception);case _:
+return allapartmentfailure(_that.error);case _:
   return null;
 
 }
@@ -323,10 +323,10 @@ as T,
 
 
 class AllaprtmentFailure<T> implements AllapartmentState<T> {
-  const AllaprtmentFailure({required this.exception});
+  const AllaprtmentFailure({required this.error});
   
 
- final  dynamic exception;
+ final  String error;
 
 /// Create a copy of AllapartmentState
 /// with the given fields replaced by the non-null parameter values.
@@ -338,16 +338,16 @@ $AllaprtmentFailureCopyWith<T, AllaprtmentFailure<T>> get copyWith => _$Allaprtm
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AllaprtmentFailure<T>&&const DeepCollectionEquality().equals(other.exception, exception));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AllaprtmentFailure<T>&&(identical(other.error, error) || other.error == error));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(exception));
+int get hashCode => Object.hash(runtimeType,error);
 
 @override
 String toString() {
-  return 'AllapartmentState<$T>.allapartmentfailure(exception: $exception)';
+  return 'AllapartmentState<$T>.allapartmentfailure(error: $error)';
 }
 
 
@@ -358,7 +358,7 @@ abstract mixin class $AllaprtmentFailureCopyWith<T,$Res> implements $Allapartmen
   factory $AllaprtmentFailureCopyWith(AllaprtmentFailure<T> value, $Res Function(AllaprtmentFailure<T>) _then) = _$AllaprtmentFailureCopyWithImpl;
 @useResult
 $Res call({
- dynamic exception
+ String error
 });
 
 
@@ -375,10 +375,10 @@ class _$AllaprtmentFailureCopyWithImpl<T,$Res>
 
 /// Create a copy of AllapartmentState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? exception = freezed,}) {
+@pragma('vm:prefer-inline') $Res call({Object? error = null,}) {
   return _then(AllaprtmentFailure<T>(
-exception: freezed == exception ? _self.exception : exception // ignore: cast_nullable_to_non_nullable
-as dynamic,
+error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 

@@ -28,9 +28,9 @@ class CancelReservationLisitner extends StatelessWidget {
           },
           cancelreservationfailure: (exception) {
             context.pop();
-            String message = ApiErrorHandler.handleApiError(exception);
+            // String message = ApiErrorHandler.handleApiError(exception);
 
-            setupErrorState(context, message);
+            setupErrorState(context, exception);
           },
         );
       },

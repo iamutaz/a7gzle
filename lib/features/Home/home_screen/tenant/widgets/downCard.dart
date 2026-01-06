@@ -35,7 +35,7 @@ class Downcard extends StatelessWidget {
                     fit: BoxFit.cover,
                   ),
                 ),
-
+                // التقييم الآن يأخذ قيمته من الموديل بدلاً من الرقم الثابت
                 Positioned(
                   top: 8,
                   right: 8,
@@ -50,7 +50,7 @@ class Downcard extends StatelessWidget {
                         const Icon(Icons.star, color: Colors.orange, size: 14),
                         const SizedBox(width: 4),
                         Text(
-                          down.downrate,
+                          down.downrate, 
                           style: TextStyles.font14blackmideum.copyWith(
                             fontSize: 12,
                             fontWeight: FontWeight.bold,

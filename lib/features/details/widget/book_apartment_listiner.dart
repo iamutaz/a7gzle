@@ -26,13 +26,14 @@ class BookApartmentListiner extends StatelessWidget {
               context,
             ).showSnackBar(const SnackBar(content: Text('booked successfuly')));
           },
+
           bookingfailure: (exception) {
             context.pop();
-            String message = ApiErrorHandler.handleApiError(exception);
+            // String message = ApiErrorHandler.handleApiError(exception);
 
             ScaffoldMessenger.of(
               context,
-            ).showSnackBar(SnackBar(content: Text(message)));
+            ).showSnackBar(SnackBar(content: Text(exception)));
           },
         );
       },

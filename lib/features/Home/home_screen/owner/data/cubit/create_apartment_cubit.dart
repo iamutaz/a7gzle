@@ -34,7 +34,11 @@ class CreateApartmentCubit extends Cubit<CreateApartmentState> {
         emit(CreateApartmentState.createapartmentsuccess(data));
       },
       failure: (exception) {
-        emit(CreateApartmentState.createapartmentfailure(exception: exception));
+        emit(
+          CreateApartmentState.createapartmentfailure(
+            error: exception.apiErrorModel.message ?? '',
+          ),
+        );
       },
     );
   }

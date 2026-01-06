@@ -13,7 +13,7 @@ class SimpleNumericRangeSlider extends StatelessWidget {
   });
 
   // تحديد أدنى وأعلى قيمة رقمية للسلايدر (مثلاً المساحة من 500 لـ 4000)
-  final double minVal = 500;
+  final double minVal = 0;
   final double maxVal = 4000;
 
   @override

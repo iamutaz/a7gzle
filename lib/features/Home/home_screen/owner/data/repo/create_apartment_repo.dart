@@ -1,3 +1,4 @@
+import 'package:a7gzle/core/networking/api_error_handler.dart';
 import 'package:a7gzle/core/networking/api_result.dart';
 import 'package:a7gzle/core/networking/web_services.dart';
 import 'package:a7gzle/features/Home/home_screen/owner/data/model/create_apartment_request_body.dart';
@@ -25,7 +26,7 @@ class CreateApartmentRepo {
       );
       return ApiResult.success(response);
     } catch (e) {
-      return ApiResult.failure(e);
+      return ApiResult.failure(ErrorHandler.handle(e));
     }
   }
 }

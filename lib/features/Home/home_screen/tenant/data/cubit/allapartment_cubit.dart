@@ -24,7 +24,11 @@ class AllapartmentCubit extends Cubit<AllapartmentState> {
       failure: (exception) {
         print("fail in cubit");
 
-        emit(AllapartmentState.allapartmentfailure(exception: exception));
+        emit(
+          AllapartmentState.allapartmentfailure(
+            error: exception.apiErrorModel.message ?? '',
+          ),
+        );
       },
     );
   }

@@ -8,7 +8,6 @@ class AllapartmentState<T> with _$AllapartmentState<T> {
   const factory AllapartmentState.allapartmentloading() = AllapartmentLoading;
   const factory AllapartmentState.allapartmentsuccess(T data) =
       AllapartmentSuccess;
-  const factory AllapartmentState.allapartmentfailure({
-    required dynamic exception,
-  }) = AllaprtmentFailure;
+  const factory AllapartmentState.allapartmentfailure({required String error}) =
+      AllaprtmentFailure;
 }

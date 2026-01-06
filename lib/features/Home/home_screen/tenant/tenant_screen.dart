@@ -72,6 +72,7 @@ class _TenantScreenState extends State<TenantScreen> {
                           Text(
                             "${user!.firstname} ${user!.lastname}",
                             style: TextStyles.font14blackmideum.copyWith(
+                         
                               color: ColorsManager.lightblack(context),
                               fontWeight: FontWeight.w500,
                             ),
@@ -80,11 +81,11 @@ class _TenantScreenState extends State<TenantScreen> {
                       ),
                     ),
                     SizedBox(width: 150),
+
                     AppIcon(path: "assets/svgs/settings/notifaication.svg"),
                   ],
-                ),
               ),
-              SizedBox(height: 20),
+              ),
               SizedBox(height: 20),
               BlocBuilder<AllapartmentCubit, AllapartmentState>(
                 builder: (context, state) {
@@ -107,7 +108,9 @@ class _TenantScreenState extends State<TenantScreen> {
                               children: [
                                 Text(
                                   "Featured",
+
                                   style: TextStyles.font18blackbold.copyWith(
+
                                     color: ColorsManager.lightblack(context),
                                     fontSize: 20,
                                     fontWeight: FontWeight.w600,
@@ -148,7 +151,10 @@ class _TenantScreenState extends State<TenantScreen> {
                               children: [
                                 Text(
                                   "Our Recommendation",
+
                                   style: TextStyles.font18blackbold.copyWith(
+
+
                                     color: ColorsManager.lightblack(context),
                                     fontSize: 20,
                                     fontWeight: FontWeight.w600,
@@ -156,7 +162,10 @@ class _TenantScreenState extends State<TenantScreen> {
                                 ),
                                 Text(
                                   "See All",
+
                                   style: TextStyles.font14blackmideum.copyWith(
+
+
                                     color: ColorsManager.mainBlue,
                                     fontSize: 16,
                                     fontWeight: FontWeight.w600,
@@ -174,7 +183,11 @@ class _TenantScreenState extends State<TenantScreen> {
                             ),
                           ),
                           SizedBox(height: 25),
+
                           downcardlist(apartments: allapartments),
+
+
+
                           SizedBox(height: 30),
                         ],
                       );

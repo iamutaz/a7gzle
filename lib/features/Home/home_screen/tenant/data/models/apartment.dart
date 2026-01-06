@@ -6,6 +6,7 @@ part 'apartment.g.dart';
 @JsonSerializable()
 class Apartment {
   int id;
+  double? rate;
   String title;
   String? description;
   String price;
@@ -15,7 +16,7 @@ class Apartment {
   int bathrooms;
   String status;
   String type;
-  double? rate;
+
   List<ApartmentImage> images;
   Owner owner;
 

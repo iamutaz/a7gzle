@@ -10,6 +10,6 @@ class CancelReservationState<T> with _$CancelReservationState {
   const factory CancelReservationState.cancelreservationsuccess(T data) =
       CancelReservationsSuccess;
   const factory CancelReservationState.cancelreservationfailure({
-    required Exception exception,
+    required String error,
   }) = CancelReservationsFailure;
 }
