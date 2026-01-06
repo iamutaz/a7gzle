@@ -1,3 +1,4 @@
+import 'package:a7gzle/core/theming/colors_manager.dart'; 
 import 'package:a7gzle/core/theming/text_styles.dart';
 import 'package:flutter/material.dart';
 
@@ -9,7 +10,6 @@ class TermsAndCondtions extends StatelessWidget {
     return RichText(
       textAlign: TextAlign.center,
       text: TextSpan(
-        style: TextStyle(height: 1.6),
         children: <TextSpan>[
           TextSpan(
             text: "by signing in you agree to our ",
@@ -17,15 +17,19 @@ class TermsAndCondtions extends StatelessWidget {
           ),
           TextSpan(
             text: " privacy & policy ",
-            style: TextStyles.font13lgihtblackmiduem,
+            style: TextStyles.font13lgihtblackmiduem.copyWith(
+              color: ColorsManager.lightblack(context),
+            ),
           ),
           TextSpan(
-            text: " and   \n",
+            text: " and \n",
             style: TextStyles.font13morelightgrayregular,
           ),
           TextSpan(
             text: "Terms & condtions",
-            style: TextStyles.font13lgihtblackmiduem,
+            style: TextStyles.font13lgihtblackmiduem.copyWith(
+              color: ColorsManager.lightblack(context),
+            ),
           ),
         ],
       ),

@@ -1,4 +1,5 @@
 import 'package:a7gzle/core/theming/colors_manager.dart';
+import 'package:a7gzle/core/theming/text_styles.dart';
 import 'package:flutter/material.dart';
 
 class SimpleNumericRangeSlider extends StatelessWidget {
@@ -12,7 +13,7 @@ class SimpleNumericRangeSlider extends StatelessWidget {
   });
 
   // تحديد أدنى وأعلى قيمة رقمية للسلايدر (مثلاً المساحة من 500 لـ 4000)
-  final double minVal = 500;
+  final double minVal = 0;
   final double maxVal = 4000;
 
   @override
@@ -55,10 +56,10 @@ class SimpleNumericRangeSlider extends StatelessWidget {
                     left: _calculatePosition(values.start, width),
                     child: Text(
                       values.start.round().toString(), // تحويل الرقم لعدد صحيح
-                      style: TextStyle(
+                      style: TextStyles.font14blackmideum.copyWith(
                         color: ColorsManager.mainBlue,
                         fontWeight: FontWeight.bold,
-                      ),
+                      ), 
                     ),
                   ),
                   // القيمة الثانية (النهاية)
@@ -66,10 +67,10 @@ class SimpleNumericRangeSlider extends StatelessWidget {
                     left: _calculatePosition(values.end, width),
                     child: Text(
                       values.end.round().toString(),
-                      style: TextStyle(
+                      style: TextStyles.font14blackmideum.copyWith(
                         color: ColorsManager.mainBlue,
                         fontWeight: FontWeight.bold,
-                      ),
+                      ), 
                     ),
                   ),
                 ],
