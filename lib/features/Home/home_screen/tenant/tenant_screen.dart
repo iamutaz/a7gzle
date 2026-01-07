@@ -29,7 +29,7 @@ class _TenantScreenState extends State<TenantScreen> {
   void initState() {
     super.initState();
     _loadUser();
-    context.read<AllapartmentCubit>().emitAllApartmentState();
+    context.read<AllapartmentCubit>().emitAllApartmentState(context);
   }
 
   Future<void> _loadUser() async {

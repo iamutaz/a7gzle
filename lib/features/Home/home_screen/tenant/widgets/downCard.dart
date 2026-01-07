@@ -2,25 +2,15 @@ import 'package:a7gzle/core/helpers/extension.dart';
 import 'package:a7gzle/core/routing/routes_constant.dart';
 import 'package:a7gzle/core/theming/colors_manager.dart';
 import 'package:a7gzle/core/theming/text_styles.dart';
-<<<<<<< HEAD
 import 'package:a7gzle/features/Home/home_screen/tenant/data/cubit/favorite_cubit.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/data/cubit/favorite_state.dart';
-import 'package:a7gzle/features/Home/home_screen/tenant/data/models/apartment.dart';
-import 'package:a7gzle/features/Home/home_screen/tenant/data/models/favorite_request.dart';
-import 'package:a7gzle/features/Home/home_screen/tenant/widgets/downcard-model.dart';
-=======
 import 'package:a7gzle/features/Home/home_screen/tenant/data/models/apartment.dart'; // الموديل الجديد
->>>>>>> 98e9685c3a5cc42561ccf2e36860b9becd9bea90
+import 'package:a7gzle/features/Home/home_screen/tenant/data/models/favorite_request.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Downcard extends StatelessWidget {
-<<<<<<< HEAD
-  const Downcard({super.key, required this.down, required this.apartment});
-  final DowncardModel down;
-=======
   const Downcard({super.key, required this.apartment});
->>>>>>> 98e9685c3a5cc42561ccf2e36860b9becd9bea90
   final Apartment apartment;
 
   @override
@@ -45,12 +35,9 @@ class Downcard extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(14),
                   child: Image.network(
-<<<<<<< HEAD
-                    down.downimage,
-=======
-               
-                    apartment.images.isNotEmpty ? apartment.images[0].path : "https://via.placeholder.com/150", 
->>>>>>> 98e9685c3a5cc42561ccf2e36860b9becd9bea90
+                    apartment.images.isNotEmpty
+                        ? apartment.images[0].path
+                        : "https://via.placeholder.com/150",
                     height: 154,
                     width: 187,
                     fit: BoxFit.cover,
@@ -73,12 +60,7 @@ class Downcard extends StatelessWidget {
                         const Icon(Icons.star, color: Colors.orange, size: 14),
                         const SizedBox(width: 4),
                         Text(
-<<<<<<< HEAD
-                          down.downrate,
-=======
-                
-                          apartment.rate?.toString() ?? "--", 
->>>>>>> 98e9685c3a5cc42561ccf2e36860b9becd9bea90
+                          apartment.rate?.toString() ?? "--",
                           style: TextStyles.font14blackmideum.copyWith(
                             fontSize: 12,
                             fontWeight: FontWeight.bold,
@@ -95,7 +77,7 @@ class Downcard extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),
               child: Text(
-                apartment.title, 
+                apartment.title,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyles.font14blackmideum.copyWith(
@@ -108,11 +90,7 @@ class Downcard extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),
               child: Text(
-<<<<<<< HEAD
-                down.downlocation,
-=======
                 apartment.city,
->>>>>>> 98e9685c3a5cc42561ccf2e36860b9becd9bea90
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyles.font14neartograymiduem.copyWith(
@@ -128,11 +106,7 @@ class Downcard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-<<<<<<< HEAD
-                    down.downprice,
-=======
                     "\$${apartment.price}",
->>>>>>> 98e9685c3a5cc42561ccf2e36860b9becd9bea90
                     style: TextStyles.font18blackbold.copyWith(
                       fontSize: 16,
                       color: ColorsManager.mainBlue,
@@ -153,7 +127,7 @@ class Downcard extends StatelessWidget {
                               : Icons.favorite_border,
                           color: cubit.isFavorite(apartment.id)
                               ? Colors.red
-                              : Colors.white,
+                              : ColorsManager.labelcolor(context),
                           size: 20,
                         ),
                       );

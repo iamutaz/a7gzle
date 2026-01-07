@@ -33,7 +33,8 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
         builder: (context, state) {
           return state.when(
             getfavoriteinitial: () => SizedBox.shrink(),
-            getfavoriteloading: () => CircularProgressIndicator(),
+            getfavoriteloading: () =>
+                Center(child: CircularProgressIndicator()),
             getfavoritessuccess: (data) {
               FavResponseBody favoriteaparment = data;
               return favoriteaparment.data.isNotEmpty

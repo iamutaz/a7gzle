@@ -38,7 +38,10 @@ class _HomeManagerState extends State<HomeManager> {
           ],
           child: TenantScreen(),
         ),
-        SearchScreen(),
+        BlocProvider(
+          create: (context) => getIt<FavoriteCubit>(),
+          child: SearchScreen(),
+        ),
         BlocProvider(
           create: (context) => getIt<LogoutCubit>(),
           child: SettingsScreen(),
@@ -50,7 +53,7 @@ class _HomeManagerState extends State<HomeManager> {
           create: (context) => getIt<CreateApartmentCubit>(),
           child: OwnerScreen(),
         ),
-        SearchScreen(),
+        // SearchScreen(),
         BlocProvider(
           create: (context) => getIt<LogoutCubit>(),
           child: SettingsScreen(),
@@ -77,27 +80,36 @@ class _HomeManagerState extends State<HomeManager> {
         selectedFontSize: 12,
         unselectedFontSize: 12,
         type: BottomNavigationBarType.fixed,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(
-              widget.usertype == "tenant" ? Icons.home_outlined : Icons.add,
-            ),
-            activeIcon: Icon(
-              widget.usertype == "tenant" ? Icons.home : Icons.add,
-            ),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search_outlined),
-            activeIcon: Icon(Icons.search),
-            label: 'Explore',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline),
-            activeIcon: Icon(Icons.person),
-            label: 'Profile',
-          ),
-        ],
+        items: widget.usertype == "tenant"
+            ? const [
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.home_outlined),
+                  activeIcon: Icon(Icons.home),
+                  label: 'Home',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.search_outlined),
+                  activeIcon: Icon(Icons.search),
+                  label: 'Explore',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.person_outline),
+                  activeIcon: Icon(Icons.person),
+                  label: 'Profile',
+                ),
+              ]
+            : const [
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.add),
+                  activeIcon: Icon(Icons.add),
+                  label: 'Add',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.person_outline),
+                  activeIcon: Icon(Icons.person),
+                  label: 'Profile',
+                ),
+              ],
       ),
     );
   }
