@@ -1,6 +1,9 @@
 import 'package:a7gzle/core/networking/api_constant.dart';
 import 'package:a7gzle/features/Home/home_screen/owner/data/model/create_apartment_response_body.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/data/models/allapartment_response_body.dart';
+import 'package:a7gzle/features/Home/home_screen/tenant/data/models/apartment.dart';
+import 'package:a7gzle/features/Home/home_screen/tenant/data/models/favorite_request.dart';
+import 'package:a7gzle/features/Home/home_screen/tenant/data/models/favorite_response_body.dart';
 import 'package:a7gzle/features/Home/settings/data/model/logout_response_body.dart';
 import 'package:a7gzle/features/auth/login/data/model/login_request_body.dart';
 import 'package:a7gzle/features/auth/login/data/model/login_response_body.dart';
@@ -9,6 +12,7 @@ import 'package:a7gzle/features/details/data/model/booking_request_body.dart';
 import 'package:a7gzle/features/details/data/model/booking_response_body.dart';
 import 'package:a7gzle/features/details/data/model/rate_request_body.dart';
 import 'package:a7gzle/features/details/data/model/rate_response_body.dart';
+import 'package:a7gzle/features/favorite/data/model/fav_response_body.dart';
 import 'package:a7gzle/features/reservations/data/model/cancel/cancel_reservation_request_body.dart';
 import 'package:a7gzle/features/reservations/data/model/cancel/cancel_reservation_response_body.dart';
 import 'package:a7gzle/features/reservations/data/model/update/update_reservation_request_body.dart';
@@ -71,6 +75,14 @@ abstract class WebServices {
   Future<RateResponseBody> rateapartment(
     @Body() RateRequestBody raterequestbody,
   );
+
+  @POST(WebServicesConstant.togglefavorite)
+  Future<FavoriteResponseBody> togglefavorite(
+    @Body() FavoriteRequest favoriterequest,
+  );
+
+  @GET(WebServicesConstant.getfavorite)
+  Future<FavResponseBody> getfavorite();
 
   //reservations----------------
   @POST(WebServicesConstant.makereservations)

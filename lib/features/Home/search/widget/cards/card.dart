@@ -2,25 +2,18 @@ import 'package:a7gzle/core/helpers/extension.dart';
 import 'package:a7gzle/core/routing/routes_constant.dart';
 import 'package:a7gzle/core/theming/colors_manager.dart';
 import 'package:a7gzle/core/theming/text_styles.dart';
-import 'package:a7gzle/features/Home/home_screen/tenant/data/cubit/favorite_cubit.dart';
-import 'package:a7gzle/features/Home/home_screen/tenant/data/cubit/favorite_state.dart';
-import 'package:a7gzle/features/Home/home_screen/tenant/data/models/apartment.dart';
-import 'package:a7gzle/features/Home/home_screen/tenant/data/models/favorite_request.dart';
-import 'package:a7gzle/features/Home/home_screen/tenant/widgets/downcard-model.dart';
+import 'package:a7gzle/features/Home/search/widget/cards/cards_models.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-class Downcard extends StatelessWidget {
-  const Downcard({super.key, required this.down, required this.apartment});
-  final DowncardModel down;
-  final Apartment apartment;
+class FilterCard extends StatelessWidget {
+  const FilterCard({super.key, required this.cardData});
+  final FilterCardModel cardData;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      borderRadius: BorderRadius.circular(16),
       onTap: () {
-        context.pushNamed(RoutesConstant.details, aurgment: apartment);
+        context.pushNamed(RoutesConstant.details);
       },
       child: Container(
         width: 187,
@@ -30,20 +23,22 @@ class Downcard extends StatelessWidget {
           color: ColorsManager.offwhite(context),
         ),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment:
+              CrossAxisAlignment.start, // أي نص جوا الكرت بيبدأ من اليسار
           children: [
+            //الستاك مشان حط التقييم فوق الصورة
             Stack(
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(14),
                   child: Image.network(
-                    down.downimage,
+                    cardData.image,
                     height: 154,
                     width: 187,
                     fit: BoxFit.cover,
                   ),
                 ),
-                // التقييم الآن يأخذ قيمته من الموديل بدلاً من الرقم الثابت
+
                 Positioned(
                   top: 8,
                   right: 8,
@@ -61,11 +56,11 @@ class Downcard extends StatelessWidget {
                         const Icon(Icons.star, color: Colors.orange, size: 14),
                         const SizedBox(width: 4),
                         Text(
-                          down.downrate,
+                          cardData.rate,
                           style: TextStyles.font14blackmideum.copyWith(
                             fontSize: 12,
                             fontWeight: FontWeight.bold,
-                            color: ColorsManager.mainBlue,
+                            color: const Color(0xFF0061FF),
                           ),
                         ),
                       ],
@@ -76,32 +71,23 @@ class Downcard extends StatelessWidget {
             ),
 
             const SizedBox(height: 8),
-
+            // عرض عنوان الشقة
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),
               child: Text(
-                down.downtitle,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
+                cardData.title,
                 style: TextStyles.font14blackmideum.copyWith(
                   fontWeight: FontWeight.bold,
-                  color: ColorsManager.lightblack(context),
                 ),
               ),
             ),
 
-            const SizedBox(height: 4),
-
+            // عرض الموقع
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),
               child: Text(
-                down.downlocation,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyles.font14neartograymiduem.copyWith(
-                  fontSize: 12,
-                  color: Colors.grey,
-                ),
+                cardData.location,
+                style: TextStyles.font14neartograymiduem.copyWith(fontSize: 12),
               ),
             ),
 
@@ -110,40 +96,20 @@ class Downcard extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment
+                    .spaceBetween, // بيدفع السعر لليسار والقلب لليمين
                 children: [
                   Text(
-                    down.downprice,
+                    cardData.price,
                     style: TextStyles.font18blackbold.copyWith(
                       fontSize: 16,
-                      color: ColorsManager.mainBlue,
+                      color: const Color(0xFF0061FF),
                     ),
                   ),
-                  BlocBuilder<FavoriteCubit, FavoriteState>(
-                    builder: (context, state) {
-                      final cubit = context.read<FavoriteCubit>();
-                      return GestureDetector(
-                        onTap: () {
-                          context.read<FavoriteCubit>().emittogglefavorite(
-                            FavoriteRequest(apartmentid: apartment.id),
-                          );
-                        },
-                        child: Icon(
-                          cubit.isFavorite(apartment.id)
-                              ? Icons.favorite
-                              : Icons.favorite_border,
-                          color: cubit.isFavorite(apartment.id)
-                              ? Colors.red
-                              : Colors.white,
-                          size: 20,
-                        ),
-                      );
-                    },
-                  ),
+                  const Icon(Icons.favorite_border, color: Colors.grey),
                 ],
               ),
             ),
-            const SizedBox(height: 8),
           ],
         ),
       ),

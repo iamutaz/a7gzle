@@ -1,3 +1,5 @@
+import 'package:a7gzle/core/theming/colors_manager.dart';
+import 'package:a7gzle/core/theming/text_styles.dart'; 
 import 'package:flutter/material.dart';
 
 class ButtonList extends StatelessWidget {
@@ -28,10 +30,11 @@ class ButtonList extends StatelessWidget {
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: index == 0
-                    ? const Color(0xFF0061FF)
+                    ? ColorsManager.mainBlue
                     : const Color.fromARGB(237, 211, 224, 244),
+                elevation: 0, 
                 fixedSize: Size(widths[index], 41),
-                padding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
+                padding: const EdgeInsets.symmetric(horizontal: 10), 
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30),
                 ),
@@ -40,11 +43,10 @@ class ButtonList extends StatelessWidget {
               child: Text(
                 titles[index],
                 overflow: TextOverflow.ellipsis,
-                style: TextStyle(
+                style: TextStyles.font14blackmideum.copyWith(
                   color: index == 0 ? Colors.white : const Color(0xff191D31),
-                  fontSize: 14,
                   fontWeight: index == 0 ? FontWeight.w600 : FontWeight.w400,
-                ),
+                ), 
               ),
             ),
           );

@@ -1,15 +1,42 @@
-import 'package:a7gzle/core/helpers/extension.dart';
-import 'package:a7gzle/core/routing/routes_constant.dart';
 import 'package:a7gzle/core/theming/dark_mode/app_icon.dart';
 import 'package:a7gzle/core/theming/text_styles.dart';
 import 'package:a7gzle/core/widgets/app_text_form_feild.dart';
+import 'package:a7gzle/features/Home/search/widget/cards/cards-list.dart'; 
 import 'package:a7gzle/features/Home/search/widget/filter_screen.dart';
+import 'package:a7gzle/features/Home/search/widget/cards/cards_models.dart'; 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 
-class SearchScreen extends StatelessWidget {
+//هاد عرفتو برا الكلاس لانو بدو يحفظ البيانات 
+//يعني اذا رحت من صفحة لصفحة مايرجع شاشة البحث للحالة الافتراضية وكانو مابحثت عشي قبل
+List<FilterCardModel>? persistedFilteredResults;
+
+class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
+
+  @override
+  State<SearchScreen> createState() => _SearchScreenState();
+}
+
+class _SearchScreenState extends State<SearchScreen> {
+  
+  // دالة فتح الفلترة واستقبال البيانات منها
+  void _openFilter(BuildContext context) async {
+    final results = await showModalBottomSheet<List<FilterCardModel>>(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (_) => const FilterScreen(),
+    );
+
+    // إذا رجعت نتائج من شاشة الفلترة
+    if (results != null) {
+      setState(() {
+        // نحفظ النتائج الي رجعت من pop في المتغير  ليتم عرضها دائماً
+        persistedFilteredResults = results;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +47,12 @@ class SearchScreen extends StatelessWidget {
           "Search for Your Ideal Home",
           style: TextStyles.font18blackbold,
         ),
-        leading: SizedBox.shrink(),
+        leading: const SizedBox.shrink(),
         actions: [
           InkWell(
+            onTap: () {
+              // أضفت onTap هنا عشان يكون الكود منطقي لو حبيت تضيف أكشن للإشعارات
+            },
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 15.0.w),
               child: AppIcon(path: "assets/svgs/settings/notifaication.svg"),
@@ -40,7 +70,7 @@ class SearchScreen extends StatelessWidget {
                   onTap: () {
                     _openFilter(context);
                   },
-                 child: AppIcon(path: "assets/svgs/filter.svg"),
+                  child: AppIcon(path: "assets/svgs/filter.svg"),
                 ),
                 borderRadius: BorderRadius.circular(20),
                 feildname: "search for location",
@@ -49,19 +79,14 @@ class SearchScreen extends StatelessWidget {
                   _openFilter(context);
                 },
               ),
+              const SizedBox(height: 25),
+              
+              // نمرر المتغير  لليست المسؤولة عن العرض
+              FilterListCard(list: persistedFilteredResults),
             ],
           ),
         ),
       ),
     );
   }
-}
-
-void _openFilter(BuildContext context) {
-  showModalBottomSheet(
-    context: context,
-    isScrollControlled: true,
-    backgroundColor: Colors.transparent,
-    builder: (_) => const FilterScreen(),
-  );
 }

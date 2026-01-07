@@ -11,7 +11,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-
 class BuildListTilesWidget extends StatefulWidget {
   const BuildListTilesWidget({super.key});
 
@@ -36,17 +35,24 @@ class _BuildListTilesWidgetState extends State<BuildListTilesWidget> {
             leading: const AppIcon(path: "assets/svgs/settings/booking.svg"),
             title: Text(
               "My Booking",
-              style: TextStyles.font18blackbold.copyWith(color: dynamicTextColor),
+              style: TextStyles.font18blackbold.copyWith(
+                color: dynamicTextColor,
+              ),
             ),
             trailing: Icon(Icons.arrow_forward_ios, color: dynamicTextColor),
           ),
-          ListTile(
-            leading: const AppIcon(path: "assets/svgs/settings/payments.svg"),
-            title: Text(
-              "Payments",
-              style: TextStyles.font18blackbold.copyWith(color: dynamicTextColor),
+          GestureDetector(
+            onTap: () => context.pushNamed(RoutesConstant.favorite),
+            child: ListTile(
+              leading: const AppIcon(path: "assets/svgs/favorite.svg"),
+              title: Text(
+                "Favorite",
+                style: TextStyles.font18blackbold.copyWith(
+                  color: dynamicTextColor,
+                ),
+              ),
+              trailing: Icon(Icons.arrow_forward_ios, color: dynamicTextColor),
             ),
-            trailing: Icon(Icons.arrow_forward_ios, color: dynamicTextColor),
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 12.0.w),
@@ -59,15 +65,21 @@ class _BuildListTilesWidgetState extends State<BuildListTilesWidget> {
             leading: const AppIcon(path: "assets/svgs/settings/profile.svg"),
             title: Text(
               "Profile",
-              style: TextStyles.font18blackbold.copyWith(color: dynamicTextColor),
+              style: TextStyles.font18blackbold.copyWith(
+                color: dynamicTextColor,
+              ),
             ),
             trailing: Icon(Icons.arrow_forward_ios, color: dynamicTextColor),
           ),
           ListTile(
-            leading: const AppIcon(path: "assets/svgs/settings/notification.svg"),
+            leading: const AppIcon(
+              path: "assets/svgs/settings/notification.svg",
+            ),
             title: Text(
               "Notification",
-              style: TextStyles.font18blackbold.copyWith(color: dynamicTextColor),
+              style: TextStyles.font18blackbold.copyWith(
+                color: dynamicTextColor,
+              ),
             ),
             trailing: Icon(Icons.arrow_forward_ios, color: dynamicTextColor),
           ),
@@ -75,7 +87,9 @@ class _BuildListTilesWidgetState extends State<BuildListTilesWidget> {
             leading: const AppIcon(path: "assets/svgs/settings/security.svg"),
             title: Text(
               "Security",
-              style: TextStyles.font18blackbold.copyWith(color: dynamicTextColor),
+              style: TextStyles.font18blackbold.copyWith(
+                color: dynamicTextColor,
+              ),
             ),
             trailing: Icon(Icons.arrow_forward_ios, color: dynamicTextColor),
           ),
@@ -83,15 +97,19 @@ class _BuildListTilesWidgetState extends State<BuildListTilesWidget> {
             leading: const AppIcon(path: "assets/svgs/settings/language.svg"),
             title: Text(
               "Language",
-              style: TextStyles.font18blackbold.copyWith(color: dynamicTextColor),
+              style: TextStyles.font18blackbold.copyWith(
+                color: dynamicTextColor,
+              ),
             ),
             trailing: Icon(Icons.arrow_forward_ios, color: dynamicTextColor),
           ),
           ListTile(
-            leading: const AppIcon(path: "assets/svgs/settings/helpcenter.svg"),
+            leading: const AppIcon(path: "assets/svgs/settings/dark_mode.svg"),
             title: Text(
               "Dark Mode",
-              style: TextStyles.font18blackbold.copyWith(color: dynamicTextColor),
+              style: TextStyles.font18blackbold.copyWith(
+                color: dynamicTextColor,
+              ),
             ),
             trailing: CupertinoSwitch(
               value: ThemeService.instance.themeMode == ThemeMode.dark,
@@ -110,7 +128,6 @@ class _BuildListTilesWidgetState extends State<BuildListTilesWidget> {
               SharedPrefHelper.clearAllSecuredData();
             },
             child: ListTile(
-            
               leading: SvgPicture.asset("assets/svgs/settings/logout.svg"),
               title: Text(
                 "Logout",

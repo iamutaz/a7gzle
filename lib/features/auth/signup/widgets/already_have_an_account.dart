@@ -1,5 +1,6 @@
 import 'package:a7gzle/core/helpers/extension.dart';
 import 'package:a7gzle/core/routing/routes_constant.dart';
+import 'package:a7gzle/core/theming/colors_manager.dart'; 
 import 'package:a7gzle/core/theming/text_styles.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,9 @@ class AlreadyHaveAnAccount extends StatelessWidget {
         children: <TextSpan>[
           TextSpan(
             text: "Already Have An Account? ",
-            style: TextStyles.font13lgihtblackmiduem,
+            style: TextStyles.font13lgihtblackmiduem.copyWith(
+              color: ColorsManager.lightblack(context),
+            ),
           ),
           TextSpan(
             text: " Log In",

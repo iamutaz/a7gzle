@@ -9,6 +9,8 @@ class WebServicesConstant {
   static const String allapartment = "apartments/allApartments";
   static const String createapartment = "apartments/create";
   static const String rateapartment = "apartments/rate";
+  static const String togglefavorite = "favorites/toggle";
+  static const String getfavorite = "favorites/get";
   //reservations
   static const String makereservations = "reservations/make";
   static const String myreservations = "reservations/my-reservations";

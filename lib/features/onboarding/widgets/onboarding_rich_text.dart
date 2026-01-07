@@ -1,6 +1,7 @@
 import 'package:a7gzle/core/theming/colors_manager.dart';
 import 'package:a7gzle/core/theming/text_styles.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class OnboardingRichText extends StatelessWidget {
   const OnboardingRichText({super.key});
@@ -13,7 +14,7 @@ class OnboardingRichText extends StatelessWidget {
         style: TextStyles.font32blacksemibold.copyWith(fontFamily: "Rubik"),
 
         children: [
-          TextSpan(text: "Let's Get You Closer\nTo "),
+          TextSpan(text: "Let's Get You Closer\nTo ",style: TextStyle(color: ColorsManager.labelcolor(context))),
           TextSpan(
             text: "Your Ideal Home",
             style: TextStyle(color: ColorsManager.mainBlue),

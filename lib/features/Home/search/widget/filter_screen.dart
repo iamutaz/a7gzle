@@ -1,7 +1,12 @@
 import 'package:a7gzle/core/theming/colors_manager.dart';
-import 'package:a7gzle/features/Home/search/widget/FilterButton.dart';
+import 'package:a7gzle/core/theming/text_styles.dart';
+import 'package:a7gzle/core/widgets/app_drop_down_button.dart';
+import 'package:a7gzle/features/Home/home_screen/owner/data/model/drop_down_button_value_model.dart';
+import 'package:a7gzle/features/Home/search/widget/cards/cards_models.dart';
+import 'package:a7gzle/features/Home/search/widget/filter-api.dart';
 import 'package:a7gzle/features/Home/search/widget/price_range_slider.dart';
 import 'package:a7gzle/features/Home/search/widget/simple_numirecal_slider.dart';
+import 'package:drop_down_list/model/selected_list_item.dart';
 import 'package:flutter/material.dart';
 
 class FilterScreen extends StatefulWidget {
@@ -12,52 +17,90 @@ class FilterScreen extends StatefulWidget {
 }
 
 class _FilterScreenState extends State<FilterScreen> {
-  // الحالات (States) الخاصة بالمدخلات
+  final TextEditingController cityController = TextEditingController();
+
+  final List<SelectedListItem<DropDownbuttonvalueModel>> cities = [
+    SelectedListItem(
+      data: DropDownbuttonvalueModel(label: 'Damascus', value: 'damascus'),
+    ),
+    SelectedListItem(
+      data: DropDownbuttonvalueModel(label: 'Aleppo', value: 'aleppo'),
+    ),
+    SelectedListItem(
+      data: DropDownbuttonvalueModel(label: 'Homs', value: 'homs'),
+    ),
+    SelectedListItem(
+      data: DropDownbuttonvalueModel(label: 'Hama', value: 'hama'),
+    ),
+    SelectedListItem(
+      data: DropDownbuttonvalueModel(label: 'Latakia', value: 'latakia'),
+    ),
+    SelectedListItem(
+      data: DropDownbuttonvalueModel(label: 'Tartus', value: 'tartus'),
+    ),
+    SelectedListItem(
+      data: DropDownbuttonvalueModel(label: 'Idlib', value: 'idlib'),
+    ),
+    SelectedListItem(
+      data: DropDownbuttonvalueModel(
+        label: 'Rif Dimashq',
+        value: 'rif_dimashq',
+      ),
+    ),
+    SelectedListItem(
+      data: DropDownbuttonvalueModel(
+        label: 'Deir Ez Zor',
+        value: 'deir_ez_zor',
+      ),
+    ),
+    SelectedListItem(
+      data: DropDownbuttonvalueModel(label: 'Daraa', value: 'daraa'),
+    ),
+    SelectedListItem(
+      data: DropDownbuttonvalueModel(label: 'As Suwayda', value: 'as_suwayda'),
+    ),
+    SelectedListItem(
+      data: DropDownbuttonvalueModel(label: 'Quneitra', value: 'quneitra'),
+    ),
+    SelectedListItem(
+      data: DropDownbuttonvalueModel(label: 'Raqqa', value: 'raqqa'),
+    ),
+    SelectedListItem(
+      data: DropDownbuttonvalueModel(label: 'Al Hasakah', value: 'al_hasakah'),
+    ),
+  ];
+
   RangeValues priceRange = const RangeValues(0, 450);
-  RangeValues sizeRange = const RangeValues(500, 4000);
+  RangeValues sizeRange = const RangeValues(0, 4000);
   int bedrooms = 0;
   int bathrooms = 0;
 
-  // حالات اختيار أنواع العقارات
-  bool apartmentsSelected = false;
-  bool townhomesSelected = false;
-  bool homesSelected = false;
-  bool condosSelected = false;
-  bool duplexesSelected = false;
-  bool studiosSelected = false;
-
-  /// دالة تحويل موضع السلايدر لسعر حقيقي (الحساب الهرمي)
   double _getActualPrice(double position) {
     const double maxPos = 450;
     const double mid = maxPos / 2;
     if (position <= mid) return position * 2;
-    else return (maxPos - position) * 2;
+    return (maxPos - position) * 2;
   }
 
-  /// إعادة تعيين كافة الفلاتر للقيم الافتراضية
   void _resetFilters() {
     setState(() {
+      cityController.clear();
       priceRange = const RangeValues(0, 450);
-      sizeRange = const RangeValues(500, 4000);
+      sizeRange = const RangeValues(0, 4000);
       bedrooms = 0;
       bathrooms = 0;
-      apartmentsSelected = townhomesSelected = homesSelected = false;
-      condosSelected = duplexesSelected = studiosSelected = false;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    // استخدام ورقة قابلة للسحب تظهر فوق الشاشة الحالية
     return DraggableScrollableSheet(
-      initialChildSize: 0.79, // الحجم المبدئي (79% من الشاشة)
+      initialChildSize: 0.79,
       minChildSize: 0.0,
       maxChildSize: 0.85,
       builder: (_, controller) {
         return Container(
           decoration: BoxDecoration(
-            // --- لون خلفية الفلتر ---
-
             color: ColorsManager.offwhite(context),
             borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
           ),
@@ -67,20 +110,19 @@ class _FilterScreenState extends State<FilterScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                /// 1. شريط العنوان (Header): الرجوع، العنوان، وإعادة التعيين
+                // 1. Header
                 Row(
                   children: [
                     Container(
                       width: 32,
                       height: 32,
                       decoration: BoxDecoration(
-                        // خلفية زر الرجوع شفافة قليلاً
                         color: ColorsManager.offwhite(context).withOpacity(0.5),
                         shape: BoxShape.circle,
                       ),
                       child: IconButton(
                         icon: const Icon(Icons.arrow_back),
-                        color: ColorsManager.lightblack(context), // يتغير لون السهم حسب الثيم
+                        color: ColorsManager.lightblack(context),
                         onPressed: () => Navigator.of(context).pop(),
                         iconSize: 20,
                         padding: EdgeInsets.zero,
@@ -90,11 +132,7 @@ class _FilterScreenState extends State<FilterScreen> {
                       child: Center(
                         child: Text(
                           "Filter",
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            color: ColorsManager.lightblack(context), // لون النص الأساسي
-                          ),
+                          style: TextStyles.font16labelblackmideum,
                         ),
                       ),
                     ),
@@ -102,24 +140,20 @@ class _FilterScreenState extends State<FilterScreen> {
                       onTap: _resetFilters,
                       child: Text(
                         "Reset",
-                        style: TextStyle(
-                          color: ColorsManager.mainBlue, // لون أزرق ثابت
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
+                        style: TextStyles.font14blackmideum.copyWith(
+                          color: ColorsManager.mainBlue,
                         ),
                       ),
                     ),
                   ],
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 24),
 
-                /// (Price Range)
+                // 2. Price Range
                 Text(
                   "Price Range",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold, 
-                    fontSize: 16,
-                    color: ColorsManager.lightblack(context), 
+                  style: TextStyles.font16labelblackmideum.copyWith(
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
                 const SizedBox(height: 8),
@@ -129,62 +163,56 @@ class _FilterScreenState extends State<FilterScreen> {
                 ),
                 const SizedBox(height: 24),
 
-                ///(Property Type)
+                // 3. City Selection
                 Text(
-                  "Property Type",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold, 
-                    fontSize: 16,
-                    color: ColorsManager.lightblack(context),
+                  "City",
+                  style: TextStyles.font16labelblackmideum.copyWith(
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
                 const SizedBox(height: 12),
-                Wrap(
-                  spacing: 10,
-                  runSpacing: 10,
-                  children: [
-                    _buildFilterBtn("Apartments", apartmentsSelected, (v) => apartmentsSelected = v, 123),
-                    _buildFilterBtn("Townhomes", townhomesSelected, (v) => townhomesSelected = v, 123),
-                    _buildFilterBtn("Homes", homesSelected, (v) => homesSelected = v, 86),
-                    _buildFilterBtn("Condos", condosSelected, (v) => condosSelected = v, 90),
-                    _buildFilterBtn("Duplexes", duplexesSelected, (v) => duplexesSelected = v, 100),
-                    _buildFilterBtn("Studios", studiosSelected, (v) => studiosSelected = v, 90),
-                  ],
+                AppCityDropDownFormField(
+                  label: 'Select City',
+                  controller: cityController,
+                  datalist: cities,
+                  onSelected: (city) {
+                    debugPrint('Selected city: $city');
+                  },
                 ),
                 const SizedBox(height: 24),
 
-                /// (Bedrooms & Bathrooms)
+                // 4. Home Details
                 Text(
                   "Home Details",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold, 
-                    fontSize: 16,
-                    color: ColorsManager.lightblack(context),
+                  style: TextStyles.font16labelblackmideum.copyWith(
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
                 const SizedBox(height: 12),
                 _counterRow(
                   title: "Bedrooms",
                   value: bedrooms,
-                  onMinus: () => setState(() { if (bedrooms > 0) bedrooms--; }),
+                  onMinus: () => setState(() {
+                    if (bedrooms > 0) bedrooms--;
+                  }),
                   onPlus: () => setState(() => bedrooms++),
                 ),
                 const SizedBox(height: 8),
                 _counterRow(
                   title: "Bathrooms",
                   value: bathrooms,
-                  onMinus: () => setState(() { if (bathrooms > 0) bathrooms--; }),
+                  onMinus: () => setState(() {
+                    if (bathrooms > 0) bathrooms--;
+                  }),
                   onPlus: () => setState(() => bathrooms++),
                 ),
                 const SizedBox(height: 24),
 
-                /// (Building Size)
+                // 5. Building Size
                 Text(
                   "Building Size",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold, 
-                    fontSize: 16,
-                    color: ColorsManager.lightblack(context),
+                  style: TextStyles.font16labelblackmideum.copyWith(
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
                 const SizedBox(height: 8),
@@ -192,26 +220,84 @@ class _FilterScreenState extends State<FilterScreen> {
                   values: sizeRange,
                   onChanged: (val) => setState(() => sizeRange = val),
                 ),
-                const SizedBox(height: 30),
+                const SizedBox(height: 20),
 
-                /// (Set Filter)
+                // 6. Set Filter Button
                 SizedBox(
                   width: double.infinity,
                   height: 54,
                   child: ElevatedButton(
-                    onPressed: () {
-                 
-                      Navigator.of(context).pop();
+                    onPressed: () async {
+                      // ماب فاضية لحط فيها الشروط الي بيختارا اليوزر
+                      // والي ما بيختارو بجيب كلشي بخصو
+                      Map<String, dynamic> filterParams = {};
+
+                      // إذا اليوزر اختار مدينة، بنضيفها للشنطة.
+                      if (cityController.text.isNotEmpty) {
+                        filterParams['city'] = cityController.text;
+                      }
+
+                      if (priceRange.start != 0 || priceRange.end != 450) {
+                        filterParams['min_price'] = _getActualPrice(
+                          priceRange.start,
+                        ).round();
+                        filterParams['max_price'] = _getActualPrice(
+                          priceRange.end,
+                        ).round();
+                      }
+
+                      if (bedrooms > 0) {
+                        filterParams['min_rooms'] = 0;
+                        filterParams['max_rooms'] = bedrooms;
+                      }
+
+                      if (bathrooms > 0) {
+                        filterParams['min_bathrooms'] = 0;
+                        filterParams['max_bathrooms'] = bathrooms;
+                      }
+                      //اذا تغيرت عن هي القيم يعني حرك المقابض
+                      if (sizeRange.start != 0 || sizeRange.end != 4000) {
+                        filterParams['min_area'] = sizeRange.start.round();
+                        filterParams['max_area'] = sizeRange.end.round();
+                      }
+
+                      try {
+                        List<FilterCardModel> results = await sendFilterRequest(
+                          filterParams,
+                        );
+
+                        debugPrint(
+                          "=============== FILTER RESULTS ============",
+                        );
+                        debugPrint("Total Apartments Found: ${results.length}");
+
+                        for (var i = 0; i < results.length; i++) {
+                          debugPrint("------- Apartment #${i + 1} -------");
+                          debugPrint("Title: ${results[i].title}");
+                          debugPrint("Price: ${results[i].price}");
+                          debugPrint("Location: ${results[i].location}");
+                          debugPrint("rate: ${results[i].rate}");
+                          debugPrint("Image URL: ${results[i].image}");
+                        }
+                        debugPrint(
+                          "==========================================",
+                        );
+
+                        //  إذا الشاشة لساها مفتوحة وما سكرها المستخدم، سكرها هلق وبعت "نتائج البحث" للشاشة اللي قبلها
+                        if (mounted) Navigator.of(context).pop(results);
+                      } catch (e) {
+                        debugPrint(" Filter Error: $e");
+                      }
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: ColorsManager.mainBlue, // لون أزرق ثابت
+                      backgroundColor: const Color(0xff0061FF),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(100),
                       ),
                     ),
-                    child: const Text(
+                    child: Text(
                       "Set Filter",
-                      style: TextStyle(fontSize: 16, color: Colors.white),
+                      style: TextStyles.font16whitesemibold,
                     ),
                   ),
                 ),
@@ -223,37 +309,25 @@ class _FilterScreenState extends State<FilterScreen> {
     );
   }
 
-  // ويدجت مساعدة لبناء أزرار الفلترة العلوية
-  Widget _buildFilterBtn(String title, bool isSelected, Function(bool) onUpdate, double width) {
-    return CustomFilterButton(
-      text: title,
-      width: width,
-      isSelected: isSelected,
-      onTap: () => setState(() => onUpdate(!isSelected)),
-    );
-  }
-
-  // ويدجت مساعدة لبناء صفوف العدادات (Bedrooms / Bathrooms)
-  Widget _counterRow({required String title, required int value, required VoidCallback onMinus, required VoidCallback onPlus}) {
+  // circleIconButton
+  Widget _counterRow({
+    required String title,
+    required int value,
+    required VoidCallback onMinus,
+    required VoidCallback onPlus,
+  }) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
-          title,
-          style: TextStyle(
-            color: ColorsManager.lightblack(context).withOpacity(0.6), 
-            fontSize: 14,
-          ),
-        ),
+        Text(title, style: TextStyles.font14neartograymiduem),
         Row(
           children: [
             _circleIconButton(icon: Icons.remove, onTap: onMinus),
             const SizedBox(width: 12),
             Text(
               value.toString(),
-              style: TextStyle(
+              style: TextStyles.font14blackmideum.copyWith(
                 fontWeight: FontWeight.bold,
-                color: ColorsManager.lightblack(context),
               ),
             ),
             const SizedBox(width: 12),
@@ -264,8 +338,10 @@ class _FilterScreenState extends State<FilterScreen> {
     );
   }
 
-  // رسم أزرار الزائد والناقص الدائرية المخصصة
-  Widget _circleIconButton({required IconData icon, required VoidCallback onTap}) {
+  Widget _circleIconButton({
+    required IconData icon,
+    required VoidCallback onTap,
+  }) {
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(20),
@@ -273,11 +349,10 @@ class _FilterScreenState extends State<FilterScreen> {
         width: 32,
         height: 32,
         decoration: BoxDecoration(
-          // نستخدم لون الحدود (BorderColor) لخلفية الدائرة الصغيرة
           color: ColorsManager.enabledBorderbordercolor(context),
           shape: BoxShape.circle,
         ),
-        child: Icon(icon, size: 18, color: ColorsManager.mainBlue), // أيقونة زرقاء
+        child: Icon(icon, size: 18, color: ColorsManager.mainBlue),
       ),
     );
   }

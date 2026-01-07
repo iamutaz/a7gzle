@@ -3,6 +3,7 @@ import 'package:a7gzle/core/networking/web_services.dart';
 import 'package:a7gzle/features/Home/home_screen/owner/data/cubit/create_apartment_cubit.dart';
 import 'package:a7gzle/features/Home/home_screen/owner/data/repo/create_apartment_repo.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/data/cubit/allapartment_cubit.dart';
+import 'package:a7gzle/features/Home/home_screen/tenant/data/cubit/favorite_cubit.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/data/repo/all_apartment_repo.dart';
 import 'package:a7gzle/features/Home/settings/data/cubit/logout_cubit.dart';
 import 'package:a7gzle/features/Home/settings/data/repo/logout_repo.dart';
@@ -13,6 +14,8 @@ import 'package:a7gzle/features/auth/signup/data/repo/sign_up_repo.dart';
 import 'package:a7gzle/features/details/data/cubit/booking_cubit.dart';
 import 'package:a7gzle/features/details/data/cubit/rate_apartment_cubit.dart';
 import 'package:a7gzle/features/details/data/repo/details_repo_repo.dart';
+import 'package:a7gzle/features/favorite/data/cubit/get_favorite_cubit.dart';
+import 'package:a7gzle/features/favorite/data/repo/favorite_repo.dart';
 import 'package:a7gzle/features/reservations/data/logic/cancel_reservation/cancel_reservation_cubit.dart';
 import 'package:a7gzle/features/reservations/data/logic/get_reservation_cubit/get_all_user_reservations_cubit.dart';
 import 'package:a7gzle/features/reservations/data/logic/update_reservation/update_reservation_cubit.dart';
@@ -74,4 +77,12 @@ void setupinjection() async {
   );
 
   getIt.registerFactory<RateApartmentCubit>(() => RateApartmentCubit(getIt()));
+
+  //favorite
+  getIt.registerFactory<FavoriteCubit>(() => FavoriteCubit(getIt()));
+
+  //get favorite list
+  getIt.registerFactory<GetFavoriteCubit>(() => GetFavoriteCubit(getIt()));
+
+  getIt.registerLazySingleton<FavoriteRepo>(() => FavoriteRepo(getIt()));
 }

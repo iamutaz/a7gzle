@@ -3,7 +3,9 @@ import 'package:a7gzle/core/theming/colors_manager.dart';
 import 'package:a7gzle/core/theming/dark_mode/app_icon.dart';
 import 'package:a7gzle/core/theming/text_styles.dart';
 import 'package:a7gzle/core/widgets/app_text_button.dart';
+import 'package:a7gzle/features/Home/home_screen/tenant/data/cubit/favorite_cubit.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/data/models/apartment.dart';
+import 'package:a7gzle/features/Home/home_screen/tenant/data/models/favorite_request.dart';
 import 'package:a7gzle/features/details/data/cubit/rate_apartment_cubit.dart';
 import 'package:a7gzle/features/details/widget/apartment_property.dart';
 import 'package:a7gzle/features/details/widget/book_nav_bar.dart';
@@ -42,6 +44,11 @@ class Details extends StatelessWidget {
             shadowColor: Colors.white,
             actions: [
               InkWell(
+                onTap: () {
+                  context.read<FavoriteCubit>().emittogglefavorite(
+                    FavoriteRequest(apartmentid: apartment.id),
+                  );
+                },
                 child: Padding(
                   padding: EdgeInsets.only(right: 24.0.w),
                   child: AppIcon(path: "assets/svgs/favorite.svg"),
