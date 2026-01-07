@@ -1,9 +1,8 @@
 import 'package:a7gzle/core/networking/dio_factory.dart';
-import 'package:a7gzle/features/Home/search/widget/cards/cards_models.dart';
+import 'package:a7gzle/features/Home/home_screen/tenant/data/models/apartment.dart';
 import 'package:flutter/material.dart';
-
 // هذه الدالة وظيفتها بتبعت طلب الفلترة للسيرفر واستقبال قائمة الشقق
-Future<List<FilterCardModel>> sendFilterRequest(Map<String, dynamic> params) async {
+Future<List<Apartment>> sendFilterRequest(Map<String, dynamic> params) async {
   final dio = DioFactory.getDio();
   const String url = "http://10.0.2.2:8000/api/apartments/filtering";
   try {
@@ -23,7 +22,7 @@ Future<List<FilterCardModel>> sendFilterRequest(Map<String, dynamic> params) asy
           : (rawData is List ? rawData : []);
 
 
-      return dataList.map((json) => FilterCardModel.fromJson(json)).toList();
+      return dataList.map((json) => Apartment.fromJson(json)).toList();
     }
   } catch (e) {
     debugPrint("API Error: $e");
