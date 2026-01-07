@@ -3,13 +3,13 @@ import 'package:a7gzle/core/theming/text_styles.dart';
 import 'package:a7gzle/core/widgets/app_text_form_feild.dart';
 import 'package:a7gzle/features/Home/search/widget/cards/cards-list.dart'; 
 import 'package:a7gzle/features/Home/search/widget/filter_screen.dart';
-import 'package:a7gzle/features/Home/search/widget/cards/cards_models.dart'; 
+import 'package:a7gzle/features/Home/home_screen/tenant/data/models/apartment.dart'; 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-//هاد عرفتو برا الكلاس لانو بدو يحفظ البيانات 
+// هاد عرفتو برا الكلاس لانو بدو يحفظ البيانات 
 //يعني اذا رحت من صفحة لصفحة مايرجع شاشة البحث للحالة الافتراضية وكانو مابحثت عشي قبل
-List<FilterCardModel>? persistedFilteredResults;
+List<Apartment>? persistedFilteredResults;
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -22,7 +22,7 @@ class _SearchScreenState extends State<SearchScreen> {
   
   // دالة فتح الفلترة واستقبال البيانات منها
   void _openFilter(BuildContext context) async {
-    final results = await showModalBottomSheet<List<FilterCardModel>>(
+    final results = await showModalBottomSheet<List<Apartment>>(
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
@@ -32,7 +32,6 @@ class _SearchScreenState extends State<SearchScreen> {
     // إذا رجعت نتائج من شاشة الفلترة
     if (results != null) {
       setState(() {
-        // نحفظ النتائج الي رجعت من pop في المتغير  ليتم عرضها دائماً
         persistedFilteredResults = results;
       });
     }
@@ -50,9 +49,7 @@ class _SearchScreenState extends State<SearchScreen> {
         leading: const SizedBox.shrink(),
         actions: [
           InkWell(
-            onTap: () {
-              // أضفت onTap هنا عشان يكون الكود منطقي لو حبيت تضيف أكشن للإشعارات
-            },
+            onTap: () {},
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 15.0.w),
               child: AppIcon(path: "assets/svgs/settings/notifaication.svg"),
@@ -81,7 +78,7 @@ class _SearchScreenState extends State<SearchScreen> {
               ),
               const SizedBox(height: 25),
               
-              // نمرر المتغير  لليست المسؤولة عن العرض
+              // نمرر المتغير لليست المسؤولة عن العرض
               FilterListCard(list: persistedFilteredResults),
             ],
           ),

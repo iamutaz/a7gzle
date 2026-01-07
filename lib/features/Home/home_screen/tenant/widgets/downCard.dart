@@ -4,15 +4,13 @@ import 'package:a7gzle/core/theming/colors_manager.dart';
 import 'package:a7gzle/core/theming/text_styles.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/data/cubit/favorite_cubit.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/data/cubit/favorite_state.dart';
-import 'package:a7gzle/features/Home/home_screen/tenant/data/models/apartment.dart';
+import 'package:a7gzle/features/Home/home_screen/tenant/data/models/apartment.dart'; // الموديل الجديد
 import 'package:a7gzle/features/Home/home_screen/tenant/data/models/favorite_request.dart';
-import 'package:a7gzle/features/Home/home_screen/tenant/widgets/downcard-model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Downcard extends StatelessWidget {
-  const Downcard({super.key, required this.down, required this.apartment});
-  final DowncardModel down;
+  const Downcard({super.key, required this.apartment});
   final Apartment apartment;
 
   @override
@@ -37,13 +35,14 @@ class Downcard extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(14),
                   child: Image.network(
-                    down.downimage,
+                    apartment.images.isNotEmpty
+                        ? apartment.images[0].path
+                        : "https://via.placeholder.com/150",
                     height: 154,
                     width: 187,
                     fit: BoxFit.cover,
                   ),
                 ),
-                // التقييم الآن يأخذ قيمته من الموديل بدلاً من الرقم الثابت
                 Positioned(
                   top: 8,
                   right: 8,
@@ -61,7 +60,7 @@ class Downcard extends StatelessWidget {
                         const Icon(Icons.star, color: Colors.orange, size: 14),
                         const SizedBox(width: 4),
                         Text(
-                          down.downrate,
+                          apartment.rate?.toString() ?? "--",
                           style: TextStyles.font14blackmideum.copyWith(
                             fontSize: 12,
                             fontWeight: FontWeight.bold,
@@ -74,13 +73,11 @@ class Downcard extends StatelessWidget {
                 ),
               ],
             ),
-
             const SizedBox(height: 8),
-
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),
               child: Text(
-                down.downtitle,
+                apartment.title,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyles.font14blackmideum.copyWith(
@@ -89,13 +86,11 @@ class Downcard extends StatelessWidget {
                 ),
               ),
             ),
-
             const SizedBox(height: 4),
-
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),
               child: Text(
-                down.downlocation,
+                apartment.city,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyles.font14neartograymiduem.copyWith(
@@ -104,16 +99,14 @@ class Downcard extends StatelessWidget {
                 ),
               ),
             ),
-
             const SizedBox(height: 8),
-
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    down.downprice,
+                    "\$${apartment.price}",
                     style: TextStyles.font18blackbold.copyWith(
                       fontSize: 16,
                       color: ColorsManager.mainBlue,
@@ -134,7 +127,7 @@ class Downcard extends StatelessWidget {
                               : Icons.favorite_border,
                           color: cubit.isFavorite(apartment.id)
                               ? Colors.red
-                              : Colors.white,
+                              : ColorsManager.labelcolor(context),
                           size: 20,
                         ),
                       );

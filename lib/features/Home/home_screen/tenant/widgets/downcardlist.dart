@@ -1,10 +1,6 @@
-import 'package:a7gzle/core/DI/get_it.dart';
-import 'package:a7gzle/features/Home/home_screen/tenant/data/cubit/favorite_cubit.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/widgets/downCard.dart';
-import 'package:a7gzle/features/Home/home_screen/tenant/widgets/downcard-model.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/data/models/apartment.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class downcardlist extends StatelessWidget {
   final List<Apartment> apartments;
@@ -24,15 +20,7 @@ class downcardlist extends StatelessWidget {
         childAspectRatio: 0.65, // تناسق أبعاد الكرت
       ),
       itemBuilder: (context, index) {
-        final item = apartments[index];
-        final model = DowncardModel(
-          downimage: item.images[0].path,
-          downprice: "\$${item.price}",
-          downtitle: item.title,
-          downlocation: item.city,
-          downrate: item.rate?.toString() ?? "--",
-        );
-        return Downcard(down: model, apartment: apartments[index]);
+        return Downcard(apartment: apartments[index]);
       },
     );
   }

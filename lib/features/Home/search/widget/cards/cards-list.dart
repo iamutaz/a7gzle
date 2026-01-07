@@ -1,12 +1,12 @@
-import 'package:a7gzle/core/theming/text_styles.dart'; 
+import 'package:a7gzle/core/theming/text_styles.dart';
 import 'package:a7gzle/features/Home/search/widget/cards/card.dart';
-import 'package:a7gzle/features/Home/search/widget/cards/cards_models.dart';
+import 'package:a7gzle/features/Home/home_screen/tenant/data/models/apartment.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FilterListCard extends StatefulWidget {
- // القائمة التي تحتوي على الشقق الي زبطت مع الشروط تبع الفلترة
-  final List<FilterCardModel>? list;
+  // القائمة التي تحتوي على الشقق الي زبطت مع الشروط تبع الفلترة
+  final List<Apartment>? list;
 
   const FilterListCard({super.key, this.list});
 
@@ -53,15 +53,16 @@ class _FilterListCardState extends State<FilterListCard> {
         GridView.builder(
           itemCount: widget.list!.length,
           shrinkWrap: true, // بتاخد مساحة عقد الكروت الي جواتا
-          physics: const NeverScrollableScrollPhysics(), // لتعطيل السكرول الداخلي
+          physics:
+              const NeverScrollableScrollPhysics(), // لتعطيل السكرول الداخلي
           padding: EdgeInsets.symmetric(horizontal: 16.w),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2, // عمودين
+            crossAxisCount: 2,
             crossAxisSpacing: 16, // مسافة أفقية
             mainAxisSpacing: 16, // مسافة رأسية
             childAspectRatio: 0.65, // توازن الطول والعرض للكرت
           ),
-          // استدعاء الكرت وتمرير بيانات الشقة له
+          // عم نمرر بيانات الشقة للكارد
           itemBuilder: (context, index) =>
               FilterCard(cardData: widget.list![index]),
         ),

@@ -2,7 +2,7 @@ import 'package:a7gzle/core/theming/colors_manager.dart';
 import 'package:a7gzle/core/theming/text_styles.dart';
 import 'package:a7gzle/core/widgets/app_drop_down_button.dart';
 import 'package:a7gzle/features/Home/home_screen/owner/data/model/drop_down_button_value_model.dart';
-import 'package:a7gzle/features/Home/search/widget/cards/cards_models.dart';
+import 'package:a7gzle/features/Home/home_screen/tenant/data/models/apartment.dart';
 import 'package:a7gzle/features/Home/search/widget/filter-api.dart';
 import 'package:a7gzle/features/Home/search/widget/price_range_slider.dart';
 import 'package:a7gzle/features/Home/search/widget/simple_numirecal_slider.dart';
@@ -228,11 +228,8 @@ class _FilterScreenState extends State<FilterScreen> {
                   height: 54,
                   child: ElevatedButton(
                     onPressed: () async {
-                      // ماب فاضية لحط فيها الشروط الي بيختارا اليوزر
-                      // والي ما بيختارو بجيب كلشي بخصو
                       Map<String, dynamic> filterParams = {};
 
-                      // إذا اليوزر اختار مدينة، بنضيفها للشنطة.
                       if (cityController.text.isNotEmpty) {
                         filterParams['city'] = cityController.text;
                       }
@@ -255,14 +252,14 @@ class _FilterScreenState extends State<FilterScreen> {
                         filterParams['min_bathrooms'] = 0;
                         filterParams['max_bathrooms'] = bathrooms;
                       }
-                      //اذا تغيرت عن هي القيم يعني حرك المقابض
+
                       if (sizeRange.start != 0 || sizeRange.end != 4000) {
                         filterParams['min_area'] = sizeRange.start.round();
                         filterParams['max_area'] = sizeRange.end.round();
                       }
 
                       try {
-                        List<FilterCardModel> results = await sendFilterRequest(
+                        List<Apartment> results = await sendFilterRequest(
                           filterParams,
                         );
 
@@ -273,17 +270,25 @@ class _FilterScreenState extends State<FilterScreen> {
 
                         for (var i = 0; i < results.length; i++) {
                           debugPrint("------- Apartment #${i + 1} -------");
+                          debugPrint("ID: ${results[i].id}");
                           debugPrint("Title: ${results[i].title}");
+                          debugPrint("Type: ${results[i].type}");
                           debugPrint("Price: ${results[i].price}");
-                          debugPrint("Location: ${results[i].location}");
-                          debugPrint("rate: ${results[i].rate}");
-                          debugPrint("Image URL: ${results[i].image}");
+                          debugPrint("Area: ${results[i].area} m²");
+                          debugPrint(
+                            "Rooms: ${results[i].rooms} | Bathrooms: ${results[i].bathrooms}",
+                          );
+                          debugPrint("Status: ${results[i].status}");
+                          debugPrint("Location: ${results[i].city}");
+                          debugPrint("Description: ${results[i].description}");
+                          debugPrint(
+                            "Image URL: ${results[i].images.isNotEmpty ? results[i].images[0].path : "No Image"}",
+                          );
                         }
                         debugPrint(
                           "==========================================",
                         );
 
-                        //  إذا الشاشة لساها مفتوحة وما سكرها المستخدم، سكرها هلق وبعت "نتائج البحث" للشاشة اللي قبلها
                         if (mounted) Navigator.of(context).pop(results);
                       } catch (e) {
                         debugPrint(" Filter Error: $e");

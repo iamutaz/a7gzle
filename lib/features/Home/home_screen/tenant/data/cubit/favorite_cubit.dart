@@ -1,5 +1,6 @@
 import 'package:a7gzle/core/networking/api_result.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/data/cubit/favorite_state.dart';
+import 'package:a7gzle/features/Home/home_screen/tenant/data/models/apartment.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/data/models/favorite_request.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/data/repo/all_apartment_repo.dart';
 import 'package:bloc/bloc.dart';
@@ -8,6 +9,13 @@ class FavoriteCubit extends Cubit<FavoriteState> {
   AllApartmentRepo _repo;
   Set<int> favoriteIds = {};
   FavoriteCubit(this._repo) : super(FavoriteState.favoriteinitial());
+
+  void initFavorite(List<Apartment> apartments) {
+    favoriteIds = apartments
+        .where((a) => a.isfavorite)
+        .map((a) => a.id)
+        .toSet();
+  }
 
   void emittogglefavorite(FavoriteRequest favrequest) async {
     emit(FavoriteState.favoriteloading());

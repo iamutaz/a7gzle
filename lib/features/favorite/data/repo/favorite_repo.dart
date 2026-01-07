@@ -1,7 +1,6 @@
 import 'package:a7gzle/core/networking/api_error_handler.dart';
 import 'package:a7gzle/core/networking/api_result.dart';
 import 'package:a7gzle/core/networking/web_services.dart';
-import 'package:a7gzle/features/Home/home_screen/tenant/data/models/apartment.dart';
 import 'package:a7gzle/features/favorite/data/model/fav_response_body.dart';
 
 class FavoriteRepo {

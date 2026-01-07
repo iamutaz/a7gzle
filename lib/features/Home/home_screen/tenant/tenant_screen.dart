@@ -8,7 +8,6 @@ import 'package:a7gzle/features/Home/home_screen/tenant/data/cubit/allapartment_
 import 'package:a7gzle/features/Home/home_screen/tenant/data/cubit/allapartment_state.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/data/cubit/favorite_cubit.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/data/models/apartment.dart';
-
 import 'package:a7gzle/features/Home/home_screen/tenant/widgets/bottomlist.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/widgets/downcardlist.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/widgets/topCard.dart';
@@ -24,11 +23,13 @@ class TenantScreen extends StatefulWidget {
 
 class _TenantScreenState extends State<TenantScreen> {
   UserModel? user;
+  String selectedCategory = 'All';
+
   @override
   void initState() {
     super.initState();
     _loadUser();
-    context.read<AllapartmentCubit>().emitAllApartmentState();
+    context.read<AllapartmentCubit>().emitAllApartmentState(context);
   }
 
   Future<void> _loadUser() async {
@@ -48,11 +49,12 @@ class _TenantScreenState extends State<TenantScreen> {
         child: SingleChildScrollView(
           child: Column(
             children: [
+              // Header
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Row(
                   children: [
-                    Container(
+                    SizedBox(
                       height: 60,
                       width: 60,
                       child: ClipOval(
@@ -92,17 +94,38 @@ class _TenantScreenState extends State<TenantScreen> {
               BlocBuilder<AllapartmentCubit, AllapartmentState>(
                 builder: (context, state) {
                   return state.when(
-                    initial: () {
-                      return SizedBox.shrink();
-                    },
-                    allapartmentloading: () {
-                      return Center(child: CircularProgressIndicator());
-                    },
+                    initial: () => const SizedBox.shrink(),
+                    allapartmentloading: () =>
+                        const Center(child: CircularProgressIndicator()),
                     allapartmentsuccess: (data) {
                       List<Apartment> allapartments = data.apartmentlist;
+                      List<Apartment> filteredList = [];
+
+                      if (selectedCategory == 'All') {
+                        filteredList = allapartments;
+                      } else if (selectedCategory == 'Others') {
+                        // في حال Others منخلي القائمة فاضية لأننا رح نعرض نص بدالها
+                        filteredList = [];
+                      } else {
+                        // عم نمر عكل شقة عن طريق where عم ناخد التايب تبعا
+                        // عم نحول التايب والزر المكبوس لحرف صغير مشان المقارنة
+                        filteredList = allapartments.where((apt) {
+                          String typeFromApi = apt.type
+                              .toString()
+                              .toLowerCase();
+                          String categorySelected = selectedCategory
+                              .toLowerCase();
+                          //لحل مشكلة التايب الي بيرجع وبكون ناقص حروف مقارنة بالكبسة
+                          return typeFromApi.contains(categorySelected) ||
+                              categorySelected.contains(typeFromApi);
+                        }).toList();
+                      }
+
                       return Column(
                         children: [
-                          SizedBox(height: 20),
+                          const SizedBox(height: 20),
+
+                          // Featured
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 20),
                             child: Row(
@@ -128,7 +151,8 @@ class _TenantScreenState extends State<TenantScreen> {
                               ],
                             ),
                           ),
-                          SizedBox(height: 20),
+                          const SizedBox(height: 20),
+
                           SizedBox(
                             height: 340,
                             child: Padding(
@@ -136,15 +160,15 @@ class _TenantScreenState extends State<TenantScreen> {
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
                                 itemCount: allapartments.length,
-                                itemBuilder: (context, index) {
-                                  return topCard(
-                                    apartment: allapartments[index],
-                                  );
-                                },
+                                itemBuilder: (context, index) =>
+                                    topCard(apartment: allapartments[index]),
                               ),
                             ),
                           ),
-                          SizedBox(height: 20),
+
+                          const SizedBox(height: 20),
+
+                          // Recommendation
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 20),
                             child: Row(
@@ -171,25 +195,47 @@ class _TenantScreenState extends State<TenantScreen> {
                               ],
                             ),
                           ),
-                          SizedBox(height: 20),
+                          const SizedBox(height: 20),
+
+                          // أزرار الفلترة
                           SizedBox(
                             height: 41,
                             child: Padding(
                               padding: const EdgeInsets.only(left: 20),
-                              child: const ButtonList(),
+                              child: ButtonList(
+                                onCategoryChanged: (category) {
+                                  setState(() {
+                                    selectedCategory = category;
+                                  });
+                                },
+                              ),
                             ),
                           ),
-                          SizedBox(height: 25),
+                          const SizedBox(height: 25),
 
-                          downcardlist(apartments: allapartments),
+                          selectedCategory == 'Others'
+                              ? Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    vertical: 40,
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      "Coming Soon...",
+                                      style: TextStyles.font18blackbold
+                                          .copyWith(
+                                            color: ColorsManager.mainBlue,
+                                          ),
+                                    ),
+                                  ),
+                                )
+                              : downcardlist(apartments: filteredList),
 
-                          SizedBox(height: 30),
+                          const SizedBox(height: 30),
                         ],
                       );
                     },
-                    allapartmentfailure: (exception) {
-                      return Text(exception.toString());
-                    },
+                    allapartmentfailure: (exception) =>
+                        Center(child: Text(exception.toString())),
                   );
                 },
               ),
