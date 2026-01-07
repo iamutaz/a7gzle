@@ -1,10 +1,12 @@
+import 'package:a7gzle/core/DI/get_it.dart';
 import 'package:a7gzle/core/helpers/shared_pref_helper.dart';
 import 'package:a7gzle/core/helpers/user_model.dart';
 import 'package:a7gzle/core/theming/colors_manager.dart';
-import 'package:a7gzle/core/theming/text_styles.dart'; 
+import 'package:a7gzle/core/theming/text_styles.dart';
 import 'package:a7gzle/core/theming/dark_mode/app_icon.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/data/cubit/allapartment_cubit.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/data/cubit/allapartment_state.dart';
+import 'package:a7gzle/features/Home/home_screen/tenant/data/cubit/favorite_cubit.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/data/models/apartment.dart';
 
 import 'package:a7gzle/features/Home/home_screen/tenant/widgets/bottomlist.dart';
@@ -72,7 +74,6 @@ class _TenantScreenState extends State<TenantScreen> {
                           Text(
                             "${user!.firstname} ${user!.lastname}",
                             style: TextStyles.font14blackmideum.copyWith(
-                         
                               color: ColorsManager.lightblack(context),
                               fontWeight: FontWeight.w500,
                             ),
@@ -80,11 +81,12 @@ class _TenantScreenState extends State<TenantScreen> {
                         ],
                       ),
                     ),
-                    SizedBox(width: 150),
+                    // SizedBox(width: 150),
+                    Spacer(),
 
                     AppIcon(path: "assets/svgs/settings/notifaication.svg"),
                   ],
-              ),
+                ),
               ),
               SizedBox(height: 20),
               BlocBuilder<AllapartmentCubit, AllapartmentState>(
@@ -110,7 +112,6 @@ class _TenantScreenState extends State<TenantScreen> {
                                   "Featured",
 
                                   style: TextStyles.font18blackbold.copyWith(
-
                                     color: ColorsManager.lightblack(context),
                                     fontSize: 20,
                                     fontWeight: FontWeight.w600,
@@ -153,8 +154,6 @@ class _TenantScreenState extends State<TenantScreen> {
                                   "Our Recommendation",
 
                                   style: TextStyles.font18blackbold.copyWith(
-
-
                                     color: ColorsManager.lightblack(context),
                                     fontSize: 20,
                                     fontWeight: FontWeight.w600,
@@ -164,8 +163,6 @@ class _TenantScreenState extends State<TenantScreen> {
                                   "See All",
 
                                   style: TextStyles.font14blackmideum.copyWith(
-
-
                                     color: ColorsManager.mainBlue,
                                     fontSize: 16,
                                     fontWeight: FontWeight.w600,
@@ -185,8 +182,6 @@ class _TenantScreenState extends State<TenantScreen> {
                           SizedBox(height: 25),
 
                           downcardlist(apartments: allapartments),
-
-
 
                           SizedBox(height: 30),
                         ],

@@ -1,10 +1,11 @@
 import 'package:a7gzle/core/theming/colors_manager.dart';
-import 'package:a7gzle/core/theming/text_styles.dart'; 
+import 'package:a7gzle/core/theming/text_styles.dart';
 import 'package:flutter/material.dart';
 
 class PriceRangeSliderWidget extends StatelessWidget {
   final RangeValues values; // القيم الحالية للسلايدر (البداية والنهاية)
-  final ValueChanged<RangeValues> onChanged; // الدالة اللي بتشتغل لما نحرك المقابض
+  final ValueChanged<RangeValues>
+  onChanged; // الدالة اللي بتشتغل لما نحرك المقابض
 
   const PriceRangeSliderWidget({
     super.key,
@@ -32,14 +33,12 @@ class PriceRangeSliderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final Color primaryColor = ColorsManager.mainBlue;
 
     return SizedBox(
       height: 135,
       child: Stack(
         children: [
-
           Container(
             width: double.infinity,
             height: 90,
@@ -60,8 +59,12 @@ class PriceRangeSliderWidget extends StatelessWidget {
               data: SliderTheme.of(context).copyWith(
                 trackHeight: 2, // سماكة الخط الواصل بين المقابض
                 activeTrackColor: primaryColor, // لون الخط المحصور بين المقبضين
-                inactiveTrackColor: primaryColor.withOpacity(0.2), // لون الخط الخارجي
-                rangeThumbShape: _PriceThumbShape(context), // شكل المقبض الدائري المخصص تحت
+                inactiveTrackColor: primaryColor.withOpacity(
+                  0.2,
+                ), // لون الخط الخارجي
+                rangeThumbShape: _PriceThumbShape(
+                  context,
+                ), // شكل المقبض الدائري المخصص تحت
               ),
               child: RangeSlider(
                 values: values,
@@ -93,7 +96,7 @@ class PriceRangeSliderWidget extends StatelessWidget {
                           style: TextStyles.font14blackmideum.copyWith(
                             color: primaryColor,
                             fontWeight: FontWeight.bold,
-                          ), 
+                          ),
                         ),
                       ),
                       // نص السعر للمقبض الثاني (النهاية)
@@ -104,7 +107,7 @@ class PriceRangeSliderWidget extends StatelessWidget {
                           style: TextStyles.font14blackmideum.copyWith(
                             color: primaryColor,
                             fontWeight: FontWeight.bold,
-                          ), 
+                          ),
                         ),
                       ),
                     ],
@@ -145,8 +148,7 @@ class _PriceThumbShape extends RangeSliderThumbShape {
     final canvas = context.canvas;
 
     //  رسم خلفية الدائرة حسب المود دارك اولايت
-    final fillPaint = Paint()
-      ..color = ColorsManager.offwhite(this.context);
+    final fillPaint = Paint()..color = ColorsManager.offwhite(this.context);
 
     // رسم إطار الدائرة (اللون الأزرق)
     final strokePaint = Paint()

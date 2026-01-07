@@ -1,13 +1,14 @@
 import 'package:a7gzle/core/theming/colors_manager.dart';
 import 'package:a7gzle/core/theming/text_styles.dart';
 import 'package:a7gzle/core/widgets/searched_apartment_card_model.dart';
-import 'package:a7gzle/features/reservations/data/model/user_reservations_response_body.dart';
+import 'package:a7gzle/features/Home/home_screen/tenant/data/models/apartment.dart';
 import 'package:a7gzle/features/reservations/widgets/cancel_reservation_lisitner.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppSearchCard extends StatelessWidget {
   final SearchedApartmentCardModel searchedApartmentCardModel;
+
   void Function()? oncancelTap;
   void Function()? oneditTap;
   bool? ispending;
@@ -34,9 +35,12 @@ class AppSearchCard extends StatelessWidget {
             SizedBox(
               width: 100,
               height: 100,
-              child: Image.network(
-                searchedApartmentCardModel.imagepath,
-                fit: BoxFit.cover,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(8.r),
+                child: Image.network(
+                  searchedApartmentCardModel.imagepath,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
             SizedBox(width: 20.w),

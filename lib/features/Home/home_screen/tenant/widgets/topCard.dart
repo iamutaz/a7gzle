@@ -1,15 +1,24 @@
 import 'dart:ui';
 import 'package:a7gzle/core/helpers/extension.dart';
 import 'package:a7gzle/core/routing/routes_constant.dart';
-import 'package:a7gzle/core/theming/text_styles.dart'; 
-import 'package:a7gzle/features/Home/home_screen/tenant/data/models/apartment.dart';
-import 'package:flutter/material.dart';
-import 'package:a7gzle/core/theming/colors_manager.dart'; 
+import 'package:a7gzle/core/theming/text_styles.dart';
+import 'package:a7gzle/features/Home/home_screen/tenant/data/cubit/favorite_cubit.dart';
+import 'package:a7gzle/features/Home/home_screen/tenant/data/cubit/favorite_state.dart';
 
-class topCard extends StatelessWidget {
+import 'package:a7gzle/features/Home/home_screen/tenant/data/models/apartment.dart';
+import 'package:a7gzle/features/Home/home_screen/tenant/data/models/favorite_request.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+class topCard extends StatefulWidget {
   topCard({super.key, required this.apartment});
   final Apartment apartment;
 
+  @override
+  State<topCard> createState() => _topCardState();
+}
+
+class _topCardState extends State<topCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -18,7 +27,7 @@ class topCard extends StatelessWidget {
       margin: const EdgeInsets.only(right: 16),
       child: GestureDetector(
         onTap: () {
-          context.pushNamed(RoutesConstant.details, aurgment: apartment);
+          context.pushNamed(RoutesConstant.details, aurgment: widget.apartment);
         },
         child: Stack(
           children: [
@@ -28,12 +37,14 @@ class topCard extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
               ),
-              child: apartment.images.isNotEmpty && apartment.images.first.path.isNotEmpty
+              child:
+                  widget.apartment.images.isNotEmpty &&
+                      widget.apartment.images.first.path.isNotEmpty
                   ? FadeInImage.assetNetwork(
                       width: double.infinity,
                       height: double.infinity,
                       placeholder: 'assets/loading.gif',
-                      image: apartment.images.first.path,
+                      image: widget.apartment.images.first.path,
                       fit: BoxFit.cover,
                     )
                   : Image.asset(
@@ -63,21 +74,24 @@ class topCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    apartment.title,
+                    widget.apartment.title,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: TextStyles.font18blackbold.copyWith(color: Colors.white, fontSize: 16),
+                    style: TextStyles.font18blackbold.copyWith(
+                      color: Colors.white,
+                      fontSize: 16,
+                    ),
                   ),
                   Text(
-                    apartment.city,
+                    widget.apartment.city,
                     style: TextStyles.font14neartograymiduem.copyWith(
-                      color: Colors.white.withOpacity(0.7), 
+                      color: Colors.white.withOpacity(0.7),
                       fontSize: 12,
                     ),
                   ),
                   const SizedBox(height: 6),
                   Text(
-                    apartment.price,
+                    widget.apartment.price,
                     style: const TextStyle(color: Colors.white),
                   ),
                 ],
@@ -100,9 +114,9 @@ class topCard extends StatelessWidget {
                     const Icon(Icons.star, color: Colors.orange, size: 14),
                     const SizedBox(width: 4),
                     Text(
-                      apartment.rate == null
+                      widget.apartment.rate == null
                           ? "not rated yet"
-                          : "${apartment.rate}",
+                          : "${widget.apartment.rate}",
                       style: const TextStyle(
                         color: Color(0xff246BFD),
                         fontWeight: FontWeight.bold,
@@ -117,24 +131,40 @@ class topCard extends StatelessWidget {
             Positioned(
               bottom: 16,
               right: 16,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(50),
-                child: BackdropFilter(
-                  filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
-                  child: Container(
-                    padding: const EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.25),
-                      shape: BoxShape.circle,
-                      border: Border.all(color: Colors.white.withOpacity(0.3)),
+              child: BlocBuilder<FavoriteCubit, FavoriteState>(
+                builder: (context, state) {
+                  final cubit = context.read<FavoriteCubit>();
+
+                  return GestureDetector(
+                    onTap: () {
+                      cubit.emittogglefavorite(
+                        FavoriteRequest(apartmentid: widget.apartment.id),
+                      );
+                    },
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(50),
+                      child: BackdropFilter(
+                        filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
+                        child: Container(
+                          padding: const EdgeInsets.all(8),
+                          decoration: BoxDecoration(
+                            color: Colors.white.withOpacity(0.25),
+                            shape: BoxShape.circle,
+                          ),
+                          child: Icon(
+                            cubit.isFavorite(widget.apartment.id)
+                                ? Icons.favorite
+                                : Icons.favorite_border,
+                            color: cubit.isFavorite(widget.apartment.id)
+                                ? Colors.red
+                                : Colors.white,
+                            size: 20,
+                          ),
+                        ),
+                      ),
                     ),
-                    child: const Icon(
-                      Icons.favorite_border,
-                      color: Colors.white,
-                      size: 20,
-                    ),
-                  ),
-                ),
+                  );
+                },
               ),
             ),
           ],

@@ -36,7 +36,6 @@ Map<String, dynamic> _$ApartmentToJson(Apartment instance) => <String, dynamic>{
   'bathrooms': instance.bathrooms,
   'status': instance.status,
   'type': instance.type,
-  'rate': instance.rate,
   'images': instance.images,
   'owner': instance.owner,
 };

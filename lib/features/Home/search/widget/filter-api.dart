@@ -3,7 +3,9 @@ import 'package:a7gzle/features/Home/search/widget/cards/cards_models.dart';
 import 'package:flutter/material.dart';
 
 // هذه الدالة وظيفتها بتبعت طلب الفلترة للسيرفر واستقبال قائمة الشقق
-Future<List<FilterCardModel>> sendFilterRequest(Map<String, dynamic> params) async {
+Future<List<FilterCardModel>> sendFilterRequest(
+  Map<String, dynamic> params,
+) async {
   final dio = DioFactory.getDio();
   const String url = "http://10.0.2.2:8000/api/apartments/filtering";
   try {
@@ -14,14 +16,13 @@ Future<List<FilterCardModel>> sendFilterRequest(Map<String, dynamic> params) asy
     if (response.statusCode == 200) {
       var rawData = response.data; // البيانات القادمة من السيرفر
 
-//هذا السطر وظيفته إنه يستخرج قائمة الشقق من رد السيرفر بدون ما يهتم بشكل الرد
-//إذا السيرفر رجّع البيانات داخل كائن وفيه مفتاح اسمه data، فهو بياخد اللي جوّا data.
-//واذا رجع قائمة فورا بياخدها متل ماهيه
-//واذا مالاقا شي بيرجع قائمة فاضية
-      List dataList = (rawData is Map && rawData.containsKey('data')) 
-          ? rawData['data'] 
+      //هذا السطر وظيفته إنه يستخرج قائمة الشقق من رد السيرفر بدون ما يهتم بشكل الرد
+      //إذا السيرفر رجّع البيانات داخل كائن وفيه مفتاح اسمه data، فهو بياخد اللي جوّا data.
+      //واذا رجع قائمة فورا بياخدها متل ماهيه
+      //واذا مالاقا شي بيرجع قائمة فاضية
+      List dataList = (rawData is Map && rawData.containsKey('data'))
+          ? rawData['data']
           : (rawData is List ? rawData : []);
-
 
       return dataList.map((json) => FilterCardModel.fromJson(json)).toList();
     }
@@ -29,6 +30,6 @@ Future<List<FilterCardModel>> sendFilterRequest(Map<String, dynamic> params) asy
     debugPrint("API Error: $e");
   }
 
-  // إذا فشل الطلب أو ما لاقا نتائج، رجع قائمة فارغة 
+  // إذا فشل الطلب أو ما لاقا نتائج، رجع قائمة فارغة
   return [];
 }

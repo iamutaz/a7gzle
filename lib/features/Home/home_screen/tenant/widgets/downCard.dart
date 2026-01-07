@@ -1,18 +1,26 @@
+import 'package:a7gzle/core/helpers/extension.dart';
+import 'package:a7gzle/core/routing/routes_constant.dart';
 import 'package:a7gzle/core/theming/colors_manager.dart';
 import 'package:a7gzle/core/theming/text_styles.dart';
+import 'package:a7gzle/features/Home/home_screen/tenant/data/cubit/favorite_cubit.dart';
+import 'package:a7gzle/features/Home/home_screen/tenant/data/cubit/favorite_state.dart';
+import 'package:a7gzle/features/Home/home_screen/tenant/data/models/apartment.dart';
+import 'package:a7gzle/features/Home/home_screen/tenant/data/models/favorite_request.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/widgets/downcard-model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Downcard extends StatelessWidget {
-  const Downcard({super.key, required this.down});
+  const Downcard({super.key, required this.down, required this.apartment});
   final DowncardModel down;
+  final Apartment apartment;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      borderRadius: BorderRadius.circular(16), 
+      borderRadius: BorderRadius.circular(16),
       onTap: () {
-        // TODO: Navigation 
+        context.pushNamed(RoutesConstant.details, aurgment: apartment);
       },
       child: Container(
         width: 187,
@@ -29,7 +37,7 @@ class Downcard extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(14),
                   child: Image.network(
-                    down.downimage, 
+                    down.downimage,
                     height: 154,
                     width: 187,
                     fit: BoxFit.cover,
@@ -40,7 +48,10 @@ class Downcard extends StatelessWidget {
                   top: 8,
                   right: 8,
                   child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 6,
+                      vertical: 4,
+                    ),
                     decoration: BoxDecoration(
                       color: ColorsManager.offwhite(context),
                       borderRadius: BorderRadius.circular(12),
@@ -50,7 +61,7 @@ class Downcard extends StatelessWidget {
                         const Icon(Icons.star, color: Colors.orange, size: 14),
                         const SizedBox(width: 4),
                         Text(
-                          down.downrate, 
+                          down.downrate,
                           style: TextStyles.font14blackmideum.copyWith(
                             fontSize: 12,
                             fontWeight: FontWeight.bold,
@@ -84,7 +95,7 @@ class Downcard extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),
               child: Text(
-                down.downlocation, 
+                down.downlocation,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyles.font14neartograymiduem.copyWith(
@@ -102,13 +113,33 @@ class Downcard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    down.downprice, 
+                    down.downprice,
                     style: TextStyles.font18blackbold.copyWith(
                       fontSize: 16,
                       color: ColorsManager.mainBlue,
                     ),
                   ),
-                  const Icon(Icons.favorite_border, color: Colors.grey),
+                  BlocBuilder<FavoriteCubit, FavoriteState>(
+                    builder: (context, state) {
+                      final cubit = context.read<FavoriteCubit>();
+                      return GestureDetector(
+                        onTap: () {
+                          context.read<FavoriteCubit>().emittogglefavorite(
+                            FavoriteRequest(apartmentid: apartment.id),
+                          );
+                        },
+                        child: Icon(
+                          cubit.isFavorite(apartment.id)
+                              ? Icons.favorite
+                              : Icons.favorite_border,
+                          color: cubit.isFavorite(apartment.id)
+                              ? Colors.red
+                              : Colors.white,
+                          size: 20,
+                        ),
+                      );
+                    },
+                  ),
                 ],
               ),
             ),
