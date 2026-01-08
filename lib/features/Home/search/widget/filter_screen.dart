@@ -7,6 +7,7 @@ import 'package:a7gzle/features/Home/search/widget/filter-api.dart';
 import 'package:a7gzle/features/Home/search/widget/price_range_slider.dart';
 import 'package:a7gzle/features/Home/search/widget/simple_numirecal_slider.dart';
 import 'package:drop_down_list/model/selected_list_item.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class FilterScreen extends StatefulWidget {
@@ -21,52 +22,52 @@ class _FilterScreenState extends State<FilterScreen> {
 
   final List<SelectedListItem<DropDownbuttonvalueModel>> cities = [
     SelectedListItem(
-      data: DropDownbuttonvalueModel(label: 'Damascus', value: 'damascus'),
+      data: DropDownbuttonvalueModel(label: 'Damascus'.tr(), value: 'damascus'),
     ),
     SelectedListItem(
-      data: DropDownbuttonvalueModel(label: 'Aleppo', value: 'aleppo'),
+      data: DropDownbuttonvalueModel(label: 'Aleppo'.tr(), value: 'aleppo'),
     ),
     SelectedListItem(
-      data: DropDownbuttonvalueModel(label: 'Homs', value: 'homs'),
+      data: DropDownbuttonvalueModel(label: 'Homs'.tr(), value: 'homs'),
     ),
     SelectedListItem(
-      data: DropDownbuttonvalueModel(label: 'Hama', value: 'hama'),
+      data: DropDownbuttonvalueModel(label: 'Hama'.tr(), value: 'hama'),
     ),
     SelectedListItem(
-      data: DropDownbuttonvalueModel(label: 'Latakia', value: 'latakia'),
+      data: DropDownbuttonvalueModel(label: 'Latakia'.tr(), value: 'latakia'),
     ),
     SelectedListItem(
-      data: DropDownbuttonvalueModel(label: 'Tartus', value: 'tartus'),
+      data: DropDownbuttonvalueModel(label: 'Tartus'.tr(), value: 'tartus'),
     ),
     SelectedListItem(
-      data: DropDownbuttonvalueModel(label: 'Idlib', value: 'idlib'),
+      data: DropDownbuttonvalueModel(label: 'Idlib'.tr(), value: 'idlib'),
     ),
     SelectedListItem(
       data: DropDownbuttonvalueModel(
-        label: 'Rif Dimashq',
+        label: 'Rif Dimashq'.tr(),
         value: 'rif_dimashq',
       ),
     ),
     SelectedListItem(
       data: DropDownbuttonvalueModel(
-        label: 'Deir Ez Zor',
+        label: 'Deir Ez Zor'.tr(),
         value: 'deir_ez_zor',
       ),
     ),
     SelectedListItem(
-      data: DropDownbuttonvalueModel(label: 'Daraa', value: 'daraa'),
+      data: DropDownbuttonvalueModel(label: 'Daraa'.tr(), value: 'daraa'),
     ),
     SelectedListItem(
-      data: DropDownbuttonvalueModel(label: 'As Suwayda', value: 'as_suwayda'),
+      data: DropDownbuttonvalueModel(label: 'As Suwayda'.tr(), value: 'as_suwayda'),
     ),
     SelectedListItem(
-      data: DropDownbuttonvalueModel(label: 'Quneitra', value: 'quneitra'),
+      data: DropDownbuttonvalueModel(label: 'Quneitra'.tr(), value: 'quneitra'),
     ),
     SelectedListItem(
-      data: DropDownbuttonvalueModel(label: 'Raqqa', value: 'raqqa'),
+      data: DropDownbuttonvalueModel(label: 'Raqqa'.tr(), value: 'raqqa'),
     ),
     SelectedListItem(
-      data: DropDownbuttonvalueModel(label: 'Al Hasakah', value: 'al_hasakah'),
+      data: DropDownbuttonvalueModel(label: 'Al Hasakah'.tr(), value: 'al_hasakah'),
     ),
   ];
 
@@ -131,7 +132,7 @@ class _FilterScreenState extends State<FilterScreen> {
                     Expanded(
                       child: Center(
                         child: Text(
-                          "Filter",
+                          "Filter".tr(),
                           style: TextStyles.font16labelblackmideum,
                         ),
                       ),
@@ -139,7 +140,7 @@ class _FilterScreenState extends State<FilterScreen> {
                     InkWell(
                       onTap: _resetFilters,
                       child: Text(
-                        "Reset",
+                        "Reset".tr(),
                         style: TextStyles.font14blackmideum.copyWith(
                           color: ColorsManager.mainBlue,
                         ),
@@ -151,7 +152,7 @@ class _FilterScreenState extends State<FilterScreen> {
 
                 // 2. Price Range
                 Text(
-                  "Price Range",
+                  "Price Range".tr(),
                   style: TextStyles.font16labelblackmideum.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
@@ -165,14 +166,14 @@ class _FilterScreenState extends State<FilterScreen> {
 
                 // 3. City Selection
                 Text(
-                  "City",
+                  "City".tr(),
                   style: TextStyles.font16labelblackmideum.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 const SizedBox(height: 12),
                 AppCityDropDownFormField(
-                  label: 'Select City',
+                  label: 'Select City'.tr(),
                   controller: cityController,
                   datalist: cities,
                   onSelected: (city) {
@@ -183,14 +184,14 @@ class _FilterScreenState extends State<FilterScreen> {
 
                 // 4. Home Details
                 Text(
-                  "Home Details",
+                  "Home Details".tr(),
                   style: TextStyles.font16labelblackmideum.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 const SizedBox(height: 12),
                 _counterRow(
-                  title: "Bedrooms",
+                  title: "Bedrooms".tr(),
                   value: bedrooms,
                   onMinus: () => setState(() {
                     if (bedrooms > 0) bedrooms--;
@@ -199,7 +200,7 @@ class _FilterScreenState extends State<FilterScreen> {
                 ),
                 const SizedBox(height: 8),
                 _counterRow(
-                  title: "Bathrooms",
+                  title: "Bathrooms".tr(),
                   value: bathrooms,
                   onMinus: () => setState(() {
                     if (bathrooms > 0) bathrooms--;
@@ -210,7 +211,7 @@ class _FilterScreenState extends State<FilterScreen> {
 
                 // 5. Building Size
                 Text(
-                  "Building Size",
+                  "Building Size".tr(),
                   style: TextStyles.font16labelblackmideum.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
@@ -289,7 +290,7 @@ class _FilterScreenState extends State<FilterScreen> {
                       ),
                     ),
                     child: Text(
-                      "Set Filter",
+                      "Set Filter".tr(),
                       style: TextStyles.font16whitesemibold,
                     ),
                   ),

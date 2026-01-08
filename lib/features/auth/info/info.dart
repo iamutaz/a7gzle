@@ -10,6 +10,7 @@ import 'package:a7gzle/features/auth/signup/data/cubit/sign_up_cubit.dart';
 import 'package:a7gzle/features/auth/signup/data/model/signup_request_body.dart';
 import 'package:dio/dio.dart';
 import 'package:dotted_border/dotted_border.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -73,8 +74,8 @@ class _InfoState extends State<Info> {
         _frontIdImage == null ||
         _backIdImage == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text("you should insert all the requierd photos"),
+        SnackBar(
+          content: Text("you should insert all the requierd photos".tr()),
           backgroundColor: Colors.red,
         ),
       );
@@ -93,10 +94,10 @@ class _InfoState extends State<Info> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("Fill Your Profile", style: TextStyles.font24mainbluebold),
+                Text("Fill Your Profile".tr(), style: TextStyles.font24mainbluebold),
                 SizedBox(height: 10.h),
                 Text(
-                  "Please take a few minutes to fill out your profile\nwith as much detail as possible.",
+                  "Please take a few minutes to fill out your profile\nwith as much detail as possible.".tr(),
                   style: TextStyles.font16lightergrayregular,
                 ),
                 SizedBox(height: 37.h),
@@ -140,7 +141,7 @@ class _InfoState extends State<Info> {
                 InfoFormFeild(),
 
                 SizedBox(height: 25.h),
-                Text("Insert Your ID", style: TextStyles.font24mainbluebold),
+                Text("Insert Your ID".tr(), style: TextStyles.font24mainbluebold),
                 SizedBox(height: 20.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -212,7 +213,7 @@ class _InfoState extends State<Info> {
                       ),
                     );
                   },
-                  textButton: "Submit",
+                  textButton: "Submit".tr(),
                   textStyle: TextStyles.font16whitesemibold,
                 ),
                 SignUpLisitner(),

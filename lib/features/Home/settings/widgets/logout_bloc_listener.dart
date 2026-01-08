@@ -6,6 +6,7 @@ import 'package:a7gzle/core/theming/text_styles.dart';
 import 'package:a7gzle/features/Home/settings/data/cubit/logout_cubit.dart';
 import 'package:a7gzle/features/Home/settings/data/cubit/logout_state.dart';
 import 'package:a7gzle/features/auth/login/data/logic/cubit/login_state.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -61,7 +62,7 @@ void setupErrorState(BuildContext context, String errormessage) {
             onPressed: () {
               context.pop();
             },
-            child: Text("back"),
+            child: Text("back").tr(),
           ),
         ],
       );

@@ -1,4 +1,5 @@
 import 'package:a7gzle/core/theming/text_styles.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -10,7 +11,7 @@ class GallerySection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("Gallery", style: TextStyles.font20blacksemibold),
+        Text("Gallery".tr(), style: TextStyles.font20blacksemibold),
         SizedBox(height: 20.h),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

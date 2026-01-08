@@ -6,6 +6,7 @@ import 'package:a7gzle/features/auth/signup/data/cubit/sign_up_cubit.dart';
 import 'package:a7gzle/features/auth/signup/widgets/already_have_an_account.dart';
 import 'package:a7gzle/features/auth/signup/widgets/terms_and_condtions.dart';
 import 'package:a7gzle/features/auth/signup/widgets/sign_up_text_form_feild.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -31,10 +32,10 @@ class SignUp extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Sign Up", style: TextStyles.font24mainbluebold),
+                    Text("Sign Up".tr(), style: TextStyles.font24mainbluebold),
                     SizedBox(height: 10.h),
                     Text(
-                      "sign up now and start exploring all that our\napp has to offer. We're excited to welcome\n you to our community",
+                      "sign up now and start exploring all that our\napp has to offer. We're excited to welcome\n you to our community".tr(),
                       style: TextStyles.font17lightgrayregular,
                     ),
                   ],
@@ -62,7 +63,7 @@ class SignUp extends StatelessWidget {
                       context.pushNamed(RoutesConstant.info, aurgment: cubit);
                     }
                   },
-                  textButton: "Next",
+                  textButton: "Next".tr(),
                   textStyle: TextStyles.font16whitesemibold,
                 ),
               ),

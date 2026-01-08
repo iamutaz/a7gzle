@@ -18,7 +18,6 @@ class PriceRangeSliderWidget extends StatelessWidget {
 
   /// دالة الحساب الهرمي:
   /// وظيفتها تخلي السعر يزيد كل ما قربنا من نص السلايدر، وينقص كل ما بعدنا
-
   double getPyramidPrice(double position) {
     double mid = (maxPos + minPos) / 2; // نقطة المنتصف
     if (position <= mid) {
@@ -32,14 +31,15 @@ class PriceRangeSliderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final Color primaryColor = ColorsManager.mainBlue;
+    
+    // عم نشوف اذا اللغة الحالية هي العربية
+    final bool isRTL = Directionality.of(context) == TextDirection.rtl;
 
     return SizedBox(
       height: 135,
       child: Stack(
         children: [
-
           Container(
             width: double.infinity,
             height: 90,
@@ -72,24 +72,31 @@ class PriceRangeSliderWidget extends StatelessWidget {
             ),
           ),
 
-          /// 3. عرض الأرقام (الأسعار): النصوص اللي بتتحرك تحت كل مقبض
+          /// 3. عرض الأرقام : النصوص اللي بتتحرك تحت كل مقبض
           Positioned(
             bottom: 0,
             left: 0,
             right: 0,
             child: LayoutBuilder(
               builder: (context, constraints) {
-                double width = constraints.maxWidth; // عرض الشاشة المتاح
+                double width = constraints.maxWidth; 
+                
+              //هي جديد مشان مشكلة قلب اللغة مع الارقام
+                double getPosition(double value) {
+                  double ratio = value / maxPos;
+                  double pos = ratio * (width - 24);
+                  return isRTL ? (width - pos - 24) : pos;
+                }
+
                 return SizedBox(
                   height: 20,
                   child: Stack(
                     children: [
                       // نص السعر للمقبض الأول (البداية)
                       Positioned(
-                        // معادلة حساب موقع النص ليكون تحت المقبض بالظبط
-                        left: (values.start / maxPos) * (width - 24),
+                        left: getPosition(values.start),
                         child: Text(
-                          '\$${getPyramidPrice(values.start).round()}', // عرض السعر مقرباً
+                          '\$${getPyramidPrice(values.start).round()}', 
                           style: TextStyles.font14blackmideum.copyWith(
                             color: primaryColor,
                             fontWeight: FontWeight.bold,
@@ -98,7 +105,7 @@ class PriceRangeSliderWidget extends StatelessWidget {
                       ),
                       // نص السعر للمقبض الثاني (النهاية)
                       Positioned(
-                        left: (values.end / maxPos) * (width - 24),
+                        left: getPosition(values.end),
                         child: Text(
                           '\$${getPyramidPrice(values.end).round()}',
                           style: TextStyles.font14blackmideum.copyWith(

@@ -30,7 +30,7 @@ class Downcard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(14),
                   child: Image.network(
                
-                    apartment.images.isNotEmpty ? apartment.images[0].path : "https://via.placeholder.com/150", 
+                    apartment.images.isNotEmpty ? apartment.images[0].path : "", 
                     height: 154,
                     width: 187,
                     fit: BoxFit.cover,

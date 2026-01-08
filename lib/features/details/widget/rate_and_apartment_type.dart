@@ -3,6 +3,7 @@ import 'package:a7gzle/core/theming/text_styles.dart';
 import 'package:a7gzle/features/details/data/cubit/rate_apartment_cubit.dart';
 import 'package:a7gzle/features/details/data/model/rate_request_body.dart';
 import 'package:a7gzle/features/details/widget/rate_bloc_listiner.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -56,7 +57,7 @@ class _RateAndApartmentTypeState extends State<RateAndApartmentType> {
                       child: StatefulBuilder(
                         builder: (context, setDialogState) {
                           return AlertDialog(
-                            title: Text("Rate this apartment"),
+                            title: Text("Rate this apartment".tr()),
                             backgroundColor: ColorsManager.scaffoldColor(
                               context,
                             ),
@@ -92,7 +93,7 @@ class _RateAndApartmentTypeState extends State<RateAndApartmentType> {
                                           );
                                     },
                                     child: Text(
-                                      "rate",
+                                      "rate".tr(),
                                       style: TextStyles.font18mainbluesemibold,
                                     ),
                                   ),
@@ -111,7 +112,7 @@ class _RateAndApartmentTypeState extends State<RateAndApartmentType> {
             ),
             SizedBox(width: 8),
             Text(
-              widget.rate == null ? "not rated yet" : "${widget.rate}",
+              widget.rate == null ? "not rated yet".tr() : "${widget.rate}",
               style: TextStyles.font14neartograymiduem,
             ),
           ],

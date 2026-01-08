@@ -8,6 +8,7 @@ import 'package:a7gzle/features/Home/home_screen/tenant/tenant_screen.dart';
 import 'package:a7gzle/features/Home/search/search_screen.dart';
 import 'package:a7gzle/features/Home/settings/data/cubit/logout_cubit.dart';
 import 'package:a7gzle/features/Home/settings/settings_screen.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -81,17 +82,17 @@ class _HomeManagerState extends State<HomeManager> {
             activeIcon: Icon(
               widget.usertype == "tenant" ? Icons.home : Icons.add,
             ),
-            label: 'Home',
+            label: 'Home'.tr(),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.search_outlined),
             activeIcon: Icon(Icons.search),
-            label: 'Explore',
+            label: 'Explore'.tr(),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person_outline),
             activeIcon: Icon(Icons.person),
-            label: 'Profile',
+            label: 'Profile'.tr(),
           ),
         ],
       ),

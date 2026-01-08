@@ -1,6 +1,7 @@
 import 'package:a7gzle/core/theming/text_styles.dart';
 import 'package:a7gzle/features/Home/home_screen/owner/widget/create_apartment_form_feild.dart';
 import 'package:a7gzle/features/Home/home_screen/owner/widget/create_apartment_lisitner.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -21,12 +22,12 @@ class OwnerScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Create Apartment",
+                      "Create Apartment".tr(),
                       style: TextStyles.font24mainbluebold,
                     ),
                     SizedBox(height: 10.h),
                     Text(
-                      "create your apartment listing and showcase all the features that make it unique. Add details, photos,  and start reaching potential tenants easily",
+                      "create your apartment listing and showcase all the features that make it unique. Add details, photos,  and start reaching potential tenants easily".tr(),
                       style: TextStyles.font17lightgrayregular,
                     ),
                   ],

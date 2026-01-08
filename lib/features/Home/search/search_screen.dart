@@ -3,7 +3,8 @@ import 'package:a7gzle/core/theming/text_styles.dart';
 import 'package:a7gzle/core/widgets/app_text_form_feild.dart';
 import 'package:a7gzle/features/Home/search/widget/cards/cards-list.dart'; 
 import 'package:a7gzle/features/Home/search/widget/filter_screen.dart';
-import 'package:a7gzle/features/Home/home_screen/tenant/data/models/apartment.dart'; 
+import 'package:a7gzle/features/Home/home_screen/tenant/data/models/apartment.dart';
+import 'package:easy_localization/easy_localization.dart'; 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -43,7 +44,7 @@ class _SearchScreenState extends State<SearchScreen> {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          "Search for Your Ideal Home",
+          "Search for Your Ideal Home".tr(),
           style: TextStyles.font18blackbold,
         ),
         leading: const SizedBox.shrink(),
@@ -70,7 +71,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   child: AppIcon(path: "assets/svgs/filter.svg"),
                 ),
                 borderRadius: BorderRadius.circular(20),
-                feildname: "search for location",
+                feildname: "search for location".tr(),
                 validator: (value) {},
                 onTap: () {
                   _openFilter(context);

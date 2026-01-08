@@ -7,6 +7,7 @@ import 'package:a7gzle/core/theming/text_styles.dart';
 import 'package:a7gzle/core/widgets/app_text_button.dart';
 import 'package:a7gzle/features/onboarding/widgets/home_images.dart';
 import 'package:a7gzle/features/onboarding/widgets/onboarding_rich_text.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -83,7 +84,7 @@ class Onboarding extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  "WELCOME TO a7gzle",
+                  "WELCOME TO a7gzle".tr(),
                   style: TextStyles.font16neartograyregular.copyWith(
                     fontSize: 20,
                     fontFamily: "Rubik",
@@ -139,7 +140,7 @@ class Onboarding extends StatelessWidget {
                       }
                     },
 
-                    textButton: "Get started",
+                    textButton: "Get started".tr(),
                     textStyle: TextStyles.font18whitemideum,
                   ),
                 ),

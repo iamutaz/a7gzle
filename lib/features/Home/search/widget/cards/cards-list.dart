@@ -1,6 +1,7 @@
 import 'package:a7gzle/core/theming/text_styles.dart'; 
 import 'package:a7gzle/features/Home/search/widget/cards/card.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/data/models/apartment.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -28,7 +29,7 @@ class _FilterListCardState extends State<FilterListCard> {
         padding: EdgeInsets.symmetric(vertical: 80.h),
         child: Center(
           child: Text(
-            "We couldn't find the type of apartments you're looking for.",
+            "We couldn't find the type of apartments you're looking for.".tr(),
             textAlign: TextAlign.center,
             style: TextStyles.font16labelblackmideum,
           ),
