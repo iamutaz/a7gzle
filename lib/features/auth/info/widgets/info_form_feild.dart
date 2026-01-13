@@ -1,6 +1,7 @@
 import 'package:a7gzle/core/theming/text_styles.dart';
 import 'package:a7gzle/core/widgets/app_text_form_feild.dart';
 import 'package:a7gzle/features/auth/signup/data/cubit/sign_up_cubit.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -35,10 +36,10 @@ class InfoFormFeild extends StatelessWidget {
               Expanded(
                 child: AppTextFormFeild(
                   controller: context.read<SignUpCubit>().firstnamecontooler,
-                  feildname: "First Name",
+                  feildname: "First Name".tr(),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return "this feild can't be empty";
+                      return "this feild can't be empty".tr();
                     }
                   },
                 ),
@@ -47,10 +48,10 @@ class InfoFormFeild extends StatelessWidget {
               Expanded(
                 child: AppTextFormFeild(
                   controller: context.read<SignUpCubit>().lastnamecontroller,
-                  feildname: "Seconde Name",
+                  feildname: "Seconde Name".tr(),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return "this feild can't be empty";
+                      return "this feild can't be empty".tr();
                     }
                   },
                 ),
@@ -61,10 +62,10 @@ class InfoFormFeild extends StatelessWidget {
 
           AppTextFormFeild(
             controller: context.read<SignUpCubit>().birthdatecontroller,
-            feildname: "Birth Date",
+            feildname: "Birth Date".tr(),
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return "this feild can't be empty";
+                return "this feild can't be empty".tr();
               }
             },
             onTap: () => setTimeOnForm(context),
@@ -76,13 +77,13 @@ class InfoFormFeild extends StatelessWidget {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("User Type", style: TextStyles.font18blackmideum),
+                  Text("User Type".tr(), style: TextStyles.font18blackmideum),
                   Row(
                     children: [
                       Expanded(
                         child: RadioListTile<String>(
                           title: Text(
-                            "Owner",
+                            "Owner".tr(),
                             style: TextStyles.font14blackmideum,
                           ),
                           value: "owner",
@@ -105,7 +106,7 @@ class InfoFormFeild extends StatelessWidget {
                       Expanded(
                         child: RadioListTile<String>(
                           title: Text(
-                            "Tennat",
+                            "Tennat".tr(),
                             style: TextStyles.font14blackmideum,
                           ),
                           value: "tenant",

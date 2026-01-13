@@ -13,6 +13,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+ 
+  # localization 
+  flutter_localizations:
+    sdk: flutter
+  easy_localization: ^3.0.7
 
   #state manggment  
   get: ^4.7.3
@@ -90,6 +95,7 @@ flutter:
     - assets/images/
     - assets/svgs/
     - assets/svgs/settings/
+    - assets/translations/ 
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

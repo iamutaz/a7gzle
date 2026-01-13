@@ -11,6 +11,7 @@ import 'package:a7gzle/features/details/widget/location.dart';
 import 'package:a7gzle/features/details/widget/overview.dart';
 import 'package:a7gzle/features/details/widget/rate_and_apartment_type.dart';
 import 'package:a7gzle/features/details/widget/user_info.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -109,7 +110,7 @@ class Details extends StatelessWidget {
                   Divider(),
 
                   SizedBox(height: 20.h),
-                  Text("Agent", style: TextStyles.font20blacksemibold),
+                  Text("Agent".tr(), style: TextStyles.font20blacksemibold),
 
                   SizedBox(height: 12),
 

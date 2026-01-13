@@ -11,6 +11,7 @@ import 'package:a7gzle/features/Home/home_screen/tenant/data/models/apartment.da
 import 'package:a7gzle/features/Home/home_screen/tenant/widgets/bottomlist.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/widgets/downcardlist.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/widgets/topCard.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -61,27 +62,24 @@ class _TenantScreenState extends State<TenantScreen> {
                         child: Image.asset("assets/notload.jpeg"),
                       ),
                     ),
-                    SizedBox(width: 10),
-                    Container(
-                      height: 43,
-                      width: 105,
-                      child: Column(
-                        children: [
-                          Text(
-                            "Good Morning",
-                            style: TextStyles.font14neartograymiduem.copyWith(
-                              color: Color(0xff8C8E98),
-                            ),
+                    const SizedBox(width: 10),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Good Morning".tr(),
+                          style: TextStyles.font14neartograymiduem.copyWith(
+                            color: const Color(0xff8C8E98),
                           ),
-                          Text(
-                            "${user!.firstname} ${user!.lastname}",
-                            style: TextStyles.font14blackmideum.copyWith(
-                              color: ColorsManager.lightblack(context),
-                              fontWeight: FontWeight.w500,
-                            ),
+                        ),
+                        Text(
+                          "${user!.firstname} ${user!.lastname}",
+                          style: TextStyles.font14blackmideum.copyWith(
+                            color: ColorsManager.lightblack(context),
+                            fontWeight: FontWeight.w500,
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                     // SizedBox(width: 150),
                     Spacer(),
@@ -132,8 +130,7 @@ class _TenantScreenState extends State<TenantScreen> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  "Featured",
-
+                                  "Featured".tr(),
                                   style: TextStyles.font18blackbold.copyWith(
                                     color: ColorsManager.lightblack(context),
                                     fontSize: 20,
@@ -141,7 +138,7 @@ class _TenantScreenState extends State<TenantScreen> {
                                   ),
                                 ),
                                 Text(
-                                  "See All",
+                                  "See All".tr(),
                                   style: TextStyles.font14blackmideum.copyWith(
                                     color: ColorsManager.mainBlue,
                                     fontSize: 16,
@@ -175,8 +172,7 @@ class _TenantScreenState extends State<TenantScreen> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  "Our Recommendation",
-
+                                  "Our Recommendation".tr(),
                                   style: TextStyles.font18blackbold.copyWith(
                                     color: ColorsManager.lightblack(context),
                                     fontSize: 20,
@@ -184,8 +180,7 @@ class _TenantScreenState extends State<TenantScreen> {
                                   ),
                                 ),
                                 Text(
-                                  "See All",
-
+                                  "See All".tr(),
                                   style: TextStyles.font14blackmideum.copyWith(
                                     color: ColorsManager.mainBlue,
                                     fontSize: 16,
@@ -220,7 +215,7 @@ class _TenantScreenState extends State<TenantScreen> {
                                   ),
                                   child: Center(
                                     child: Text(
-                                      "Coming Soon...",
+                                      "Coming Soon...".tr(),
                                       style: TextStyles.font18blackbold
                                           .copyWith(
                                             color: ColorsManager.mainBlue,

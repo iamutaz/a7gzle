@@ -4,16 +4,26 @@ import 'package:a7gzle/manager.dart';
 import 'package:a7gzle/core/theming/dark_mode/theme_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:easy_localization/easy_localization.dart'; 
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized(); 
 
   // هي بتجيب اخر ثيم انحفظ عملو اليوزر
   await ThemeService.instance.init();
 
   await ScreenUtil.ensureScreenSize();
   setupinjection();
-  runApp(const MyApp());
+
+  runApp(
+    EasyLocalization(
+      supportedLocales: const [Locale('en'), Locale('ar')],
+      path: 'assets/translations', 
+      fallbackLocale: const Locale('en'),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

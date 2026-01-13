@@ -1,5 +1,6 @@
 import 'package:a7gzle/core/theming/colors_manager.dart';
 import 'package:a7gzle/core/theming/text_styles.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -22,16 +23,16 @@ class ApartmentProperty extends StatelessWidget {
       children: [
         _buildHomeProperty(
           path: "assets/svgs/bed.svg",
-          text: "$roomnumber beds",
+          text: "beds_count".tr(args: [roomnumber.toString()]),
         ),
         _buildHomeProperty(
           path: "assets/svgs/bath.svg",
-          text: "$bathnumber bath",
+          text: "bath_count".tr(args: [bathnumber.toString()]),
           height: 25,
         ),
         _buildHomeProperty(
           path: "assets/svgs/distance.svg",
-          text: "$area hec",
+          text: "area_size".tr(args: [area.toString()]),
           height: 22,
         ),
       ],

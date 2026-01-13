@@ -1,6 +1,7 @@
 import 'package:a7gzle/core/helpers/app_regex.dart';
 import 'package:a7gzle/core/widgets/app_text_form_feild.dart';
 import 'package:a7gzle/features/auth/signup/data/cubit/sign_up_cubit.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -33,19 +34,19 @@ class _SignUpTextFormFeildState extends State<SignUpTextFormFeild> {
           children: [
             AppTextFormFeild(
               controller: context.read<SignUpCubit>().numbercontroller,
-              feildname: "Number",
+              feildname: "Number".tr(),
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return "this feild can't be empty";
+                  return "this feild can't be empty".tr();
                 } else if (!AppRegex.isNumberValid(value)) {
-                  return "enter a valid number ";
+                  return "enter a valid number ".tr();
                 }
               },
             ),
             SizedBox(height: 30.h),
             AppTextFormFeild(
               controller: context.read<SignUpCubit>().passwordcontroller,
-              feildname: "Password",
+              feildname: "Password".tr(),
               isobscuretext: isobscurepasstext,
               suffixIcon: InkWell(
                 onTap: () {
@@ -60,10 +61,10 @@ class _SignUpTextFormFeildState extends State<SignUpTextFormFeild> {
               ),
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return "this feild can't be empty";
+                  return "this feild can't be empty".tr();
                 }
                 if (!AppRegex.hasMinLength(value)) {
-                  return "password should be 8 length word";
+                  return "password should be 8 length word".tr();
                 }
               },
             ),
@@ -73,12 +74,12 @@ class _SignUpTextFormFeildState extends State<SignUpTextFormFeild> {
               controller: context
                   .read<SignUpCubit>()
                   .passwordconfirmationcontroller,
-              feildname: "password confirmation",
+              feildname: "password confirmation".tr(),
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return "this feild can't be empty";
+                  return "this feild can't be empty".tr();
                 } else if (value != passcontroller.text) {
-                  return "no matching with the password";
+                  return "no matching with the password".tr();
                 }
               },
               suffixIcon: InkWell(

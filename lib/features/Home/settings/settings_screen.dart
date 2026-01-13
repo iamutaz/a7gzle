@@ -9,6 +9,7 @@ import 'package:a7gzle/features/Home/settings/widgets/build_list_tiles_widget.da
 import 'package:a7gzle/features/Home/settings/widgets/logout_bloc_listener.dart';
 import 'package:a7gzle/features/Home/settings/widgets/user_settings_info.dart';
 import 'package:a7gzle/features/details/widget/user_info.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,7 +23,7 @@ class SettingsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: SizedBox.shrink(),
-        title: Text("Profile", style: TextStyles.font20blacksemibold),
+        title: Text("Profile".tr(), style: TextStyles.font20blacksemibold),
         actions: [
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 15.0.w),

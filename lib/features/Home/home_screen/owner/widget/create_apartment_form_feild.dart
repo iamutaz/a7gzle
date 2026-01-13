@@ -12,6 +12,7 @@ import 'package:a7gzle/features/Home/home_screen/owner/data/model/drop_down_butt
 import 'package:a7gzle/features/Home/home_screen/tenant/data/cubit/allapartment_cubit.dart';
 import 'package:dio/dio.dart';
 import 'package:drop_down_list/model/selected_list_item.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -53,67 +54,67 @@ class _CreateApartmentFormFeildState extends State<CreateApartmentFormFeild> {
 
   final List<SelectedListItem<DropDownbuttonvalueModel>> estatetype = [
     SelectedListItem(
-      data: DropDownbuttonvalueModel(label: "apartment", value: "apartment"),
+      data: DropDownbuttonvalueModel(label: "apartment".tr(), value: "apartment"),
     ),
     SelectedListItem(
-      data: DropDownbuttonvalueModel(label: "house", value: "house"),
+      data: DropDownbuttonvalueModel(label: "house".tr(), value: "house"),
     ),
     SelectedListItem(
-      data: DropDownbuttonvalueModel(label: "villa", value: "villa"),
+      data: DropDownbuttonvalueModel(label: "villa".tr(), value: "villa"),
     ),
     SelectedListItem(
-      data: DropDownbuttonvalueModel(label: "other", value: "otherwise"),
+      data: DropDownbuttonvalueModel(label: "other".tr(), value: "otherwise"),
     ),
   ];
 
   final List<SelectedListItem<DropDownbuttonvalueModel>> cities = [
     SelectedListItem(
-      data: DropDownbuttonvalueModel(label: 'Damascus', value: 'damascus'),
+      data: DropDownbuttonvalueModel(label: 'Damascus'.tr(), value: 'damascus'),
     ),
     SelectedListItem(
-      data: DropDownbuttonvalueModel(label: 'Aleppo', value: 'aleppo'),
+      data: DropDownbuttonvalueModel(label: 'Aleppo'.tr(), value: 'aleppo'),
     ),
     SelectedListItem(
-      data: DropDownbuttonvalueModel(label: 'Homs', value: 'homs'),
+      data: DropDownbuttonvalueModel(label: 'Homs'.tr(), value: 'homs'),
     ),
     SelectedListItem(
-      data: DropDownbuttonvalueModel(label: 'Hama', value: 'hama'),
+      data: DropDownbuttonvalueModel(label: 'Hama'.tr(), value: 'hama'),
     ),
     SelectedListItem(
-      data: DropDownbuttonvalueModel(label: 'Latakia', value: 'latakia'),
+      data: DropDownbuttonvalueModel(label: 'Latakia'.tr(), value: 'latakia'),
     ),
     SelectedListItem(
-      data: DropDownbuttonvalueModel(label: 'Tartus', value: 'tartus'),
+      data: DropDownbuttonvalueModel(label: 'Tartus'.tr(), value: 'tartus'),
     ),
     SelectedListItem(
-      data: DropDownbuttonvalueModel(label: 'Idlib', value: 'idlib'),
+      data: DropDownbuttonvalueModel(label: 'Idlib'.tr(), value: 'idlib'),
     ),
     SelectedListItem(
       data: DropDownbuttonvalueModel(
-        label: 'Rif Dimashq',
+        label: 'Rif Dimashq'.tr(),
         value: 'rif_dimashq',
       ),
     ),
     SelectedListItem(
       data: DropDownbuttonvalueModel(
-        label: 'Deir Ez Zor',
+        label: 'Deir Ez Zor'.tr(),
         value: 'deir_ez_zor',
       ),
     ),
     SelectedListItem(
-      data: DropDownbuttonvalueModel(label: 'Daraa', value: 'daraa'),
+      data: DropDownbuttonvalueModel(label: 'Daraa'.tr(), value: 'daraa'),
     ),
     SelectedListItem(
-      data: DropDownbuttonvalueModel(label: 'As Suwayda', value: 'as_suwayda'),
+      data: DropDownbuttonvalueModel(label: 'As Suwayda'.tr(), value: 'as_suwayda'),
     ),
     SelectedListItem(
-      data: DropDownbuttonvalueModel(label: 'Quneitra', value: 'quneitra'),
+      data: DropDownbuttonvalueModel(label: 'Quneitra'.tr(), value: 'quneitra'),
     ),
     SelectedListItem(
-      data: DropDownbuttonvalueModel(label: 'Raqqa', value: 'raqqa'),
+      data: DropDownbuttonvalueModel(label: 'Raqqa'.tr(), value: 'raqqa'),
     ),
     SelectedListItem(
-      data: DropDownbuttonvalueModel(label: 'Al Hasakah', value: 'al_hasakah'),
+      data: DropDownbuttonvalueModel(label: 'Al Hasakah'.tr(), value: 'al_hasakah'),
     ),
   ];
   @override
@@ -123,10 +124,10 @@ class _CreateApartmentFormFeildState extends State<CreateApartmentFormFeild> {
       child: Column(
         children: [
           AppTextFormFeild(
-            feildname: "apartment name",
+            feildname: "apartment name".tr(),
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return "this feild can't be empty";
+                return "this feild can't be empty".tr();
               }
             },
             controller: context
@@ -135,10 +136,10 @@ class _CreateApartmentFormFeildState extends State<CreateApartmentFormFeild> {
           ),
           SizedBox(height: 25.h),
           AppTextFormFeild(
-            feildname: "description",
+            feildname: "description".tr(),
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return "this feild can't be empty";
+                return "this feild can't be empty".tr();
               }
             },
             controller: context
@@ -147,23 +148,23 @@ class _CreateApartmentFormFeildState extends State<CreateApartmentFormFeild> {
           ),
           SizedBox(height: 25.h),
           AppTextFormFeild(
-            feildname: "price",
+            feildname: "price".tr(),
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return "this feild can't be empty";
+                return "this feild can't be empty".tr();
               }
             },
             controller: context.read<CreateApartmentCubit>().pricecontroller,
           ),
           SizedBox(height: 25.h),
           AppTextFormFeild(
-            feildname: "bathrooms",
+            feildname: "bathrooms".tr(),
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return "this feild can't be empty";
+                return "this feild can't be empty".tr();
               }
               if (int.tryParse(value) == null) {
-                return "this field must be a number only";
+                return "this field must be a number only".tr();
               }
             },
             controller: context
@@ -172,23 +173,23 @@ class _CreateApartmentFormFeildState extends State<CreateApartmentFormFeild> {
           ),
           SizedBox(height: 25.h),
           AppTextFormFeild(
-            feildname: "rooms",
+            feildname: "rooms".tr(),
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return "this feild can't be empty";
+                return "this feild can't be empty".tr();
               }
               if (int.tryParse(value) == null) {
-                return "this field must be a number only";
+                return "this field must be a number only".tr();
               }
             },
             controller: context.read<CreateApartmentCubit>().roomscontroller,
           ),
           SizedBox(height: 25.h),
           AppTextFormFeild(
-            feildname: "area",
+            feildname: "area".tr(),
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return "this feild can't be empty";
+                return "this feild can't be empty".tr();
               }
             },
             controller: context.read<CreateApartmentCubit>().areacontroller,
@@ -196,7 +197,7 @@ class _CreateApartmentFormFeildState extends State<CreateApartmentFormFeild> {
           SizedBox(height: 25.h),
 
           AppCityDropDownFormField(
-            label: 'City',
+            label: 'City'.tr(),
             controller: context.read<CreateApartmentCubit>().citycontroller,
             datalist: cities,
             onSelected: (city) {
@@ -205,7 +206,7 @@ class _CreateApartmentFormFeildState extends State<CreateApartmentFormFeild> {
           ),
           SizedBox(height: 20.h),
           AppCityDropDownFormField(
-            label: 'types',
+            label: 'types'.tr(),
             controller: context.read<CreateApartmentCubit>().typecontroller,
             datalist: estatetype,
             onSelected: (city) {
@@ -227,8 +228,8 @@ class _CreateApartmentFormFeildState extends State<CreateApartmentFormFeild> {
               }
               if (_apartmentImages.isEmpty) {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text("Please add at least one image"),
+                  SnackBar(
+                    content: Text("Please add at least one image".tr()),
                     backgroundColor: Colors.red,
                   ),
                 );
@@ -274,7 +275,7 @@ class _CreateApartmentFormFeildState extends State<CreateApartmentFormFeild> {
                 ),
               );
             },
-            textButton: "Create",
+            textButton: "Create".tr(),
             textStyle: TextStyles.font16whitesemibold,
           ),
         ],

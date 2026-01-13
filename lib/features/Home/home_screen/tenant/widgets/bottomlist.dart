@@ -1,5 +1,6 @@
 import 'package:a7gzle/core/theming/colors_manager.dart';
 import 'package:a7gzle/core/theming/text_styles.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class ButtonList extends StatefulWidget {
@@ -24,7 +25,7 @@ class _ButtonListState extends State<ButtonList> {
     'Others',
   ];
 
-  final List<double> widths = const [58, 82, 68, 118, 84];
+  // تم حذف قائمة الـ widths لضمان تناسق الكلمات العربية والإنجليزية تلقائياً
 
   @override
   Widget build(BuildContext context) {
@@ -37,15 +38,16 @@ class _ButtonListState extends State<ButtonList> {
         bool isSelected = selectedIndex == index;
 
         return Padding(
-          padding: const EdgeInsets.only(right: 8),
+          padding: const EdgeInsetsDirectional.only(start: 8),
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
               backgroundColor: isSelected
                   ? ColorsManager.mainBlue
                   : const Color.fromARGB(237, 211, 224, 244),
               elevation: 0, 
-              fixedSize: Size(widths[index], 41),
-              padding: const EdgeInsets.symmetric(horizontal: 10),
+              // تم استبدال fixedSize بـ minimumSize ليعطي مرونة في العرض حسب طول الكلمة
+              minimumSize: const Size(60, 41),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(30), 
               ),
@@ -58,7 +60,7 @@ class _ButtonListState extends State<ButtonList> {
               widget.onCategoryChanged(titles[index]);
             },
             child: Text(
-              titles[index],
+              titles[index].tr(),
               style: TextStyles.font14blackmideum.copyWith(
                 color: isSelected ? Colors.white : const Color(0xff191D31),
                 fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
