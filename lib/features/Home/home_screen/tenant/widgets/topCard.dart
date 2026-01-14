@@ -2,15 +2,18 @@ import 'dart:ui';
 import 'package:a7gzle/core/helpers/extension.dart';
 import 'package:a7gzle/core/routing/routes_constant.dart';
 import 'package:a7gzle/core/theming/text_styles.dart';
+import 'package:a7gzle/features/Home/home_screen/tenant/data/cubit/favorite_cubit.dart';
+import 'package:a7gzle/features/Home/home_screen/tenant/data/cubit/favorite_state.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/data/models/apartment.dart';
+import 'package:a7gzle/features/Home/home_screen/tenant/data/models/favorite_request.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class topCard extends StatelessWidget {
   const topCard({super.key, required this.apartment});
   final Apartment apartment;
 
-  @override
   Widget build(BuildContext context) {
     return Container(
       width: 250,
@@ -95,18 +98,26 @@ class topCard extends StatelessWidget {
               ),
             ),
 
-            Positioned.directional(
-              textDirection: Directionality.of(context),
-              bottom: 16,
-              end: 16,
-              child: _buildFavoriteButton(),
-            ),
-
+            // مربع التقييم
             Positioned.directional(
               textDirection: Directionality.of(context),
               top: 12,
               end: 12,
-              child: _buildRateBadge(context),
+              child: _buildRateWidget(context),
+            ),
+
+            // زر المفضلة
+            Positioned.directional(
+              textDirection: Directionality.of(context),
+              bottom: 16,
+              end: 16,
+              child: BlocBuilder<FavoriteCubit, FavoriteState>(
+                builder: (context, state) {
+                  final cubit = context.read<FavoriteCubit>();
+
+                  return _buildFavoriteButton(cubit);
+                },
+              ),
             ),
           ],
         ),
@@ -114,33 +125,11 @@ class topCard extends StatelessWidget {
     );
   }
 
-  Widget _buildFavoriteButton() {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(50),
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
-        child: Container(
-          padding: const EdgeInsets.all(8),
-          decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.25),
-            shape: BoxShape.circle,
-            border: Border.all(color: Colors.white.withOpacity(0.3)),
-          ),
-          child: const Icon(
-            Icons.favorite_border,
-            color: Colors.white,
-            size: 20,
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildRateBadge(BuildContext context) {
+  Container _buildRateWidget(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.9),
+        color: Theme.of(context).cardColor.withOpacity(0.9),
         borderRadius: BorderRadius.circular(20),
       ),
       child: Row(
@@ -149,13 +138,41 @@ class topCard extends StatelessWidget {
           const Icon(Icons.star, color: Colors.orange, size: 14),
           const SizedBox(width: 4),
           Text(
-            apartment.rate == null ? "not rated yet".tr() : "${apartment.rate}",
+            apartment.rate == null ? "not rated yet" : "${apartment.rate}",
             style: const TextStyle(
               color: Color(0xff246BFD),
               fontWeight: FontWeight.bold,
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildFavoriteButton(FavoriteCubit cubit) {
+    return GestureDetector(
+      onTap: () {
+        cubit.emittogglefavorite(FavoriteRequest(apartmentid: apartment.id));
+      },
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(50),
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
+          child: Container(
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              color: Colors.white.withOpacity(0.25),
+              shape: BoxShape.circle,
+            ),
+            child: Icon(
+              cubit.isFavorite(apartment.id)
+                  ? Icons.favorite
+                  : Icons.favorite_border,
+              color: cubit.isFavorite(apartment.id) ? Colors.red : Colors.white,
+              size: 20,
+            ),
+          ),
+        ),
       ),
     );
   }

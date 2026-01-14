@@ -13,6 +13,9 @@ import 'package:a7gzle/features/details/data/model/booking_response_body.dart';
 import 'package:a7gzle/features/details/data/model/rate_request_body.dart';
 import 'package:a7gzle/features/details/data/model/rate_response_body.dart';
 import 'package:a7gzle/features/favorite/data/model/fav_response_body.dart';
+import 'package:a7gzle/features/notification/data/model/owner_reservation_response_body.dart';
+import 'package:a7gzle/features/notification/data/model/reservation_notification_request_body.dart';
+import 'package:a7gzle/features/notification/data/model/reservation_notification_response_body.dart';
 import 'package:a7gzle/features/reservations/data/model/cancel/cancel_reservation_request_body.dart';
 import 'package:a7gzle/features/reservations/data/model/cancel/cancel_reservation_response_body.dart';
 import 'package:a7gzle/features/reservations/data/model/update/update_reservation_request_body.dart';
@@ -99,5 +102,11 @@ abstract class WebServices {
   @PUT(WebServicesConstant.updatereservation)
   Future<UpdateReservationResponseBody> updatereservation(
     @Body() UpdateReservationRequestBody updatereservationrequestbody,
+  );
+  @GET(WebServicesConstant.ownerreservation)
+  Future<OwnerReservationResponseBody> ownerreservations();
+  @POST(WebServicesConstant.ownerreservationcommand)
+  Future<ReservationNotificationResponseBody> handlingReservation(
+    @Body() ReservationNotificationRequestBody request,
   );
 }

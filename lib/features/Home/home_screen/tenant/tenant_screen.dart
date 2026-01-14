@@ -1,6 +1,8 @@
 import 'package:a7gzle/core/DI/get_it.dart';
+import 'package:a7gzle/core/helpers/extension.dart';
 import 'package:a7gzle/core/helpers/shared_pref_helper.dart';
 import 'package:a7gzle/core/helpers/user_model.dart';
+import 'package:a7gzle/core/routing/routes_constant.dart';
 import 'package:a7gzle/core/theming/colors_manager.dart';
 import 'package:a7gzle/core/theming/text_styles.dart';
 import 'package:a7gzle/core/theming/dark_mode/app_icon.dart';
@@ -83,8 +85,6 @@ class _TenantScreenState extends State<TenantScreen> {
                     ),
                     // SizedBox(width: 150),
                     Spacer(),
-
-                    AppIcon(path: "assets/svgs/settings/notifaication.svg"),
                   ],
                 ),
               ),

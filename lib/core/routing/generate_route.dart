@@ -11,6 +11,8 @@ import 'package:a7gzle/features/auth/signup/sign_up.dart';
 import 'package:a7gzle/features/details/details_screen.dart';
 import 'package:a7gzle/features/favorite/data/cubit/get_favorite_cubit.dart';
 import 'package:a7gzle/features/favorite/favorite_screen.dart';
+import 'package:a7gzle/features/notification/data/cubit/owner_reservation_cubit.dart';
+import 'package:a7gzle/features/notification/notification_screen.dart';
 import 'package:a7gzle/features/onboarding/onboarding.dart';
 import 'package:a7gzle/features/reservations/data/logic/get_reservation_cubit/get_all_user_reservations_cubit.dart';
 import 'package:a7gzle/features/reservations/user_reservations.dart';
@@ -76,6 +78,15 @@ class GenerateRoute {
         return MaterialPageRoute(
           builder: (BuildContext context) {
             return SearchScreen();
+          },
+        );
+      case RoutesConstant.notification:
+        return MaterialPageRoute(
+          builder: (BuildContext context) {
+            return BlocProvider(
+              create: (context) => getIt<OwnerReservationCubit>(),
+              child: NotificationScreen(),
+            );
           },
         );
       case RoutesConstant.favorite:
