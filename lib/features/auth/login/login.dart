@@ -6,6 +6,8 @@ import 'package:a7gzle/features/auth/login/widgets/dont_have_account.dart';
 import 'package:a7gzle/features/auth/login/widgets/log_in_text_form_feild.dart';
 import 'package:a7gzle/features/auth/login/widgets/login_bloc_listner.dart';
 import 'package:a7gzle/features/auth/signup/widgets/terms_and_condtions.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -33,10 +35,10 @@ class Login extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Log in", style: TextStyles.font24mainbluebold),
+                    Text("Log in".tr(), style: TextStyles.font24mainbluebold),
                     SizedBox(height: 10.h),
                     Text(
-                      "Welcome back , You have been missed !",
+                      "Welcome back , You have been missed !".tr(),
                       style: TextStyles.font17lightgrayregular,
                     ),
                   ],
@@ -52,7 +54,7 @@ class Login extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 25.0.w),
                 child: AppTextButton(
-                  onpressed: () {
+                  onpressed: () async {
                     if (!context
                         .read<LoginCubitCubit>()
                         .formkey
@@ -60,6 +62,9 @@ class Login extends StatelessWidget {
                         .validate()) {
                       return;
                     }
+                    String? fcmToken = await FirebaseMessaging.instance
+                        .getToken();
+                    print(fcmToken);
                     context.read<LoginCubitCubit>().emitLoginState(
                       LoginRequestBody(
                         number: context
@@ -70,10 +75,11 @@ class Login extends StatelessWidget {
                             .read<LoginCubitCubit>()
                             .passController
                             .text,
+                        fcmtoken: fcmToken,
                       ),
                     );
                   },
-                  textButton: "log in",
+                  textButton: "log in".tr(),
                   textStyle: TextStyles.font16whitesemibold,
                 ),
               ),

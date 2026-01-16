@@ -52,21 +52,25 @@ class TextStyles {
   static TextStyle font13lgihtblackmiduem = TextStyle(
     fontSize: 13.sp,
     fontWeight: FontWeightHelper.mideum,
+    fontFamily: "Rubik",
   );
 
   static TextStyle font14blackmideum = TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeightHelper.mideum,
+    fontFamily: "Rubik",
   );
 
   static TextStyle font20blacksemibold = TextStyle(
     fontSize: 20.sp,
     fontWeight: FontWeightHelper.semibold,
+    fontFamily: "Rubik",
   );
 
   static TextStyle font32blacksemibold = TextStyle(
     fontSize: 32.sp,
     fontWeight: FontWeightHelper.semibold,
+    fontFamily: "Rubik",
   );
 
   //  نصوص ثابتة اللون
@@ -75,12 +79,14 @@ class TextStyles {
     fontSize: 18.sp,
     fontWeight: FontWeightHelper.mideum,
     color: Colors.white, // ثابت
+    fontFamily: "Rubik",
   );
 
   static TextStyle font16whitesemibold = TextStyle(
     fontSize: 16.sp,
     fontWeight: FontWeightHelper.semibold,
     color: Colors.white,
+    fontFamily: "Rubik",
   );
 
   static TextStyle font24mainbluebold = TextStyle(
@@ -107,6 +113,7 @@ class TextStyles {
     fontSize: 13.sp,
     fontWeight: FontWeightHelper.semibold,
     color: ColorsManager.mainBlue,
+    fontFamily: "Rubik",
   );
 
   //  نصوص رمادية
@@ -116,35 +123,60 @@ class TextStyles {
     fontSize: 16.sp,
     fontWeight: FontWeightHelper.regular,
     color: ColorsManager.gray,
+    fontFamily: "Rubik",
   );
 
   static TextStyle font16graymiduem = TextStyle(
     fontSize: 16.sp,
     fontWeight: FontWeightHelper.mideum,
     color: ColorsManager.gray,
+    fontFamily: "Rubik",
   );
 
   static TextStyle font17lightgrayregular = TextStyle(
     fontSize: 17.sp,
     fontWeight: FontWeightHelper.regular,
     color: ColorsManager.lightGray,
+    fontFamily: "Rubik",
   );
 
   static TextStyle font13morelightgrayregular = TextStyle(
     fontSize: 13.sp,
     fontWeight: FontWeightHelper.regular,
     color: ColorsManager.morelightgray,
+    fontFamily: "Rubik",
+  );
+  static TextStyle font12morelightgraymiduem = TextStyle(
+    fontSize: 12.sp,
+    fontWeight: FontWeightHelper.mideum,
+    color: ColorsManager.morelightgray,
+    fontFamily: "Rubik",
+  );
+
+  static TextStyle font12morelightgrayregular = TextStyle(
+    fontSize: 12.sp,
+    fontWeight: FontWeightHelper.regular,
+    color: ColorsManager.morelightgray,
+    fontFamily: "Rubik",
+  );
+  static TextStyle font12grayregular = TextStyle(
+    fontSize: 13.sp,
+    fontWeight: FontWeightHelper.semibold,
+    color: ColorsManager.gray,
+    fontFamily: "Rubik",
   );
 
   static TextStyle font14neartograymiduem = TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeightHelper.mideum,
     color: ColorsManager.neartonormalgray,
+    fontFamily: "Rubik",
   );
 
   static TextStyle font16neartograyregular = TextStyle(
     fontSize: 16.sp,
     fontWeight: FontWeightHelper.regular,
     color: ColorsManager.neartonormalgray,
+    fontFamily: "Rubik",
   );
 }

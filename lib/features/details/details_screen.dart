@@ -11,6 +11,7 @@ import 'package:a7gzle/features/details/widget/location.dart';
 import 'package:a7gzle/features/details/widget/overview.dart';
 import 'package:a7gzle/features/details/widget/rate_and_apartment_type.dart';
 import 'package:a7gzle/features/details/widget/user_info.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -19,12 +20,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class Details extends StatelessWidget {
   final Apartment apartment;
   const Details({super.key, required this.apartment});
-
-  // final List imglist = [
-  //   "assets/images/Image_details_2.png",
-  //   "assets/images/Image_details.png",
-  //   "assets/images/Image_details_3.png",
-  // ];
 
   @override
   Widget build(BuildContext context) {
@@ -37,33 +32,13 @@ class Details extends StatelessWidget {
         slivers: [
           SliverAppBar(
             shadowColor: Colors.white,
-            actions: [
-              InkWell(
-                onTap: () {
-                  context.read<FavoriteCubit>().emittogglefavorite(
-                    FavoriteRequest(apartmentid: apartment.id),
-                  );
-                },
-                child: Padding(
-                  padding: EdgeInsets.only(right: 24.0.w),
-                  child: AppIcon(path: "assets/svgs/favorite.svg"),
-                ),
-              ),
-            ],
+
             expandedHeight: 400.h,
             pinned: true,
             backgroundColor: Colors.white,
             elevation: 1,
             flexibleSpace: FlexibleSpaceBar(
               background: CarouselSlider(
-                // items: imglist
-                //     .map(
-                //       (e) => Image.asset(
-                //         e,
-                //         width: double.infinity,
-                //         fit: BoxFit.cover,
-                //       ),
-                //     )
                 items: apartment.images
                     .map(
                       (e) => Image.network(
@@ -85,7 +60,6 @@ class Details extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(apartment.title, style: TextStyles.font24blackbold),
-                  // Text("suuiiiiiiiiiii", style: TextStyles.font24blackbold),
                   SizedBox(height: 16.h),
 
                   BlocProvider(
@@ -109,17 +83,15 @@ class Details extends StatelessWidget {
                   Divider(),
 
                   SizedBox(height: 20.h),
-                  Text("Agent", style: TextStyles.font20blacksemibold),
+                  Text("Agent".tr(), style: TextStyles.font20blacksemibold),
 
                   SizedBox(height: 12),
 
                   UserInfo(owner: apartment.owner),
                   SizedBox(height: 20.h),
                   Overview(description: apartment.description),
-                  // Overview(description: "description"),
                   SizedBox(height: 20.h),
                   Location(location: apartment.city),
-                  // Location(location: "damascus"),
                 ],
               ),
             ),

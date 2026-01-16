@@ -2,10 +2,10 @@ import 'package:a7gzle/core/theming/colors_manager.dart';
 import 'package:a7gzle/core/theming/text_styles.dart';
 import 'package:a7gzle/core/widgets/app_text_button.dart';
 import 'package:a7gzle/core/widgets/app_text_form_feild.dart';
-import 'package:a7gzle/features/auth/signup/data/cubit/sign_up_cubit.dart';
 import 'package:a7gzle/features/details/data/cubit/booking_cubit.dart';
 import 'package:a7gzle/features/details/data/model/booking_request_body.dart';
 import 'package:a7gzle/features/details/widget/book_apartment_listiner.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -61,7 +61,7 @@ class BookingWidget extends StatelessWidget {
                     ),
                     SizedBox(width: 130.w),
                     Text(
-                      "Booking",
+                      "Booking".tr(),
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
@@ -79,10 +79,10 @@ class BookingWidget extends StatelessWidget {
                           controller: context
                               .read<BookingCubit>()
                               .startdatecontroller,
-                          feildname: "start date",
+                          feildname: "start date".tr(),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return "this feild can't be empty";
+                              return "this feild can't be empty".tr();
                             }
                           },
                           onTap: () => setTimeOnForm(context, "startdate"),
@@ -91,16 +91,16 @@ class BookingWidget extends StatelessWidget {
                       SizedBox(width: 30.w),
                       Expanded(
                         child: AppTextFormFeild(
-                          feildname: "end date",
+                          feildname: "end date".tr(),
                           controller: context
                               .read<BookingCubit>()
                               .enddatecontroller,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return "this feild can't be empty";
+                              return "this feild can't be empty".tr();
                             }
                           },
-                          onTap: () => setTimeOnForm(context, "end"),
+                          onTap: () => setTimeOnForm(context, "end".tr()),
                         ),
                       ),
                     ],
@@ -132,7 +132,7 @@ class BookingWidget extends StatelessWidget {
                     );
                   },
                   raduisbutton: 30,
-                  textButton: "Book now",
+                  textButton: "Book now".tr(),
                   textStyle: TextStyles.font16whitesemibold,
                 ),
                 BookApartmentListiner(),
@@ -150,7 +150,7 @@ void setTimeOnForm(BuildContext context, String feildname) async {
     context: context,
     firstDate: DateTime(2026),
     lastDate: DateTime(2029),
-    initialDate: DateTime(2026),
+    initialDate: DateTime(2027),
   );
 
   if (dateTime != null) {

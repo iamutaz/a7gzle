@@ -5,7 +5,7 @@ import 'package:a7gzle/core/theming/dark_mode/app_themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
-
+import 'package:easy_localization/easy_localization.dart';
 
 class Manager extends StatelessWidget {
   final GenerateRoute generateRoute;
@@ -15,19 +15,24 @@ class Manager extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       minTextAdapt: true,
-      designSize: Size(430, 932),
+      designSize: const Size(430, 932),
       builder: (context, child) {
         // التطبيق بغير الثيم وبدي اضمن ان الواجهة بتعيد البناء صح لما الثيم يتغير
         return GetMaterialApp(
-          // غيرت لهي لاني بدي استعمل  getx
+          // هذا السطر مسؤول عن تشغيل الترجمة في التطبيق
+          localizationsDelegates: context.localizationDelegates,
+          supportedLocales: context.supportedLocales, //  اللغات المتاحة
+          locale: context.locale, // اللغة الحالية حسب اختيار اليوزر
+          // غيرت لهي لاني بدي استعمل getx
           onGenerateRoute: generateRoute.generateRoute,
           initialRoute: RoutesConstant.onboarding,
           debugShowCheckedModeBanner: false,
-          //  الثيم الفاتح
+
+          // الثيم الفاتح
           theme: AppThemes.lightTheme,
-          //  الثيم الداكن
+          // الثيم الداكن
           darkTheme: AppThemes.darkTheme,
-          //  تحديد الثيم الحالي (فاتح / داكن / نظام)
+          // تحديد الثيم الحالي (فاتح / داكن / نظام)
           themeMode: ThemeService.instance.themeMode,
         );
       },

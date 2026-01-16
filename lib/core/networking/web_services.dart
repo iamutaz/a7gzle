@@ -1,7 +1,6 @@
 import 'package:a7gzle/core/networking/api_constant.dart';
 import 'package:a7gzle/features/Home/home_screen/owner/data/model/create_apartment_response_body.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/data/models/allapartment_response_body.dart';
-import 'package:a7gzle/features/Home/home_screen/tenant/data/models/apartment.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/data/models/favorite_request.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/data/models/favorite_response_body.dart';
 import 'package:a7gzle/features/Home/settings/data/model/logout_response_body.dart';
@@ -13,6 +12,9 @@ import 'package:a7gzle/features/details/data/model/booking_response_body.dart';
 import 'package:a7gzle/features/details/data/model/rate_request_body.dart';
 import 'package:a7gzle/features/details/data/model/rate_response_body.dart';
 import 'package:a7gzle/features/favorite/data/model/fav_response_body.dart';
+import 'package:a7gzle/features/notification/data/model/owner_reservation_response_body.dart';
+import 'package:a7gzle/features/notification/data/model/reservation_notification_request_body.dart';
+import 'package:a7gzle/features/notification/data/model/reservation_notification_response_body.dart';
 import 'package:a7gzle/features/reservations/data/model/cancel/cancel_reservation_request_body.dart';
 import 'package:a7gzle/features/reservations/data/model/cancel/cancel_reservation_response_body.dart';
 import 'package:a7gzle/features/reservations/data/model/update/update_reservation_request_body.dart';
@@ -99,5 +101,11 @@ abstract class WebServices {
   @PUT(WebServicesConstant.updatereservation)
   Future<UpdateReservationResponseBody> updatereservation(
     @Body() UpdateReservationRequestBody updatereservationrequestbody,
+  );
+  @GET(WebServicesConstant.ownerreservation)
+  Future<OwnerReservationResponseBody> ownerreservations();
+  @POST(WebServicesConstant.ownerreservationcommand)
+  Future<ReservationNotificationResponseBody> handlingReservation(
+    @Body() ReservationNotificationRequestBody request,
   );
 }

@@ -3,7 +3,8 @@ import 'package:a7gzle/core/networking/api_error_handler.dart';
 import 'package:a7gzle/core/routing/routes_constant.dart';
 import 'package:a7gzle/features/Home/home_screen/owner/data/cubit/create_apartment_cubit.dart';
 import 'package:a7gzle/features/Home/home_screen/owner/data/cubit/create_apartment_state.dart';
-import 'package:a7gzle/features/auth/info/widgets/sign_up_lisitner.dart';
+import 'package:a7gzle/features/auth/info/widgets/sign_up_lisitner.dart'
+    hide setupErrorState;
 import 'package:a7gzle/features/auth/login/data/logic/cubit/login_cubit.dart';
 import 'package:a7gzle/features/auth/login/data/logic/cubit/login_state.dart';
 import 'package:flutter/material.dart';

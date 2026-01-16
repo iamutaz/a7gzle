@@ -16,4 +16,6 @@ class WebServicesConstant {
   static const String myreservations = "reservations/my-reservations";
   static const String cancelreservation = "reservations/cancel";
   static const String updatereservation = "reservations/update";
+  static const String ownerreservation = "owner/reservations";
+  static const String ownerreservationcommand = "reservations/approve";
 }

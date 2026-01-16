@@ -12,12 +12,15 @@ class SimpleNumericRangeSlider extends StatelessWidget {
     required this.onChanged,
   });
 
-  // تحديد أدنى وأعلى قيمة رقمية للسلايدر (مثلاً المساحة من 500 لـ 4000)
+  // تحديد أدنى وأعلى قيمة رقمية للسلايدر)
   final double minVal = 0;
   final double maxVal = 4000;
 
   @override
   Widget build(BuildContext context) {
+    // عم نشوف اذا اللغة الحالية هيه العربي
+    final bool isRTL = Directionality.of(context) == TextDirection.rtl;
+
     return LayoutBuilder(
       builder: (context, constraints) {
         // نحسب عرض الويدجت المتاح عشان نحرك نصوص الأرقام بدقة
@@ -53,7 +56,7 @@ class SimpleNumericRangeSlider extends StatelessWidget {
                 children: [
                   // القيمة الأولى (البداية)
                   Positioned(
-                    left: _calculatePosition(values.start, width),
+                    left: _calculatePosition(values.start, width, isRTL),
                     child: Text(
                       values.start.round().toString(), // تحويل الرقم لعدد صحيح
                       style: TextStyles.font14blackmideum.copyWith(
@@ -64,7 +67,7 @@ class SimpleNumericRangeSlider extends StatelessWidget {
                   ),
                   // القيمة الثانية (النهاية)
                   Positioned(
-                    left: _calculatePosition(values.end, width),
+                    left: _calculatePosition(values.end, width, isRTL),
                     child: Text(
                       values.end.round().toString(),
                       style: TextStyles.font14blackmideum.copyWith(
@@ -82,13 +85,14 @@ class SimpleNumericRangeSlider extends StatelessWidget {
     );
   }
 
-  /// دالة حسابية لتحويل القيمة الرقمية إلى "مكان" (بكسل) على الشاشة
-  /// عشان النص يلحق المقبض وين ما راح
-  double _calculatePosition(double value, double width) {
+// نفس الي بالسعر
+  double _calculatePosition(double value, double width, bool isRTL) {
     // نسبة القيمة بالنسبة للمدى الكلي
     double ratio = (value - minVal) / (maxVal - minVal);
-    // تحويل النسبة لبكسلات مع مراعاة حجم المقبض (24)
-    return (ratio * (width - 24)) + 2;
+    // حساب الموقع الأساسي من جهة اليسار
+    double pos = (ratio * (width - 24)) + 2;
+    
+    return isRTL ? (width - pos - 20) : pos;
   }
 }
 
@@ -115,7 +119,6 @@ class _SizeThumbShape extends RangeSliderThumbShape {
     bool? isPressed,
   }) {
     final canvas = context.canvas;
-
 
     final fillPaint = Paint()..color = ColorsManager.offwhite(this.context);
 

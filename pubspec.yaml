@@ -13,6 +13,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+ 
+  # localization 
+  flutter_localizations:
+    sdk: flutter
+  easy_localization: ^3.0.7
 
   #state manggment  
   get: ^4.7.3
@@ -60,6 +65,18 @@ dependencies:
   drop_down_list: ^2.1.0
   #for slidable component
   flutter_slidable: ^4.0.3
+  #fire base stuff
+  firebase_core: ^4.3.0
+  firebase_messaging: ^16.1.0
+  flutter_local_notifications: ^19.5.0
+  #package for splash screen 
+  flutter_native_splash: ^2.4.7
+  #i think it's clear
+  flutter_launcher_icons: ^0.14.4
+  #nav bar for home screen
+  google_nav_bar: ^5.0.7
+
+  
   
   
 
@@ -77,6 +94,13 @@ dev_dependencies:
   #A build system for Dart code generation and modular compilation.
   build_runner: ^2.10.4
 
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/app_icon.png" # مسار أيقونتك هنا
+  min_sdk_android: 21
+  adaptive_icon_background: "#FFFFFF" # لون خلفية الأيقونة لأندرويد
+
 flutter:
 
   # The following line ensures that the Material Icons font is
@@ -90,6 +114,8 @@ flutter:
     - assets/images/
     - assets/svgs/
     - assets/svgs/settings/
+    - assets/svgs/notification/
+    - assets/translations/ 
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
