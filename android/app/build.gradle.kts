@@ -1,4 +1,6 @@
 plugins {
+    id("com.google.gms.google-services")
+
     id("com.android.application")
     id("kotlin-android")
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
@@ -11,6 +13,7 @@ android {
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
+        isCoreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
@@ -41,4 +44,14 @@ android {
 
 flutter {
     source = "../.."
+}
+
+dependencies {
+    // استيراد منصة Firebase BoM (بيساعد بتوافق النسخ)
+    implementation(platform("com.google.firebase:firebase-bom:34.7.0"))
+    
+    // إضافة مكتبة الرسائل (Cloud Messaging)
+    implementation("com.google.firebase:firebase-messaging")
+
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.4")
 }

@@ -1,12 +1,9 @@
-import 'package:a7gzle/core/DI/get_it.dart';
 import 'package:a7gzle/core/helpers/shared_pref_helper.dart';
 import 'package:a7gzle/core/helpers/user_model.dart';
 import 'package:a7gzle/core/theming/colors_manager.dart';
 import 'package:a7gzle/core/theming/text_styles.dart';
-import 'package:a7gzle/core/theming/dark_mode/app_icon.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/data/cubit/allapartment_cubit.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/data/cubit/allapartment_state.dart';
-import 'package:a7gzle/features/Home/home_screen/tenant/data/cubit/favorite_cubit.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/data/models/apartment.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/widgets/bottomlist.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/widgets/downcardlist.dart';
@@ -66,14 +63,23 @@ class _TenantScreenState extends State<TenantScreen> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("Good Morning".tr(), style: TextStyles.font14neartograymiduem.copyWith(color: const Color(0xff8C8E98))),
-                        Text("${user!.firstname} ${user!.lastname}", style: TextStyles.font14blackmideum.copyWith(color: ColorsManager.lightblack(context), fontWeight: FontWeight.w500)),
+                        Text(
+                          "Good Morning".tr(),
+                          style: TextStyles.font14neartograymiduem.copyWith(
+                            color: const Color(0xff8C8E98),
+                          ),
+                        ),
+                        Text(
+                          "${user!.firstname} ${user!.lastname}",
+                          style: TextStyles.font14blackmideum.copyWith(
+                            color: ColorsManager.lightblack(context),
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
                       ],
                     ),
                     // SizedBox(width: 150),
                     Spacer(),
-
-                    AppIcon(path: "assets/svgs/settings/notifaication.svg"),
                   ],
                 ),
               ),
@@ -118,8 +124,22 @@ class _TenantScreenState extends State<TenantScreen> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text("Featured".tr(), style: TextStyles.font18blackbold.copyWith(color: ColorsManager.lightblack(context), fontSize: 20, fontWeight: FontWeight.w600)),
-                                Text("See All".tr(), style: TextStyles.font14blackmideum.copyWith(color: ColorsManager.mainBlue, fontSize: 16, fontWeight: FontWeight.w600)),
+                                Text(
+                                  "Featured".tr(),
+                                  style: TextStyles.font18blackbold.copyWith(
+                                    color: ColorsManager.lightblack(context),
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                Text(
+                                  "See All".tr(),
+                                  style: TextStyles.font14blackmideum.copyWith(
+                                    color: ColorsManager.mainBlue,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
                               ],
                             ),
                           ),
@@ -146,8 +166,22 @@ class _TenantScreenState extends State<TenantScreen> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text("Our Recommendation".tr(), style: TextStyles.font18blackbold.copyWith(color: ColorsManager.lightblack(context), fontSize: 20, fontWeight: FontWeight.w600)),
-                                Text("See All".tr(), style: TextStyles.font14blackmideum.copyWith(color: ColorsManager.mainBlue, fontSize: 16, fontWeight: FontWeight.w600)),
+                                Text(
+                                  "Our Recommendation".tr(),
+                                  style: TextStyles.font18blackbold.copyWith(
+                                    color: ColorsManager.lightblack(context),
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                Text(
+                                  "See All".tr(),
+                                  style: TextStyles.font14blackmideum.copyWith(
+                                    color: ColorsManager.mainBlue,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
                               ],
                             ),
                           ),

@@ -6,8 +6,14 @@ part 'login_request_body.g.dart';
 class LoginRequestBody {
   String number;
   String password;
+  @JsonKey(name: "fcm_token")
+  String? fcmtoken;
 
-  LoginRequestBody({required this.number, required this.password});
+  LoginRequestBody({
+    required this.number,
+    required this.password,
+    this.fcmtoken,
+  });
 
   Map<String, dynamic> toJson() => _$LoginRequestBodyToJson(this);
 

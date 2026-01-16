@@ -1,3 +1,6 @@
+import 'package:a7gzle/core/helpers/extension.dart';
+import 'package:a7gzle/core/routing/routes_constant.dart';
+import 'package:a7gzle/core/theming/dark_mode/app_icon.dart';
 import 'package:a7gzle/core/theming/text_styles.dart';
 import 'package:a7gzle/features/Home/home_screen/owner/widget/create_apartment_form_feild.dart';
 import 'package:a7gzle/features/Home/home_screen/owner/widget/create_apartment_lisitner.dart';
@@ -18,6 +21,16 @@ class OwnerScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                //need to positioned when changing language
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: InkWell(
+                    onTap: () => context.pushNamed(RoutesConstant.notification),
+                    child: AppIcon(
+                      path: "assets/svgs/settings/notification.svg",
+                    ),
+                  ),
+                ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -27,7 +40,8 @@ class OwnerScreen extends StatelessWidget {
                     ),
                     SizedBox(height: 10.h),
                     Text(
-                      "create your apartment listing and showcase all the features that make it unique. Add details, photos,  and start reaching potential tenants easily".tr(),
+                      "create your apartment listing and showcase all the features that make it unique. Add details, photos,  and start reaching potential tenants easily"
+                          .tr(),
                       style: TextStyles.font17lightgrayregular,
                     ),
                   ],

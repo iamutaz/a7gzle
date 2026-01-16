@@ -1,5 +1,4 @@
 import 'package:a7gzle/core/helpers/extension.dart';
-import 'package:a7gzle/core/networking/api_error_handler.dart';
 import 'package:a7gzle/features/details/data/cubit/booking_cubit.dart';
 import 'package:a7gzle/features/details/data/cubit/booking_state.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -19,13 +18,13 @@ class BookApartmentListiner extends StatelessWidget {
       },
       listener: (context, state) {
         state.whenOrNull(
-          bookingloading: () => CircularProgressIndicator(),
+          bookingloading: () => Center(child: CircularProgressIndicator()),
 
           bookingsuccess: (data) {
             context.pop();
             ScaffoldMessenger.of(
               context,
-            ).showSnackBar( SnackBar(content: Text('booked successfuly'.tr())));
+            ).showSnackBar(SnackBar(content: Text('booked successfuly'.tr())));
           },
 
           bookingfailure: (exception) {

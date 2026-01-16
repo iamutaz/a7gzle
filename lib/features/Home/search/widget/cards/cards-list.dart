@@ -45,7 +45,7 @@ class _FilterListCardState extends State<FilterListCard> {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.w),
           child: Text(
-            "Found ${widget.list!.length} Apartments",
+            "found_apartments_count".tr(args: [widget.list!.length.toString()]),
             style: TextStyles.font18blackbold,
           ),
         ),

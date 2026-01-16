@@ -1,6 +1,5 @@
 import 'package:a7gzle/core/helpers/extension.dart';
 import 'package:a7gzle/core/networking/api_error_handler.dart';
-import 'package:a7gzle/features/auth/info/widgets/sign_up_lisitner.dart';
 import 'package:a7gzle/features/details/data/cubit/rate_apartment_cubit.dart';
 import 'package:a7gzle/features/details/data/cubit/rate_apartment_state.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -28,11 +27,9 @@ class RateBlocListiner extends StatelessWidget {
             context.pop();
             ScaffoldMessenger.of(
               context,
-            ).showSnackBar( SnackBar(content: Text('Rated successfully'.tr())));
+            ).showSnackBar(SnackBar(content: Text('Rated successfully'.tr())));
           },
           ratingfailure: (error) {
-            // String message = ApiErrorHandler.handleApiError(error);
-
             setupErrorState(context, error);
           },
         );

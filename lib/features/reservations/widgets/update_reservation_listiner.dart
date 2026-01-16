@@ -1,9 +1,5 @@
 import 'package:a7gzle/core/helpers/extension.dart';
 import 'package:a7gzle/core/networking/api_error_handler.dart';
-import 'package:a7gzle/core/routing/routes_constant.dart';
-import 'package:a7gzle/core/theming/colors_manager.dart';
-import 'package:a7gzle/core/theming/text_styles.dart';
-import 'package:a7gzle/features/auth/info/widgets/sign_up_lisitner.dart';
 import 'package:a7gzle/features/reservations/data/logic/update_reservation/update_reservation_cubit.dart';
 import 'package:a7gzle/features/reservations/data/logic/update_reservation/update_reservation_state.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -29,11 +25,9 @@ class UpdateReservationListiner extends StatelessWidget {
             ScaffoldMessenger.of(
               context,
             ).showSnackBar(SnackBar(content: Text('Updated successfuly'.tr())));
-            // context.pushNamed(RoutesConstant.userreservations);
           },
           updatereservationfailure: (exception) {
             context.pop();
-            // String message = ApiErrorHandler.handleApiError(exception);
 
             setupErrorState(context, exception);
           },

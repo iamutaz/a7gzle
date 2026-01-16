@@ -16,6 +16,9 @@ import 'package:a7gzle/features/details/data/cubit/rate_apartment_cubit.dart';
 import 'package:a7gzle/features/details/data/repo/details_repo_repo.dart';
 import 'package:a7gzle/features/favorite/data/cubit/get_favorite_cubit.dart';
 import 'package:a7gzle/features/favorite/data/repo/favorite_repo.dart';
+import 'package:a7gzle/features/notification/data/cubit/handling_reservation_cubit.dart';
+import 'package:a7gzle/features/notification/data/cubit/owner_reservation_cubit.dart';
+import 'package:a7gzle/features/notification/data/repo/owner_notification_repo.dart';
 import 'package:a7gzle/features/reservations/data/logic/cancel_reservation/cancel_reservation_cubit.dart';
 import 'package:a7gzle/features/reservations/data/logic/get_reservation_cubit/get_all_user_reservations_cubit.dart';
 import 'package:a7gzle/features/reservations/data/logic/update_reservation/update_reservation_cubit.dart';
@@ -85,4 +88,17 @@ void setupinjection() async {
   getIt.registerFactory<GetFavoriteCubit>(() => GetFavoriteCubit(getIt()));
 
   getIt.registerLazySingleton<FavoriteRepo>(() => FavoriteRepo(getIt()));
+
+  //get owner reservations
+  getIt.registerLazySingleton<OwnerNotificationRepo>(
+    () => OwnerNotificationRepo(getIt()),
+  );
+
+  getIt.registerFactory<OwnerReservationCubit>(
+    () => OwnerReservationCubit(getIt()),
+  );
+
+  getIt.registerFactory<HandlingReservationCubit>(
+    () => HandlingReservationCubit(getIt()),
+  );
 }

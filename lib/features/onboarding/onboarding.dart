@@ -17,7 +17,7 @@ class Onboarding extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-   backgroundColor:ColorsManager.scaffoldColor(context),
+      backgroundColor: ColorsManager.scaffoldColor(context),
       body: Column(
         children: [
           const SizedBox(height: 15),

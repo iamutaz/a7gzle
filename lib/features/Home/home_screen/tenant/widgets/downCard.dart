@@ -35,8 +35,9 @@ class Downcard extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(14),
                   child: Image.network(
-               
-                    apartment.images.isNotEmpty ? apartment.images[0].path : "", 
+                    apartment.images.isNotEmpty
+                        ? apartment.images[0].path
+                        : "https://via.placeholder.com/150",
                     height: 154,
                     width: 187,
                     fit: BoxFit.cover,

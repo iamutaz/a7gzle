@@ -136,5 +136,21 @@
   "Save": "حفظ",
   "Clear": "مسح",
   "this feild van't be empty": "هذا الحقل لا يمكن أن يكون فارغاً",
-  "Edit": "تعديل"
+  "Edit": "تعديل",
+  "Reject": "رفض",
+  "Accept": "قبول",
+  "Notifications": "الإشعارات",
+  "Today": "اليوم",
+  "Yesterday": "أمس",
+  "Older": "قديم",
+  "Appointment Success": "تم تأكيد الموعد",
+  "Appointment Rejected": "تم رفض الموعد",
+  "Appointment Cancelled": "تم إلغاء الموعد",
+  "New Appointment Added!": "تم إضافة موعد جديد!",
+  "desc_confirmed": "مبروك - تم تأكيد موعدك مع {}! يبدأ الحجز من {} إلى {}، شقة {}",
+  "desc_cancelled": "{} قام بإلغاء حجز شقة {} للتو",
+  "desc_pending": "شقتك {} تم حجزها بنجاح من قبل {} من تاريخ {} إلى {}",
+  "desc_rejected": "لقد رفضت للتو حجز {}",
+  "desc_finished": "حجز شقة {} قد انتهى",
+  "found_apartments_count": "تم العثور على {} شقة"
 }

@@ -146,6 +146,25 @@ class TextStyles {
     color: ColorsManager.morelightgray,
     fontFamily: "Rubik",
   );
+  static TextStyle font12morelightgraymiduem = TextStyle(
+    fontSize: 12.sp,
+    fontWeight: FontWeightHelper.mideum,
+    color: ColorsManager.morelightgray,
+    fontFamily: "Rubik",
+  );
+
+  static TextStyle font12morelightgrayregular = TextStyle(
+    fontSize: 12.sp,
+    fontWeight: FontWeightHelper.regular,
+    color: ColorsManager.morelightgray,
+    fontFamily: "Rubik",
+  );
+  static TextStyle font12grayregular = TextStyle(
+    fontSize: 13.sp,
+    fontWeight: FontWeightHelper.semibold,
+    color: ColorsManager.gray,
+    fontFamily: "Rubik",
+  );
 
   static TextStyle font14neartograymiduem = TextStyle(
     fontSize: 14.sp,

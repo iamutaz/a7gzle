@@ -54,6 +54,26 @@ class BuildrReservationTypeList extends StatelessWidget {
           oneditTap: () {
             _openupdating(context, reservationBody[index].reservationid);
           },
+          onTap: () {
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  icon: Icon(Icons.calendar_month),
+                  content: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Center(
+                        child: Text(
+                          "${reservationBody[index].startdate} => ${reservationBody[index].enddate}",
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              },
+            );
+          },
           ispending: ispending,
           searchedApartmentCardModel: searchedApartmentCardModel,
         );

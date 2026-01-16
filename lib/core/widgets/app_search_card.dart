@@ -1,7 +1,6 @@
 import 'package:a7gzle/core/theming/colors_manager.dart';
 import 'package:a7gzle/core/theming/text_styles.dart';
 import 'package:a7gzle/core/widgets/searched_apartment_card_model.dart';
-import 'package:a7gzle/features/Home/home_screen/tenant/data/models/apartment.dart';
 import 'package:a7gzle/features/reservations/widgets/cancel_reservation_lisitner.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -12,10 +11,12 @@ class AppSearchCard extends StatelessWidget {
 
   void Function()? oncancelTap;
   void Function()? oneditTap;
+  void Function()? onTap;
   bool? ispending;
   AppSearchCard({
     super.key,
     this.oncancelTap,
+    this.onTap,
     required this.searchedApartmentCardModel,
     this.ispending,
     this.oneditTap,
@@ -25,75 +26,78 @@ class AppSearchCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(left: 20.0.w, right: 20.0.w, bottom: 10.h),
-      child: Container(
-        padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
-        decoration: BoxDecoration(
-          color: ColorsManager.offwhite(context),
-          borderRadius: BorderRadius.circular(25.r),
-        ),
-        child: Row(
-          children: [
-            SizedBox(
-              width: 100,
-              height: 100,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(8.r),
-                child: Image.network(
-                  searchedApartmentCardModel.imagepath,
-                  fit: BoxFit.cover,
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
+          decoration: BoxDecoration(
+            color: ColorsManager.offwhite(context),
+            borderRadius: BorderRadius.circular(25.r),
+          ),
+          child: Row(
+            children: [
+              SizedBox(
+                width: 100,
+                height: 100,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8.r),
+                  child: Image.network(
+                    searchedApartmentCardModel.imagepath,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
-            ),
-            SizedBox(width: 20.w),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  searchedApartmentCardModel.apartmentname,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyles.font18blacksemibold,
-                ),
-
-                Text(
-                  searchedApartmentCardModel.city,
-                  style: TextStyles.font16neartograyregular,
-                ),
-                SizedBox(height: 10.h),
-                ispending == true
-                    ? InkWell(
-                        onTap: oneditTap,
-                        child: Text(
-                          "Edit".tr(),
-                          style: TextStyles.font18mainbluesemibold,
-                        ),
-                      )
-                    : SizedBox.shrink(),
-              ],
-            ),
-            Spacer(),
-            SizedBox(
-              height: 90.h,
-              child: Column(
+              SizedBox(width: 20.w),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  ispending == true
-                      ? IconButton(
-                          icon: Icon(Icons.remove_circle, color: Colors.red),
-                          onPressed: oncancelTap,
-                        )
-                      : SizedBox.shrink(),
-                  Spacer(),
                   Text(
-                    "${searchedApartmentCardModel.price}\$",
-                    style: TextStyles.font18mainbluesemibold,
+                    searchedApartmentCardModel.apartmentname,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyles.font18blacksemibold,
                   ),
+
+                  Text(
+                    searchedApartmentCardModel.city,
+                    style: TextStyles.font16neartograyregular,
+                  ),
+                  SizedBox(height: 10.h),
                   ispending == true
-                      ? CancelReservationLisitner()
+                      ? InkWell(
+                          onTap: oneditTap,
+                          child: Text(
+                            "Edit".tr(),
+                            style: TextStyles.font18mainbluesemibold,
+                          ),
+                        )
                       : SizedBox.shrink(),
                 ],
               ),
-            ),
-          ],
+              Spacer(),
+              SizedBox(
+                height: 90.h,
+                child: Column(
+                  children: [
+                    ispending == true
+                        ? IconButton(
+                            icon: Icon(Icons.remove_circle, color: Colors.red),
+                            onPressed: oncancelTap,
+                          )
+                        : SizedBox.shrink(),
+                    Spacer(),
+                    Text(
+                      "${searchedApartmentCardModel.price}\$",
+                      style: TextStyles.font18mainbluesemibold,
+                    ),
+                    ispending == true
+                        ? CancelReservationLisitner()
+                        : SizedBox.shrink(),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

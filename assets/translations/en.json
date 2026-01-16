@@ -137,11 +137,22 @@
   "Save": "Save",
   "Clear": "Clear",
   "this feild van't be empty": "This field can't be empty",
-"Edit": "Edit"
-
-
-
-
-
-
+"Edit": "Edit",
+"Reject": "Reject",
+  "Accept": "Accept",
+  "Notifications": "Notifications",
+  "Today": "Today",
+  "Yesterday": "Yesterday",
+  "Older": "Older",
+  "Appointment Success": "Appointment Success",
+  "Appointment Rejected": "Appointment Rejected",
+  "Appointment Cancelled": "Appointment Cancelled",
+  "New Appointment Added!": "New Appointment Added!",
+  "New Notifiaction!!": "New Notification!!",
+  "desc_confirmed": "Congratulations - your appointment is confirmed with {}! the Reservation start from {} to {}, {} apartment",
+  "desc_cancelled": "{} just cancelled {} Reservation",
+  "desc_pending": "Your apartment {} has been successfully booked by {} from {} to {}.",
+  "desc_rejected": "You've just rejected {} reservation",
+  "desc_finished": "{} reservation is finished",
+  "found_apartments_count": "Found {} Apartments"
 }

@@ -1,4 +1,9 @@
+import 'package:a7gzle/core/helpers/extension.dart';
+import 'package:a7gzle/core/theming/text_styles.dart';
 import 'package:dio/dio.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+
 import 'api_error_model.dart';
 
 class ApiErrors {
@@ -206,38 +211,23 @@ class ApiInternalStatus {
   static const int FAILURE = 1;
 }
 
-// import 'package:dio/dio.dart';
-
-// class ApiErrorHandler {
-//   static String handleApiError(Exception e) {
-//     if (e is DioException) {
-//       if (e.type == DioExceptionType.connectionTimeout ||
-//           e.type == DioExceptionType.receiveTimeout) {
-//         return "Check Your Internet Connection";
-//       }
-
-//       if (e.response != null) {
-//         final status = e.response!.statusCode;
-
-//         switch (status) {
-//           case 400:
-//             return "Bad request, try again";
-//           case 401:
-//             return "check your inputs , You've enter wrong information";
-//           case 403:
-//             return "You don't have access to reach there";
-//           case 404:
-//             return "Not Found";
-//           case 500:
-//             return "Server Error , Try Again later";
-//           default:
-//             return "unexcpectable error";
-//         }
-//       }
-
-//       return "unexcpectable error";
-//     } else {
-//       return "unexcpectable error";
-//     }
-//   }
-// }
+void setupErrorState(BuildContext context, String errormessage) {
+  context.pop();
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        icon: Icon(Icons.error, color: Colors.red),
+        content: Text(errormessage, style: TextStyles.font18blackmideum),
+        actions: [
+          TextButton(
+            onPressed: () {
+              context.pop();
+            },
+            child: Text("back".tr()),
+          ),
+        ],
+      );
+    },
+  );
+}

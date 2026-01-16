@@ -21,12 +21,6 @@ class Details extends StatelessWidget {
   final Apartment apartment;
   const Details({super.key, required this.apartment});
 
-  // final List imglist = [
-  //   "assets/images/Image_details_2.png",
-  //   "assets/images/Image_details.png",
-  //   "assets/images/Image_details_3.png",
-  // ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,33 +32,13 @@ class Details extends StatelessWidget {
         slivers: [
           SliverAppBar(
             shadowColor: Colors.white,
-            actions: [
-              InkWell(
-                onTap: () {
-                  context.read<FavoriteCubit>().emittogglefavorite(
-                    FavoriteRequest(apartmentid: apartment.id),
-                  );
-                },
-                child: Padding(
-                  padding: EdgeInsets.only(right: 24.0.w),
-                  child: AppIcon(path: "assets/svgs/favorite.svg"),
-                ),
-              ),
-            ],
+
             expandedHeight: 400.h,
             pinned: true,
             backgroundColor: Colors.white,
             elevation: 1,
             flexibleSpace: FlexibleSpaceBar(
               background: CarouselSlider(
-                // items: imglist
-                //     .map(
-                //       (e) => Image.asset(
-                //         e,
-                //         width: double.infinity,
-                //         fit: BoxFit.cover,
-                //       ),
-                //     )
                 items: apartment.images
                     .map(
                       (e) => Image.network(
@@ -86,7 +60,6 @@ class Details extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(apartment.title, style: TextStyles.font24blackbold),
-                  // Text("suuiiiiiiiiiii", style: TextStyles.font24blackbold),
                   SizedBox(height: 16.h),
 
                   BlocProvider(
@@ -117,10 +90,8 @@ class Details extends StatelessWidget {
                   UserInfo(owner: apartment.owner),
                   SizedBox(height: 20.h),
                   Overview(description: apartment.description),
-                  // Overview(description: "description"),
                   SizedBox(height: 20.h),
                   Location(location: apartment.city),
-                  // Location(location: "damascus"),
                 ],
               ),
             ),
