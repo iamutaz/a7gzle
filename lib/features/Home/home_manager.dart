@@ -1,7 +1,6 @@
 import 'package:a7gzle/core/DI/get_it.dart';
-import 'package:a7gzle/core/helpers/user_model.dart';
+import 'package:a7gzle/core/theming/colors_manager.dart';
 import 'package:a7gzle/features/Home/home_screen/owner/data/cubit/create_apartment_cubit.dart';
-import 'package:a7gzle/features/Home/home_screen/owner/data/cubit/create_apartment_state.dart';
 import 'package:a7gzle/features/Home/home_screen/owner/owner_screen.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/data/cubit/allapartment_cubit.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/data/cubit/favorite_cubit.dart';
@@ -9,9 +8,10 @@ import 'package:a7gzle/features/Home/home_screen/tenant/tenant_screen.dart';
 import 'package:a7gzle/features/Home/search/search_screen.dart';
 import 'package:a7gzle/features/Home/settings/data/cubit/logout_cubit.dart';
 import 'package:a7gzle/features/Home/settings/settings_screen.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 
 class HomeManager extends StatefulWidget {
   final String usertype;
@@ -45,7 +45,7 @@ class _HomeManagerState extends State<HomeManager> {
         ),
         BlocProvider(
           create: (context) => getIt<LogoutCubit>(),
-          child: SettingsScreen(),
+          child: SettingsScreen(usertype: widget.usertype),
         ),
       ];
     } else {
@@ -57,7 +57,7 @@ class _HomeManagerState extends State<HomeManager> {
         // SearchScreen(),
         BlocProvider(
           create: (context) => getIt<LogoutCubit>(),
-          child: SettingsScreen(),
+          child: SettingsScreen(usertype: widget.usertype),
         ),
       ];
     }
@@ -67,98 +67,45 @@ class _HomeManagerState extends State<HomeManager> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: pages[currentindex],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: currentindex,
-        onTap: (index) {
-          setState(() {
-            currentindex = index;
-          });
-        },
-
-        elevation: 0,
-        selectedItemColor: Color(0xff0061FF),
-        unselectedItemColor: Color(0xff8C8E98),
-        selectedFontSize: 12,
-        unselectedFontSize: 12,
-        type: BottomNavigationBarType.fixed,
-        items: widget.usertype == "tenant"
-            ? const [
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.home_outlined),
-                  activeIcon: Icon(Icons.home),
-                  label: 'Home',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.search_outlined),
-                  activeIcon: Icon(Icons.search),
-                  label: 'Explore',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.person_outline),
-                  activeIcon: Icon(Icons.person),
-                  label: 'Profile',
-                ),
-              ]
-            : const [
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.add),
-                  activeIcon: Icon(Icons.add),
-                  label: 'Add',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.person_outline),
-                  activeIcon: Icon(Icons.person),
-                  label: 'Profile',
-                ),
-              ],
+      bottomNavigationBar: Padding(
+        padding: EdgeInsets.only(bottom: 26.0, top: 10),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            GNav(
+              selectedIndex: currentindex,
+              onTabChange: (index) {
+                setState(() {
+                  currentindex = index;
+                });
+              },
+              gap: 4,
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+              tabBackgroundColor: ColorsManager.mainBlue,
+              activeColor: ColorsManager.offwhite(context),
+              color: const Color(0xff8C8E98),
+              iconSize: 24,
+              tabMargin: EdgeInsets.symmetric(horizontal: 15.w),
+              textStyle: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w500,
+                color: ColorsManager.offwhite(context),
+              ),
+              tabs: widget.usertype == "tenant"
+                  ? const [
+                      GButton(icon: Icons.home_outlined, text: 'Home'),
+                      GButton(icon: Icons.search_outlined, text: 'Explore'),
+                      GButton(icon: Icons.person_outline, text: 'Profile'),
+                    ]
+                  : const [
+                      GButton(icon: Icons.home, text: 'Home'),
+                      GButton(icon: Icons.person_outline, text: 'Profile'),
+                    ],
+            ),
+          ],
+        ),
       ),
     );
   }
 }
-
-
-
-
-
-// import 'package:flutter/material.dart';
-
-// class Home extends StatelessWidget {
-//   Home({super.key});
-
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       backgroundColor: Colors.white,
-
-//       bottomNavigationBar: BottomNavigationBar(
-//         currentIndex: 0,
-//         onTap: (index) {},
-//         backgroundColor: Colors.white,
-//         elevation: 0,
-//         selectedItemColor: Color(0xff0061FF),
-//         unselectedItemColor: Color(0xff8C8E98),
-//         selectedFontSize: 12,
-//         unselectedFontSize: 12,
-//         type: BottomNavigationBarType.fixed,
-//         items: const [
-//           BottomNavigationBarItem(
-//             icon: Icon(Icons.home_outlined),
-//             activeIcon: Icon(Icons.home),
-//             label: 'Home',
-//           ),
-//           BottomNavigationBarItem(
-//             icon: Icon(Icons.search_outlined),
-//             activeIcon: Icon(Icons.search),
-//             label: 'Explore',
-//           ),
-//           BottomNavigationBarItem(
-//             icon: Icon(Icons.person_outline),
-//             activeIcon: Icon(Icons.person),
-//             label: 'Profile',
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }

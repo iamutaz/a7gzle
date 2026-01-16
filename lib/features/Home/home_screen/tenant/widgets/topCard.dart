@@ -6,7 +6,6 @@ import 'package:a7gzle/features/Home/home_screen/tenant/data/cubit/favorite_cubi
 import 'package:a7gzle/features/Home/home_screen/tenant/data/cubit/favorite_state.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/data/models/apartment.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/data/models/favorite_request.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

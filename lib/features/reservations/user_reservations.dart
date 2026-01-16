@@ -1,13 +1,11 @@
 import 'package:a7gzle/core/DI/get_it.dart';
 import 'package:a7gzle/core/theming/colors_manager.dart';
-import 'package:a7gzle/core/theming/dark_mode/app_themes.dart';
 import 'package:a7gzle/core/theming/text_styles.dart';
 import 'package:a7gzle/features/reservations/data/logic/cancel_reservation/cancel_reservation_cubit.dart';
 import 'package:a7gzle/features/reservations/data/logic/get_reservation_cubit/get_all_user_reservations_cubit.dart';
 import 'package:a7gzle/features/reservations/data/logic/get_reservation_cubit/get_all_user_reservations_state.dart';
 import 'package:a7gzle/features/reservations/data/model/user_reservations_response_body.dart';
 import 'package:a7gzle/features/reservations/widgets/build_reservation_type_pending_list.dart';
-import 'package:a7gzle/features/reservations/widgets/cancel_reservation_lisitner.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -29,7 +27,6 @@ class _UserReservationsState extends State<UserReservations> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //TODO:here is the color that we want to user in any background color
       backgroundColor: ColorsManager.scaffoldColor(context),
       appBar: AppBar(
         title: Text("Check Your reservations"),

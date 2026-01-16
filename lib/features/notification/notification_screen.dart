@@ -4,7 +4,6 @@ import 'package:a7gzle/features/notification/data/cubit/handling_reservation_cub
 import 'package:a7gzle/features/notification/data/model/notification_section.dart';
 import 'package:a7gzle/features/notification/data/helper/notification_grouping_helper.dart';
 import 'package:a7gzle/features/notification/widget/owner_notification_container_body.dart';
-import 'package:a7gzle/features/auth/info/widgets/sign_up_lisitner.dart';
 import 'package:a7gzle/features/notification/data/cubit/owner_reservation_cubit.dart';
 import 'package:a7gzle/features/notification/data/cubit/owner_reservation_state.dart';
 import 'package:a7gzle/features/notification/data/model/owner_reservation_response_body.dart';

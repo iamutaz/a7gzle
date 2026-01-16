@@ -1,4 +1,3 @@
-import 'package:a7gzle/features/Home/home_screen/tenant/data/models/apartment.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'create_apartment_response_body.g.dart';

@@ -1,14 +1,9 @@
-import 'package:a7gzle/core/DI/get_it.dart';
-import 'package:a7gzle/core/helpers/extension.dart';
 import 'package:a7gzle/core/helpers/shared_pref_helper.dart';
 import 'package:a7gzle/core/helpers/user_model.dart';
-import 'package:a7gzle/core/routing/routes_constant.dart';
 import 'package:a7gzle/core/theming/colors_manager.dart';
 import 'package:a7gzle/core/theming/text_styles.dart';
-import 'package:a7gzle/core/theming/dark_mode/app_icon.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/data/cubit/allapartment_cubit.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/data/cubit/allapartment_state.dart';
-import 'package:a7gzle/features/Home/home_screen/tenant/data/cubit/favorite_cubit.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/data/models/apartment.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/widgets/bottomlist.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/widgets/downcardlist.dart';

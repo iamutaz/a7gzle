@@ -1,5 +1,4 @@
 import 'package:a7gzle/core/helpers/extension.dart';
-import 'package:a7gzle/core/networking/api_error_handler.dart';
 import 'package:a7gzle/core/routing/routes_constant.dart';
 import 'package:a7gzle/core/theming/text_styles.dart';
 import 'package:a7gzle/features/auth/signup/data/cubit/sign_up_cubit.dart';

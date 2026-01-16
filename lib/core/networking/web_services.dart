@@ -1,7 +1,6 @@
 import 'package:a7gzle/core/networking/api_constant.dart';
 import 'package:a7gzle/features/Home/home_screen/owner/data/model/create_apartment_response_body.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/data/models/allapartment_response_body.dart';
-import 'package:a7gzle/features/Home/home_screen/tenant/data/models/apartment.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/data/models/favorite_request.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/data/models/favorite_response_body.dart';
 import 'package:a7gzle/features/Home/settings/data/model/logout_response_body.dart';

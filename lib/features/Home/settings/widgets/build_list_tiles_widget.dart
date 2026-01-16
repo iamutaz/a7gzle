@@ -15,7 +15,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart' hide Trans;
 
 class BuildListTilesWidget extends StatefulWidget {
-  const BuildListTilesWidget({super.key});
+  final String usertype;
+  const BuildListTilesWidget({super.key, required this.usertype});
 
   @override
   State<BuildListTilesWidget> createState() => _BuildListTilesWidgetState();
@@ -31,19 +32,26 @@ class _BuildListTilesWidgetState extends State<BuildListTilesWidget> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          ListTile(
-            onTap: () {
-              context.pushNamed(RoutesConstant.userreservations);
-            },
-            leading: const AppIcon(path: "assets/svgs/settings/booking.svg"),
-            title: Text(
-              "my booking".tr(),
-              style: TextStyles.font18blackbold.copyWith(
-                color: dynamicTextColor,
-              ),
-            ),
-            trailing: Icon(Icons.arrow_forward_ios, color: dynamicTextColor),
-          ),
+          widget.usertype == "tenant"
+              ? ListTile(
+                  onTap: () {
+                    context.pushNamed(RoutesConstant.userreservations);
+                  },
+                  leading: const AppIcon(
+                    path: "assets/svgs/settings/booking.svg",
+                  ),
+                  title: Text(
+                    "my booking".tr(),
+                    style: TextStyles.font18blackbold.copyWith(
+                      color: dynamicTextColor,
+                    ),
+                  ),
+                  trailing: Icon(
+                    Icons.arrow_forward_ios,
+                    color: dynamicTextColor,
+                  ),
+                )
+              : SizedBox.shrink(),
           GestureDetector(
             onTap: () => context.pushNamed(RoutesConstant.favorite),
             child: ListTile(
@@ -74,41 +82,40 @@ class _BuildListTilesWidgetState extends State<BuildListTilesWidget> {
             ),
             trailing: Icon(Icons.arrow_forward_ios, color: dynamicTextColor),
           ),
-          ListTile(
-            leading: const AppIcon(
-              path: "assets/svgs/settings/notification.svg",
-            ),
-            title: Text(
-              "notifications".tr(),
-              style: TextStyles.font18blackbold.copyWith(
-                color: dynamicTextColor,
+          widget.usertype == "owner"
+              ? GestureDetector(
+                  onTap: () => context.pushNamed(RoutesConstant.notification),
+                  child: ListTile(
+                    leading: const AppIcon(
+                      path: "assets/svgs/settings/notification.svg",
+                    ),
+
+                    title: Text(
+                      "notifications".tr(),
+                      style: TextStyles.font18blackbold.copyWith(
+                        color: dynamicTextColor,
+                      ),
+                    ),
+                    trailing: Icon(
+                      Icons.arrow_forward_ios,
+                      color: dynamicTextColor,
+                    ),
+                  ),
+                )
+              : SizedBox.shrink(),
+          InkWell(
+            onTap: () {
+              _languageBottom(context);
+            },
+            child: ListTile(
+              leading: const AppIcon(path: "assets/svgs/settings/language.svg"),
+              title: Text(
+                "language".tr(),
+                style: TextStyles.font18blackbold.copyWith(
+                  color: dynamicTextColor,
+                ),
               ),
-            ),
-            trailing: Icon(Icons.arrow_forward_ios, color: dynamicTextColor),
-          ),
-          ListTile(
-            leading: const AppIcon(path: "assets/svgs/settings/security.svg"),
-            title: Text(
-              "security".tr(),
-              style: TextStyles.font18blackbold.copyWith(
-                color: dynamicTextColor,
-              ),
-            ),
-            trailing: Icon(Icons.arrow_forward_ios, color: dynamicTextColor),
-          ),
-          ListTile(
-            leading: const AppIcon(path: "assets/svgs/settings/language.svg"),
-            title: Text(
-              "language".tr(),
-              style: TextStyles.font18blackbold.copyWith(
-                color: dynamicTextColor,
-              ),
-            ),
-            trailing: InkWell(
-              onTap: () {
-                _languageBottom(context);
-              },
-              child: Icon(Icons.arrow_forward_ios, color: dynamicTextColor),
+              trailing: Icon(Icons.arrow_forward_ios, color: dynamicTextColor),
             ),
           ),
           ListTile(

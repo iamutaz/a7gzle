@@ -27,7 +27,7 @@ class OwnerScreen extends StatelessWidget {
                   child: InkWell(
                     onTap: () => context.pushNamed(RoutesConstant.notification),
                     child: AppIcon(
-                      path: "assets/svgs/settings/notifaication.svg",
+                      path: "assets/svgs/settings/notification.svg",
                     ),
                   ),
                 ),

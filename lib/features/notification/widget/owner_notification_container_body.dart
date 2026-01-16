@@ -100,7 +100,7 @@ class OwnerNotificationContainerBody extends StatelessWidget {
           ),
           Expanded(
             child: Padding(
-              padding: EdgeInsets.only(right: 20.0.w),
+              padding: EdgeInsets.only(right: 20.0.w, left: 10.w),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -122,15 +122,17 @@ class OwnerNotificationContainerBody extends StatelessWidget {
                   ),
                   SizedBox(height: 10.h),
 
-                  Text(
-                    getNotificationdescription(
-                      status,
-                      tenantname,
-                      startdate,
-                      enddate,
-                      apartmentname,
+                  Expanded(
+                    child: Text(
+                      getNotificationdescription(
+                        status,
+                        tenantname,
+                        startdate,
+                        enddate,
+                        apartmentname,
+                      ),
+                      style: TextStyles.font12grayregular,
                     ),
-                    style: TextStyles.font12grayregular,
                   ),
                 ],
               ),

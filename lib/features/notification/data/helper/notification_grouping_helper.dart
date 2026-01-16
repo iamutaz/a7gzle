@@ -83,7 +83,7 @@ String getNotificationdescription(
 ) {
   switch (status) {
     case "confirmed":
-      return "Congratulations - your appointment is confirmed with $tenantName ! the Reservation start from $startDate to $endDate , $apartmentName apartment..";
+      return "Congratulations - your appointment is confirmed with $tenantName ! the Reservation start from $startDate to $endDate , $apartmentName apartment";
     case "cancelled":
       return "$tenantName just cancelled $apartmentName Reservation ";
     case "pending":

@@ -1,7 +1,4 @@
-import 'package:a7gzle/core/helpers/shared_pref_helper.dart';
-import 'package:a7gzle/core/helpers/user_model.dart';
 import 'package:a7gzle/core/networking/api_result.dart';
-import 'package:a7gzle/features/auth/login/data/model/login_response_body.dart';
 import 'package:a7gzle/features/auth/signup/data/cubit/sign_up_state.dart';
 import 'package:a7gzle/features/auth/signup/data/model/signup_request_body.dart';
 import 'package:a7gzle/features/auth/signup/data/repo/sign_up_repo.dart';
