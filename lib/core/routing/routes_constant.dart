@@ -8,4 +8,5 @@ class RoutesConstant {
   static const String search = "/search";
   static const String createapartment = "/createapartment";
   static const String userreservations = "/userreservations";
+  static const String favorite = "/favorite";
 }

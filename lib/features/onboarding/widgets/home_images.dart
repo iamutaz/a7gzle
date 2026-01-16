@@ -20,11 +20,12 @@ class HomeImages extends StatelessWidget {
             shadowColor.withOpacity(0.9), // شفافية خفيفة جداً
             shadowColor.withOpacity(0.0), // شفافية كاملة (بيختفي)
           ],
+          //بتحدد وين كل لون يبدأ وين يخلص
           stops: const [
             0.15,
             0.4,
             0.6,
-          ], // المسافات القديمة اللي كانت بتعمل دمج سريع
+          ], 
         ),
       ),
       padding: const EdgeInsets.symmetric(horizontal: 10),

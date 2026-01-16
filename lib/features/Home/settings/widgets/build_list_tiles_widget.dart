@@ -44,15 +44,18 @@ class _BuildListTilesWidgetState extends State<BuildListTilesWidget> {
             ),
             trailing: Icon(Icons.arrow_forward_ios, color: dynamicTextColor),
           ),
-          ListTile(
-            leading: const AppIcon(path: "assets/svgs/settings/payments.svg"),
-            title: Text(
-              "payments".tr(),
-              style: TextStyles.font18blackbold.copyWith(
-                color: dynamicTextColor,
+         GestureDetector(
+            onTap: () => context.pushNamed(RoutesConstant.favorite),
+            child: ListTile(
+              leading: const AppIcon(path: "assets/svgs/favorite.svg"),
+              title: Text(
+                "Favorite".tr(),
+                style: TextStyles.font18blackbold.copyWith(
+                  color: dynamicTextColor,
+                ),
               ),
+              trailing: Icon(Icons.arrow_forward_ios, color: dynamicTextColor),
             ),
-            trailing: Icon(Icons.arrow_forward_ios, color: dynamicTextColor),
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 12.0.w),

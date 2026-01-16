@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 class AppThemes {
   static const Color lightBg = Color(0xFFF6F5F5); // خلفية اللايت
   static const Color darkBg = Color(0xFF1C1C1E);  // خلفية الدارك 
+  
   static final lightTheme = _buildTheme(
     brightness: Brightness.light,
     bg: lightBg,
@@ -34,12 +35,10 @@ class AppThemes {
       colorScheme: ColorScheme.fromSeed(
         seedColor: const Color(0xFF247CFF),
         brightness: brightness,
-        // لون الأسطح (الكروت): بالدارك نستخدم (اليسار بالصورة)
         surface: isDark ? const Color(0xFF28272C) : Colors.white,
-        onSurface: contentColor, // هذا اللون الذي يسحبه الـ AppIcon للأيقونات
+        onSurface: contentColor, 
       ),
 
-      iconTheme: IconThemeData(color: contentColor, size: 24),
 
       appBarTheme: AppBarTheme(
         backgroundColor: bg,

@@ -8,6 +8,7 @@ import 'package:a7gzle/features/reservations/data/logic/get_reservation_cubit/ge
 import 'package:a7gzle/features/reservations/data/model/user_reservations_response_body.dart';
 import 'package:a7gzle/features/reservations/widgets/build_reservation_type_pending_list.dart';
 import 'package:a7gzle/features/reservations/widgets/cancel_reservation_lisitner.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -32,7 +33,7 @@ class _UserReservationsState extends State<UserReservations> {
       //TODO:here is the color that we want to user in any background color
       backgroundColor: ColorsManager.scaffoldColor(context),
       appBar: AppBar(
-        title: Text("Check Your reservations"),
+        title: Text("Check Your reservations".tr()),
         backgroundColor: ColorsManager.scaffoldColor(context),
       ),
       body:
@@ -71,7 +72,7 @@ class _UserReservationsState extends State<UserReservations> {
                   );
                 },
                 reservationsfailure: (error) {
-                  return Center(child: Text("not working"));
+                  return Center(child: Text("not working".tr()));
                 },
               );
             },
@@ -87,7 +88,7 @@ class _UserReservationsState extends State<UserReservations> {
         padding: EdgeInsets.only(left: 20.w, right: 20.w, bottom: 10.h),
         child: userreservations.rejected.isNotEmpty
             ? Text(
-                'rejected',
+                'rejected'.tr(),
                 style: TextStyles.font20blacksemibold.copyWith(
                   fontFamily: "Rubik",
                 ),
@@ -105,7 +106,7 @@ class _UserReservationsState extends State<UserReservations> {
         padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
         child: userreservations.pending.isNotEmpty
             ? Text(
-                'Pending',
+                'Pending'.tr(),
                 style: TextStyles.font20blacksemibold.copyWith(
                   fontFamily: "Rubik",
                 ),
@@ -123,7 +124,7 @@ class _UserReservationsState extends State<UserReservations> {
         padding: EdgeInsets.only(left: 20.w, right: 20.w, bottom: 10.h),
         child: userreservations.confirmed.isNotEmpty
             ? Text(
-                'confirmed',
+                'confirmed'.tr(),
                 style: TextStyles.font20blacksemibold.copyWith(
                   fontFamily: "Rubik",
                 ),
@@ -141,7 +142,7 @@ class _UserReservationsState extends State<UserReservations> {
         padding: EdgeInsets.only(left: 20.w, right: 20.w, bottom: 10.h),
         child: userreservations.cancelled.isNotEmpty
             ? Text(
-                'canceld',
+                'canceld'.tr(),
                 style: TextStyles.font20blacksemibold.copyWith(
                   fontFamily: "Rubik",
                 ),

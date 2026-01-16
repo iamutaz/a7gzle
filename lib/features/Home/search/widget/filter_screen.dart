@@ -228,61 +228,73 @@ class _FilterScreenState extends State<FilterScreen> {
                   width: double.infinity,
                   height: 54,
                   child: ElevatedButton(
-                  onPressed: () async {
-  Map<String, dynamic> filterParams = {};
+                    onPressed: () async {
+                      Map<String, dynamic> filterParams = {};
 
-  if (cityController.text.isNotEmpty) {
-    filterParams['city'] = cityController.text;
-  }
+                      if (cityController.text.isNotEmpty) {
+                        filterParams['city'] = cityController.text;
+                      }
 
-  if (priceRange.start != 0 || priceRange.end != 450) {
-    filterParams['min_price'] = _getActualPrice(priceRange.start).round();
-    filterParams['max_price'] = _getActualPrice(priceRange.end).round();
-  }
+                      if (priceRange.start != 0 || priceRange.end != 450) {
+                        filterParams['min_price'] = _getActualPrice(
+                          priceRange.start,
+                        ).round();
+                        filterParams['max_price'] = _getActualPrice(
+                          priceRange.end,
+                        ).round();
+                      }
 
-  if (bedrooms > 0) {
-    filterParams['min_rooms'] = 0;
-    filterParams['max_rooms'] = bedrooms; 
-  }
-  
-  if (bathrooms > 0) {
-    filterParams['min_bathrooms'] = 0;
-    filterParams['max_bathrooms'] = bathrooms;
-  }
+                      if (bedrooms > 0) {
+                        filterParams['min_rooms'] = 0;
+                        filterParams['max_rooms'] = bedrooms;
+                      }
 
-  if (sizeRange.start != 0 || sizeRange.end != 4000) {
-    filterParams['min_area'] = sizeRange.start.round();
-    filterParams['max_area'] = sizeRange.end.round();
-  }
+                      if (bathrooms > 0) {
+                        filterParams['min_bathrooms'] = 0;
+                        filterParams['max_bathrooms'] = bathrooms;
+                      }
 
-  try {
+                      if (sizeRange.start != 0 || sizeRange.end != 4000) {
+                        filterParams['min_area'] = sizeRange.start.round();
+                        filterParams['max_area'] = sizeRange.end.round();
+                      }
 
-    List<Apartment> results = await sendFilterRequest(filterParams);
+                      try {
+                        List<Apartment> results = await sendFilterRequest(
+                          filterParams,
+                        );
 
-    debugPrint("=============== FILTER RESULTS ============");
-    debugPrint("Total Apartments Found: ${results.length}");
+                        debugPrint(
+                          "=============== FILTER RESULTS ============",
+                        );
+                        debugPrint("Total Apartments Found: ${results.length}");
 
-    for (var i = 0; i < results.length; i++) {
-      debugPrint("------- Apartment #${i + 1} -------");
-      debugPrint("ID: ${results[i].id}");
-      debugPrint("Title: ${results[i].title}");
-      debugPrint("Type: ${results[i].type}"); 
-      debugPrint("Price: ${results[i].price}");
-      debugPrint("Area: ${results[i].area} m²");
-      debugPrint("Rooms: ${results[i].rooms} | Bathrooms: ${results[i].bathrooms}");
-      debugPrint("Status: ${results[i].status}");
-      debugPrint("Location: ${results[i].city}"); 
-      debugPrint("Description: ${results[i].description}");
-      debugPrint("Image URL: ${results[i].images.isNotEmpty ? results[i].images[0].path : "No Image"}");
-    }
-    debugPrint("==========================================");
+                        for (var i = 0; i < results.length; i++) {
+                          debugPrint("------- Apartment #${i + 1} -------");
+                          debugPrint("ID: ${results[i].id}");
+                          debugPrint("Title: ${results[i].title}");
+                          debugPrint("Type: ${results[i].type}");
+                          debugPrint("Price: ${results[i].price}");
+                          debugPrint("Area: ${results[i].area} m²");
+                          debugPrint(
+                            "Rooms: ${results[i].rooms} | Bathrooms: ${results[i].bathrooms}",
+                          );
+                          debugPrint("Status: ${results[i].status}");
+                          debugPrint("Location: ${results[i].city}");
+                          debugPrint("Description: ${results[i].description}");
+                          debugPrint(
+                            "Image URL: ${results[i].images.isNotEmpty ? results[i].images[0].path : "No Image"}",
+                          );
+                        }
+                        debugPrint(
+                          "==========================================",
+                        );
 
-    if (mounted) Navigator.of(context).pop(results);
-    
-  } catch (e) {
-    debugPrint(" Filter Error: $e");
-  }
-},
+                        if (mounted) Navigator.of(context).pop(results);
+                      } catch (e) {
+                        debugPrint(" Filter Error: $e");
+                      }
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xff0061FF),
                       shape: RoundedRectangleBorder(

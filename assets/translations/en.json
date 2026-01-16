@@ -121,7 +121,24 @@
   "Agent": "Agent",
   "beds_count": "{} beds",
   "bath_count": "{} bath",
-  "area_size": "{} hec"
+  "area_size": "{} hec",
+  "Favorite": "Favorite",
+  "Try add some !!":"Try add some !!",
+  "not working": "not working",
+  "Updated successfuly": "Updated successfuly",
+ "Update": "Update",
+  "Update now": "Update Now",
+  "Check Your reservations": "Check Your Reservations",
+  "Pending": "Pending",
+  "confirmed": "Confirmed",
+  "canceld": "Cancelled",
+  "rejected": "Rejected",
+  "Choose your city": "Choose your city",
+  "Save": "Save",
+  "Clear": "Clear",
+  "this feild van't be empty": "This field can't be empty",
+"Edit": "Edit"
+
 
 
 

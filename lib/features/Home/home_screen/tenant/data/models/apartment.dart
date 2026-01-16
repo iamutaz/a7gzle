@@ -16,12 +16,15 @@ class Apartment {
   int bathrooms;
   String status;
   String type;
+  @JsonKey(name: "is_favorite")
+  bool isfavorite;
 
   List<ApartmentImage> images;
   Owner owner;
 
   Apartment({
     this.rate,
+    required this.isfavorite,
     required this.type,
     required this.id,
     required this.title,

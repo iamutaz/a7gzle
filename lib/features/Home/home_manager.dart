@@ -4,6 +4,7 @@ import 'package:a7gzle/features/Home/home_screen/owner/data/cubit/create_apartme
 import 'package:a7gzle/features/Home/home_screen/owner/data/cubit/create_apartment_state.dart';
 import 'package:a7gzle/features/Home/home_screen/owner/owner_screen.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/data/cubit/allapartment_cubit.dart';
+import 'package:a7gzle/features/Home/home_screen/tenant/data/cubit/favorite_cubit.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/tenant_screen.dart';
 import 'package:a7gzle/features/Home/search/search_screen.dart';
 import 'package:a7gzle/features/Home/settings/data/cubit/logout_cubit.dart';
@@ -31,11 +32,17 @@ class _HomeManagerState extends State<HomeManager> {
 
     if (widget.usertype == "tenant") {
       pages = [
-        BlocProvider(
-          create: (context) => getIt<AllapartmentCubit>(),
+        MultiBlocProvider(
+          providers: [
+            BlocProvider(create: (context) => getIt<AllapartmentCubit>()),
+            BlocProvider(create: (context) => getIt<FavoriteCubit>()),
+          ],
           child: TenantScreen(),
         ),
-        SearchScreen(),
+        BlocProvider(
+          create: (context) => getIt<FavoriteCubit>(),
+          child: SearchScreen(),
+        ),
         BlocProvider(
           create: (context) => getIt<LogoutCubit>(),
           child: SettingsScreen(),
@@ -47,7 +54,7 @@ class _HomeManagerState extends State<HomeManager> {
           create: (context) => getIt<CreateApartmentCubit>(),
           child: OwnerScreen(),
         ),
-        SearchScreen(),
+        // SearchScreen(),
         BlocProvider(
           create: (context) => getIt<LogoutCubit>(),
           child: SettingsScreen(),
@@ -67,7 +74,7 @@ class _HomeManagerState extends State<HomeManager> {
             currentindex = index;
           });
         },
-       
+
         elevation: 0,
         selectedItemColor: Color(0xff0061FF),
         unselectedItemColor: Color(0xff8C8E98),

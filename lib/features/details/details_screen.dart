@@ -1,14 +1,12 @@
 import 'package:a7gzle/core/DI/get_it.dart';
-import 'package:a7gzle/core/theming/colors_manager.dart';
 import 'package:a7gzle/core/theming/dark_mode/app_icon.dart';
 import 'package:a7gzle/core/theming/text_styles.dart';
-import 'package:a7gzle/core/widgets/app_text_button.dart';
+import 'package:a7gzle/features/Home/home_screen/tenant/data/cubit/favorite_cubit.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/data/models/apartment.dart';
+import 'package:a7gzle/features/Home/home_screen/tenant/data/models/favorite_request.dart';
 import 'package:a7gzle/features/details/data/cubit/rate_apartment_cubit.dart';
 import 'package:a7gzle/features/details/widget/apartment_property.dart';
 import 'package:a7gzle/features/details/widget/book_nav_bar.dart';
-import 'package:a7gzle/features/details/widget/booking_widget.dart';
-import 'package:a7gzle/features/details/widget/gallery_section.dart';
 import 'package:a7gzle/features/details/widget/location.dart';
 import 'package:a7gzle/features/details/widget/overview.dart';
 import 'package:a7gzle/features/details/widget/rate_and_apartment_type.dart';
@@ -16,7 +14,6 @@ import 'package:a7gzle/features/details/widget/user_info.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -43,6 +40,11 @@ class Details extends StatelessWidget {
             shadowColor: Colors.white,
             actions: [
               InkWell(
+                onTap: () {
+                  context.read<FavoriteCubit>().emittogglefavorite(
+                    FavoriteRequest(apartmentid: apartment.id),
+                  );
+                },
                 child: Padding(
                   padding: EdgeInsets.only(right: 24.0.w),
                   child: AppIcon(path: "assets/svgs/favorite.svg"),

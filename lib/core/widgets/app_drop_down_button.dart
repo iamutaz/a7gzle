@@ -1,6 +1,7 @@
 import 'package:a7gzle/features/Home/home_screen/owner/data/model/drop_down_button_value_model.dart';
 import 'package:drop_down_list/drop_down_list.dart';
 import 'package:drop_down_list/model/selected_list_item.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -33,8 +34,8 @@ class AppCityDropDownFormField extends StatelessWidget {
           label,
           style: TextStyles.font16labelblackmideum.copyWith(fontSize: 20),
         ),
-        submitButtonText: 'Save',
-        clearButtonText: 'Clear',
+        submitButtonText: 'Save'.tr(),
+        clearButtonText: 'Clear'.tr(),
         onSelected: (selectedItems) {
           if (selectedItems.isNotEmpty) {
             controller.text = selectedItems.first.data.value;
@@ -50,7 +51,7 @@ class AppCityDropDownFormField extends StatelessWidget {
     return TextFormField(
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return "this feild van't be empty";
+          return "this feild van't be empty".tr();
         }
       },
       controller: controller,
@@ -77,7 +78,7 @@ class AppCityDropDownFormField extends StatelessWidget {
           borderRadius: BorderRadius.circular(30),
         ),
         fillColor:ColorsManager.offwhite(context),
-        hintText: hint,
+        hintText: hint.tr(),
         contentPadding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: ColorsManager.gray, width: 1.5),

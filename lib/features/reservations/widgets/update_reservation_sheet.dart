@@ -5,6 +5,7 @@ import 'package:a7gzle/core/widgets/app_text_form_feild.dart';
 import 'package:a7gzle/features/reservations/data/logic/update_reservation/update_reservation_cubit.dart';
 import 'package:a7gzle/features/reservations/data/model/update/update_reservation_request_body.dart';
 import 'package:a7gzle/features/reservations/widgets/update_reservation_listiner.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -60,7 +61,7 @@ class UpdateReservationSheet extends StatelessWidget {
                     ),
                     SizedBox(width: 130.w),
                     Text(
-                      "Update",
+                      "Update".tr(),
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
@@ -78,28 +79,28 @@ class UpdateReservationSheet extends StatelessWidget {
                           controller: context
                               .read<UpdateReservationCubit>()
                               .startdatecontroller,
-                          feildname: "start date",
+                          feildname: "start date".tr(),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return "this feild can't be empty";
+                              return "this feild can't be empty".tr();
                             }
                           },
-                          onTap: () => setTimeOnForm(context, "startdate"),
+                          onTap: () => setTimeOnForm(context, "startdate".tr()),
                         ),
                       ),
                       SizedBox(width: 30.w),
                       Expanded(
                         child: AppTextFormFeild(
-                          feildname: "end date",
+                          feildname: "end date".tr(),
                           controller: context
                               .read<UpdateReservationCubit>()
                               .enddatecontroller,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return "this feild can't be empty";
+                              return "this feild can't be empty".tr();
                             }
                           },
-                          onTap: () => setTimeOnForm(context, "end"),
+                          onTap: () => setTimeOnForm(context, "end".tr()),
                         ),
                       ),
                     ],
@@ -133,7 +134,7 @@ class UpdateReservationSheet extends StatelessWidget {
                         );
                   },
                   raduisbutton: 30,
-                  textButton: "Update now",
+                  textButton: "Update now".tr(),
                   textStyle: TextStyles.font16whitesemibold,
                 ),
                 UpdateReservationListiner(),

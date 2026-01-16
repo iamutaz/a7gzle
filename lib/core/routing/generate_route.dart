@@ -1,5 +1,6 @@
 import 'package:a7gzle/core/routing/routes_constant.dart';
 import 'package:a7gzle/features/Home/home_manager.dart';
+import 'package:a7gzle/features/Home/home_screen/tenant/data/cubit/favorite_cubit.dart';
 import 'package:a7gzle/features/Home/home_screen/tenant/data/models/apartment.dart';
 import 'package:a7gzle/features/Home/search/search_screen.dart';
 import 'package:a7gzle/features/auth/info/info.dart';
@@ -8,6 +9,8 @@ import 'package:a7gzle/features/auth/login/login.dart';
 import 'package:a7gzle/features/auth/signup/data/cubit/sign_up_cubit.dart';
 import 'package:a7gzle/features/auth/signup/sign_up.dart';
 import 'package:a7gzle/features/details/details_screen.dart';
+import 'package:a7gzle/features/favorite/data/cubit/get_favorite_cubit.dart';
+import 'package:a7gzle/features/favorite/favorite_screen.dart';
 import 'package:a7gzle/features/onboarding/onboarding.dart';
 import 'package:a7gzle/features/reservations/data/logic/get_reservation_cubit/get_all_user_reservations_cubit.dart';
 import 'package:a7gzle/features/reservations/user_reservations.dart';
@@ -63,13 +66,25 @@ class GenerateRoute {
         return MaterialPageRoute(
           builder: (BuildContext context) {
             // return Details();
-            return Details(apartment: apartment);
+            return BlocProvider(
+              create: (context) => getIt<FavoriteCubit>(),
+              child: Details(apartment: apartment),
+            );
           },
         );
       case RoutesConstant.search:
         return MaterialPageRoute(
           builder: (BuildContext context) {
             return SearchScreen();
+          },
+        );
+      case RoutesConstant.favorite:
+        return MaterialPageRoute(
+          builder: (BuildContext context) {
+            return BlocProvider(
+              create: (context) => getIt<GetFavoriteCubit>(),
+              child: FavoriteScreen(),
+            );
           },
         );
       case RoutesConstant.userreservations:

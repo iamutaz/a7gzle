@@ -19,7 +19,7 @@ class Manager extends StatelessWidget {
       builder: (context, child) {
         // التطبيق بغير الثيم وبدي اضمن ان الواجهة بتعيد البناء صح لما الثيم يتغير
         return GetMaterialApp(
-          // هذا السطر مسؤول عن تشغيل الترجمة في التطبيق
+          // بيعلم التطبيق كيف يقرا الترجمات 
           localizationsDelegates: context.localizationDelegates,
           supportedLocales: context.supportedLocales, //  اللغات المتاحة
           locale: context.locale,// اللغة الحالية حسب اختيار اليوزر

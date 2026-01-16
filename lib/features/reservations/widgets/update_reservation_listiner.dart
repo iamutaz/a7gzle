@@ -6,6 +6,7 @@ import 'package:a7gzle/core/theming/text_styles.dart';
 import 'package:a7gzle/features/auth/info/widgets/sign_up_lisitner.dart';
 import 'package:a7gzle/features/reservations/data/logic/update_reservation/update_reservation_cubit.dart';
 import 'package:a7gzle/features/reservations/data/logic/update_reservation/update_reservation_state.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -27,7 +28,7 @@ class UpdateReservationListiner extends StatelessWidget {
             context.pop();
             ScaffoldMessenger.of(
               context,
-            ).showSnackBar(SnackBar(content: Text('Updated successfuly')));
+            ).showSnackBar(SnackBar(content: Text('Updated successfuly'.tr())));
             // context.pushNamed(RoutesConstant.userreservations);
           },
           updatereservationfailure: (exception) {

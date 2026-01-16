@@ -25,8 +25,6 @@ class _ButtonListState extends State<ButtonList> {
     'Others',
   ];
 
-  // تم حذف قائمة الـ widths لضمان تناسق الكلمات العربية والإنجليزية تلقائياً
-
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -44,19 +42,18 @@ class _ButtonListState extends State<ButtonList> {
               backgroundColor: isSelected
                   ? ColorsManager.mainBlue
                   : const Color.fromARGB(237, 211, 224, 244),
-              elevation: 0, 
-              // تم استبدال fixedSize بـ minimumSize ليعطي مرونة في العرض حسب طول الكلمة
-              minimumSize: const Size(60, 41),
+              elevation: 0,
+              minimumSize: const Size(80, 50),
               padding: const EdgeInsets.symmetric(horizontal: 20),
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30), 
+                borderRadius: BorderRadius.circular(30),
               ),
             ),
             onPressed: () {
               setState(() {
                 selectedIndex = index;
               });
-              //عم ننادي التابع وبنبعت معو اسم الزر الي انكبس 
+              //عم ننادي التابع وبنبعت معو اسم الزر الي انكبس
               widget.onCategoryChanged(titles[index]);
             },
             child: Text(

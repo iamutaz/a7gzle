@@ -8,6 +8,7 @@ part of 'apartment.dart';
 
 Apartment _$ApartmentFromJson(Map<String, dynamic> json) => Apartment(
   rate: (json['rate'] as num?)?.toDouble(),
+  isfavorite: json['is_favorite'] as bool,
   type: json['type'] as String,
   id: (json['id'] as num).toInt(),
   title: json['title'] as String,
@@ -36,7 +37,7 @@ Map<String, dynamic> _$ApartmentToJson(Apartment instance) => <String, dynamic>{
   'bathrooms': instance.bathrooms,
   'status': instance.status,
   'type': instance.type,
-  'rate': instance.rate,
+  'is_favorite': instance.isfavorite,
   'images': instance.images,
   'owner': instance.owner,
 };

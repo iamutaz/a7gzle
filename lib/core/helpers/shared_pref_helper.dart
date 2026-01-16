@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:ffi';
-
 import 'package:a7gzle/core/helpers/constant.dart';
 import 'package:a7gzle/core/helpers/user_model.dart';
 import 'package:a7gzle/features/auth/login/data/model/login_response_body.dart';

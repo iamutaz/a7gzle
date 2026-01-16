@@ -120,7 +120,21 @@
   "Agent": "الوكيل",
   "beds_count": "{} غرف",
   "bath_count": "{} حمام",
-  "area_size": "{} هكتار"
-
-
+  "area_size": "{} هكتار",
+   "Favorite": "المفضلة",
+   "Try add some !!": "جرب إضافة بعض العقارات للمفضلة!",
+  "not working": "عذراً، حدث خطأ أثناء التحميل",
+  "Updated successfuly": "تم التحديث بنجاح",
+    "Update": "تحديث",
+  "Update now": "تحديث الآن",
+    "Check Your reservations": "تحقق من حجوزاتك",
+  "Pending": "قيد الانتظار",
+  "confirmed": "تم التأكيد",
+  "canceld": "ملغي",
+  "rejected": "مرفوض",
+  "Choose your city": "اختر مدينتك",
+  "Save": "حفظ",
+  "Clear": "مسح",
+  "this feild van't be empty": "هذا الحقل لا يمكن أن يكون فارغاً",
+  "Edit": "تعديل"
 }
