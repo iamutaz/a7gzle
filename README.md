@@ -1,5 +1,9 @@
 # 🏠 Real Estate Management System
 
+
+<img width="5668" height="4800" alt="Group 1" src="https://github.com/user-attachments/assets/00c07d39-9888-48b8-8488-befad3ba9f79" />
+
+
 A complete real estate application that connects **property owners** and **tenants** on a single platform, providing an easy and organized way to manage properties and reservations.
 
 ---
